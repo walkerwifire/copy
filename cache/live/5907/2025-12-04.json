@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "techNo": "5907",
+    "date": "2025-12-04",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836030323",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "5907",
+        "name": "JOVIN,MARIE",
+        "address": "1437 E 101ST ST, APT 1, BROOKLYN, NY 11236-5507",
+        "phone": "347-247-5315"
+      },
+      {
+        "time": "11-2",
+        "job": "07836524725",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "5907",
+        "name": "MOORE,JASMIEN",
+        "address": "428 SHEFFIELD AV, APT 3I, BROOKLYN, NY 11207-4728",
+        "phone": "347-633-4869"
+      },
+      {
+        "time": "2-5",
+        "job": "07836691866",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "5907",
+        "name": "WICKS,JULIAN",
+        "address": "603 BUSHWICK AV, APT 2R, BROOKLYN, NY 11206-6027",
+        "phone": "585-645-3431"
+      },
+      {
+        "time": "2-5",
+        "job": "07836395723",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "5907",
+        "name": "GOMEZ,ELIZABET",
+        "address": "654 SCHENCK AV, APT 1, BROOKLYN, NY 11207-7334",
+        "phone": "929-888-1153"
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": ""
+  }
+]

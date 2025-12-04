@@ -63,7 +63,7 @@
     document.getElementById('refreshBtn').addEventListener('click', async () => {
       const tech = getSelectedTech();
       const date = document.getElementById('routeDate')?.value || '';
-      const url = '/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '');
+        const url = '/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1';
       const dash = await (await fetch(url)).json();
       renderSummaryTiles(dash);
       renderTechniciansWithRoutes(dash);
@@ -83,14 +83,14 @@
     document.getElementById('routeDate').addEventListener('change', async () => {
       const tech = getSelectedTech();
       const date = document.getElementById('routeDate')?.value || '';
-      const dash = await (await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now())).json();
+        const dash = await (await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now())).json();
       renderTechniciansWithRoutes(dash);
       updateRoutesCsvLink();
     });
     document.getElementById('techSelect').addEventListener('change', async () => {
       const tech = getSelectedTech();
       const date = document.getElementById('routeDate')?.value || '';
-      const dash = await (await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now())).json();
+        const dash = await (await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now())).json();
       renderSummaryTiles(dash);
       renderTechniciansWithRoutes(dash);
       updateRoutesCsvLink();
@@ -98,7 +98,7 @@
     // Refresh All button: force tech=all
     document.getElementById('refreshAllBtn').addEventListener('click', async () => {
       const date = document.getElementById('routeDate')?.value || '';
-      const dash = await (await fetch('/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now())).json();
+        const dash = await (await fetch('/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now())).json();
       const sel = document.getElementById('techSelect');
       if (sel) sel.value = 'all';
       renderSummaryTiles(dash);
@@ -136,8 +136,13 @@
         status.textContent = 'Live fetch error: ' + e.message;
       }
     });
-    // Initial load
-    loadData();
+    // Initial load: ensure functions are defined before calling
+    window.addEventListener('DOMContentLoaded', () => {
+      try { loadData(); } catch (e) {
+        const status = document.getElementById('status');
+        if (status) status.textContent = 'Init error: ' + e.message;
+      }
+    });
   </script>
   <script>
     function updateRoutesCsvLink() {
@@ -147,6 +152,7 @@
       const qs = [];
       if (date) qs.push('date=' + encodeURIComponent(date));
       if (tech && tech !== 'all') qs.push('tech=' + encodeURIComponent(tech));
+        qs.push('force=1');
       const href = qs.length ? (base + '?' + qs.join('&')) : base;
       const a = document.getElementById('routesCsvLink');
       if (a) a.href = href;

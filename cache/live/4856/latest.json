@@ -1,0 +1,21 @@
+[
+  {
+    "techNo": "4856",
+    "date": "2025-12-04",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836583851",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "COHEN,HARRIET",
+        "address": "3030 EMMONS AV, APT 6B, BROOKLYN, NY 11235-2228",
+        "phone": "718-934-2872"
+      }
+    ],
+    "totalStops": 1,
+    "estimatedDuration": "0h 54m"
+  }
+]

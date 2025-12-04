@@ -1,0 +1,43 @@
+[
+  {
+    "techNo": "18232",
+    "date": "2025-12-04",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836281418",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "18232",
+        "name": "TYLNER,ZACHARY",
+        "address": "1302 NEWKIRK AV, APT 5L, BROOKLYN, NY 11230-1557",
+        "phone": "718-500-8212"
+      },
+      {
+        "time": "11-2",
+        "job": "07836071035",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "18232",
+        "name": "ROMANO,LENNY",
+        "address": "1091 ROGERS AVE, APT 4R, BROOKLYN, NY 11226",
+        "phone": "929-627-7023"
+      },
+      {
+        "time": "2-5",
+        "job": "07836565901",
+        "type": "TC",
+        "status": "Pending TC",
+        "badge": "pending",
+        "tech": "18232",
+        "name": "MCKEOWN,MARTHA",
+        "address": "110 MARTENSE ST, APT D7, BROOKLYN, NY 11226-3310",
+        "phone": "202-253-3505"
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": ""
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "techNo": "4687",
+    "date": "2025-12-04",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836860453",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "GRAYSON,BLOSSOM",
+        "address": "223 MALCOLM X BL, APT 3FL, BROOKLYN, NY 11221",
+        "phone": "347-221-0173"
+      }
+    ],
+    "totalStops": 1,
+    "estimatedDuration": "1h 12m"
+  }
+]

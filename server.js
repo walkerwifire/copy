@@ -135,7 +135,7 @@ function stripTags(html) {
   return String(html || '').replace(/<[^>]+>/g, '').trim();
 }
 
-function deriveRoutesFromHtml(html) {
+function deriveRoutesFromHtml(html, forcedTech) {
   const routes = [];
   try {
     const objs = [];
@@ -151,17 +151,47 @@ function deriveRoutesFromHtml(html) {
     if (!objs.length) return routes;
     // Group by tech and date
     const group = {};
+    const cleanVal = (v) => {
+      let s = String(v || '').trim();
+      // Remove leading/trailing quotes and stray spaces
+      s = s.replace(/^"+\s*/, '').replace(/\s*"+$/, '').trim();
+      return s;
+    };
     for (const o of objs) {
-      const li = Array.isArray(o.lineItems) ? o.lineItems.map(stripTags) : [];
+      const liRaw = Array.isArray(o.lineItems) ? o.lineItems.map(stripTags) : [];
+      const li = liRaw.map(x => cleanVal(x));
+      // Build a simple label->value map where labels like 'DS:' may be followed by a separate value entry
+      const kv = {};
+      for (let i = 0; i < li.length; i++) {
+        const cur = li[i];
+        // Match a label that ends with ':' possibly with spaces before ':'
+        const m = cur.match(/^([A-Za-z# ]+)\s*:\s*(.*)$/);
+        if (m) {
+          const key = cleanVal(m[1] + ':');
+          const rest = cleanVal(m[2]);
+          if (rest) kv[key] = rest;
+          else if (i + 1 < li.length) kv[key] = cleanVal(li[i + 1]);
+        }
+      }
       const get = (label) => {
+        // Try direct kv map first
+        if (kv[label] != null) return kv[label];
+        // Try spaced variant (e.g., 'DS :')
+        const spaced = label.replace(':', ' :');
+        if (kv[spaced] != null) return kv[spaced];
+        // Fallback: inline replacement
         const item = li.find(s => s.startsWith(label));
-        return item ? item.replace(label, '').trim() : '';
+        return item ? cleanVal(item.replace(label, '')) : '';
       };
-      const tech = get('Job ID:') ? get('Tech:') : (get('Tech:') || '');
-      const type = get('Type:');
-      const jobId = get('Job ID:') || stripTags(o.woJobNumber || '').split(' ')[0];
-      const status = get('DS:');
-      const ts = get('TS:');
+      // Tech number and identifiers
+      let tech = get('Tech:') || '';
+      if (!tech && forcedTech) tech = String(forcedTech);
+      const type = get('Type:') || get('TYPE:') || '';
+      const jobId = get('Job ID:') || get('JobID:') || stripTags(o.woJobNumber || '').split(' ')[0];
+      // Status/disposition may be labeled differently across views
+      const statusRaw = get('DS:') || get('DS :') || get('Status:') || get('STATUS:') || get('Disposition:') || '';
+      const status = statusRaw || '';
+      const ts = get('TS:') || get('TS :');
       const startTime = o.drawStartTime || '';
       const endTime = o.drawEndTime || '';
       const time = ts || (startTime && endTime ? `${startTime}-${endTime}` : (startTime || ''));
@@ -170,8 +200,19 @@ function deriveRoutesFromHtml(html) {
       const city = get('City:');
       const name = get('Name:');
       const phone = get('Home #:') || get('Work #:');
-      const dateIso = normalizeUsDateToIso(get('Schd:')) || (String(o.drawStartDate || '').replace(/\//g, '-'));
-      const badge = /complete/i.test(status) ? 'completed' : (/unassign|cancel/i.test(status) ? 'cancelled' : (status || ''));
+      let dateIso = normalizeUsDateToIso(get('Schd:') || get('Schd :')) || (String(o.drawStartDate || '').replace(/\//g, '-'));
+      if (!dateIso || !/\d{4}-\d{2}-\d{2}/.test(dateIso)) {
+        // Default to today to avoid filtering out stops when schedule date is formatted unexpectedly
+        dateIso = new Date().toISOString().slice(0,10);
+      }
+      // Normalize badge across common states
+      let badge = '';
+      if (/complete|completed|done/i.test(status)) badge = 'completed';
+      else if (/not\s*done/i.test(status)) badge = 'cancelled';
+      else if (/pending|sched|scheduled|pending install|pending tc|pending cos|pending change/i.test(status)) badge = 'pending';
+      else if (/cancel|cnx|canceled|cancelled/i.test(status)) badge = 'cancelled';
+      else if (/unassign|unassigned/i.test(status)) badge = 'unassigned';
+      else badge = status || '';
       const key = `${tech}|${dateIso}`;
       if (!group[key]) {
         group[key] = { techNo: tech || '', date: dateIso || '', stops: [], totalStops: 0, estimatedDuration: '' };
@@ -274,13 +315,13 @@ function writeCachedRoutes(filePath, routes) {
   try { fs.writeFileSync(filePath, JSON.stringify(routes || [], null, 2), 'utf8'); } catch {}
 }
 
-async function fetchTechRoutesWithCache(tech, password, dateIso) {
+async function fetchTechRoutesWithCache(tech, password, dateIso, opts = {}) {
   const cacheFile = getTechDateCachePath(tech, dateIso);
-  if (isFreshCache(cacheFile)) {
+  if (!opts.force && isFreshCache(cacheFile)) {
     return readCachedRoutes(cacheFile);
   }
   const live = await fetchLiveHtmlWith(tech, password, TECHNET_URL);
-  const routes = deriveRoutesFromHtml(live.html || '');
+  const routes = deriveRoutesFromHtml(live.html || '', tech);
   const techRoutes = routes.filter(r => String(r.techNo) === String(tech));
   const filtered = dateIso ? techRoutes.filter(r => String(r.date) === String(dateIso)) : techRoutes;
   writeCachedRoutes(cacheFile, filtered);
@@ -304,30 +345,21 @@ async function parallelMap(items, limit, mapper) {
   return results;
 }
 
-async function fetchAllTechRoutes(dateIso) {
+async function fetchAllTechRoutes(dateIso, opts = {}) {
   const list = getAllTechsFromJson();
   const chunks = await parallelMap(list, parseInt(process.env.CONCURRENCY || '3', 10), async (t) => {
-    return await fetchTechRoutesWithCache(t.tech, t.password, dateIso);
+    const routes = await fetchTechRoutesWithCache(t.tech, t.password, dateIso, opts);
+    // Persist per tech/date indefinitely
+    const file = getTechDateCachePath(t.tech, dateIso || new Date().toISOString().slice(0,10));
+    writeCachedRoutes(file, routes);
+    return routes;
   });
   const aggregated = [];
   for (const arr of chunks) aggregated.push(...arr);
   return aggregated;
 }
 
-async function fetchLivePreferCreds(reqOrParams) {
-  const techParam = (reqOrParams?.query?.tech) || (reqOrParams?.tech) || process.env.TECHNET_USER || process.env.TECHNET_USERNAME || '4682';
-  const envUser = process.env.TECHNET_USER || process.env.TECHNET_USERNAME;
-  const envPass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD;
-  if (envUser && envPass) {
-    return fetchLiveHtmlWith(envUser, envPass, TECHNET_URL);
-  }
-  const creds = resolveCredsFromTechs(techParam);
-  if (creds?.user && creds?.pass) {
-    return fetchLiveHtmlWith(creds.user, creds.pass, TECHNET_URL);
-  }
-  // Fallback to original flow (will error with guidance if missing)
-  return fetchLiveHtml();
-}
+// Removed single-tech preference: the server aggregates all techs from techs.json
 
 /**
  * Live fetch via Playwright with credentials.
@@ -566,6 +598,7 @@ app.get('/api/routes.csv', async (req, res) => {
     const forceLive = (req.query.mode || '').toLowerCase() === 'live';
     const wantAll = (String(req.query.tech || '').toLowerCase() === 'all') || (String(req.query.all || '') === '1');
     const dateIso = String(req.query.date || '').trim();
+    const force = String(req.query.force || '') === '1';
     let payload;
     if (!forceLive) {
       const offline = tryOfflineCapture();
@@ -577,7 +610,7 @@ app.get('/api/routes.csv', async (req, res) => {
     }
     if (!payload) {
       if (wantAll) {
-        const routes = await fetchAllTechRoutes(dateIso || undefined);
+        const routes = await fetchAllTechRoutes(dateIso || undefined, { force });
         // Derive a minimal technicians list from the aggregated routes
         const techMap = new Map();
         for (const r of routes) {
@@ -695,51 +728,23 @@ function deriveSummaryFromData(data) {
 // Dashboard route: returns technicians array, title, summary, routes
 app.get('/api/dashboard', async (req, res) => {
   try {
-    const forceLive = (req.query.mode || '').toLowerCase() === 'live';
-    const wantAll = (String(req.query.tech || '').toLowerCase() === 'all') || (String(req.query.all || '') === '1');
-    const dateIso = String(req.query.date || '').trim();
+    const forceLive = true; // always fetch live when needed
+    const wantAll = true; // always aggregate all techs
+    const dateIso = String(req.query.date || '').trim() || new Date().toISOString().slice(0,10);
+    const force = String(req.query.force || '') === '1';
     let payload;
-    if (!forceLive) {
-      const offline = tryOfflineCapture();
-      if (offline) {
-        const technicians = deriveTechniciansFromData(offline.data);
-        const summary = deriveSummaryFromData(offline.data);
-        let routes = [];
-        try { routes = deriveRoutesFromHtml(offline.html || ''); } catch {}
-        payload = { mode: 'offline', title: offline.data.title, technicians, summary, routes, raw: offline };
-      }
-    }
     if (!payload) {
-      if (wantAll) {
-        const routes = await fetchAllTechRoutes(dateIso || undefined);
-        // Build technicians list using techs.json when available
-        const techJson = getAllTechsFromJson();
-        const techSet = new Map();
-        for (const r of routes) {
-          const key = String(r.techNo || '').trim();
-          if (!key) continue;
-          if (!techSet.has(key)) {
-            const fromJson = techJson.find(t => String(t.tech) === key) || {};
-            techSet.set(key, {
-              name: fromJson.name || `Tech ${key}`,
-              status: fromJson.status || 'Off Duty',
-              techNo: key,
-              workSkill: fromJson.workSkill || 'FTTH, COAX',
-              provider: fromJson.provider || 'Altice/Optimum',
-              lastActivity: fromJson.lastActivity || 'N/A'
-            });
-          }
-        }
-        const technicians = Array.from(techSet.values());
-        payload = { mode: 'live', title: 'All Techs', technicians, summary: {}, routes, raw: {} };
-      } else {
-        const live = await fetchLivePreferCreds(req);
-        const technicians = deriveTechniciansFromData(live.data);
-        const summary = deriveSummaryFromData(live.data);
-        let routes = [];
-        try { routes = deriveRoutesFromHtml(live.html || ''); } catch {}
-        payload = { mode: 'live', title: live.data.title, technicians, summary, routes, raw: live };
-      }
+      const routes = await fetchAllTechRoutes(dateIso, { force });
+      const techJson = getAllTechsFromJson();
+      const technicians = techJson.map(t => ({
+        name: t.name || `Tech ${t.tech}`,
+        status: t.status || 'Off Duty',
+        techNo: String(t.tech),
+        workSkill: t.workSkill || 'FTTH, COAX',
+        provider: t.provider || 'Altice/Optimum',
+        lastActivity: t.lastActivity || 'N/A'
+      }));
+      payload = { mode: 'live', title: 'All Techs', technicians, summary: {}, routes, raw: {} };
     }
     // If still no technicians, attempt sample fallback
     if (!payload.technicians || payload.technicians.length === 0) {
@@ -757,6 +762,30 @@ app.get('/api/dashboard', async (req, res) => {
       } catch {}
     }
     return res.json(payload);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+// Scheduled hourly refresh: fetch all tech routes for today and persist
+async function scheduledRefresh() {
+  try {
+    const today = new Date().toISOString().slice(0,10);
+    await fetchAllTechRoutes(today);
+    console.log(`[scheduler] Refreshed routes for ${today}`);
+  } catch (e) {
+    console.error('[scheduler] Refresh error:', e.message || e);
+  }
+}
+// Start immediately, then hourly
+scheduledRefresh();
+setInterval(scheduledRefresh, 60 * 60 * 1000);
+
+// Manual refresh: trigger fetch and persist for a given date (YYYY-MM-DD)
+app.post('/api/refresh', async (req, res) => {
+  try {
+    const dateIso = String((req.body && req.body.date) || req.query.date || '').trim() || new Date().toISOString().slice(0,10);
+    await fetchAllTechRoutes(dateIso);
+    return res.json({ ok: true, date: dateIso });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }

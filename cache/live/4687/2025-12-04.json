@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "techNo": "4687",
+    "date": "2025-12-04",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836157982",
+        "type": "TC",
+        "status": "Pending TC",
+        "badge": "pending",
+        "tech": "4687",
+        "name": "LAMBERT,COPUCINE",
+        "address": "859 E 55TH ST, APT 2, BROOKLYN, NY 11234-1212",
+        "phone": "718-629-5916"
+      },
+      {
+        "time": "2-5",
+        "job": "07836020548",
+        "type": "COS",
+        "status": "Pending Change",
+        "badge": "pending",
+        "tech": "4687",
+        "name": "DODEARD,EMILY",
+        "address": "14 PAERDEGT 3RD ST, APT 1, BROOKLYN, NY 11236-4134",
+        "phone": "347-825-9971"
+      },
+      {
+        "time": "8-11",
+        "job": "07836860453",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "GRAYSON,BLOSSOM",
+        "address": "223 MALCOLM X BL, APT 3FL, BROOKLYN, NY 11221",
+        "phone": "347-221-0173"
+      },
+      {
+        "time": "9-12",
+        "job": "07836599991",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "WHITE,THOMAS",
+        "address": "1409 ST JOHNS PL, APT 10, BROOKLYN, NY 11213-3806",
+        "phone": "929-706-4106"
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "2h 6m"
+  }
+]
