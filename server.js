@@ -1198,15 +1198,33 @@ app.get('/api/job/:jobId', async (req, res) => {
         const m = html.match(re);
         return m ? String(m[1]).trim() : '';
       };
-      // Examples: "Dispatch Cmt: Installed modem and Samsung box"
-      const dispatchCmt = pick(/Dispatch\s*Cmt:\s*([^\n<]*)/i);
-      const receiptCmt = pick(/Receipt\s*Cmt:\s*([^\n<]*)/i);
-      const fsmCmt = pick(/FSM\s*Cmt:\s*([^\n<]*)/i);
-      const mapCd = pick(/Map\s*CD:\s*([^\n<]*)/i);
-      const node = pick(/Node:\s*([^\n<]*)/i);
+      // Extract values for all known labels
+      const job = pick(/Job\s*ID:\s*([^\n<"]+)/i);
       const tech = pick(/Tech:\s*(\d{3,})/i);
-      const fc = pick(/\bFC:\s*([^\n<]*)/i);
-      const rescd = pick(/\bResCd:\s*([^\n<]*)/i);
+      const rescd = pick(/ResCd:\s*([^\n<"]*)/i);
+      const fc = pick(/FC:\s*([^\n<"]*)/i);
+      const create = pick(/Create:\s*([^\n<"]+)/i);
+      const schd = pick(/Schd:\s*([^\n<"]+)/i);
+      const cptime = pick(/CpTime:\s*([^\n<"]+)/i);
+      const ds = pick(/DS:\s*([^\n<"]+)/i);
+      const ts = pick(/TS:\s*([^\n<"]]+)/i);
+      const type = pick(/Type:\s*([^\n<"]]+)/i);
+      const units = pick(/Units:\s*([^\n<"]]+)/i);
+      const reason = pick(/ReaCd\/?\s*ReaDesc:\s*([^\n<"]]+)/i);
+      const addr = pick(/Addr:\s*([^\n<"]]+)/i);
+      const addr2 = pick(/Addr2:\s*([^\n<"]]+)/i);
+      const city = pick(/City:\s*([^\n<"]]+)/i);
+      const name = pick(/Name:\s*([^\n<"]]+)/i);
+      const home = pick(/Home\s*#:\s*([^\n<"]]+)/i);
+      const work = pick(/Work\s*#:\s*([^\n<"]]+)/i);
+      const mapCd = pick(/Map\s*CD:\s*([^\n<"]]+)/i);
+      const jobCmt = pick(/Job\s*Cmt:\s*([^\n<"]]+)/i);
+      const node = pick(/Node:\s*([^\n<"]]+)/i);
+      const delq = pick(/Delq:\s*([^\n<"]]*)/i);
+      const dispatchCmt = pick(/Dispatch\s*Cmt:\s*([^\n<"]]+)/i);
+      const receiptCmt = pick(/Receipt\s*Cmt:\s*([^\n<"]]*)/i);
+      const fsmCmt = pick(/FSM\s*Cmt:\s*([^\n<"]]*)/i);
+      if (job) result.job = job;
       if (dispatchCmt) result.dispatchComment = dispatchCmt;
       if (receiptCmt) result.receiptComment = receiptCmt;
       if (fsmCmt) result.fsmComment = fsmCmt;
@@ -1215,6 +1233,20 @@ app.get('/api/job/:jobId', async (req, res) => {
       if (tech) setIfEmpty(result, 'assignedTech', tech);
       if (fc) setIfEmpty(result, 'accountNumber', fc);
       if (rescd) setIfEmpty(result, 'resolutionCodes', rescd);
+      if (create) setIfEmpty(result, 'create', create);
+      if (schd) setIfEmpty(result, 'scheduleDate', schd);
+      if (cptime) setIfEmpty(result, 'staticCompletionTime', cptime);
+      if (ds) setIfEmpty(result, 'staticStatus', ds);
+      if (ts) setIfEmpty(result, 'timeFrame', ts);
+      if (type) setIfEmpty(result, 'jobType', type);
+      if (units) setIfEmpty(result, 'units', units);
+      if (reason) setIfEmpty(result, 'reason', reason);
+      if (addr) setIfEmpty(result, 'address', addr);
+      if (addr2) setIfEmpty(result, 'address2', addr2);
+      if (city) setIfEmpty(result, 'city', city);
+      if (name) setIfEmpty(result, 'name', name);
+      if (home) setIfEmpty(result, 'homePhone', home);
+      if (work) setIfEmpty(result, 'workPhone', work);
     } catch {}
 
     return res.json(result);
