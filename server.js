@@ -1079,43 +1079,75 @@ app.get('/api/job/:jobId', async (req, res) => {
     const tables = Array.isArray(dataObj?.tables) ? dataObj.tables : [];
     const fields = Array.isArray(dataObj?.fields) ? dataObj.fields : [];
     const result = { job: jobId };
+    const norm = s => String(s || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    const isLabel = (label, patterns) => {
+      const L = norm(label).replace(/:$/, '');
+      return patterns.some(p => {
+        if (typeof p === 'string') return L === norm(p);
+        if (p instanceof RegExp) return p.test(L);
+        return false;
+      });
+    };
+    const setIfEmpty = (obj, key, val) => { if (val && obj[key] == null) obj[key] = val; };
     // Scan tables for a row containing the job number and map nearby headers
     for (const t of tables) {
       const headers = (t.headers || []).map(h => String(h).trim());
       for (const r of t.rows || []) {
         if (r.some(cell => String(cell).includes(jobId))) {
           headers.forEach((h, idx) => {
-            const key = h.toLowerCase();
-            const val = r[idx];
+            const key = norm(h);
+            const val = String(r[idx] ?? '').trim();
             if (!val) return;
-            if (key.includes('job') && key.includes('type')) result.jobType = val;
-            if (key.includes('status')) result.staticStatus = val;
-            if (key.includes('time') && key.includes('completion')) result.staticCompletionTime = val;
-            if (key.includes('account')) result.accountNumber = val;
-            if (key.includes('units')) result.units = val;
-            if (key.includes('priority')) result.priority = val;
-            if (key.includes('schedule')) result.scheduleDate = val;
-            if (key.includes('origin')) result.origin = val;
-            if (key.includes('resolution')) result.resolutionCodes = val;
-            if (key.includes('phone') && !result.phone) result.phone = val;
-            if ((key.includes('name') || key.includes('customer')) && !result.name) result.name = val;
-            if (key.includes('address') && !result.address) result.address = val;
+            if (isLabel(key, [/^job\s*type$/])) setIfEmpty(result, 'jobType', val);
+            if (isLabel(key, [/^status$/])) setIfEmpty(result, 'staticStatus', val);
+            if (isLabel(key, [/^completion\s*time$/, /^cp\s*time$/, /^cptime$/])) setIfEmpty(result, 'staticCompletionTime', val);
+            if (isLabel(key, [/^account(\s*#|\s*number)?$/])) setIfEmpty(result, 'accountNumber', val);
+            if (isLabel(key, [/^units$/])) setIfEmpty(result, 'units', val);
+            if (isLabel(key, [/^priority$/])) setIfEmpty(result, 'priority', val);
+            if (isLabel(key, [/^schd$/, /^schedule(\s*date)?$/])) setIfEmpty(result, 'scheduleDate', val);
+            if (isLabel(key, [/^origin$/])) setIfEmpty(result, 'origin', val);
+            if (isLabel(key, [/^resolution(\s*codes?)?$/])) setIfEmpty(result, 'resolutionCodes', val);
+            if (isLabel(key, [/^phone(\s*#)?$/])) setIfEmpty(result, 'phone', val);
+            if (isLabel(key, [/^(customer\s*)?name$/])) setIfEmpty(result, 'name', val);
+            if (isLabel(key, [/^address$/])) setIfEmpty(result, 'address', val);
+            if (isLabel(key, [/^addr2$/])) setIfEmpty(result, 'address2', val);
+            if (isLabel(key, [/^city$/])) setIfEmpty(result, 'city', val);
           });
         }
       }
     }
-    // Augment with labeled fields
+    // Augment with labeled fields and normalize to requested keys
     fields.forEach(f => {
-      const label = String(f.label || '').toLowerCase();
-      const val = f.value;
+      const labelRaw = String(f.label || '');
+      const label = norm(labelRaw);
+      const val = String(f.value ?? '').trim();
       if (!val) return;
-      if (label.includes('priority')) result.priority = val;
-      if (label.includes('schedule')) result.scheduleDate = val;
-      if (label.includes('account')) result.accountNumber = val;
-      if (label.includes('resolution')) result.resolutionCodes = val;
-      if (label.includes('name') && !result.name) result.name = val;
-      if (label.includes('address') && !result.address) result.address = val;
-      if (label.includes('phone') && !result.phone) result.phone = val;
+      if (isLabel(label, [/^priority$/])) result.priority = val;
+      if (isLabel(label, [/^create$/])) result.create = val;
+      if (isLabel(label, [/^schd$/, /^schedule(\s*date)?$/])) result.scheduleDate = val;
+      if (isLabel(label, [/^completion\s*time$/, /^cp\s*time$/, /^cptime$/])) result.staticCompletionTime = val;
+      if (isLabel(label, [/^ds$/, /^status$/])) result.staticStatus = val;
+      if (isLabel(label, [/^ts$/, /^time\s*frame$/])) result.timeFrame = val;
+      if (isLabel(label, [/^type$/, /^job\s*type$/])) result.jobType = val;
+      if (isLabel(label, [/^units$/])) result.units = val;
+      if (isLabel(label, [/^reacd$/, /^rea\s*cd$/, /^readesc$/, /^rea\s*desc$/, /^reason$/])) result.reason = val;
+      if (isLabel(label, [/^addr$/, /^address$/])) setIfEmpty(result, 'address', val);
+      if (isLabel(label, [/^addr2$/, /^address\s*2$/])) setIfEmpty(result, 'address2', val);
+      if (isLabel(label, [/^city$/])) result.city = val;
+      if (isLabel(label, [/^name$/, /^(customer\s*)?name$/])) setIfEmpty(result, 'name', val);
+      if (isLabel(label, [/^home(\s*#)?$/])) result.homePhone = val;
+      if (isLabel(label, [/^work(\s*#)?$/])) result.workPhone = val;
+      if (isLabel(label, [/^map\s*cd$/, /^map$/])) result.mapCd = val;
+      if (isLabel(label, [/^job\s*cmt$/, /^job\s*comment$/])) result.jobComment = val;
+      if (isLabel(label, [/^node$/])) result.node = val;
+      if (isLabel(label, [/^delq$/])) result.delq = val;
+      if (isLabel(label, [/^dispatch\s*cmt$/])) result.dispatchComment = val;
+      if (isLabel(label, [/^receipt\s*cmt$/])) result.receiptComment = val;
+      if (isLabel(label, [/^fsm\s*cmt$/])) result.fsmComment = val;
+      if (isLabel(label, [/^account(\s*#|\s*number)?$/])) result.accountNumber = val;
+      if (isLabel(label, [/^resolution(\s*codes?)?$/])) result.resolutionCodes = val;
+      if (isLabel(label, [/^phone(\s*#)?$/])) setIfEmpty(result, 'phone', val);
+      if (isLabel(label, [/^origin$/])) result.origin = val;
     });
 
     return res.json(result);
