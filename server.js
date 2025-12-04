@@ -1076,6 +1076,23 @@ app.get('/api/job/:jobId', async (req, res) => {
       dataObj = live.data;
       try { fs.writeFileSync(path.join(cacheDir, 'latest.json'), JSON.stringify(dataObj, null, 2), 'utf8'); } catch {}
     }
+    // Offline HTML fallback: parse local snapshot files when structured data is missing
+    if (!dataObj || (!dataObj.tables && !dataObj.fields)) {
+      const candidates = [
+        path.join(__dirname, 'page_snapshot.html'),
+        path.join(__dirname, '_responses', 'dashboard.html'),
+        path.join(__dirname, '_responses', 'index.html'),
+      ];
+      for (const f of candidates) {
+        if (fs.existsSync(f)) {
+          try {
+            const html = fs.readFileSync(f, 'utf8');
+            dataObj = Object.assign({}, dataObj || {}, { html });
+            break;
+          } catch {}
+        }
+      }
+    }
 
     const tables = Array.isArray(dataObj?.tables) ? dataObj.tables : [];
     const fields = Array.isArray(dataObj?.fields) ? dataObj.fields : [];
