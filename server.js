@@ -1131,6 +1131,9 @@ app.get('/api/job/:jobId', async (req, res) => {
       if (isLabel(label, [/^type$/, /^job\s*type$/])) result.jobType = val;
       if (isLabel(label, [/^units$/])) result.units = val;
       if (isLabel(label, [/^reacd$/, /^rea\s*cd$/, /^readesc$/, /^rea\s*desc$/, /^reason$/])) result.reason = val;
+      if (isLabel(label, [/^rescd$/])) result.resolutionCodes = val;
+      if (isLabel(label, [/^fc$/])) result.accountNumber = val;
+      if (isLabel(label, [/^tech$/])) result.assignedTech = val;
       if (isLabel(label, [/^addr$/, /^address$/])) setIfEmpty(result, 'address', val);
       if (isLabel(label, [/^addr2$/, /^address\s*2$/])) setIfEmpty(result, 'address2', val);
       if (isLabel(label, [/^city$/])) result.city = val;
@@ -1149,6 +1152,44 @@ app.get('/api/job/:jobId', async (req, res) => {
       if (isLabel(label, [/^phone(\s*#)?$/])) setIfEmpty(result, 'phone', val);
       if (isLabel(label, [/^origin$/])) result.origin = val;
     });
+
+    // Fallback: scan tables for label/value rows (first column is label)
+    for (const t of tables) {
+      const headers = (t.headers || []).map(h => norm(h));
+      const isTwoCol = headers.length === 2 || (t.rows && t.rows[0] && t.rows[0].length === 2);
+      if (!isTwoCol) continue;
+      for (const r of t.rows || []) {
+        if (!Array.isArray(r) || r.length < 2) continue;
+        const label = norm(r[0]).replace(/:$/, '');
+        const val = String(r[1] ?? '').trim();
+        if (!val) continue;
+        if (isLabel(label, [/^job\s*id$/])) setIfEmpty(result, 'job', val);
+        if (isLabel(label, [/^tech$/])) setIfEmpty(result, 'assignedTech', val);
+        if (isLabel(label, [/^rescd$/])) setIfEmpty(result, 'resolutionCodes', val);
+        if (isLabel(label, [/^fc$/])) setIfEmpty(result, 'accountNumber', val);
+        if (isLabel(label, [/^create$/])) setIfEmpty(result, 'create', val);
+        if (isLabel(label, [/^schd$/])) setIfEmpty(result, 'scheduleDate', val);
+        if (isLabel(label, [/^cptime$/])) setIfEmpty(result, 'staticCompletionTime', val);
+        if (isLabel(label, [/^ds$/])) setIfEmpty(result, 'staticStatus', val);
+        if (isLabel(label, [/^ts$/])) setIfEmpty(result, 'timeFrame', val);
+        if (isLabel(label, [/^type$/])) setIfEmpty(result, 'jobType', val);
+        if (isLabel(label, [/^units$/])) setIfEmpty(result, 'units', val);
+        if (isLabel(label, [/^reacd\/?readesc$/])) setIfEmpty(result, 'reason', val);
+        if (isLabel(label, [/^addr$/])) setIfEmpty(result, 'address', val);
+        if (isLabel(label, [/^addr2$/])) setIfEmpty(result, 'address2', val);
+        if (isLabel(label, [/^city$/])) setIfEmpty(result, 'city', val);
+        if (isLabel(label, [/^name$/])) setIfEmpty(result, 'name', val);
+        if (isLabel(label, [/^home(\s*#)?$/])) setIfEmpty(result, 'homePhone', val);
+        if (isLabel(label, [/^work(\s*#)?$/])) setIfEmpty(result, 'workPhone', val);
+        if (isLabel(label, [/^map\s*cd$/])) setIfEmpty(result, 'mapCd', val);
+        if (isLabel(label, [/^job\s*cmt$/])) setIfEmpty(result, 'jobComment', val);
+        if (isLabel(label, [/^node$/])) setIfEmpty(result, 'node', val);
+        if (isLabel(label, [/^delq$/])) setIfEmpty(result, 'delq', val);
+        if (isLabel(label, [/^dispatch\s*cmt$/])) setIfEmpty(result, 'dispatchComment', val);
+        if (isLabel(label, [/^receipt\s*cmt$/])) setIfEmpty(result, 'receiptComment', val);
+        if (isLabel(label, [/^fsm\s*cmt$/])) setIfEmpty(result, 'fsmComment', val);
+      }
+    }
 
     return res.json(result);
   } catch (err) {
