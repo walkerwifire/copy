@@ -1191,6 +1191,32 @@ app.get('/api/job/:jobId', async (req, res) => {
       }
     }
 
+    // Final fallback: parse raw HTML/text blocks for labeled lines
+    try {
+      const html = String(dataObj?.html || '');
+      const pick = (re) => {
+        const m = html.match(re);
+        return m ? String(m[1]).trim() : '';
+      };
+      // Examples: "Dispatch Cmt: Installed modem and Samsung box"
+      const dispatchCmt = pick(/Dispatch\s*Cmt:\s*([^\n<]*)/i);
+      const receiptCmt = pick(/Receipt\s*Cmt:\s*([^\n<]*)/i);
+      const fsmCmt = pick(/FSM\s*Cmt:\s*([^\n<]*)/i);
+      const mapCd = pick(/Map\s*CD:\s*([^\n<]*)/i);
+      const node = pick(/Node:\s*([^\n<]*)/i);
+      const tech = pick(/Tech:\s*(\d{3,})/i);
+      const fc = pick(/\bFC:\s*([^\n<]*)/i);
+      const rescd = pick(/\bResCd:\s*([^\n<]*)/i);
+      if (dispatchCmt) result.dispatchComment = dispatchCmt;
+      if (receiptCmt) result.receiptComment = receiptCmt;
+      if (fsmCmt) result.fsmComment = fsmCmt;
+      if (mapCd) setIfEmpty(result, 'mapCd', mapCd);
+      if (node) setIfEmpty(result, 'node', node);
+      if (tech) setIfEmpty(result, 'assignedTech', tech);
+      if (fc) setIfEmpty(result, 'accountNumber', fc);
+      if (rescd) setIfEmpty(result, 'resolutionCodes', rescd);
+    } catch {}
+
     return res.json(result);
   } catch (err) {
     return res.status(500).json({ error: err.message });
