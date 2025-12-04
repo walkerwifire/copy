@@ -1053,6 +1053,77 @@ app.get('/api/tech/:id/activity', async (req, res) => {
   }
 });
 
+// Job details: fetch and parse fields for a specific job number
+app.get('/api/job/:jobId', async (req, res) => {
+  try {
+    const jobId = String(req.params.jobId || '').trim();
+    if (!jobId) return res.status(400).json({ error: 'jobId is required' });
+    // Attempt offline cache first
+    let dataObj = null;
+    try {
+      const latestJson = path.join(cacheDir, 'latest.json');
+      if (fs.existsSync(latestJson)) {
+        dataObj = JSON.parse(fs.readFileSync(latestJson, 'utf8'));
+      }
+    } catch {}
+    // If not available, do a live fetch using env creds
+    if (!dataObj) {
+      const envUser = process.env.TECHNET_USER || process.env.TECHNET_USERNAME;
+      const envPass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD;
+      if (!envUser || !envPass) return res.status(400).json({ error: 'Missing global TECHNET credentials for live fetch' });
+      const live = await fetchLiveHtmlWith(envUser, envPass, TECHNET_URL);
+      dataObj = live.data;
+      try { fs.writeFileSync(path.join(cacheDir, 'latest.json'), JSON.stringify(dataObj, null, 2), 'utf8'); } catch {}
+    }
+
+    const tables = Array.isArray(dataObj?.tables) ? dataObj.tables : [];
+    const fields = Array.isArray(dataObj?.fields) ? dataObj.fields : [];
+    const result = { job: jobId };
+    // Scan tables for a row containing the job number and map nearby headers
+    for (const t of tables) {
+      const headers = (t.headers || []).map(h => String(h).trim());
+      for (const r of t.rows || []) {
+        if (r.some(cell => String(cell).includes(jobId))) {
+          headers.forEach((h, idx) => {
+            const key = h.toLowerCase();
+            const val = r[idx];
+            if (!val) return;
+            if (key.includes('job') && key.includes('type')) result.jobType = val;
+            if (key.includes('status')) result.staticStatus = val;
+            if (key.includes('time') && key.includes('completion')) result.staticCompletionTime = val;
+            if (key.includes('account')) result.accountNumber = val;
+            if (key.includes('units')) result.units = val;
+            if (key.includes('priority')) result.priority = val;
+            if (key.includes('schedule')) result.scheduleDate = val;
+            if (key.includes('origin')) result.origin = val;
+            if (key.includes('resolution')) result.resolutionCodes = val;
+            if (key.includes('phone') && !result.phone) result.phone = val;
+            if ((key.includes('name') || key.includes('customer')) && !result.name) result.name = val;
+            if (key.includes('address') && !result.address) result.address = val;
+          });
+        }
+      }
+    }
+    // Augment with labeled fields
+    fields.forEach(f => {
+      const label = String(f.label || '').toLowerCase();
+      const val = f.value;
+      if (!val) return;
+      if (label.includes('priority')) result.priority = val;
+      if (label.includes('schedule')) result.scheduleDate = val;
+      if (label.includes('account')) result.accountNumber = val;
+      if (label.includes('resolution')) result.resolutionCodes = val;
+      if (label.includes('name') && !result.name) result.name = val;
+      if (label.includes('address') && !result.address) result.address = val;
+      if (label.includes('phone') && !result.phone) result.phone = val;
+    });
+
+    return res.json(result);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 // Live test summary for multiple tech IDs
 app.get('/api/test/techs', async (req, res) => {
   try {

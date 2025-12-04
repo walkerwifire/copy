@@ -5,17 +5,6 @@
     "stops": [
       {
         "time": "11-2",
-        "job": "07836499712",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4863",
-        "name": "BARTHELEMY,JEAN",
-        "address": "436 NEW YORK AV, APT C3, BROOKLYN, NY 11225-3246",
-        "phone": "929-528-2541"
-      },
-      {
-        "time": "11-2",
         "job": "07836415641",
         "type": "TC",
         "status": "Pending TC",
@@ -90,9 +79,20 @@
         "name": "GIRSH,GIL",
         "address": "439 STERLING ST, APT 2, BROOKLYN, NY 11225",
         "phone": "929-466-2887"
+      },
+      {
+        "time": "11-2",
+        "job": "07836499712",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "BARTHELEMY,JEAN",
+        "address": "436 NEW YORK AV, APT C3, BROOKLYN, NY 11225-3246",
+        "phone": "929-528-2541"
       }
     ],
     "totalStops": 8,
-    "estimatedDuration": "3h 6m"
+    "estimatedDuration": "4h 36m"
   }
 ]

@@ -323,6 +323,9 @@
                 <div class="route-sub">${s.address || ''}${s.phone ? ' • ' + s.phone : ''}</div>
               </div>
             `;
+            // Make job row interactable: open Manage Job modal on click
+            row.style.cursor = 'pointer';
+            row.addEventListener('click', () => openJobModal(s, route, t.techNo));
             body.appendChild(row);
           });
         });
@@ -443,6 +446,85 @@
       }).catch(() => {
         openModal('Tech Notes', '<div class="muted">Failed to load notes</div>', '');
       });
+    }
+  </script>
+  <script>
+    function openJobModal(stop, route, techNo) {
+      const statusKey = String((stop.badge||'').toLowerCase());
+      const statusClass = statusKey.includes('pending') ? 'pending' : (statusKey.includes('complete') ? 'completed' : (statusKey.includes('cancel') ? 'cancelled' : ''));
+      const body = `
+        <div class="card" style="margin:0">
+          <div class="title">Manage Job</div>
+          <div class="row" style="margin-top:10px; flex-wrap:wrap">
+            <span class="pill pill--time">${stop.time || ''}</span>
+            <span class="pill pill--job">${stop.job || ''}</span>
+            <span class="pill pill--type">${stop.type || ''}</span>
+            <span class="pill pill--status ${statusClass}">${stop.badge || ''}</span>
+            <span class="pill pill--tech">${route.techNo || stop.tech || techNo || ''}</span>
+          </div>
+          <div class="route-right" style="margin-top:12px">
+            <div class="route-name">${stop.name || ''}</div>
+            <div class="route-sub">${stop.address || ''}${stop.phone ? ' • ' + stop.phone : ''}</div>
+          </div>
+          <div style="margin-top:16px">
+            <div class="title" style="font-size:16px">Job Details</div>
+            <div class="row" style="flex-wrap:wrap; gap:16px; margin-top:8px">
+              <div class="sub" style="min-width:260px"><strong>Job Number</strong><br>${stop.job || 'N/A'}</div>
+              <div class="sub" style="min-width:260px"><strong>Job Type</strong><br>${stop.type || 'N/A'}</div>
+              <div class="sub" style="min-width:260px"><strong>Status</strong><br>${stop.badge || 'N/A'}</div>
+              <div class="sub" style="min-width:260px"><strong>Customer Name</strong><br>${stop.name || 'N/A'}</div>
+              <div class="sub" style="min-width:260px"><strong>Customer Phone</strong><br>${stop.phone || 'N/A'}</div>
+              <div class="sub" style="min-width:260px"><strong>Address</strong><br>${stop.address || 'N/A'}</div>
+              <div class="sub" style="min-width:260px"><strong>Time Frame</strong><br>${stop.time || 'N/A'}</div>
+              <div class="sub" style="min-width:260px"><strong>Assigned Tech</strong><br>${route.techNo || stop.tech || techNo || 'N/A'}</div>
+            </div>
+            <div class="sub" style="margin-top:12px"><strong>Description</strong><br>${(stop.description||'').trim() || 'N/A'}</div>
+          </div>
+        </div>`;
+      const actions = `
+        <button class="btn btn-success" id="jobImport">Import</button>
+        <button class="btn btn-primary" id="jobAddStop">Add Stop</button>
+        <button class="btn btn-warning" id="jobReassign">Reassign Jobs</button>`;
+      openModal('Manage Job', body, actions);
+      // Fetch and hydrate additional job details from backend
+      (async () => {
+        try {
+          if (!stop.job) return;
+          const res = await fetch(`/api/job/${encodeURIComponent(stop.job)}?_=${Date.now()}`);
+          if (!res.ok) return;
+          const j = await res.json();
+          // Update details if available
+          const map = [
+            ['Priority','priority'],
+            ['Schedule Date','scheduleDate'],
+            ['Full Account Number','accountNumber'],
+            ['Units','units'],
+            ['Static Status','staticStatus'],
+            ['Static Completion Time','staticCompletionTime'],
+            ['Resolution Codes','resolutionCodes'],
+            ['Job Origin','origin'],
+            ['Customer Name','name'],
+            ['Customer Phone','phone'],
+            ['Address','address']
+          ];
+          const bodyEl = document.getElementById('modalBody');
+          if (!bodyEl) return;
+          let html = bodyEl.innerHTML;
+          map.forEach(([label, key]) => {
+            const val = j[key];
+            if (!val) return;
+            const re = new RegExp(`<strong>${label}<\\/strong><br>[^<]*`, 'i');
+            html = html.replace(re, `<strong>${label}</strong><br>${String(val)}`);
+          });
+          bodyEl.innerHTML = html;
+        } catch {}
+      })();
+      const bd = document.getElementById('modalBackdrop');
+      const close = () => { bd.style.display = 'none'; };
+      const toast = (msg) => { alert(msg); close(); };
+      document.getElementById('jobImport').onclick = () => toast('Import triggered for job ' + (stop.job||''));
+      document.getElementById('jobAddStop').onclick = () => toast('Add Stop for job ' + (stop.job||''));
+      document.getElementById('jobReassign').onclick = () => toast('Reassign Jobs from job ' + (stop.job||''));
     }
   </script>
 </body>

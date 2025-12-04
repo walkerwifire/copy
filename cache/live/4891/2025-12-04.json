@@ -4,17 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "11-2",
-        "job": "07836630339",
-        "type": "TC",
-        "status": "Pending TC",
-        "badge": "pending",
-        "tech": "4891",
-        "name": "ED & SURGERY,ANIMAL M",
-        "address": "9518 AVENUE L, BROOKLYN, NY 11236-4811",
-        "phone": "718-444-5151"
-      },
-      {
         "time": "12-3",
         "job": "07836157974",
         "type": "TC",
@@ -26,15 +15,15 @@
         "phone": "347-831-8400"
       },
       {
-        "time": "2-5",
-        "job": "07836171415",
-        "type": "IN",
-        "status": "Pending Install",
+        "time": "12-3",
+        "job": "07836652045",
+        "type": "TC",
+        "status": "Pending TC",
         "badge": "pending",
         "tech": "4891",
-        "name": "JOSEPPH,MARY",
-        "address": "743 E 102ND ST, APT 1, BROOKLYN, NY 11236-2607",
-        "phone": "347-500-4447"
+        "name": "GOGGINS,DIANE",
+        "address": "1260 CROTON LOOP, APT 2D, BROOKLYN, NY 11239",
+        "phone": "347-350-9903"
       },
       {
         "time": "2-5",
@@ -46,6 +35,17 @@
         "name": "SUPERMARKET &,LIBERTY",
         "address": "1075 LIBERTY AV, COM, BROOKLYN, NY 11208",
         "phone": "917-250-7577"
+      },
+      {
+        "time": "2-5",
+        "job": "07836171415",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "4891",
+        "name": "JOSEPPH,MARY",
+        "address": "743 E 102ND ST, APT 1, BROOKLYN, NY 11236-2607",
+        "phone": "347-500-4447"
       },
       {
         "time": "8-11",
@@ -68,9 +68,20 @@
         "name": "ROSEUS,GUYLENTZ",
         "address": "1048 E 81ST ST, APT BSMT, BROOKLYN, NY 11236-4222",
         "phone": "516-540-0428"
+      },
+      {
+        "time": "11-2",
+        "job": "07836630339",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "ED & SURGERY,ANIMAL M",
+        "address": "9518 AVENUE L, BROOKLYN, NY 11236-4811",
+        "phone": "718-444-5151"
       }
     ],
-    "totalStops": 6,
-    "estimatedDuration": "3h 18m"
+    "totalStops": 7,
+    "estimatedDuration": "4h 18m"
   }
 ]

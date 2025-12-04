@@ -4,17 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "11-2",
-        "job": "07836539222",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4687",
-        "name": "BROWNSVILLE,RESIDENT",
-        "address": "275 BLAKE AV, APT 5C, BROOKLYN, NY 11212-6327",
-        "phone": "646-932-2645"
-      },
-      {
         "time": "2-5",
         "job": "07836020548",
         "type": "COS",
@@ -57,9 +46,20 @@
         "name": "LAMBERT,COPUCINE",
         "address": "859 E 55TH ST, APT 2, BROOKLYN, NY 11234-1212",
         "phone": "718-629-5916"
+      },
+      {
+        "time": "11-2",
+        "job": "07836539222",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "BROWNSVILLE,RESIDENT",
+        "address": "275 BLAKE AV, APT 5C, BROOKLYN, NY 11212-6327",
+        "phone": "646-932-2645"
       }
     ],
     "totalStops": 5,
-    "estimatedDuration": "3h 0m"
+    "estimatedDuration": "4h 30m"
   }
 ]

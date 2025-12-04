@@ -198,7 +198,7 @@ th, td { border-bottom: 1px solid #e5e7eb; padding: 12px; }
 
 /* Modal */
 .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.35); display:none; align-items:center; justify-content:center; z-index:999; }
-.modal { width: 760px; max-width: 95vw; background:#fff; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.2); overflow:hidden; }
+.modal { width: 900px; max-width: 95vw; max-height: 90vh; background:#fff; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.2); overflow:auto; }
 .modal-header { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid #e5e7eb; }
 .modal-title { font-weight:700; }
 .modal-body { padding:20px; }

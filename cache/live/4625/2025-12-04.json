@@ -5,28 +5,6 @@
     "stops": [
       {
         "time": "11-2",
-        "job": "07836789108",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4625",
-        "name": "S FOOD COURT,ST JOHN'",
-        "address": "159 ROGERS AV, BROOKLYN, NY 11216",
-        "phone": "718-500-3608"
-      },
-      {
-        "time": "8-11",
-        "job": "07836530603",
-        "type": "IN",
-        "status": "Not Done",
-        "badge": "completed",
-        "tech": "4625",
-        "name": "1935 DAF LLC,BEDFORD",
-        "address": "1931 BEDFORD AV, COMM, BROOKLYN, NY 11225",
-        "phone": "718-500-3335"
-      },
-      {
-        "time": "11-2",
         "job": "07836851779",
         "type": "IN",
         "status": "Complete",
@@ -35,9 +13,20 @@
         "name": "t Rael,Apartmen",
         "address": "1124 BEDFORD AV, 2ND FLR, BROOKLYN, NY 11216",
         "phone": "917-645-6228"
+      },
+      {
+        "time": "11-2",
+        "job": "07836789108",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "S FOOD COURT,ST JOHN'",
+        "address": "159 ROGERS AV, BROOKLYN, NY 11216",
+        "phone": "718-500-3608"
       }
     ],
-    "totalStops": 3,
-    "estimatedDuration": "1h 54m"
+    "totalStops": 2,
+    "estimatedDuration": "3h 48m"
   }
 ]

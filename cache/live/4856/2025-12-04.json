@@ -4,15 +4,15 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "8-11",
-        "job": "07836495034",
+        "time": "2-5",
+        "job": "07836548023",
         "type": "IN",
         "status": "Pending Install",
         "badge": "pending",
         "tech": "4856",
-        "name": "COSTER,DENNIS",
-        "address": "2525 NOSTRAND AV, APT 6F, BROOKLYN, NY 11210-4718",
-        "phone": "347-884-5210"
+        "name": "DISARNO,ROBERT",
+        "address": "2602 FILLMORE AV, APT 1, BROOKLYN, NY 11229",
+        "phone": "347-703-6113"
       },
       {
         "time": "2-5",
@@ -26,17 +26,6 @@
         "phone": "347-888-0122"
       },
       {
-        "time": "2-5",
-        "job": "07836548023",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4856",
-        "name": "DISARNO,ROBERT",
-        "address": "2602 FILLMORE AV, APT 1, BROOKLYN, NY 11229",
-        "phone": "347-703-6113"
-      },
-      {
         "time": "8-11",
         "job": "07836583851",
         "type": "TC",
@@ -46,9 +35,20 @@
         "name": "COHEN,HARRIET",
         "address": "3030 EMMONS AV, APT 6B, BROOKLYN, NY 11235-2228",
         "phone": "718-934-2872"
+      },
+      {
+        "time": "8-11",
+        "job": "07836495034",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "COSTER,DENNIS",
+        "address": "2525 NOSTRAND AV, APT 6F, BROOKLYN, NY 11210-4718",
+        "phone": "347-884-5210"
       }
     ],
     "totalStops": 4,
-    "estimatedDuration": "0h 54m"
+    "estimatedDuration": "3h 12m"
   }
 ]

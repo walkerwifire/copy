@@ -4,17 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "ALL DAY",
-        "job": "W51532",
-        "type": "Lunch",
-        "status": "Pending Event",
-        "badge": "pending",
-        "tech": "18232",
-        "name": "WFX INTERNAL,",
-        "address": "City: ,, ,",
-        "phone": "Work #:"
-      },
-      {
         "time": "12-3",
         "job": "07836293855",
         "type": "TC",
@@ -48,6 +37,17 @@
         "phone": "917-805-6151"
       },
       {
+        "time": "ALL DAY",
+        "job": "W51532",
+        "type": "Lunch",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "WFX INTERNAL,",
+        "address": "City: ,, ,",
+        "phone": "Work #:"
+      },
+      {
         "time": "11-2",
         "job": "07836071035",
         "type": "IN",
@@ -60,6 +60,6 @@
       }
     ],
     "totalStops": 5,
-    "estimatedDuration": ""
+    "estimatedDuration": "0h 54m"
   }
 ]

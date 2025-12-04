@@ -5,17 +5,6 @@
     "stops": [
       {
         "time": "11-2",
-        "job": "07836981966",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4853",
-        "name": "STVICTOR,LAUREN",
-        "address": "350B CLARKSON AV, APT 413, BROOKLYN, NY 11226",
-        "phone": "917-838-5739"
-      },
-      {
-        "time": "11-2",
         "job": "07836293869",
         "type": "IN",
         "status": "Pending Install",
@@ -46,9 +35,20 @@
         "name": "AGNANT,RONALD",
         "address": "189 CHAUNCEY ST, APT #1, BROOKLYN, NY 11233-2114",
         "phone": "917-306-0211"
+      },
+      {
+        "time": "11-2",
+        "job": "07836981966",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "STVICTOR,LAUREN",
+        "address": "350B CLARKSON AV, APT 413, BROOKLYN, NY 11226",
+        "phone": "917-838-5739"
       }
     ],
     "totalStops": 4,
-    "estimatedDuration": "1h 36m"
+    "estimatedDuration": "3h 6m"
   }
 ]

@@ -4,17 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "12-3",
-        "job": "07836626258",
-        "type": "TC",
-        "status": "Pending TC",
-        "badge": "pending",
-        "tech": "5726",
-        "name": "MAXWELL,MICHAEL",
-        "address": "41 E 98TH ST, APT 1, BROOKLYN, NY 11212-3824",
-        "phone": "929-393-1530"
-      },
-      {
         "time": "2-5",
         "job": "07836584607",
         "type": "TC",
@@ -68,9 +57,20 @@
         "name": "MCDONALD,JABREA",
         "address": "1517 PARK PL, APT 8R, BROOKLYN, NY 11213-3162",
         "phone": "319-429-8965"
+      },
+      {
+        "time": "12-3",
+        "job": "07836626258",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "MAXWELL,MICHAEL",
+        "address": "41 E 98TH ST, APT 1, BROOKLYN, NY 11212-3824",
+        "phone": "929-393-1530"
       }
     ],
     "totalStops": 6,
-    "estimatedDuration": "3h 18m"
+    "estimatedDuration": "4h 12m"
   }
 ]

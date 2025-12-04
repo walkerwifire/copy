@@ -5,17 +5,6 @@
     "stops": [
       {
         "time": "2-5",
-        "job": "07836610707",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4834",
-        "name": "Vernon,Prince",
-        "address": "816 ASHFORD ST, APT 5D, BROOKLYN, NY 11207-8126",
-        "phone": "917-375-3813"
-      },
-      {
-        "time": "2-5",
         "job": "07836612042",
         "type": "TC",
         "status": "Pending TC",
@@ -46,9 +35,20 @@
         "name": "Opert,Rachel",
         "address": "2 VIRGINIA PL, APT 3, BROOKLYN, NY 11213-2609",
         "phone": "443-822-7429"
+      },
+      {
+        "time": "2-5",
+        "job": "07836610707",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "Vernon,Prince",
+        "address": "816 ASHFORD ST, APT 5D, BROOKLYN, NY 11207-8126",
+        "phone": "917-375-3813"
       }
     ],
     "totalStops": 4,
-    "estimatedDuration": "2h 42m"
+    "estimatedDuration": "5h 6m"
   }
 ]

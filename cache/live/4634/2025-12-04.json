@@ -4,17 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "11-2",
-        "job": "07836336508",
-        "type": "COS",
-        "status": "Pending Change",
-        "badge": "pending",
-        "tech": "4634",
-        "name": "KLEIN,JOSEPH",
-        "address": "5702 17TH AV, APT 3, BROOKLYN, NY 11204-1841",
-        "phone": "929-210-1220"
-      },
-      {
         "time": "2-5",
         "job": "07836298940",
         "type": "IN",
@@ -35,6 +24,17 @@
         "name": "BONDAREV,VLADIMIR",
         "address": "2607 AVENUE O, APT 5C, BROOKLYN, NY 11210-5248",
         "phone": "929-610-2360"
+      },
+      {
+        "time": "11-2",
+        "job": "07836336508",
+        "type": "COS",
+        "status": "Not Done",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "KLEIN,JOSEPH",
+        "address": "5702 17TH AV, APT 3, BROOKLYN, NY 11204-1841",
+        "phone": "929-210-1220"
       },
       {
         "time": "8-11",
