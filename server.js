@@ -1249,6 +1249,65 @@ app.get('/api/job/:jobId', async (req, res) => {
       if (work) setIfEmpty(result, 'workPhone', work);
     } catch {}
 
+    // DOM-based fallback: parse <b>Label:</b> value patterns common in CSG Technet
+    try {
+      const html = String(dataObj?.html || '');
+      if (html) {
+        const $ = cheerio.load(html);
+        const mapLabel = (s) => String(s || '').replace(/\s+/g, ' ').trim();
+        const getValueAfterBold = (bElem) => {
+          let val = '';
+          const node = bElem.get(0);
+          if (!node) return val;
+          // Traverse siblings to gather text until next <b> or <br>
+          let curr = node.nextSibling;
+          while (curr) {
+            const name = curr.name || curr.type;
+            if (name === 'b' || name === 'tag' && curr.name === 'b') break;
+            if (curr.type === 'text') val += curr.data || '';
+            if (curr.name === 'br') break;
+            if (curr.children && curr.children.length) {
+              val += $(curr).text();
+            }
+            curr = curr.nextSibling;
+          }
+          return val.replace(/["\n]+/g, '').trim();
+        };
+        $('b').each((_, el) => {
+          const label = mapLabel($(el).text()).replace(/:$/, '');
+          const val = getValueAfterBold($(el));
+          if (!val) return;
+          const L = label.toLowerCase();
+          const set = (k) => setIfEmpty(result, k, val);
+          if (L === 'job id') set('job');
+          else if (L === 'tech') set('assignedTech');
+          else if (L === 'rescd') set('resolutionCodes');
+          else if (L === 'fc') set('accountNumber');
+          else if (L === 'create') set('create');
+          else if (L === 'schd') set('scheduleDate');
+          else if (L === 'cptime') set('staticCompletionTime');
+          else if (L === 'ds') set('staticStatus');
+          else if (L === 'ts') set('timeFrame');
+          else if (L === 'type') set('jobType');
+          else if (L === 'units') set('units');
+          else if (L === 'reacd/readesc' || L === 'reacd/ readesc') set('reason');
+          else if (L === 'addr') set('address');
+          else if (L === 'addr2') set('address2');
+          else if (L === 'city') set('city');
+          else if (L === 'name') set('name');
+          else if (L === 'home #') set('homePhone');
+          else if (L === 'work #') set('workPhone');
+          else if (L === 'map cd') set('mapCd');
+          else if (L === 'job cmt') set('jobComment');
+          else if (L === 'node') set('node');
+          else if (L === 'delq') set('delq');
+          else if (L === 'dispatch cmt') set('dispatchComment');
+          else if (L === 'receipt cmt') set('receiptComment');
+          else if (L === 'fsm cmt') set('fsmComment');
+        });
+      }
+    } catch {}
+
     return res.json(result);
   } catch (err) {
     return res.status(500).json({ error: err.message });
