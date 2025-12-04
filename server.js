@@ -1059,6 +1059,8 @@ app.get('/api/job/:jobId', async (req, res) => {
     const rawJob = String(req.params.jobId || '').trim();
     const jobId = (rawJob.match(/\d{6,}/) || [rawJob])[0];
     if (!jobId) return res.status(400).json({ error: 'jobId is required' });
+    const techParam = String(req.query.tech || '').trim();
+    console.log(`[job] req jobId=${jobId} tech=${techParam}`);
     // Attempt offline cache first
     let dataObj = null;
     try {
@@ -1067,13 +1069,27 @@ app.get('/api/job/:jobId', async (req, res) => {
         dataObj = JSON.parse(fs.readFileSync(latestJson, 'utf8'));
       }
     } catch {}
-    // If not available, do a live fetch using env creds
+    // If not available, do a live fetch using per-tech creds when provided, else global env creds
     if (!dataObj) {
-      const envUser = process.env.TECHNET_USER || process.env.TECHNET_USERNAME;
-      const envPass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD;
-      if (!envUser || !envPass) return res.status(400).json({ error: 'Missing global TECHNET credentials for live fetch' });
-      const live = await fetchLiveHtmlWith(envUser, envPass, TECHNET_URL);
+      let user = '';
+      let pass = '';
+      if (techParam) {
+        const creds = resolveCredsFromTechs(techParam);
+        if (!creds || !creds.user || !creds.pass) {
+          return res.status(400).json({ error: `Missing credentials for tech ${techParam}` });
+        }
+        user = creds.user; pass = creds.pass;
+      } else {
+        user = process.env.TECHNET_USER || process.env.TECHNET_USERNAME || '';
+        pass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD || '';
+        if (!user || !pass) {
+          return res.status(400).json({ error: 'Missing TECHNET credentials: provide ?tech=<id> or set global env TECHNET_USER/TECHNET_PASS' });
+        }
+      }
+      console.log(`[job] live fetch with user=${user ? '***' : ''} pass=${pass ? '***' : ''}`);
+      const live = await fetchLiveHtmlWith(user, pass, TECHNET_URL);
       dataObj = live.data;
+      console.log(`[job] live html length=${(live.html||'').length} tables=${Array.isArray(dataObj?.tables)?dataObj.tables.length:0} fields=${Array.isArray(dataObj?.fields)?dataObj.fields.length:0}`);
       try { fs.writeFileSync(path.join(cacheDir, 'latest.json'), JSON.stringify(dataObj, null, 2), 'utf8'); } catch {}
     }
     // Offline HTML fallback: parse local snapshot files when structured data is missing
@@ -1088,6 +1104,7 @@ app.get('/api/job/:jobId', async (req, res) => {
           try {
             const html = fs.readFileSync(f, 'utf8');
             dataObj = Object.assign({}, dataObj || {}, { html });
+            console.log(`[job] offline html from ${path.basename(f)} length=${html.length}`);
             break;
           } catch {}
         }
@@ -1214,7 +1231,9 @@ app.get('/api/job/:jobId', async (req, res) => {
       const html = String(dataObj?.html || '');
       const pick = (re) => {
         const m = html.match(re);
-        return m ? String(m[1]).trim() : '';
+        let v = m ? String(m[1]).trim() : '';
+        v = v.replace(/^"|"$/g, '').trim();
+        return v;
       };
       // Extract values for all known labels
       const job = pick(/Job\s*ID:\s*([^\n<"]+)/i);
@@ -1289,7 +1308,7 @@ app.get('/api/job/:jobId', async (req, res) => {
             }
             curr = curr.nextSibling;
           }
-          return val.replace(/["\n]+/g, '').trim();
+          return val.replace(/[\n]+/g, '').replace(/^"|"$/g, '').trim();
         };
         $('b').each((_, el) => {
           const label = mapLabel($(el).text()).replace(/:$/, '');
@@ -1323,6 +1342,7 @@ app.get('/api/job/:jobId', async (req, res) => {
           else if (L === 'receipt cmt') set('receiptComment');
           else if (L === 'fsm cmt') set('fsmComment');
         });
+        console.log(`[job] parsed keys: ${Object.keys(result).filter(k=>k!=='job').join(', ')}`);
       }
     } catch {}
 
