@@ -42,7 +42,7 @@
       <table class="table" style="width:100%">
         <thead>
           <tr>
-            <th></th><th>Name</th><th>Status</th><th>Tech</th><th>Skills</th><th>Provider</th><th>Last Activity</th><th>Actions</th>
+            <th></th><th>Tech</th><th>Name</th><th>Status</th><th>Activity</th><th>Actions</th>
           </tr>
         </thead>
         <tbody id="techRows"></tbody>
@@ -137,14 +137,27 @@
       }
     });
     // Initial load: ensure functions are defined before calling
-    window.addEventListener('DOMContentLoaded', () => {
-      try { loadData(); } catch (e) {
+    window.addEventListener('DOMContentLoaded', async () => {
+      try { await loadTechNames(); } catch {}
+      try { await loadData(); } catch (e) {
         const status = document.getElementById('status');
         if (status) status.textContent = 'Init error: ' + e.message;
       }
     });
   </script>
   <script>
+    // Tech names mapping support
+    let TECH_NAME_MAP = {};
+    async function loadTechNames() {
+      try {
+        const res = await fetch('/tech-names.json?_=' + Date.now());
+        if (res.ok) TECH_NAME_MAP = await res.json();
+      } catch {}
+    }
+    function getTechName(techNo, fallbackLabel) {
+      const n = String(techNo || '').trim();
+      return TECH_NAME_MAP[n] || fallbackLabel || (n ? ('Tech ' + n) : '');
+    }
     function updateRoutesCsvLink() {
       const date = document.getElementById('routeDate')?.value || '';
       const tech = document.getElementById('techSelect')?.value || '';
@@ -167,7 +180,7 @@
         if (techSel && techSel.options.length <= 1) {
           const opts = ['<option value="all">All Techs</option>'];
           (dash.technicians||[]).forEach(t => {
-            const label = t.name || ('Tech ' + (t.techNo||''));
+            const label = getTechName(t.techNo, t.name);
             const value = t.techNo || label;
             opts.push(`<option value="${String(value)}">${label}</option>`);
           });
@@ -186,16 +199,51 @@
       const el = document.getElementById('summary');
       if (!el) return;
       const routes = dash.routes || [];
-      const counts = { TC:0, IN:0, COS:0, RST:0 };
-      routes.forEach(r => (r.stops||[]).forEach(s => { if (counts[s.type] != null) counts[s.type]++; }));
+      const kinds = ['TC','IN','COS'];
+      const totals = { SUMMARY: { total:0, pending:0, done:0, cancelled:0 } };
+      kinds.forEach(k => totals[k] = { total:0, pending:0, done:0, cancelled:0 });
+      routes.forEach(r => (r.stops||[]).forEach(s => {
+        const k = kinds.includes(s.type) ? s.type : null;
+        const badge = String(s.badge||'').toLowerCase();
+        const inc = (obj) => {
+          obj.total++;
+          if (badge.includes('pending')) obj.pending++;
+          else if (badge.includes('complete')) obj.done++;
+          else if (badge.includes('cancel')) obj.cancelled++;
+        };
+        if (k) inc(totals[k]);
+        inc(totals.SUMMARY);
+      }));
+      const tile = (label, data, highlight) => `
+        <div class="tile ${highlight?"tile--highlight":""}">
+          <div class="tile__title">${label}</div>
+          <div class="tile__total">${data.total}</div>
+          <div class="tile__rows">
+            <div class="tile__row">
+              <span class="tile__row-label">Total</span>
+              <span class="tile__count tile__count--total">${data.total}</span>
+            </div>
+            <div class="tile__row">
+              <span class="tile__row-label">Pending</span>
+              <span class="tile__count tile__count--pending">${data.pending}</span>
+            </div>
+            <div class="tile__row">
+              <span class="tile__row-label">Done</span>
+              <span class="tile__count tile__count--done">${data.done}</span>
+            </div>
+            <div class="tile__row">
+              <span class="tile__row-label">Cancelled</span>
+              <span class="tile__count tile__count--cancelled">${data.cancelled}</span>
+            </div>
+          </div>
+        </div>`;
       el.style.display = 'block';
       el.innerHTML = `
-        <div class="title">Summary</div>
-        <div class="row" style="gap:8px; flex-wrap:wrap; margin-top:8px">
-          <span class="badge">TC: ${counts.TC}</span>
-          <span class="badge">IN: ${counts.IN}</span>
-          <span class="badge">COS: ${counts.COS}</span>
-          <span class="badge">RST: ${counts.RST}</span>
+        <div class="tiles">
+          ${tile('TC', totals.TC)}
+          ${tile('IN', totals.IN)}
+          ${tile('COS', totals.COS)}
+          ${tile('SUMMARY', totals.SUMMARY, true)}
         </div>`;
     }
     // Reintroduce consolidated renderer, placed correctly near the bottom
@@ -219,14 +267,15 @@
       // Flat list without provider/area grouping
       list.forEach(t => {
         const tr = document.createElement('tr');
+        const displayName = getTechName(t.techNo, t.name);
         tr.innerHTML = `
           <td><span class="badge">🧑‍🔧</span></td>
-          <td>${t.name || ''}</td>
-          <td><span class="badge badge-status">${t.status || 'N/A'}</span></td>
           <td>${t.techNo || ''}</td>
-          <td>${(t.workSkill||'').split(/[\,\s]+/).filter(Boolean).map(s => `<span class='badge badge-skill'>${s}</span>`).join('')}</td>
-          <td>${t.provider || ''}</td>
-          <td>${t.lastActivity || 'N/A'}</td>
+          <td>${displayName || ''}</td>
+          <td><span class="badge badge-status">${t.status || 'N/A'}</span></td>
+          <td class="activity-cell">
+            <div class="muted">Loading...</div>
+          </td>
           <td class="actions">
             <button class="btn">Profile</button>
             <button class="btn">Schedule</button>
@@ -235,9 +284,23 @@
           </td>
         `;
         techRows.appendChild(tr);
+        // Fetch last activity asynchronously and update cell
+        (async () => {
+          try {
+            const res = await fetch(`/api/tech/${encodeURIComponent(t.techNo)}/activity?_=${Date.now()}`);
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            const json = await res.json();
+            const cell = tr.querySelector('.activity-cell');
+            const value = String(json.lastActivity || '').trim();
+            cell.innerHTML = value ? `<div class="badge" style="background:#eef2ff;border-color:#c7d2fe;color:#1f3b8f">${value}</div>` : `<div class="muted">N/A</div>`;
+          } catch {
+            const cell = tr.querySelector('.activity-cell');
+            cell.innerHTML = `<div class="muted">N/A</div>`;
+          }
+        })();
         const bodyRow = document.createElement('tr');
         const bodyCell = document.createElement('td');
-        bodyCell.colSpan = 8;
+        bodyCell.colSpan = 9;
         const body = document.createElement('div');
         body.className = 'route-body';
         body.style.display = 'none';
@@ -245,16 +308,20 @@
           (route.stops||[]).forEach(s => {
             const row = document.createElement('div');
             row.className = 'route-row';
+            const statusKey = String((s.badge||'').toLowerCase());
+            const statusClass = statusKey.includes('pending') ? 'pending' : (statusKey.includes('complete') ? 'completed' : (statusKey.includes('cancel') ? 'cancelled' : ''));
             row.innerHTML = `
-              <div class="left row" style="gap:6px">
-                <span class="badge">${s.time || ''}</span>
-                <span class="badge">${s.job || ''}</span>
-                <span class="badge">${s.type || ''}</span>
-                <span class="badge" style="background:#ecfeff;border-color:#cffafe;color:#164e63">${s.badge || ''}</span>
-                <span class="badge">${route.techNo || s.tech || ''}</span>
+              <div class="route-left">
+                <span class="pill pill--time">${s.time || ''}</span>
+                <span class="pill pill--job">${s.job || ''}</span>
+                <span class="pill pill--type">${s.type || ''}</span>
+                <span class="pill pill--status ${statusClass}">${s.badge || ''}</span>
+                <span class="pill pill--tech">${route.techNo || s.tech || ''}</span>
               </div>
-              <div class="sub" style="color:#111827">${s.name || ''}</div>
-              <div class="sub">${s.address || ''}${s.phone ? ' • ' + s.phone : ''}</div>
+              <div class="route-right">
+                <div class="route-name">${s.name || ''}</div>
+                <div class="route-sub">${s.address || ''}${s.phone ? ' • ' + s.phone : ''}</div>
+              </div>
             `;
             body.appendChild(row);
           });
@@ -299,29 +366,23 @@
     }
     function safeVal(v) { return (v == null || v === 'N/A') ? '' : String(v); }
     function openProfileModal(info, techNo) {
-      fetch(`/api/tech/${encodeURIComponent(techNo)}/profile`).then(r => r.json()).then(p => {
+      Promise.all([
+        fetch(`/api/tech/${encodeURIComponent(techNo)}/profile`).then(r => r.json()).catch(() => ({})),
+        fetch(`/api/tech/${encodeURIComponent(techNo)}/activity?_=${Date.now()}`).then(r => r.json()).catch(() => ({}))
+      ]).then(([p, a]) => {
         const name = safeVal(p.name) || ('Tech ' + techNo);
-        const workSkill = safeVal(p.workSkill);
         const email = safeVal(p.email);
         const status = safeVal(p.status);
-        const lastActivity = safeVal(p.lastActivity);
+        const lastActivity = safeVal(p.lastActivity || a.lastActivity);
         const body = `
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
-            <div class="card" style="margin:0">
-              <div class="title">Basic Information</div>
-              <div class="sub" style="margin-top:8px">Name: ${name}</div>
-              <div class="sub">Tech Number: ${techNo}</div>
-              <div class="sub">Email: ${email || 'Not provided'}</div>
-            </div>
-            <div class="card" style="margin:0">
-              <div class="title">Work Information</div>
-              <div class="sub" style="margin-top:8px">Work Skill: ${workSkill || 'Not specified'}</div>
-              <div class="sub">Status: ${status || 'N/A'}</div>
-              <div class="sub">Last Activity: ${lastActivity || 'N/A'}</div>
-            </div>
-          </div>
-        `;
-        const actions = `<button class="btn" onclick="(async function(){ await fetch('/api/tech/${techNo}/profile',{ method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ lastActivity: new Date().toISOString() }) }); alert('Clocked in'); document.getElementById('modalBackdrop').style.display='none'; })()">Force Clock In</button>`;
+          <div class="card" style="margin:0">
+            <div class="title">Profile - Tech ${techNo}</div>
+            <div class="sub" style="margin-top:8px">Name: ${name}</div>
+            <div class="sub">Status: ${status || 'N/A'}</div>
+            <div class="sub">Last Activity: ${lastActivity || 'N/A'}</div>
+            <div class="sub">Email: ${email || 'Not provided'}</div>
+          </div>`;
+        const actions = `<button class="btn" onclick="(async function(){ await fetch('/api/tech/${techNo}/profile',{ method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ lastActivity: new Date().toISOString() }) }); alert('Saved'); document.getElementById('modalBackdrop').style.display='none'; })()">Save</button>`;
         openModal(name, body, actions);
       }).catch(() => {
         openModal('Profile', '<div class="muted">Failed to load profile</div>', '');
@@ -342,7 +403,6 @@
           </div>`;
         const actions = `<button class="btn btn-primary" id='saveDays'>Save Working Days</button>`;
         openModal('Schedule & Availability', body, actions);
-        // Toggle selection
         const grid = document.getElementById('daysGrid');
         grid.addEventListener('click', (e) => {
           const el = e.target.closest('button[data-day]'); if (!el) return;

@@ -4,17 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "9-12",
-        "job": "07836894407",
-        "type": "TC",
-        "status": "Pending TC",
-        "badge": "pending",
-        "tech": "4863",
-        "name": "GIRSH,GIL",
-        "address": "439 STERLING ST, APT 2, BROOKLYN, NY 11225",
-        "phone": "929-466-2887"
-      },
-      {
         "time": "11-2",
         "job": "07836499712",
         "type": "IN",
@@ -90,9 +79,20 @@
         "name": "GOLDSTEIN,MARK",
         "address": "279 MAPLE ST, APT 2, BROOKLYN, NY 11225-5106",
         "phone": "516-404-0311"
+      },
+      {
+        "time": "9-12",
+        "job": "07836894407",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "GIRSH,GIL",
+        "address": "439 STERLING ST, APT 2, BROOKLYN, NY 11225",
+        "phone": "929-466-2887"
       }
     ],
     "totalStops": 8,
-    "estimatedDuration": "2h 12m"
+    "estimatedDuration": "3h 6m"
   }
 ]

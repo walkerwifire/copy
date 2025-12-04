@@ -16,17 +16,6 @@
       },
       {
         "time": "2-5",
-        "job": "07836548023",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4856",
-        "name": "DISARNO,ROBERT",
-        "address": "2602 FILLMORE AV, APT 1, BROOKLYN, NY 11229",
-        "phone": "347-703-6113"
-      },
-      {
-        "time": "2-5",
         "job": "07836083462",
         "type": "TC",
         "status": "Pending TC",
@@ -35,6 +24,17 @@
         "name": "Badzaghua,Maizer",
         "address": "2302 AVENUE O, APT E5, BROOKLYN, NY 11210-5151",
         "phone": "347-888-0122"
+      },
+      {
+        "time": "2-5",
+        "job": "07836548023",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "DISARNO,ROBERT",
+        "address": "2602 FILLMORE AV, APT 1, BROOKLYN, NY 11229",
+        "phone": "347-703-6113"
       },
       {
         "time": "8-11",

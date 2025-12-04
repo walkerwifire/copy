@@ -239,6 +239,43 @@ function deriveRoutesFromHtml(html, forcedTech) {
       routes.push(r);
     }
   } catch {}
+  // Fallback: parse text blocks by Job ID sections if hashObj not found
+  try {
+    const blocks = String(html||'').split(/\bJob ID\s*:\s*/i).slice(1);
+    if (blocks.length) {
+      const group = {};
+      for (const blk of blocks) {
+        const tech = String(forcedTech||'').trim();
+        const jobId = (blk.match(/^(\d{6,})/)||[])[1] || '';
+        const getField = (label) => {
+          const m = blk.match(new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, r=>r), 'i'));
+          if (!m) return '';
+          const rest = blk.slice(m.index + label.length);
+          const line = (rest.match(/^[^\r\n]+/)||[''])[0];
+          return cleanVal(line);
+        };
+        const status = getField('DS:') || getField('DS :') || '';
+        const type = getField('Type:') || '';
+        const ts = getField('TS:') || getField('TS :') || '';
+        const name = getField('Name:') || '';
+        const addr = getField('Addr:') || '';
+        const addr2 = getField('Addr2:') || '';
+        const city = getField('City:') || '';
+        let dateIso = normalizeUsDateToIso(getField('Schd:') || getField('Schd :')) || new Date().toISOString().slice(0,10);
+        let badge = '';
+        if (/complete|completed|done/i.test(status)) badge = 'completed';
+        else if (/not\s*done/i.test(status)) badge = 'cancelled';
+        else if (/pending|sched|scheduled|pending install|pending tc|pending cos|pending change/i.test(status)) badge = 'pending';
+        else if (/cancel|cnx|canceled|cancelled/i.test(status)) badge = 'cancelled';
+        else if (/unassign|unassigned/i.test(status)) badge = 'unassigned';
+        const key = `${tech}|${dateIso}`;
+        if (!group[key]) group[key] = { techNo: tech, date: dateIso, stops: [], totalStops: 0, estimatedDuration: '' };
+        const time = ts;
+        group[key].stops.push({ time, job: jobId, type, status, badge, tech, name, address: [addr, addr2, city].filter(Boolean).join(', ') });
+      }
+      for (const k of Object.keys(group)) { const r = group[k]; r.totalStops = r.stops.length; routes.push(r); }
+    }
+  } catch {}
   return routes;
 }
 
@@ -958,6 +995,64 @@ app.post('/api/tech/:id/notes', (req, res) => {
   }
 });
 
+// Last activity via live Technet scrape for a specific tech
+// Returns { tech, lastActivity, source }
+app.get('/api/tech/:id/activity', async (req, res) => {
+  try {
+    const id = String(req.params.id || '').trim();
+    if (!id) return res.status(400).json({ error: 'tech id is required' });
+    // Resolve credentials from techs.json or env
+    let creds;
+    try { creds = resolveCredsFromTechs(id); } catch {}
+    if (!creds || !creds.user || !creds.pass) {
+      // Fallback to env if direct resolution fails
+      const envUser = process.env.TECHNET_USER || process.env.TECHNET_USERNAME;
+      const envPass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD;
+      if (!envUser || !envPass) return res.status(400).json({ error: 'Missing credentials for tech ' + id });
+      creds = { user: envUser, pass: envPass };
+    }
+
+    // Fetch live HTML for this tech; parse tables and find last activity
+    const result = await fetchLiveHtmlWith(creds.user, creds.pass, TECHNET_URL);
+    const data = result && result.data ? result.data : {};
+    const tables = Array.isArray(data.tables) ? data.tables : [];
+    let lastActivity = null;
+    for (const t of tables) {
+      const headers = (t.headers || []).map(h => String(h).toLowerCase());
+      const idxTech = headers.findIndex(h => h.includes('tech'));
+      const idxLast = headers.findIndex(h => h.includes('last'));
+      if (idxLast < 0) continue;
+      for (const r of t.rows || []) {
+        const techVal = idxTech >= 0 ? String(r[idxTech] || '').trim() : '';
+        if (!techVal || (techVal !== id && techVal !== String(parseInt(id, 10)))) continue;
+        const val = r[idxLast];
+        if (val && String(val).trim()) {
+          lastActivity = String(val).trim();
+          break;
+        }
+      }
+      if (lastActivity) break;
+    }
+
+    // Fallback: try derive from first stop time in cached/latest route
+    if (!lastActivity) {
+      try {
+        const latestPath = getTechDateCachePath(id, 'latest');
+        const cached = readCachedRoutes(latestPath);
+        if (Array.isArray(cached) && cached.length) {
+          const firstRoute = cached[0];
+          const firstStop = (firstRoute.stops || [])[0];
+          if (firstStop && firstStop.time) lastActivity = firstStop.time;
+        }
+      } catch {}
+    }
+
+    return res.json({ tech: id, lastActivity: lastActivity || 'N/A', source: lastActivity ? 'technet' : 'fallback' });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 // Live test summary for multiple tech IDs
 app.get('/api/test/techs', async (req, res) => {
   try {
@@ -992,7 +1087,7 @@ app.get('/api/test/techs', async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Technet dashboard running on http://localhost:${port}`);
 });

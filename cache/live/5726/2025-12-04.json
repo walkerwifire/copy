@@ -4,39 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "8-11",
-        "job": "07836598988",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "5726",
-        "name": "walker,Jude",
-        "address": "2169 PACIFIC ST, APT 7, BROOKLYN, NY 11233",
-        "phone": "214-918-6352"
-      },
-      {
-        "time": "9-12",
-        "job": "07836842319",
-        "type": "TC",
-        "status": "Pending TC",
-        "badge": "pending",
-        "tech": "5726",
-        "name": "VARGAS,JAY",
-        "address": "26 RADDE PL, BROOKLYN, NY 11233-3114",
-        "phone": "917-593-9958"
-      },
-      {
-        "time": "11-2",
-        "job": "07836494450",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "5726",
-        "name": "MCDONALD,JABREA",
-        "address": "1517 PARK PL, APT 8R, BROOKLYN, NY 11213-3162",
-        "phone": "319-429-8965"
-      },
-      {
         "time": "12-3",
         "job": "07836626258",
         "type": "TC",
@@ -71,17 +38,39 @@
       },
       {
         "time": "8-11",
-        "job": "07836157974",
-        "type": "TC",
-        "status": "Not Done",
+        "job": "07836598988",
+        "type": "IN",
+        "status": "Complete",
         "badge": "completed",
         "tech": "5726",
-        "name": "LUGO,JAVIER",
-        "address": "849 E 55TH ST, APT 2, BROOKLYN, NY 11234-1212",
-        "phone": "347-831-8400"
+        "name": "walker,Jude",
+        "address": "2169 PACIFIC ST, APT 7, BROOKLYN, NY 11233",
+        "phone": "214-918-6352"
+      },
+      {
+        "time": "9-12",
+        "job": "07836842319",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "VARGAS,JAY",
+        "address": "26 RADDE PL, BROOKLYN, NY 11233-3114",
+        "phone": "917-593-9958"
+      },
+      {
+        "time": "11-2",
+        "job": "07836494450",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "MCDONALD,JABREA",
+        "address": "1517 PARK PL, APT 8R, BROOKLYN, NY 11213-3162",
+        "phone": "319-429-8965"
       }
     ],
-    "totalStops": 7,
-    "estimatedDuration": ""
+    "totalStops": 6,
+    "estimatedDuration": "3h 18m"
   }
 ]

@@ -1,1 +1,65 @@
-[]
+[
+  {
+    "techNo": "17880",
+    "date": "2025-12-04",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836077070",
+        "type": "TC",
+        "status": "Pending TC",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "ROBERTS,WENRICK",
+        "address": "596 MONROE ST, APT 1, BROOKLYN, NY 11221-1706",
+        "phone": "111-111-1111"
+      },
+      {
+        "time": "11-2",
+        "job": "07836072444",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "BRUNNER,ALEXANDE",
+        "address": "532 MONROE ST, APT 1, BROOKLYN, NY 11221-1705",
+        "phone": "650-713-7018"
+      },
+      {
+        "time": "2-5",
+        "job": "07836098659",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "Tayupant,Lisbeth",
+        "address": "185 MALCOLM X BL, APT 1, BROOKLYN, NY 11221-2122",
+        "phone": "347-703-6939"
+      },
+      {
+        "time": "2-5",
+        "job": "07836546938",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "TETTAMANTI,NICKY",
+        "address": "220 STOCKHOLM ST, APT 1R, BROOKLYN, NY 11237",
+        "phone": "702-210-5075"
+      },
+      {
+        "time": "9-12",
+        "job": "07836468343",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "POWELL,TERRY",
+        "address": "735 SACKMAN ST, BROOKLYN, NY 11212-7035",
+        "phone": "347-779-4442"
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "0h 54m"
+  }
+]

@@ -4,39 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "8-11",
-        "job": "07836547854",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4634",
-        "name": "WANG,OLIVER",
-        "address": "150 CROWN ST, APT F6, BROOKLYN, NY 11225",
-        "phone": "917-244-5118"
-      },
-      {
-        "time": "9-12",
-        "job": "07836402275",
-        "type": "TC",
-        "status": "Pending TC",
-        "badge": "pending",
-        "tech": "4634",
-        "name": "TOUSSAINT,YAMILEE",
-        "address": "1256 BROOKLYN AV, APT 1, BROOKLYN, NY 11203-5537",
-        "phone": "516-521-9740"
-      },
-      {
-        "time": "11-2",
-        "job": "07836964526",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4634",
-        "name": "BRECHER,DAVID",
-        "address": "1582 E 17TH ST, APT BSMT, BROOKLYN, NY 11230",
-        "phone": "848-448-3759"
-      },
-      {
         "time": "11-2",
         "job": "07836336508",
         "type": "COS",
@@ -46,6 +13,17 @@
         "name": "KLEIN,JOSEPH",
         "address": "5702 17TH AV, APT 3, BROOKLYN, NY 11204-1841",
         "phone": "929-210-1220"
+      },
+      {
+        "time": "2-5",
+        "job": "07836298940",
+        "type": "IN",
+        "status": "Pending Install",
+        "badge": "pending",
+        "tech": "4634",
+        "name": "Komarov,Semen",
+        "address": "925 E 14TH ST, APT 7G, BROOKLYN, NY 11230-3615",
+        "phone": "929-944-2925"
       },
       {
         "time": "2-5",
@@ -59,18 +37,40 @@
         "phone": "929-610-2360"
       },
       {
-        "time": "2-5",
-        "job": "07836298940",
+        "time": "8-11",
+        "job": "07836547854",
         "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
+        "status": "Complete",
+        "badge": "completed",
         "tech": "4634",
-        "name": "Komarov,Semen",
-        "address": "925 E 14TH ST, APT 7G, BROOKLYN, NY 11230-3615",
-        "phone": "929-944-2925"
+        "name": "WANG,OLIVER",
+        "address": "150 CROWN ST, APT F6, BROOKLYN, NY 11225",
+        "phone": "917-244-5118"
+      },
+      {
+        "time": "9-12",
+        "job": "07836402275",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "TOUSSAINT,YAMILEE",
+        "address": "1256 BROOKLYN AV, APT 1, BROOKLYN, NY 11203-5537",
+        "phone": "516-521-9740"
+      },
+      {
+        "time": "11-2",
+        "job": "07836964526",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "BRECHER,DAVID",
+        "address": "1582 E 17TH ST, APT BSMT, BROOKLYN, NY 11230",
+        "phone": "848-448-3759"
       }
     ],
     "totalStops": 6,
-    "estimatedDuration": ""
+    "estimatedDuration": "3h 54m"
   }
 ]

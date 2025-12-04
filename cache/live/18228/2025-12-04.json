@@ -4,28 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "8-11",
-        "job": "07836174512",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "18228",
-        "name": "sharapov,shokhruk",
-        "address": "1771 72ND ST, APT 1, BROOKLYN, NY 11204",
-        "phone": "347-216-4511"
-      },
-      {
-        "time": "9-12",
-        "job": "07836204121",
-        "type": "TC",
-        "status": "Pending TC",
-        "badge": "pending",
-        "tech": "18228",
-        "name": "ELY,LORI",
-        "address": "1535 W 11TH ST, APT 2 R, BROOKLYN, NY 11204-6235",
-        "phone": "111-111-1111"
-      },
-      {
         "time": "11-2",
         "job": "07836456278",
         "type": "IN",
@@ -57,9 +35,31 @@
         "name": "WU,PIYUWU",
         "address": "16 BAY 10 ST, BSMT, BROOKLYN, NY 11228",
         "phone": "917-848-7838"
+      },
+      {
+        "time": "8-11",
+        "job": "07836174512",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "sharapov,shokhruk",
+        "address": "1771 72ND ST, APT 1, BROOKLYN, NY 11204",
+        "phone": "347-216-4511"
+      },
+      {
+        "time": "9-12",
+        "job": "07836204121",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "ELY,LORI",
+        "address": "1535 W 11TH ST, APT 2 R, BROOKLYN, NY 11204-6235",
+        "phone": "111-111-1111"
       }
     ],
     "totalStops": 5,
-    "estimatedDuration": ""
+    "estimatedDuration": "3h 36m"
   }
 ]

@@ -4,15 +4,15 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "9-12",
-        "job": "07836157982",
-        "type": "TC",
-        "status": "Pending TC",
+        "time": "11-2",
+        "job": "07836539222",
+        "type": "IN",
+        "status": "Pending Install",
         "badge": "pending",
         "tech": "4687",
-        "name": "LAMBERT,COPUCINE",
-        "address": "859 E 55TH ST, APT 2, BROOKLYN, NY 11234-1212",
-        "phone": "718-629-5916"
+        "name": "BROWNSVILLE,RESIDENT",
+        "address": "275 BLAKE AV, APT 5C, BROOKLYN, NY 11212-6327",
+        "phone": "646-932-2645"
       },
       {
         "time": "2-5",
@@ -46,9 +46,20 @@
         "name": "WHITE,THOMAS",
         "address": "1409 ST JOHNS PL, APT 10, BROOKLYN, NY 11213-3806",
         "phone": "929-706-4106"
+      },
+      {
+        "time": "9-12",
+        "job": "07836157982",
+        "type": "TC",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "LAMBERT,COPUCINE",
+        "address": "859 E 55TH ST, APT 2, BROOKLYN, NY 11234-1212",
+        "phone": "718-629-5916"
       }
     ],
-    "totalStops": 4,
-    "estimatedDuration": "2h 6m"
+    "totalStops": 5,
+    "estimatedDuration": "3h 0m"
   }
 ]

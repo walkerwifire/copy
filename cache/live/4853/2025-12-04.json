@@ -4,28 +4,6 @@
     "date": "2025-12-04",
     "stops": [
       {
-        "time": "8-11",
-        "job": "07836075434",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4853",
-        "name": "AGNANT,RONALD",
-        "address": "189 CHAUNCEY ST, APT #1, BROOKLYN, NY 11233-2114",
-        "phone": "917-306-0211"
-      },
-      {
-        "time": "8-11",
-        "job": "07836905801",
-        "type": "TC",
-        "status": "Pending TC",
-        "badge": "pending",
-        "tech": "4853",
-        "name": "RODRIGUEZ,ANA",
-        "address": "706 LAFAYETTE AV, APT 2, BROOKLYN, NY 11221-1302",
-        "phone": "347-781-1132"
-      },
-      {
         "time": "11-2",
         "job": "07836981966",
         "type": "IN",
@@ -57,9 +35,20 @@
         "name": "Hossain,NAHID",
         "address": "4114 9TH AV, APT 6F, BROOKLYN, NY 11232-4012",
         "phone": "347-863-2225"
+      },
+      {
+        "time": "8-11",
+        "job": "07836075434",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "AGNANT,RONALD",
+        "address": "189 CHAUNCEY ST, APT #1, BROOKLYN, NY 11233-2114",
+        "phone": "917-306-0211"
       }
     ],
-    "totalStops": 5,
-    "estimatedDuration": ""
+    "totalStops": 4,
+    "estimatedDuration": "1h 36m"
   }
 ]

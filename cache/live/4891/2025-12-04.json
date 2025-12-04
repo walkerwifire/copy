@@ -5,17 +5,6 @@
     "stops": [
       {
         "time": "11-2",
-        "job": "07836539222",
-        "type": "IN",
-        "status": "Pending Install",
-        "badge": "pending",
-        "tech": "4891",
-        "name": "BROWNSVILLE,RESIDENT",
-        "address": "275 BLAKE AV, APT 5C, BROOKLYN, NY 11212-6327",
-        "phone": "646-932-2645"
-      },
-      {
-        "time": "11-2",
         "job": "07836630339",
         "type": "TC",
         "status": "Pending TC",
@@ -26,15 +15,15 @@
         "phone": "718-444-5151"
       },
       {
-        "time": "11-2",
-        "job": "07836716778",
-        "type": "IN",
-        "status": "Pending Install",
+        "time": "12-3",
+        "job": "07836157974",
+        "type": "TC",
+        "status": "Pending TC",
         "badge": "pending",
         "tech": "4891",
-        "name": "ROSEUS,GUYLENTZ",
-        "address": "1048 E 81ST ST, APT BSMT, BROOKLYN, NY 11236-4222",
-        "phone": "516-540-0428"
+        "name": "LUGO,JAVIER",
+        "address": "849 E 55TH ST, APT 2, BROOKLYN, NY 11234-1212",
+        "phone": "347-831-8400"
       },
       {
         "time": "2-5",
@@ -48,6 +37,17 @@
         "phone": "347-500-4447"
       },
       {
+        "time": "2-5",
+        "job": "07836985900",
+        "type": "TC",
+        "status": "Pending TC",
+        "badge": "pending",
+        "tech": "4891",
+        "name": "SUPERMARKET &,LIBERTY",
+        "address": "1075 LIBERTY AV, COM, BROOKLYN, NY 11208",
+        "phone": "917-250-7577"
+      },
+      {
         "time": "8-11",
         "job": "07836004986",
         "type": "TC",
@@ -57,9 +57,20 @@
         "name": "ADKINS,JANET",
         "address": "1484 E 55TH ST, BROOKLYN, NY 11234-3902",
         "phone": "347-831-8656"
+      },
+      {
+        "time": "11-2",
+        "job": "07836716778",
+        "type": "IN",
+        "status": "Complete",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "ROSEUS,GUYLENTZ",
+        "address": "1048 E 81ST ST, APT BSMT, BROOKLYN, NY 11236-4222",
+        "phone": "516-540-0428"
       }
     ],
-    "totalStops": 5,
-    "estimatedDuration": "0h 54m"
+    "totalStops": 6,
+    "estimatedDuration": "3h 18m"
   }
 ]

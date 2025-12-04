@@ -1,3 +1,70 @@
+/* Summary tiles layout - clean version */
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+@media (max-width: 1280px) { .tiles { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 1024px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .tiles { grid-template-columns: 1fr; } }
+
+.tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 5px; /* requested spacing between tiles */
+    justify-content: start; /* avoid large auto gaps */
+}
+/* Base tile card styling */
+.tile {
+    background: #ffffff;
+    border: 1px solid #e5e7eb; /* visible boundaries */
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    height: auto; /* content-driven height */
+    width: 190px; /* tile length as requested */
+}
+
+
+
+.tile--highlight {
+    background: #f4f7ff;
+    border-color: #c7d2fe;
+    padding: 16px 18px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: 140px;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.tile__total {
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.tile__rows {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+        row-gap: 8px;
+        margin-top: auto; /* balance content vertically within fixed height */
+}
+
+.tile__row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.tile__row-label { font-size: 11px; color: #6b7280; white-space: nowrap; }
+.tile__count { font-size: 13px; font-weight: 600; text-align: right; min-width: 48px; }
+.tile__count--total { color: #111827; }
+.tile__count--pending { color: #2563eb; }
+.tile__count--done { color: #16a34a; }
+.tile__count--cancelled { color: #dc2626; }
 /* Imported sample Tailwind-like CSS (part 2) */
 *,:after,:before {
     --tw-border-spacing-x: 0;
@@ -112,13 +179,22 @@ th, td { border-bottom: 1px solid #e5e7eb; padding: 12px; }
 .chips { flex-wrap: wrap; gap:8px; }
 
 /* Routes */
-.route-row { display:grid; grid-template-columns: 300px 300px 1fr; align-items:center; padding:12px; border-bottom:1px solid #e5e7eb; gap:12px; }
-.route-row .left { flex-wrap: wrap; }
-.route-row .left .badge { margin-right:4px; }
+.route-body { margin-top: 12px; background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; padding:12px; }
+.route-row { display:grid; grid-template-columns: auto 1fr; align-items:flex-start; padding:12px; border:1px solid #e5e7eb; border-radius:12px; gap:12px; background:#fbfbff; margin-bottom:10px; }
+.route-left { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.route-right { display:flex; flex-direction:column; gap:6px; }
 .route-row .sub { word-break: break-word; }
-.route-section { margin-top:16px; }
-.route-section .title { font-size: 16px; }
-.route-body { margin-top: 12px; }
+.pill { display:inline-flex; align-items:center; justify-content:center; padding:6px 10px; border-radius:999px; border:1px solid #e5e7eb; font-size:14px; line-height:1; color:#111827; background:#ffffff; }
+.pill--time { width:48px; height:48px; border-radius:50%; padding:0; font-weight:600; color:#1f2937; background:#eef2ff; border-color:#c7d2fe; }
+.pill--job { font-weight:600; background:#ffffff; }
+.pill--type { color:#1f2937; background:#f3f4f6; }
+.pill--status { font-weight:600; }
+.pill--status.pending { color:#164e63; background:#ecfeff; border-color:#cffafe; }
+.pill--status.completed { color:#166534; background:#dcfce7; border-color:#86efac; }
+.pill--status.cancelled { color:#7f1d1d; background:#fee2e2; border-color:#fecaca; }
+.pill--tech { color:#1f3b8f; background:#eef2ff; border-color:#c7d2fe; }
+.route-name { font-size:16px; color:#111827; }
+.route-sub { font-size:14px; color:#6b7280; }
 
 /* Modal */
 .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.35); display:none; align-items:center; justify-content:center; z-index:999; }
