@@ -1,0 +1,332 @@
+[
+  {
+    "url": "https://workforce-app-3cecc.web.app/dispatcher/",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "savedTo": "_responses\\dispatcher\\index.html"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/css/7cca8e2c5137bd71.css",
+    "status": 200,
+    "contentType": "text/css; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\css\\7cca8e2c5137bd71.css"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/css/094c32ab059b0d80.css",
+    "status": 200,
+    "contentType": "text/css; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\css\\094c32ab059b0d80.css"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/main-app-f1bd814429d2a86b.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\main-app-f1bd814429d2a86b.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/3323-a3d8bea03c462f9e.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\3323-a3d8bea03c462f9e.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/webpack-db3f95add7cf67ba.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\webpack-db3f95add7cf67ba.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/2117-b8076e94e2a00b02.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\2117-b8076e94e2a00b02.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/bc9e92e6-d7c6c7fb536c5d20.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\bc9e92e6-d7c6c7fb536c5d20.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/app/dispatcher/page-99dc27c97186ad83.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\app\\dispatcher\\page-99dc27c97186ad83.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/app/layout-ae4249fe2e41eb7d.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\app\\layout-ae4249fe2e41eb7d.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/6408-bb4d44b74628058c.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\6408-bb4d44b74628058c.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/2130-82c2b237b84ece56.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\2130-82c2b237b84ece56.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/7951-6bcc36ae447d3464.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\7951-6bcc36ae447d3464.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/8323-807b84c63cd84ad5.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\8323-807b84c63cd84ad5.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/4879-def3d639553d33e8.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\4879-def3d639553d33e8.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/69806262-bb7fe55ca1fd7920.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\69806262-bb7fe55ca1fd7920.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/fd9d1056-e7fb94a523f4d074.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\fd9d1056-e7fb94a523f4d074.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+    "status": 200,
+    "contentType": "font/woff2",
+    "savedTo": "_responses\\_next\\static\\media\\e4af272ccee01ff0-s.p.woff2"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/icons/photo-ta-192x192.png",
+    "status": 200,
+    "contentType": "image/png",
+    "savedTo": "_responses\\icons\\photo-ta-192x192.png"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/manifest.json",
+    "status": 200,
+    "contentType": "application/json",
+    "savedTo": "_responses\\manifest.json"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/icons/photo-ta-32x32.png",
+    "status": 200,
+    "contentType": "image/png",
+    "savedTo": "_responses\\icons\\photo-ta-32x32.png"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/icons/photo-ta-144x144.png",
+    "status": 200,
+    "contentType": "image/png",
+    "savedTo": "_responses\\icons\\photo-ta-144x144.png"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/app/page-43a707291c833af6.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\app\\page-43a707291c833af6.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/7648-2249e722377605db.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\7648-2249e722377605db.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/app/login/page-57071ba488665cdc.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\app\\login\\page-57071ba488665cdc.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/app/company-login/page-9a9b014192b4acce.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\app\\company-login\\page-9a9b014192b4acce.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/dashboard",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "savedTo": "_responses\\dashboard.html"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/map/",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "savedTo": "_responses\\map\\index.html"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/4102-4ed71919956c5e57.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\4102-4ed71919956c5e57.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/6294-998362eaa4c4c19f.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\6294-998362eaa4c4c19f.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/5106a963-a681efceffa3ad5d.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\5106a963-a681efceffa3ad5d.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/4049-d0a31964b0e1b096.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\4049-d0a31964b0e1b096.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/7279-dbb569686b61501b.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\7279-dbb569686b61501b.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/05f6971a-8080d4feb48b2fae.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\05f6971a-8080d4feb48b2fae.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/8274-cc6030facdfe26cb.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\8274-cc6030facdfe26cb.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/css/7661d29d0118a9c7.css",
+    "status": 200,
+    "contentType": "text/css; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\css\\7661d29d0118a9c7.css"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/app/map/page-6b34e5c519ed9bb3.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\app\\map\\page-6b34e5c519ed9bb3.js"
+  },
+  {
+    "url": "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAQAAAAfQ//73v/+BiOh/AAA=",
+    "status": 200,
+    "contentType": "image/webp",
+    "savedTo": "_responses\\image\\webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAQAAAAfQ\\73v\\+BiOh\\AAA="
+  },
+  {
+    "url": "blob:https://workforce-app-3cecc.web.app/aeb53491-fd1b-4dd5-bd65-ad8fb9e4b419",
+    "status": 200,
+    "contentType": "text/javascript",
+    "savedTo": "_responses\\https_\\workforce-app-3cecc.web.app\\aeb53491-fd1b-4dd5-bd65-ad8fb9e4b419.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/app/dispatcher/field-ops/altice-optimum/page-98e65094acb14b5c.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\app\\dispatcher\\field-ops\\altice-optimum\\page-98e65094acb14b5c.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/8810-2657292719ba3bc8.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\8810-2657292719ba3bc8.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/8158-250324ffd705a29f.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\8158-250324ffd705a29f.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/2170a4aa-d98ea8bd50ceb03e.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\2170a4aa-d98ea8bd50ceb03e.js"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/6240-fdf37ec3ef175fc9.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\6240-fdf37ec3ef175fc9.js"
+  },
+  {
+    "url": "https://firebasestorage.googleapis.com/v0/b/workforce-app-3cecc.firebasestorage.app/o/companies%2FJEIbrP1ffnbMcequo1Oqk1WWslA2%2Fprofile-images%2FprofilePicture_2n2IPpWgx5aufWfkRRKQYXyZ3Op2_1763845344352_photo_2021-12-23_14-39-08.jpg?alt=media&token=07f52d80-60ff-46b2-8ef0-15140d9440c5",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "savedTo": "_responses\\v0\\b\\workforce-app-3cecc.firebasestorage.app\\o\\companies\\JEIbrP1ffnbMcequo1Oqk1WWslA2\\profile-images\\profilePicture_2n2IPpWgx5aufWfkRRKQYXyZ3Op2_1763845344352_photo_2021-12-23_14-39-08.jpg"
+  },
+  {
+    "url": "https://firebasestorage.googleapis.com/v0/b/workforce-app-3cecc.firebasestorage.app/o/companies%2FJEIbrP1ffnbMcequo1Oqk1WWslA2%2Fprofile-images%2Fprofile_L8U74GmkM4fC50pakPTQuQT4vYS2_1763898550292_photo_2025-07-21_16-01-33.jpg?alt=media&token=f1b769d9-db53-45b7-ada5-08fa63e185ed",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "savedTo": "_responses\\v0\\b\\workforce-app-3cecc.firebasestorage.app\\o\\companies\\JEIbrP1ffnbMcequo1Oqk1WWslA2\\profile-images\\profile_L8U74GmkM4fC50pakPTQuQT4vYS2_1763898550292_photo_2025-07-21_16-01-33.jpg"
+  },
+  {
+    "url": "https://nominatim.openstreetmap.org/search?format=json&q=545%20E%2082ND%20ST%2C%20BROOKLYN%2C%20NY%2011236-3144&limit=1&addressdetails=1&accept-language=en",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "savedTo": "_responses\\search.json"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/_next/static/chunks/app/todays-routes/page-33e54a8215b57938.js",
+    "status": 200,
+    "contentType": "text/javascript; charset=utf-8",
+    "savedTo": "_responses\\_next\\static\\chunks\\app\\todays-routes\\page-33e54a8215b57938.js"
+  },
+  {
+    "url": "https://api.maptiler.com/maps/streets-v2/style.json?key=7a3esiPZovS7pioDloSB&mtsid=c97421d6-ab18-487d-a866-fa2314bca0b5",
+    "status": 200,
+    "contentType": "application/json",
+    "savedTo": "_responses\\maps\\streets-v2\\style.json"
+  },
+  {
+    "url": "https://api.maptiler.com/maps/streets-v2/sprite.json?key=7a3esiPZovS7pioDloSB&mtsid=c97421d6-ab18-487d-a866-fa2314bca0b5",
+    "status": 200,
+    "contentType": "application/json",
+    "savedTo": "_responses\\maps\\streets-v2\\sprite.json"
+  },
+  {
+    "url": "https://api.maptiler.com/maps/streets-v2/sprite.png?key=7a3esiPZovS7pioDloSB&mtsid=c97421d6-ab18-487d-a866-fa2314bca0b5",
+    "status": 200,
+    "contentType": "image/png",
+    "savedTo": "_responses\\maps\\streets-v2\\sprite.png"
+  },
+  {
+    "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=7a3esiPZovS7pioDloSB&mtsid=c97421d6-ab18-487d-a866-fa2314bca0b5",
+    "status": 200,
+    "contentType": "application/json",
+    "savedTo": "_responses\\tiles\\v3\\tiles.json"
+  },
+  {
+    "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=7a3esiPZovS7pioDloSB",
+    "status": 200,
+    "contentType": "application/json",
+    "savedTo": "_responses\\tiles\\v3\\tiles.json"
+  },
+  {
+    "url": "https://api.maptiler.com/resources/logo.svg",
+    "status": 200,
+    "contentType": "image/svg+xml",
+    "savedTo": "_responses\\resources\\logo.svg"
+  },
+  {
+    "url": "https://workforce-app-3cecc.web.app/dispatcher/",
+    "status": 200,
+    "contentType": "text/html",
+    "savedTo": "page_snapshot.html"
+  }
+]
