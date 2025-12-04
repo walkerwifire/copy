@@ -1352,6 +1352,217 @@ app.get('/api/job/:jobId', async (req, res) => {
   }
 });
 
+// Debug: Inspect parsed job details with metadata
+app.get('/api/job/debug/:jobId', async (req, res) => {
+  try {
+    const rawJob = String(req.params.jobId || '').trim();
+    const jobId = (rawJob.match(/\d{6,}/) || [rawJob])[0];
+    const techParam = String(req.query.tech || '').trim();
+    const out = { job: jobId, tech: techParam, htmlLength: 0, tables: 0, fields: 0, parsedKeys: [], data: {} };
+    // Reuse the main endpoint logic by programmatically requesting it
+    // But we reconstruct minimal flow here for clarity
+    let dataObj = null;
+    // Try cache
+    try {
+      const latestJson = path.join(cacheDir, 'latest.json');
+      if (fs.existsSync(latestJson)) {
+        dataObj = JSON.parse(fs.readFileSync(latestJson, 'utf8'));
+      }
+    } catch {}
+    // Live fetch
+    if (!dataObj) {
+      let user = '';
+      let pass = '';
+      if (techParam) {
+        const creds = resolveCredsFromTechs(techParam);
+        if (!creds || !creds.user || !creds.pass) return res.status(400).json({ error: `Missing credentials for tech ${techParam}` });
+        user = creds.user; pass = creds.pass;
+      } else {
+        user = process.env.TECHNET_USER || process.env.TECHNET_USERNAME || '';
+        pass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD || '';
+        if (!user || !pass) return res.status(400).json({ error: 'Missing TECHNET credentials' });
+      }
+      const live = await fetchLiveHtmlWith(user, pass, TECHNET_URL);
+      dataObj = live.data;
+      out.htmlLength = (live.html || '').length;
+      out.tables = Array.isArray(dataObj?.tables) ? dataObj.tables.length : 0;
+      out.fields = Array.isArray(dataObj?.fields) ? dataObj.fields.length : 0;
+    }
+    // Offline fallback if needed
+    if (!dataObj || (!dataObj.tables && !dataObj.fields)) {
+      const candidates = [
+        path.join(__dirname, 'page_snapshot.html'),
+        path.join(__dirname, '_responses', 'dashboard.html'),
+        path.join(__dirname, '_responses', 'index.html'),
+      ];
+      for (const f of candidates) {
+        if (fs.existsSync(f)) {
+          try { const html = fs.readFileSync(f, 'utf8'); dataObj = Object.assign({}, dataObj || {}, { html }); out.htmlLength = html.length; break; } catch {}
+        }
+      }
+    }
+    // Parse using same helpers as main route
+    const norm = s => String(s || '').replace(/\s+/g, ' ').trim().toLowerCase();
+    const isLabel = (label, patterns) => { const L = norm(label).replace(/:$/, ''); return patterns.some(p => typeof p === 'string' ? L === norm(p) : p instanceof RegExp ? p.test(L) : false); };
+    const setIfEmpty = (obj, key, val) => { if (val && obj[key] == null) obj[key] = val; };
+    const result = { job: jobId };
+    const tables = Array.isArray(dataObj?.tables) ? dataObj.tables : [];
+    const fields = Array.isArray(dataObj?.fields) ? dataObj.fields : [];
+    for (const t of tables) {
+      const headers = (t.headers || []).map(h => String(h).trim());
+      for (const r of t.rows || []) {
+        if (r.some(cell => String(cell).includes(jobId))) {
+          headers.forEach((h, idx) => {
+            const key = norm(h);
+            const val = String(r[idx] ?? '').trim();
+            if (!val) return;
+            if (isLabel(key, [/^job\s*type$/])) setIfEmpty(result, 'jobType', val);
+            if (isLabel(key, [/^status$/])) setIfEmpty(result, 'staticStatus', val);
+            if (isLabel(key, [/^completion\s*time$/, /^cp\s*time$/, /^cptime$/])) setIfEmpty(result, 'staticCompletionTime', val);
+            if (isLabel(key, [/^account(\s*#|\s*number)?$/])) setIfEmpty(result, 'accountNumber', val);
+            if (isLabel(key, [/^units$/])) setIfEmpty(result, 'units', val);
+            if (isLabel(key, [/^priority$/])) setIfEmpty(result, 'priority', val);
+            if (isLabel(key, [/^schd$/, /^schedule(\s*date)?$/])) setIfEmpty(result, 'scheduleDate', val);
+            if (isLabel(key, [/^origin$/])) setIfEmpty(result, 'origin', val);
+            if (isLabel(key, [/^resolution(\s*codes?)?$/])) setIfEmpty(result, 'resolutionCodes', val);
+            if (isLabel(key, [/^phone(\s*#)?$/])) setIfEmpty(result, 'phone', val);
+            if (isLabel(key, [/^(customer\s*)?name$/])) setIfEmpty(result, 'name', val);
+            if (isLabel(key, [/^address$/])) setIfEmpty(result, 'address', val);
+            if (isLabel(key, [/^addr2$/])) setIfEmpty(result, 'address2', val);
+            if (isLabel(key, [/^city$/])) setIfEmpty(result, 'city', val);
+          });
+        }
+      }
+    }
+    fields.forEach(f => {
+      const labelRaw = String(f.label || '');
+      const label = norm(labelRaw);
+      const val = String(f.value ?? '').trim();
+      if (!val) return;
+      if (isLabel(label, [/^priority$/])) result.priority = val;
+      if (isLabel(label, [/^create$/])) result.create = val;
+      if (isLabel(label, [/^schd$/, /^schedule(\s*date)?$/])) result.scheduleDate = val;
+      if (isLabel(label, [/^completion\s*time$/, /^cp\s*time$/, /^cptime$/])) result.staticCompletionTime = val;
+      if (isLabel(label, [/^ds$/, /^status$/])) result.staticStatus = val;
+      if (isLabel(label, [/^ts$/, /^time\s*frame$/])) result.timeFrame = val;
+      if (isLabel(label, [/^type$/, /^job\s*type$/])) result.jobType = val;
+      if (isLabel(label, [/^units$/])) result.units = val;
+      if (isLabel(label, [/^reacd$/, /^rea\s*cd$/, /^readesc$/, /^rea\s*desc$/, /^reason$/])) result.reason = val;
+      if (isLabel(label, [/^rescd$/])) result.resolutionCodes = val;
+      if (isLabel(label, [/^fc$/])) result.accountNumber = val;
+      if (isLabel(label, [/^tech$/])) result.assignedTech = val;
+      if (isLabel(label, [/^addr$/, /^address$/])) setIfEmpty(result, 'address', val);
+      if (isLabel(label, [/^addr2$/, /^address\s*2$/])) setIfEmpty(result, 'address2', val);
+      if (isLabel(label, [/^city$/])) result.city = val;
+      if (isLabel(label, [/^name$/, /^(customer\s*)?name$/])) setIfEmpty(result, 'name', val);
+      if (isLabel(label, [/^home(\s*#)?$/])) result.homePhone = val;
+      if (isLabel(label, [/^work(\s*#)?$/])) result.workPhone = val;
+      if (isLabel(label, [/^map\s*cd$/, /^map$/])) result.mapCd = val;
+      if (isLabel(label, [/^job\s*cmt$/, /^job\s*comment$/])) result.jobComment = val;
+      if (isLabel(label, [/^node$/])) result.node = val;
+      if (isLabel(label, [/^delq$/])) result.delq = val;
+      if (isLabel(label, [/^dispatch\s*cmt$/])) result.dispatchComment = val;
+      if (isLabel(label, [/^receipt\s*cmt$/])) result.receiptComment = val;
+      if (isLabel(label, [/^fsm\s*cmt$/])) result.fsmComment = val;
+      if (isLabel(label, [/^phone(\s*#)?$/])) setIfEmpty(result, 'phone', val);
+      if (isLabel(label, [/^origin$/])) result.origin = val;
+    });
+    // HTML regex fallback
+    try {
+      const html = String(dataObj?.html || '');
+      const pick = (re) => { const m = html.match(re); let v = m ? String(m[1]).trim() : ''; v = v.replace(/^"|"$/g, '').trim(); return v; };
+      const fieldsMap = {
+        job: /Job\s*ID:\s*([^\n<"]+)/i,
+        assignedTech: /Tech:\s*(\d{3,})/i,
+        resolutionCodes: /ResCd:\s*([^\n<"]]*)/i,
+        accountNumber: /FC:\s*([^\n<"]]*)/i,
+        create: /Create:\s*([^\n<"]+)/i,
+        scheduleDate: /Schd:\s*([^\n<"]]+)/i,
+        staticCompletionTime: /CpTime:\s*([^\n<"]]+)/i,
+        staticStatus: /DS:\s*([^\n<"]]+)/i,
+        timeFrame: /TS:\s*([^\n<"]]+)/i,
+        jobType: /Type:\s*([^\n<"]]+)/i,
+        units: /Units:\s*([^\n<"]]+)/i,
+        reason: /ReaCd\/?\s*ReaDesc:\s*([^\n<"]]+)/i,
+        address: /Addr:\s*([^\n<"]]+)/i,
+        address2: /Addr2:\s*([^\n<"]]+)/i,
+        city: /City:\s*([^\n<"]]+)/i,
+        name: /Name:\s*([^\n<"]]+)/i,
+        homePhone: /Home\s*#:\s*([^\n<"]]+)/i,
+        workPhone: /Work\s*#:\s*([^\n<"]]+)/i,
+        mapCd: /Map\s*CD:\s*([^\n<"]]+)/i,
+        jobComment: /Job\s*Cmt:\s*([^\n<"]]+)/i,
+        node: /Node:\s*([^\n<"]]+)/i,
+        delq: /Delq:\s*([^\n<"]]*)/i,
+        dispatchComment: /Dispatch\s*Cmt:\s*([^\n<"]]+)/i,
+        receiptComment: /Receipt\s*Cmt:\s*([^\n<"]]*)/i,
+        fsmComment: /FSM\s*Cmt:\s*([^\n<"]]*)/i,
+      };
+      Object.entries(fieldsMap).forEach(([k, re]) => { const v = pick(re); if (v) setIfEmpty(result, k, v); });
+    } catch {}
+    // Cheerio DOM fallback
+    try {
+      const html = String(dataObj?.html || '');
+      if (html) {
+        const $ = cheerio.load(html);
+        const mapLabel = (s) => String(s || '').replace(/\s+/g, ' ').trim();
+        const getValueAfterBold = (bElem) => {
+          let val = '';
+          const node = bElem.get(0);
+          if (!node) return val;
+          let curr = node.nextSibling;
+          while (curr) {
+            const name = curr.name || curr.type;
+            if (name === 'b' || name === 'tag' && curr.name === 'b') break;
+            if (curr.type === 'text') val += curr.data || '';
+            if (curr.name === 'br') break;
+            if (curr.children && curr.children.length) val += $(curr).text();
+            curr = curr.nextSibling;
+          }
+          return val.replace(/[\n]+/g, '').replace(/^"|"$/g, '').trim();
+        };
+        $('b').each((_, el) => {
+          const label = mapLabel($(el).text()).replace(/:$/, '');
+          const val = getValueAfterBold($(el));
+          if (!val) return;
+          const L = label.toLowerCase();
+          const set = (k) => setIfEmpty(result, k, val);
+          if (L === 'job id') set('job');
+          else if (L === 'tech') set('assignedTech');
+          else if (L === 'rescd') set('resolutionCodes');
+          else if (L === 'fc') set('accountNumber');
+          else if (L === 'create') set('create');
+          else if (L === 'schd') set('scheduleDate');
+          else if (L === 'cptime') set('staticCompletionTime');
+          else if (L === 'ds') set('staticStatus');
+          else if (L === 'ts') set('timeFrame');
+          else if (L === 'type') set('jobType');
+          else if (L === 'units') set('units');
+          else if (L === 'reacd/readesc' || L === 'reacd/ readesc') set('reason');
+          else if (L === 'addr') set('address');
+          else if (L === 'addr2') set('address2');
+          else if (L === 'city') set('city');
+          else if (L === 'name') set('name');
+          else if (L === 'home #') set('homePhone');
+          else if (L === 'work #') set('workPhone');
+          else if (L === 'map cd') set('mapCd');
+          else if (L === 'job cmt') set('jobComment');
+          else if (L === 'node') set('node');
+          else if (L === 'delq') set('delq');
+          else if (L === 'dispatch cmt') set('dispatchComment');
+          else if (L === 'receipt cmt') set('receiptComment');
+          else if (L === 'fsm cmt') set('fsmComment');
+        });
+      }
+    } catch {}
+    out.parsedKeys = Object.keys(result).filter(k => k !== 'job');
+    out.data = result;
+    return res.json(out);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 // Live test summary for multiple tech IDs
 app.get('/api/test/techs', async (req, res) => {
   try {
