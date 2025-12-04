@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Technet Dashboard</title>
+  <link rel="stylesheet" href="/styles/app.css" />
+  <style>
+    * { box-sizing: border-box; }
+    :root { --bg: #f7f9fc; --card: #ffffff; --text: #1f2937; --muted: #6b7280; --accent: #2563eb; --accent-2: #16a34a; --danger: #ef4444; }
+    body { font-family: system-ui, sans-serif; margin: 0; background: var(--bg); color: var(--text); font-size: 18px; line-height: 1.7; }
+    header { padding: 16px 20px; background: #ffffff; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; }
+    .header-left { display:flex; align-items:center; gap:10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <div class="title">Technet Dashboard</div>
+    </div>
+  </header>
+  <div class="container" style="padding:16px">
+    <div id="controls" class="card">
+      <div class="row" style="gap:8px; flex-wrap:wrap">
+        <select id="techSelect" class="select">
+          <option value="all">All Techs</option>
+        </select>
+        <input type="date" id="routeDate" class="select" />
+        <button id="refreshBtn" class="btn">Refresh</button>
+        <button id="refreshAllBtn" class="btn">Refresh All</button>
+        <a id="routesCsvLink" class="btn" href="/api/routes.csv" download>Export Routes CSV</a>
+        <span id="status" class="muted" style="margin-left:auto"></span>
+      </div>
+    </div>
+
+    <div id="summary" class="card" style="display:none"></div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between; align-items:center">
+        <div class="title">Technicians <span id="techCount" class="sub"></span></div>
+      </div>
+      <table class="table" style="width:100%">
+        <thead>
+          <tr>
+            <th></th><th>Name</th><th>Status</th><th>Tech</th><th>Skills</th><th>Provider</th><th>Last Activity</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="techRows"></tbody>
+      </table>
+      <div id="emptyState" class="muted" style="display:none; padding:12px">No technicians</div>
+    </div>
+
+    <div id="rawHtml" class="card" style="display:none"></div>
+  </div>
+      <form id="liveForm" class="row" style="margin-top:12px; flex-wrap:wrap">
+        <input type="text" id="liveUser" placeholder="User" class="select" style="background:#0b1e3b; color:#fff; border-color:#2d4f8b" />
+        <input type="password" id="livePass" placeholder="Password" class="select" style="background:#0b1e3b; color:#fff; border-color:#2d4f8b" />
+        <input type="text" id="liveUrl" placeholder="URL (optional)" class="select" style="background:#0b1e3b; color:#fff; border-color:#2d4f8b; min-width:280px" />
+        <button type="submit" class="btn btn-primary">Live Fetch (POST)</button>
+      </form>
+    </div>
+    <script>
+    document.getElementById('refreshBtn').addEventListener('click', async () => {
+      const tech = getSelectedTech();
+      const date = document.getElementById('routeDate')?.value || '';
+      const url = '/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '');
+      const dash = await (await fetch(url)).json();
+      renderSummaryTiles(dash);
+      renderTechniciansWithRoutes(dash);
+      updateRoutesCsvLink();
+    });
+    (function setDefaultRouteDate() {
+      const rd = document.getElementById('routeDate');
+      if (!rd) return;
+      if (!rd.value) {
+        const d = new Date();
+        const y = d.getFullYear();
+        const m = ('0' + (d.getMonth() + 1)).slice(-2);
+        const day = ('0' + d.getDate()).slice(-2);
+        rd.value = `${y}-${m}-${day}`;
+      }
+    })();
+    document.getElementById('routeDate').addEventListener('change', async () => {
+      const tech = getSelectedTech();
+      const date = document.getElementById('routeDate')?.value || '';
+      const dash = await (await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now())).json();
+      renderTechniciansWithRoutes(dash);
+      updateRoutesCsvLink();
+    });
+    document.getElementById('techSelect').addEventListener('change', async () => {
+      const tech = getSelectedTech();
+      const date = document.getElementById('routeDate')?.value || '';
+      const dash = await (await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now())).json();
+      renderSummaryTiles(dash);
+      renderTechniciansWithRoutes(dash);
+      updateRoutesCsvLink();
+    });
+    // Refresh All button: force tech=all
+    document.getElementById('refreshAllBtn').addEventListener('click', async () => {
+      const date = document.getElementById('routeDate')?.value || '';
+      const dash = await (await fetch('/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now())).json();
+      const sel = document.getElementById('techSelect');
+      if (sel) sel.value = 'all';
+      renderSummaryTiles(dash);
+      renderTechniciansWithRoutes(dash);
+      updateRoutesCsvLink();
+    });
+    document.getElementById('liveForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const user = document.getElementById('liveUser').value;
+      const pass = document.getElementById('livePass').value;
+      const url = document.getElementById('liveUrl').value;
+      const status = document.getElementById('status');
+      status.textContent = 'Posting credentials to /api/technet/live...';
+      try {
+        const res = await fetch('/api/technet/live', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user, pass, url })
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const json = await res.json();
+        status.textContent = 'Live fetch succeeded — rendering';
+        const { data, html } = json;
+        const summary = document.getElementById('summary');
+        const rawHtml = document.getElementById('rawHtml');
+        summary.style.display = 'block';
+        summary.innerHTML = `<h2>Summary</h2><p class="muted">Title: ${data?.title || 'N/A'}</p>`;
+        const dash = await (await fetch('/api/dashboard?mode=live')).json();
+        renderSummaryTiles(dash);
+        renderTechniciansWithRoutes(dash);
+        // Hide raw HTML debug to prevent text leakage
+        rawHtml.style.display = 'none';
+        rawHtml.innerHTML = '';
+      } catch (e) {
+        status.textContent = 'Live fetch error: ' + e.message;
+      }
+    });
+    // Initial load
+    loadData();
+  </script>
+  <script>
+    function updateRoutesCsvLink() {
+      const date = document.getElementById('routeDate')?.value || '';
+      const tech = document.getElementById('techSelect')?.value || '';
+      const base = '/api/routes.csv';
+      const qs = [];
+      if (date) qs.push('date=' + encodeURIComponent(date));
+      if (tech && tech !== 'all') qs.push('tech=' + encodeURIComponent(tech));
+      const href = qs.length ? (base + '?' + qs.join('&')) : base;
+      const a = document.getElementById('routesCsvLink');
+      if (a) a.href = href;
+    }
+    async function loadData() {
+      const techSel = document.getElementById('techSelect');
+      const date = document.getElementById('routeDate')?.value || '';
+      const url = '/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now();
+      try {
+        const dash = await (await fetch(url)).json();
+        // Populate tech selector from data if empty or minimal
+        if (techSel && techSel.options.length <= 1) {
+          const opts = ['<option value="all">All Techs</option>'];
+          (dash.technicians||[]).forEach(t => {
+            const label = t.name || ('Tech ' + (t.techNo||''));
+            const value = t.techNo || label;
+            opts.push(`<option value="${String(value)}">${label}</option>`);
+          });
+          techSel.innerHTML = opts.join('');
+          techSel.value = 'all';
+        }
+        renderSummaryTiles(dash);
+        renderTechniciansWithRoutes(dash);
+        updateRoutesCsvLink();
+      } catch (e) {
+        const status = document.getElementById('status');
+        if (status) status.textContent = 'Error loading dashboard: ' + e.message;
+      }
+    }
+    function renderSummaryTiles(dash) {
+      const el = document.getElementById('summary');
+      if (!el) return;
+      const routes = dash.routes || [];
+      const counts = { TC:0, IN:0, COS:0, RST:0 };
+      routes.forEach(r => (r.stops||[]).forEach(s => { if (counts[s.type] != null) counts[s.type]++; }));
+      el.style.display = 'block';
+      el.innerHTML = `
+        <div class="title">Summary</div>
+        <div class="row" style="gap:8px; flex-wrap:wrap; margin-top:8px">
+          <span class="badge">TC: ${counts.TC}</span>
+          <span class="badge">IN: ${counts.IN}</span>
+          <span class="badge">COS: ${counts.COS}</span>
+          <span class="badge">RST: ${counts.RST}</span>
+        </div>`;
+    }
+    // Reintroduce consolidated renderer, placed correctly near the bottom
+    function renderTechniciansWithRoutes(dash) {
+      const techRows = document.getElementById('techRows');
+      const empty = document.getElementById('emptyState');
+      const techCount = document.getElementById('techCount');
+      const technicians = (dash.technicians || []).slice().sort((a,b) => Number(b.techNo||0) - Number(a.techNo||0));
+      techCount.textContent = technicians.length ? `(LIVE)` : '';
+      techRows.innerHTML = '';
+      if (!technicians.length) { empty.style.display = 'block'; return; }
+      empty.style.display = 'none';
+      const routes = dash.routes || [];
+      const selectedDate = document.getElementById('routeDate')?.value || '';
+      const byTech = {};
+      routes.filter(r => !selectedDate || r.date === selectedDate).forEach(r => { (byTech[r.techNo] ||= []).push(r); });
+      // When a specific tech is selected, filter technicians list
+      const techSel = document.getElementById('techSelect');
+      const selectedTech = techSel?.value;
+      const list = (selectedTech && selectedTech !== 'all') ? technicians.filter(t => String(t.techNo) === String(selectedTech)) : technicians;
+      // Flat list without provider/area grouping
+      list.forEach(t => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><span class="badge">🧑‍🔧</span></td>
+          <td>${t.name || ''}</td>
+          <td><span class="badge badge-status">${t.status || 'N/A'}</span></td>
+          <td>${t.techNo || ''}</td>
+          <td>${(t.workSkill||'').split(/[\,\s]+/).filter(Boolean).map(s => `<span class='badge badge-skill'>${s}</span>`).join('')}</td>
+          <td>${t.provider || ''}</td>
+          <td>${t.lastActivity || 'N/A'}</td>
+          <td class="actions">
+            <button class="btn">Profile</button>
+            <button class="btn">Schedule</button>
+            <button class="btn">Notes</button>
+            <button class="btn btn-route" aria-expanded="false">Route <span class="badge">${(byTech[t.techNo]||[]).reduce((acc,r)=>acc+(r.stops||[]).length,0)}</span></button>
+          </td>
+        `;
+        techRows.appendChild(tr);
+        const bodyRow = document.createElement('tr');
+        const bodyCell = document.createElement('td');
+        bodyCell.colSpan = 8;
+        const body = document.createElement('div');
+        body.className = 'route-body';
+        body.style.display = 'none';
+        (byTech[t.techNo]||[]).forEach(route => {
+          (route.stops||[]).forEach(s => {
+            const row = document.createElement('div');
+            row.className = 'route-row';
+            row.innerHTML = `
+              <div class="left row" style="gap:6px">
+                <span class="badge">${s.time || ''}</span>
+                <span class="badge">${s.job || ''}</span>
+                <span class="badge">${s.type || ''}</span>
+                <span class="badge" style="background:#ecfeff;border-color:#cffafe;color:#164e63">${s.badge || ''}</span>
+                <span class="badge">${route.techNo || s.tech || ''}</span>
+              </div>
+              <div class="sub" style="color:#111827">${s.name || ''}</div>
+              <div class="sub">${s.address || ''}${s.phone ? ' • ' + s.phone : ''}</div>
+            `;
+            body.appendChild(row);
+          });
+        });
+        bodyCell.appendChild(body);
+        bodyRow.appendChild(bodyCell);
+        techRows.appendChild(bodyRow);
+        const actions = tr.querySelector('.actions');
+        const [profileBtn, scheduleBtn, notesBtn, toggleBtn] = actions.querySelectorAll('button');
+        profileBtn.addEventListener('click', () => openProfileModal(t, t.techNo));
+        scheduleBtn.addEventListener('click', () => openScheduleModal(t, t.techNo));
+        notesBtn.addEventListener('click', () => openNotesModal(t, t.techNo));
+        toggleBtn.addEventListener('click', () => {
+          const open = toggleBtn.getAttribute('aria-expanded') === 'true';
+          toggleBtn.setAttribute('aria-expanded', String(!open));
+          body.style.display = open ? 'none' : 'block';
+        });
+      });
+    }
+  </script>
+  <!-- Reusable Modals -->
+  <div id="modalBackdrop" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Modal</div>
+        <button class="btn close-btn" id="modalClose">Close</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+  <script>
+    function openModal(title, bodyHtml, actionsHtml) {
+      const bd = document.getElementById('modalBackdrop');
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBody').innerHTML = bodyHtml || '';
+      document.getElementById('modalActions').innerHTML = actionsHtml || '';
+      bd.style.display = 'flex';
+      const close = document.getElementById('modalClose');
+      close.onclick = () => { bd.style.display = 'none'; };
+      bd.onclick = (e) => { if (e.target === bd) bd.style.display = 'none'; };
+    }
+    function safeVal(v) { return (v == null || v === 'N/A') ? '' : String(v); }
+    function openProfileModal(info, techNo) {
+      fetch(`/api/tech/${encodeURIComponent(techNo)}/profile`).then(r => r.json()).then(p => {
+        const name = safeVal(p.name) || ('Tech ' + techNo);
+        const workSkill = safeVal(p.workSkill);
+        const email = safeVal(p.email);
+        const status = safeVal(p.status);
+        const lastActivity = safeVal(p.lastActivity);
+        const body = `
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+            <div class="card" style="margin:0">
+              <div class="title">Basic Information</div>
+              <div class="sub" style="margin-top:8px">Name: ${name}</div>
+              <div class="sub">Tech Number: ${techNo}</div>
+              <div class="sub">Email: ${email || 'Not provided'}</div>
+            </div>
+            <div class="card" style="margin:0">
+              <div class="title">Work Information</div>
+              <div class="sub" style="margin-top:8px">Work Skill: ${workSkill || 'Not specified'}</div>
+              <div class="sub">Status: ${status || 'N/A'}</div>
+              <div class="sub">Last Activity: ${lastActivity || 'N/A'}</div>
+            </div>
+          </div>
+        `;
+        const actions = `<button class="btn" onclick="(async function(){ await fetch('/api/tech/${techNo}/profile',{ method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ lastActivity: new Date().toISOString() }) }); alert('Clocked in'); document.getElementById('modalBackdrop').style.display='none'; })()">Force Clock In</button>`;
+        openModal(name, body, actions);
+      }).catch(() => {
+        openModal('Profile', '<div class="muted">Failed to load profile</div>', '');
+      });
+    }
+    function openScheduleModal(info, techNo) {
+      fetch(`/api/tech/${encodeURIComponent(techNo)}/schedule`).then(r => r.json()).then(s => {
+        const selected = new Set((s.days||[]).map(Number));
+        const daysGrid = Array.from({length:31}, (_,i)=>{
+          const d = i+1; const on = selected.has(d);
+          return `<button class='badge' data-day='${d}' style='text-align:center; padding:12px; ${on?"background:#dcfce7;border-color:#86efac;color:#166534":""}'>${d}</button>`;
+        }).join('');
+        const body = `
+          <div class="card" style="margin:0">
+            <div class="title">Manage Working Days - Tech ${techNo}</div>
+            <div class="sub" style="margin-top:8px">Click on any day to toggle working/vacation.</div>
+            <div id='daysGrid' style="margin-top:12px; display:grid; grid-template-columns: repeat(7, 1fr); gap:8px">${daysGrid}</div>
+          </div>`;
+        const actions = `<button class="btn btn-primary" id='saveDays'>Save Working Days</button>`;
+        openModal('Schedule & Availability', body, actions);
+        // Toggle selection
+        const grid = document.getElementById('daysGrid');
+        grid.addEventListener('click', (e) => {
+          const el = e.target.closest('button[data-day]'); if (!el) return;
+          const day = Number(el.getAttribute('data-day'));
+          if (selected.has(day)) { selected.delete(day); el.style.background=''; el.style.borderColor=''; el.style.color=''; }
+          else { selected.add(day); el.style.background='#dcfce7'; el.style.borderColor='#86efac'; el.style.color='#166534'; }
+        });
+        document.getElementById('saveDays').onclick = async () => {
+          const payload = { days: Array.from(selected.values()) };
+          await fetch(`/api/tech/${techNo}/schedule`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+          alert('Saved');
+          document.getElementById('modalBackdrop').style.display='none';
+        };
+      }).catch(() => {
+        openModal('Schedule & Availability', '<div class="muted">Failed to load schedule</div>', '');
+      });
+    }
+    function openNotesModal(info, techNo) {
+      fetch(`/api/tech/${encodeURIComponent(techNo)}/notes`).then(r => r.json()).then(list => {
+        const items = (list||[]).map(n => `<div class='sub' style='margin-top:6px'>• ${n.text} <span class='muted'>(${n.ts})</span></div>`).join('') || `<div class='muted'>No notes yet.</div>`;
+        const body = `
+          <div class="card" style="margin:0">
+            <div class="title">Notes for Tech ${techNo}</div>
+            <div id='notesList' style='margin-top:8px'>${items}</div>
+            <textarea id='noteInput' style='width:100%; margin-top:12px; padding:12px; border-radius:8px; border:1px solid #e5e7eb' placeholder='Enter your note here...'></textarea>
+          </div>`;
+        const actions = `<button class="btn btn-success" id='addNote'>Add Note</button>`;
+        openModal('Tech Notes', body, actions);
+        document.getElementById('addNote').onclick = async () => {
+          const t = document.getElementById('noteInput').value;
+          if (!t) return;
+          const res = await fetch(`/api/tech/${techNo}/notes`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ text: t }) });
+          const updated = await res.json();
+          const html = (updated.notes||[]).map(n => `<div class='sub' style='margin-top:6px'>• ${n.text} <span class='muted'>(${n.ts})</span></div>`).join('');
+          document.getElementById('notesList').innerHTML = html;
+          document.getElementById('noteInput').value = '';
+        };
+      }).catch(() => {
+        openModal('Tech Notes', '<div class="muted">Failed to load notes</div>', '');
+      });
+    }
+  </script>
+</body>
+</html>

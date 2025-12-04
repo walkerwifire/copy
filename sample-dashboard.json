@@ -1,0 +1,25 @@
+{
+  "summary": {
+    "TC": { "total": 41, "pending": 29, "done": 12, "cancelled": 0 },
+    "IN": { "total": 23, "pending": 20, "done": 3, "cancelled": 0 },
+    "COS": { "total": 6, "pending": 3, "done": 3, "cancelled": 0 },
+    "RST": { "total": 1, "pending": 0, "done": 1, "cancelled": 0 },
+    "SUMMARY": { "total": 71, "pending": 53, "done": 18, "cancelled": 0 }
+  },
+  "routes": [
+    {
+      "techNo": "4682",
+      "date": "2025-12-03",
+      "stops": [
+        { "time": "8-11", "job": "057242", "type": "TC", "status": "Complete | CP", "badge": "completed", "tech": "4682", "name": "HARMON,KYLE", "address": "384 HANCOCK ST, APT 1, BROOKLYN, NY 11216-2413", "phone": "573-578-2725" },
+        { "time": "8-11", "job": "092920", "type": "TC", "status": "Complete | CP", "badge": "completed", "tech": "4682", "name": "GRIFFITH,BRIDGETT", "address": "223 MACON ST, BROOKLYN, NY 11216-2406", "phone": "718-230-0706" },
+        { "time": "11-14", "job": "858407", "type": "IN", "status": "Complete | CP", "badge": "completed", "tech": "4682", "name": "Bacca,DIEGO", "address": "2607 ALBEMARLE RD, APT 1, BROOKLYN, NY 11226", "phone": "347-723-1419" },
+        { "time": "14-17", "job": "502350", "type": "TC", "status": "Complete | CP", "badge": "completed", "tech": "4682", "name": "CARDONA,CRYSTAL", "address": "215 MARTENSE ST, APT 2, BROOKLYN, NY 11226-3637", "phone": "718-559-2038" },
+        { "time": "14-17", "job": "334315", "type": "IN", "status": "Pending Install | IS", "badge": "completed", "tech": "4682", "name": "WILLIAMS,ERIN", "address": "35 E 17TH ST, APT 216, BROOKLYN, NY 11226-2658", "phone": "860-597-6702" },
+        { "time": "11-14", "job": "469690", "type": "COS", "status": "UNASSIGN", "badge": "cancelled", "tech": "4682", "name": "FARLEY,EDWARD", "address": "537 GEORGIA AV, APT 2R, BROOKLYN, NY 11207", "phone": "917-436-3529" }
+      ],
+      "totalStops": 6,
+      "estimatedDuration": "9 hours"
+    }
+  ]
+}

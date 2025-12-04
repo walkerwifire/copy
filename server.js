@@ -1,0 +1,969 @@
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const path = require('path');
+const cheerio = require('cheerio');
+
+const TECHNET_URL = process.env.TECHNET_URL || 'https://technet.altice.csgfsm.com/altice/tn/technet.htm?Id=1';
+const HEADLESS = (process.env.HEADLESS ? process.env.HEADLESS.toLowerCase() !== 'false' : true);
+const SLOWMO = parseInt(process.env.SLOWMO || '0', 10);
+const TECHS_JSON_ENV = process.env.TECHS_JSON || process.env.TECHS_JSON_PATH;
+const CACHE_TTL_MS = parseInt(process.env.CACHE_TTL_MS || '600000', 10); // 10 minutes
+
+const app = express();
+app.use(morgan('dev'));
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+/**
+ * Parse a generic HTML page for tables, labeled fields, and key text.
+ * Returns { title, tables: Array<{headers:[], rows:[][]}>, textBlocks: [], fields: Array<{label, value}> }
+ */
+function parseHtmlToData(html) {
+  const $ = cheerio.load(html);
+  const title = $('title').text() || $('h1').first().text() || 'Technet';
+  const tables = [];
+  $('table').each((i, table) => {
+    const headers = [];
+    const rows = [];
+    const $table = $(table);
+    // headers
+    $table.find('thead tr th, tr th').each((_, th) => {
+      headers.push($(th).text().trim());
+    });
+    // rows
+    $table.find('tbody tr, tr').each((_, tr) => {
+      const cells = [];
+      $(tr).find('td').each((__, td) => {
+        cells.push($(td).text().trim());
+      });
+      if (cells.length) rows.push(cells);
+    });
+    if (headers.length || rows.length) {
+      tables.push({ headers, rows });
+    }
+  });
+  const textBlocks = [];
+  $('p, li, label').each((i, el) => {
+    const txt = $(el).text().trim();
+    if (txt && txt.length > 0) textBlocks.push(txt);
+  });
+  // Extract labeled fields: label + input/next sibling value pairs
+  const fields = [];
+  $('label').each((_, label) => {
+    const $label = $(label);
+    const labelText = $label.text().trim();
+    let value = '';
+    // For inputs associated via for=id
+    const forId = $label.attr('for');
+    if (forId) {
+      const $inp = $(`#${forId}`);
+      if ($inp.length) {
+        value = ($inp.val() || $inp.attr('value') || '').toString().trim();
+      }
+    }
+    if (!value) {
+      // Try next input or text node
+      const $nextInput = $label.nextAll('input').first();
+      if ($nextInput.length) {
+        value = ($nextInput.val() || $nextInput.attr('value') || '').toString().trim();
+      } else {
+        const siblingText = ($label.next().text() || '').trim();
+        if (siblingText) value = siblingText;
+      }
+    }
+    if (labelText) fields.push({ label: labelText, value });
+  });
+  // Also attempt definition lists
+  $('dl').each((_, dl) => {
+    const $dl = $(dl);
+    const dts = $dl.find('dt');
+    const dds = $dl.find('dd');
+    dts.each((i, dt) => {
+      const labelText = $(dt).text().trim();
+      const valueText = (dds.eq(i).text() || '').trim();
+      if (labelText) fields.push({ label: labelText, value: valueText });
+    });
+  });
+  return { title, tables, textBlocks, fields };
+}
+
+/**
+ * Try offline mode first: read captured files from the workspace.
+ * Since the server runs outside VS Code tooling, we assume paths relative to repo.
+ */
+const fs = require('fs');
+function tryOfflineCapture() {
+  try {
+    const base = path.resolve(__dirname, '..');
+    const respDir = path.join(base, '_responses');
+    // Allow env override
+    const envPath = process.env.OFFLINE_HTML;
+    const candidates = [
+      envPath && path.isAbsolute(envPath) ? envPath : null,
+      envPath ? path.join(base, envPath) : null,
+      path.join(respDir, 'dashboard.html'),
+      path.join(base, 'page_snapshot.html'),
+      path.join(base, 'manifest.html')
+    ].filter(Boolean);
+    for (const p of candidates) {
+      if (fs.existsSync(p)) {
+        const html = fs.readFileSync(p, 'utf8');
+        return { source: 'offline', html, data: parseHtmlToData(html), offlinePath: p };
+      }
+    }
+  } catch (e) {
+    // ignore
+  }
+  return null;
+}
+
+function normalizeUsDateToIso(usDate) {
+  // Expects MM/DD/YYYY
+  if (!usDate || typeof usDate !== 'string') return '';
+  const m = usDate.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+  if (!m) return '';
+  const [_, mm, dd, yyyy] = m;
+  return `${yyyy}-${mm}-${dd}`;
+}
+
+function stripTags(html) {
+  return String(html || '').replace(/<[^>]+>/g, '').trim();
+}
+
+function deriveRoutesFromHtml(html) {
+  const routes = [];
+  try {
+    const objs = [];
+    const regex = /hashObj\[[^\]]+\]\s*=\s*\{([\s\S]*?)\};/g;
+    let match;
+    while ((match = regex.exec(html)) !== null) {
+      const objText = `{${match[1]}}`;
+      try {
+        const json = JSON.parse(objText);
+        objs.push(json);
+      } catch {}
+    }
+    if (!objs.length) return routes;
+    // Group by tech and date
+    const group = {};
+    for (const o of objs) {
+      const li = Array.isArray(o.lineItems) ? o.lineItems.map(stripTags) : [];
+      const get = (label) => {
+        const item = li.find(s => s.startsWith(label));
+        return item ? item.replace(label, '').trim() : '';
+      };
+      const tech = get('Job ID:') ? get('Tech:') : (get('Tech:') || '');
+      const type = get('Type:');
+      const jobId = get('Job ID:') || stripTags(o.woJobNumber || '').split(' ')[0];
+      const status = get('DS:');
+      const ts = get('TS:');
+      const startTime = o.drawStartTime || '';
+      const endTime = o.drawEndTime || '';
+      const time = ts || (startTime && endTime ? `${startTime}-${endTime}` : (startTime || ''));
+      const addr = get('Addr:');
+      const addr2 = get('Addr2:');
+      const city = get('City:');
+      const name = get('Name:');
+      const phone = get('Home #:') || get('Work #:');
+      const dateIso = normalizeUsDateToIso(get('Schd:')) || (String(o.drawStartDate || '').replace(/\//g, '-'));
+      const badge = /complete/i.test(status) ? 'completed' : (/unassign|cancel/i.test(status) ? 'cancelled' : (status || ''));
+      const key = `${tech}|${dateIso}`;
+      if (!group[key]) {
+        group[key] = { techNo: tech || '', date: dateIso || '', stops: [], totalStops: 0, estimatedDuration: '' };
+      }
+      group[key].stops.push({ time, job: jobId, type, status, badge, tech, name, address: [addr, addr2, city].filter(Boolean).join(', '), phone });
+    }
+    // Compute totals
+    for (const k of Object.keys(group)) {
+      const r = group[k];
+      r.totalStops = r.stops.length;
+      // Rough estimate: sum durations if available
+      let totalMin = 0;
+      for (const o of objs) {
+        if ((stripTags(o.lineItems?.find(x => /Tech:/.test(x)) || '').includes(r.techNo)) && (normalizeUsDateToIso(stripTags(o.lineItems?.find(x => /Schd:/.test(x)) || '').replace('Schd:', '').trim()) === r.date)) {
+          const dur = parseInt(String(o.drawTotalDuration || '0'), 10);
+          if (!isNaN(dur)) totalMin += dur;
+        }
+      }
+      if (totalMin > 0) {
+        const h = Math.floor(totalMin / 60);
+        const m = totalMin % 60;
+        r.estimatedDuration = `${h}h ${m}m`;
+      }
+      routes.push(r);
+    }
+  } catch {}
+  return routes;
+}
+
+// Resolve credentials from a techs.json file
+function getTechsJsonPath() {
+  try {
+    if (TECHS_JSON_ENV && fs.existsSync(TECHS_JSON_ENV)) return TECHS_JSON_ENV;
+  } catch {}
+  try {
+    const localPath = path.join(__dirname, 'techs.json');
+    if (fs.existsSync(localPath)) return localPath;
+  } catch {}
+  try {
+    const abs = 'C:/Users/njdru/dispatcher-app/technet-sync/server/techs.json';
+    if (fs.existsSync(abs)) return abs;
+  } catch {}
+  return null;
+}
+
+function resolveCredsFromTechs(techId) {
+  try {
+    const p = getTechsJsonPath();
+    if (!p) return null;
+    const arr = JSON.parse(fs.readFileSync(p, 'utf8'));
+    if (!Array.isArray(arr)) return null;
+    const tech = techId ? arr.find(t => String(t.tech) === String(techId)) : arr[0];
+    if (!tech) return null;
+    return { user: String(tech.tech), pass: String(tech.password || '') };
+  } catch { return null; }
+}
+
+function getAllTechsFromJson() {
+  try {
+    const p = getTechsJsonPath();
+    if (!p) return [];
+    const arr = JSON.parse(fs.readFileSync(p, 'utf8'));
+    if (!Array.isArray(arr)) return [];
+    return arr.map(t => ({
+      tech: String(t.tech),
+      password: String(t.password || ''),
+      status: t.status,
+      workSkill: t.workSkill,
+      provider: t.provider,
+      lastActivity: t.lastActivity,
+      name: t.name
+    }));
+  } catch { return []; }
+}
+
+function getTechDateCachePath(tech, dateIso) {
+  const dir = path.join(cacheDir, 'live', tech);
+  try { if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true }); } catch {}
+  return path.join(dir, `${dateIso || 'latest'}.json`);
+}
+
+function isFreshCache(filePath) {
+  try {
+    if (!fs.existsSync(filePath)) return false;
+    const stat = fs.statSync(filePath);
+    const age = Date.now() - stat.mtimeMs;
+    return age < CACHE_TTL_MS;
+  } catch { return false; }
+}
+
+function readCachedRoutes(filePath) {
+  try {
+    const txt = fs.readFileSync(filePath, 'utf8');
+    const obj = JSON.parse(txt);
+    return Array.isArray(obj) ? obj : [];
+  } catch { return []; }
+}
+
+function writeCachedRoutes(filePath, routes) {
+  try { fs.writeFileSync(filePath, JSON.stringify(routes || [], null, 2), 'utf8'); } catch {}
+}
+
+async function fetchTechRoutesWithCache(tech, password, dateIso) {
+  const cacheFile = getTechDateCachePath(tech, dateIso);
+  if (isFreshCache(cacheFile)) {
+    return readCachedRoutes(cacheFile);
+  }
+  const live = await fetchLiveHtmlWith(tech, password, TECHNET_URL);
+  const routes = deriveRoutesFromHtml(live.html || '');
+  const techRoutes = routes.filter(r => String(r.techNo) === String(tech));
+  const filtered = dateIso ? techRoutes.filter(r => String(r.date) === String(dateIso)) : techRoutes;
+  writeCachedRoutes(cacheFile, filtered);
+  return filtered;
+}
+
+async function parallelMap(items, limit, mapper) {
+  const results = [];
+  let i = 0;
+  const workers = new Array(Math.max(1, limit)).fill(0).map(async () => {
+    while (i < items.length) {
+      const idx = i++;
+      try {
+        results[idx] = await mapper(items[idx]);
+      } catch (e) {
+        results[idx] = [];
+      }
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+
+async function fetchAllTechRoutes(dateIso) {
+  const list = getAllTechsFromJson();
+  const chunks = await parallelMap(list, parseInt(process.env.CONCURRENCY || '3', 10), async (t) => {
+    return await fetchTechRoutesWithCache(t.tech, t.password, dateIso);
+  });
+  const aggregated = [];
+  for (const arr of chunks) aggregated.push(...arr);
+  return aggregated;
+}
+
+async function fetchLivePreferCreds(reqOrParams) {
+  const techParam = (reqOrParams?.query?.tech) || (reqOrParams?.tech) || process.env.TECHNET_USER || process.env.TECHNET_USERNAME || '4682';
+  const envUser = process.env.TECHNET_USER || process.env.TECHNET_USERNAME;
+  const envPass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD;
+  if (envUser && envPass) {
+    return fetchLiveHtmlWith(envUser, envPass, TECHNET_URL);
+  }
+  const creds = resolveCredsFromTechs(techParam);
+  if (creds?.user && creds?.pass) {
+    return fetchLiveHtmlWith(creds.user, creds.pass, TECHNET_URL);
+  }
+  // Fallback to original flow (will error with guidance if missing)
+  return fetchLiveHtml();
+}
+
+/**
+ * Live fetch via Playwright with credentials.
+ * Requires TECHNET_USER and TECHNET_PASS in .env.
+ * Returns { html, data }
+ */
+async function fetchLiveHtml() {
+  const user = process.env.TECHNET_USER || process.env.TECHNET_USERNAME;
+  const pass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD;
+  if (!user || !pass) {
+    throw new Error('Missing TECHNET_USER/TECHNET_PASS or TECHNET_USERNAME/TECHNET_PASSWORD in environment');
+  }
+  const { chromium } = require('playwright');
+  const browser = await chromium.launch({ headless: HEADLESS, slowMo: SLOWMO });
+  // Provide geolocation permissions to satisfy Technet nextPage() logic
+  const context = await browser.newContext({
+    permissions: ['geolocation'],
+    geolocation: { latitude: 40.7128, longitude: -74.0060, accuracy: 100 }
+  });
+  const page = await context.newPage();
+  await page.goto(TECHNET_URL, { waitUntil: 'domcontentloaded' });
+
+  // Attempt to fill login fields by known input names (techVal/pinVal)
+  try {
+    const techInput = page.locator('input[name="techVal"]');
+    const pwInput = page.locator('input[name="pinVal"]');
+    if (await techInput.count()) { await techInput.fill(user); }
+    if (await pwInput.count()) { await pwInput.fill(pass); }
+    // Click the explicit Log On button
+    const loginBtn = page.locator('input[type="button"][value="Log On"], input[value="Log On"], button:has-text("Log On")');
+    if (await loginBtn.count()) {
+      await Promise.all([
+        page.waitForLoadState('networkidle').catch(() => {}),
+        loginBtn.click().catch(() => {})
+      ]);
+    } else {
+      await page.keyboard.press('Enter').catch(() => {});
+      await page.waitForLoadState('networkidle').catch(() => {});
+    }
+  } catch (e) {
+    // Fallback: programmatically submit the form
+    try {
+      await page.evaluate(() => {
+        const fm = document.forms[0];
+        if (!fm) return;
+        fm.XgeoX && (fm.XgeoX.value = 'geoNoNav');
+        fm.submit();
+      });
+      await page.waitForLoadState('networkidle').catch(() => {});
+    } catch {}
+  }
+
+  // After login, take the resulting page content
+  const html = await page.content();
+  await browser.close();
+  return { html, data: parseHtmlToData(html) };
+}
+
+async function fetchLiveHtmlWith(user, pass, targetUrl) {
+  if (!user || !pass) {
+    throw new Error('Missing user/pass');
+  }
+  const url = targetUrl || TECHNET_URL;
+  const { chromium } = require('playwright');
+  const browser = await chromium.launch({ headless: HEADLESS, slowMo: SLOWMO });
+  const context = await browser.newContext({
+    permissions: ['geolocation'],
+    geolocation: { latitude: 40.7128, longitude: -74.0060, accuracy: 100 }
+  });
+  const page = await context.newPage();
+  await page.goto(url, { waitUntil: 'domcontentloaded' });
+  try {
+    const techInput = page.locator('input[name="techVal"]');
+    const pwInput = page.locator('input[name="pinVal"]');
+    if (await techInput.count()) { await techInput.fill(user); }
+    if (await pwInput.count()) { await pwInput.fill(pass); }
+    const loginBtn = page.locator('input[type="button"][value="Log On"], input[value="Log On"], button:has-text("Log On")');
+    if (await loginBtn.count()) {
+      await Promise.all([
+        page.waitForLoadState('networkidle').catch(() => {}),
+        loginBtn.click().catch(() => {})
+      ]);
+    } else {
+      await page.keyboard.press('Enter').catch(() => {});
+      await page.waitForLoadState('networkidle').catch(() => {});
+    }
+  } catch {}
+  const html = await page.content();
+  await browser.close();
+  return { html, data: parseHtmlToData(html) };
+}
+
+// Ensure cache dir exists
+const cacheDir = path.join(__dirname, 'cache');
+if (!fs.existsSync(cacheDir)) {
+  try { fs.mkdirSync(cacheDir); } catch {}
+}
+
+// Admin auth configuration
+const crypto = require('crypto');
+const ADMIN_USER = process.env.ADMIN_USER || process.env.ADMIN_USERNAME || 'admin';
+const ADMIN_PASS = process.env.ADMIN_PASS || process.env.ADMIN_PASSWORD || 'admin';
+const ADMIN_SECRET = process.env.ADMIN_SECRET || 'change-me';
+const adminTokens = new Set();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+function parseCookies(req) {
+  const header = req.headers.cookie || '';
+  const out = {};
+  header.split(';').forEach(pair => {
+    const idx = pair.indexOf('=');
+    if (idx > -1) {
+      const k = pair.slice(0, idx).trim();
+      const v = pair.slice(idx + 1).trim();
+      out[k] = decodeURIComponent(v);
+    }
+  });
+  return out;
+}
+
+function requireAdmin(req, res, next) {
+  try {
+    const cookies = parseCookies(req);
+    const token = cookies['admin_token'];
+    if (token && adminTokens.has(token)) return next();
+    return res.status(401).json({ error: 'Unauthorized' });
+  } catch (err) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+}
+
+// Admin login/logout
+app.post('/api/admin/login', (req, res) => {
+  const { username, password } = req.body || {};
+  if (username === ADMIN_USER && password === ADMIN_PASS) {
+    const token = crypto
+      .createHash('sha256')
+      .update(`${username}:${ADMIN_SECRET}:${Date.now()}`)
+      .digest('hex');
+    adminTokens.add(token);
+    res.cookie('admin_token', token, { httpOnly: true, sameSite: 'lax' });
+    return res.json({ ok: true });
+  }
+  return res.status(401).json({ error: 'Invalid credentials' });
+});
+
+app.post('/api/admin/logout', requireAdmin, (req, res) => {
+  const cookies = parseCookies(req);
+  const token = cookies['admin_token'];
+  if (token) adminTokens.delete(token);
+  res.clearCookie('admin_token');
+  return res.json({ ok: true });
+});
+
+// Admin UI page
+app.get('/admin', (req, res) => {
+  return res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+});
+
+app.get('/api/technet', async (req, res) => {
+  try {
+    const forceLive = (req.query.mode || '').toLowerCase() === 'live';
+    if (!forceLive) {
+      const offline = tryOfflineCapture();
+      if (offline) {
+        // cache
+        try {
+          fs.writeFileSync(path.join(cacheDir, 'latest.html'), offline.html, 'utf8');
+          fs.writeFileSync(path.join(cacheDir, 'latest.json'), JSON.stringify(offline.data, null, 2), 'utf8');
+        } catch {}
+        return res.json({ mode: 'offline', ...offline });
+      }
+    }
+    const result = await fetchLivePreferCreds(req);
+    // cache
+    try {
+      fs.writeFileSync(path.join(cacheDir, 'latest.html'), result.html, 'utf8');
+      fs.writeFileSync(path.join(cacheDir, 'latest.json'), JSON.stringify(result.data, null, 2), 'utf8');
+    } catch {}
+    return res.json({ mode: 'live', ...result });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Live fetch via POST with credentials
+app.post('/api/technet/live', async (req, res) => {
+  try {
+    const { user, pass, url } = req.body || {};
+    const result = await fetchLiveHtmlWith(user, pass, url);
+    // cache
+    try {
+      fs.writeFileSync(path.join(cacheDir, 'latest.html'), result.html, 'utf8');
+      fs.writeFileSync(path.join(cacheDir, 'latest.json'), JSON.stringify(result.data, null, 2), 'utf8');
+    } catch {}
+    return res.json({ mode: 'live', ...result });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// CSV export of parsed tables
+app.get('/api/technet.csv', async (req, res) => {
+  try {
+    const resp = await (async () => {
+      const forceLive = (req.query.mode || '').toLowerCase() === 'live';
+      if (!forceLive) {
+        const offline = tryOfflineCapture();
+        if (offline) return { mode: 'offline', ...offline };
+      }
+      const live = await fetchLivePreferCreds(req);
+      return { mode: 'live', ...live };
+    })();
+    const tables = resp.data?.tables || [];
+    const toCsv = (rows) => rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+    let csv = '';
+    tables.forEach((t, i) => {
+      if (i) csv += '\n';
+      if (t.headers?.length) csv += toCsv([t.headers]) + '\n';
+      if (t.rows?.length) csv += toCsv(t.rows) + '\n';
+    });
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename="technet.csv"');
+    return res.send(csv || '');
+  } catch (err) {
+    return res.status(500).send('error: ' + err.message);
+  }
+});
+
+// CSV export for route list
+app.get('/api/routes.csv', async (req, res) => {
+  try {
+    // Build dashboard payload similarly to /api/dashboard
+    const forceLive = (req.query.mode || '').toLowerCase() === 'live';
+    const wantAll = (String(req.query.tech || '').toLowerCase() === 'all') || (String(req.query.all || '') === '1');
+    const dateIso = String(req.query.date || '').trim();
+    let payload;
+    if (!forceLive) {
+      const offline = tryOfflineCapture();
+      if (offline) {
+        const technicians = deriveTechniciansFromData(offline.data);
+        const summary = deriveSummaryFromData(offline.data);
+        payload = { mode: 'offline', title: offline.data.title, technicians, summary, routes: [], raw: offline };
+      }
+    }
+    if (!payload) {
+      if (wantAll) {
+        const routes = await fetchAllTechRoutes(dateIso || undefined);
+        // Derive a minimal technicians list from the aggregated routes
+        const techMap = new Map();
+        for (const r of routes) {
+          const key = String(r.techNo || '').trim();
+          if (!key) continue;
+          if (!techMap.has(key)) {
+            techMap.set(key, {
+              name: `Tech ${key}`,
+              status: undefined,
+              techNo: key,
+              workSkill: undefined,
+              provider: undefined,
+              lastActivity: undefined
+            });
+          }
+        }
+        const technicians = Array.from(techMap.values());
+        payload = { mode: 'live', title: 'All Techs', technicians, summary: {}, routes, raw: {} };
+      } else {
+        const live = await fetchLivePreferCreds(req);
+        const technicians = deriveTechniciansFromData(live.data);
+        const summary = deriveSummaryFromData(live.data);
+        let routes = [];
+        try { routes = deriveRoutesFromHtml(live.html || ''); } catch {}
+        payload = { mode: 'live', title: live.data.title, technicians, summary, routes, raw: live };
+      }
+    }
+    if (!payload.routes || payload.routes.length === 0) {
+      try {
+        const sampleDash = JSON.parse(fs.readFileSync(path.join(__dirname, 'sample-dashboard.json'), 'utf8'));
+        payload.routes = sampleDash.routes || [];
+      } catch {}
+    }
+    const rows = [];
+    // Header
+    rows.push(['date','techNo','time','job','type','status','badge','tech','name','address','phone']);
+    const routesOut = wantAll ? (payload.routes || []) : [ (payload.routes || [])[0] || { stops: [], date: '', techNo: '' } ];
+    for (const route of routesOut) {
+      for (const s of route.stops || []) {
+        rows.push([
+          route.date || '',
+          route.techNo || '',
+          s.time || '',
+          s.job || '',
+          s.type || '',
+          s.status || '',
+          s.badge || '',
+          s.tech || '',
+          s.name || '',
+          s.address || '',
+          s.phone || ''
+        ]);
+      }
+    }
+    const toCsv = (rows) => rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+    const csv = toCsv(rows);
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename="routes.csv"');
+    return res.send(csv);
+  } catch (err) {
+    return res.status(500).send('error: ' + err.message);
+  }
+});
+
+// Derive a technicians array from parsed data tables
+function deriveTechniciansFromData(data) {
+  const result = [];
+  const tables = data?.tables || [];
+  for (const t of tables) {
+    const headers = t.headers.map(h => h.toLowerCase());
+    const idxName = headers.findIndex(h => h.includes('name'));
+    const idxStatus = headers.findIndex(h => h.includes('status'));
+    const idxTech = headers.findIndex(h => h.includes('tech'));
+    const idxSkill = headers.findIndex(h => h.includes('skill'));
+    const idxProvider = headers.findIndex(h => h.includes('provider'));
+    const idxLast = headers.findIndex(h => h.includes('last'));
+    if (t.rows && t.rows.length) {
+      for (const r of t.rows) {
+        result.push({
+          name: idxName >= 0 ? r[idxName] : undefined,
+          status: idxStatus >= 0 ? r[idxStatus] : undefined,
+          techNo: idxTech >= 0 ? r[idxTech] : undefined,
+          workSkill: idxSkill >= 0 ? r[idxSkill] : undefined,
+          provider: idxProvider >= 0 ? r[idxProvider] : undefined,
+          lastActivity: idxLast >= 0 ? r[idxLast] : undefined
+        });
+      }
+    }
+  }
+  return result.filter(x => x.name || x.techNo);
+}
+
+// Simple summary derivation from tables (best-effort)
+function deriveSummaryFromData(data) {
+  const summary = { TC: { total: 0, pending: 0, done: 0, cancelled: 0 }, IN: { total: 0, pending: 0, done: 0, cancelled: 0 }, COS: { total: 0, pending: 0, done: 0, cancelled: 0 }, RST: { total: 0, pending: 0, done: 0, cancelled: 0 }, SUMMARY: { total: 0, pending: 0, done: 0, cancelled: 0 } };
+  const tables = data?.tables || [];
+  for (const t of tables) {
+    for (const r of t.rows || []) {
+      const line = r.join(' ').toLowerCase();
+      const types = ['tc','in','cos','rst'];
+      for (const type of types) {
+        if (line.includes(type)) {
+          summary[type.toUpperCase()].total++;
+          summary.SUMMARY.total++;
+          if (line.includes('pending')) { summary[type.toUpperCase()].pending++; summary.SUMMARY.pending++; }
+          if (line.includes('complete') || line.includes('done')) { summary[type.toUpperCase()].done++; summary.SUMMARY.done++; }
+          if (line.includes('cancel')) { summary[type.toUpperCase()].cancelled++; summary.SUMMARY.cancelled++; }
+        }
+      }
+    }
+  }
+  return summary;
+}
+
+// Dashboard route: returns technicians array, title, summary, routes
+app.get('/api/dashboard', async (req, res) => {
+  try {
+    const forceLive = (req.query.mode || '').toLowerCase() === 'live';
+    const wantAll = (String(req.query.tech || '').toLowerCase() === 'all') || (String(req.query.all || '') === '1');
+    const dateIso = String(req.query.date || '').trim();
+    let payload;
+    if (!forceLive) {
+      const offline = tryOfflineCapture();
+      if (offline) {
+        const technicians = deriveTechniciansFromData(offline.data);
+        const summary = deriveSummaryFromData(offline.data);
+        let routes = [];
+        try { routes = deriveRoutesFromHtml(offline.html || ''); } catch {}
+        payload = { mode: 'offline', title: offline.data.title, technicians, summary, routes, raw: offline };
+      }
+    }
+    if (!payload) {
+      if (wantAll) {
+        const routes = await fetchAllTechRoutes(dateIso || undefined);
+        // Build technicians list using techs.json when available
+        const techJson = getAllTechsFromJson();
+        const techSet = new Map();
+        for (const r of routes) {
+          const key = String(r.techNo || '').trim();
+          if (!key) continue;
+          if (!techSet.has(key)) {
+            const fromJson = techJson.find(t => String(t.tech) === key) || {};
+            techSet.set(key, {
+              name: fromJson.name || `Tech ${key}`,
+              status: fromJson.status || 'Off Duty',
+              techNo: key,
+              workSkill: fromJson.workSkill || 'FTTH, COAX',
+              provider: fromJson.provider || 'Altice/Optimum',
+              lastActivity: fromJson.lastActivity || 'N/A'
+            });
+          }
+        }
+        const technicians = Array.from(techSet.values());
+        payload = { mode: 'live', title: 'All Techs', technicians, summary: {}, routes, raw: {} };
+      } else {
+        const live = await fetchLivePreferCreds(req);
+        const technicians = deriveTechniciansFromData(live.data);
+        const summary = deriveSummaryFromData(live.data);
+        let routes = [];
+        try { routes = deriveRoutesFromHtml(live.html || ''); } catch {}
+        payload = { mode: 'live', title: live.data.title, technicians, summary, routes, raw: live };
+      }
+    }
+    // If still no technicians, attempt sample fallback
+    if (!payload.technicians || payload.technicians.length === 0) {
+      try {
+        const sample = JSON.parse(fs.readFileSync(path.join(__dirname, 'sample-technicians.json'), 'utf8'));
+        payload.technicians = sample;
+      } catch {}
+    }
+    // If summary/routes empty, fallback to sample dashboard
+    if (!payload.summary || Object.values(payload.summary.SUMMARY || {}).every(v => v === 0)) {
+      try {
+        const sampleDash = JSON.parse(fs.readFileSync(path.join(__dirname, 'sample-dashboard.json'), 'utf8'));
+        if (!payload.summary) payload.summary = sampleDash.summary;
+        if (!payload.routes || payload.routes.length === 0) payload.routes = sampleDash.routes;
+      } catch {}
+    }
+    return res.json(payload);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Debug: inspect credential resolution
+app.get('/api/debug/creds', (req, res) => {
+  try {
+    const tech = req.query.tech || '4682';
+    const pathUsed = getTechsJsonPath();
+    const creds = resolveCredsFromTechs(tech);
+    return res.json({ tech, pathUsed, creds, envUser: process.env.TECHNET_USER || process.env.TECHNET_USERNAME, envPass: process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD, TECHNET_URL });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Cache inspection: GET returns freshness; DELETE invalidates cache for tech+date
+app.get('/api/cache/routes', requireAdmin, (req, res) => {
+  try {
+    const tech = String(req.query.tech || '').trim();
+    const dateIso = String(req.query.date || '').trim();
+    if (!tech) return res.status(400).json({ error: 'tech is required' });
+    const file = getTechDateCachePath(tech, dateIso || 'latest');
+    const exists = fs.existsSync(file);
+    let ageMs = null;
+    const fresh = exists && isFreshCache(file);
+    if (exists) {
+      const stat = fs.statSync(file);
+      ageMs = Date.now() - stat.mtimeMs;
+    }
+    const routes = exists ? readCachedRoutes(file) : [];
+    return res.json({ tech, date: dateIso || 'latest', path: file, exists, fresh, ageMs, ttlMs: CACHE_TTL_MS, count: routes.length });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+app.delete('/api/cache/routes', requireAdmin, (req, res) => {
+  try {
+    const tech = String(req.query.tech || '').trim();
+    const dateIso = String(req.query.date || '').trim();
+    if (!tech) return res.status(400).json({ error: 'tech is required' });
+    const file = getTechDateCachePath(tech, dateIso || 'latest');
+    if (fs.existsSync(file)) fs.unlinkSync(file);
+    return res.json({ ok: true, path: file });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Cache list: enumerate cached tech/date files
+app.get('/api/cache/routes/list', requireAdmin, (req, res) => {
+  try {
+    const base = path.join(cacheDir, 'live');
+    const result = [];
+    if (fs.existsSync(base)) {
+      const techDirs = fs.readdirSync(base);
+      techDirs.forEach(t => {
+        const dir = path.join(base, t);
+        if (fs.statSync(dir).isDirectory()) {
+          const files = fs.readdirSync(dir).filter(f => f.endsWith('.json'));
+          files.forEach(f => {
+            const full = path.join(dir, f);
+            const stat = fs.statSync(full);
+            result.push({ tech: t, path: full, date: f.replace(/\.json$/, ''), mtimeMs: stat.mtimeMs });
+          });
+        }
+      });
+    }
+    return res.json(result);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Health check for deployment
+app.get('/api/health', (req, res) => {
+  try {
+    return res.json({ ok: true, uptime: process.uptime(), time: new Date().toISOString(), headless: HEADLESS, slowMo: SLOWMO });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Simple in-memory store for profiles, schedules, notes
+const store = {
+  profile: new Map(), // key: techNo -> { name, status, provider, workSkill, lastActivity, email }
+  schedule: new Map(), // key: techNo -> { days: [1..31], lastSaved }
+  notes: new Map() // key: techNo -> [ { text, ts } ]
+};
+
+function ensureTechRecord(techNo) {
+  const key = String(techNo);
+  if (!store.profile.has(key)) store.profile.set(key, { name: `Tech ${key}`, status: 'Off Duty', provider: 'Altice/Optimum', workSkill: 'FTTH, COAX', lastActivity: 'N/A', email: '' });
+  if (!store.schedule.has(key)) store.schedule.set(key, { days: [], lastSaved: null });
+  if (!store.notes.has(key)) store.notes.set(key, []);
+}
+
+// Profile endpoints
+app.get('/api/tech/:id/profile', (req, res) => {
+  try {
+    const id = req.params.id;
+    ensureTechRecord(id);
+    return res.json(store.profile.get(String(id)));
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+app.post('/api/tech/:id/profile', (req, res) => {
+  try {
+    const id = req.params.id;
+    ensureTechRecord(id);
+    const cur = store.profile.get(String(id));
+    const next = { ...cur, ...req.body };
+    store.profile.set(String(id), next);
+    return res.json({ ok: true, profile: next });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Schedule endpoints
+app.get('/api/tech/:id/schedule', (req, res) => {
+  try {
+    const id = req.params.id;
+    ensureTechRecord(id);
+    return res.json(store.schedule.get(String(id)));
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+app.post('/api/tech/:id/schedule', (req, res) => {
+  try {
+    const id = req.params.id;
+    ensureTechRecord(id);
+    const { days } = req.body || {};
+    const normalized = Array.isArray(days) ? days.map(n => parseInt(n, 10)).filter(n => !isNaN(n)) : [];
+    store.schedule.set(String(id), { days: normalized, lastSaved: new Date().toISOString() });
+    return res.json({ ok: true, schedule: store.schedule.get(String(id)) });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Notes endpoints
+app.get('/api/tech/:id/notes', (req, res) => {
+  try {
+    const id = req.params.id;
+    ensureTechRecord(id);
+    return res.json(store.notes.get(String(id)));
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+app.post('/api/tech/:id/notes', (req, res) => {
+  try {
+    const id = req.params.id;
+    ensureTechRecord(id);
+    const { text } = req.body || {};
+    const note = { text: String(text || ''), ts: new Date().toISOString() };
+    const arr = store.notes.get(String(id));
+    arr.push(note);
+    return res.json({ ok: true, notes: arr });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Live test summary for multiple tech IDs
+app.get('/api/test/techs', async (req, res) => {
+  try {
+    const idsParam = String(req.query.ids || '').trim();
+    const dateIso = String(req.query.date || '').trim() || new Date().toISOString().slice(0,10);
+    if (!idsParam) return res.status(400).json({ error: 'ids is required (comma-separated tech numbers)' });
+    const ids = idsParam.split(',').map(s => s.trim()).filter(Boolean);
+    const results = [];
+    for (const tech of ids) {
+      const entry = { tech, date: dateIso, dash: { routes: 0, stops: 0, ok: false }, technet: { length: 0, ok: false } };
+      try {
+        const creds = resolveCredsFromTechs(tech);
+        if (!creds || !creds.user || !creds.pass) {
+          entry.error = 'Missing credentials';
+        } else {
+          const routes = await fetchTechRoutesWithCache(creds.user, creds.pass, dateIso);
+          entry.dash.routes = Array.isArray(routes) ? routes.length : 0;
+          entry.dash.stops = Array.isArray(routes) ? routes.reduce((acc, r) => acc + (Array.isArray(r.stops) ? r.stops.length : 0), 0) : 0;
+          entry.dash.ok = true;
+          const htmlObj = await fetchLiveHtmlWith(creds.user, creds.pass, TECHNET_URL);
+          entry.technet.length = htmlObj && htmlObj.html ? htmlObj.html.length : 0;
+          entry.technet.ok = !!(htmlObj && htmlObj.html);
+        }
+      } catch (err) {
+        entry.error = err.message || String(err);
+      }
+      results.push(entry);
+    }
+    return res.json({ ok: true, results });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Technet dashboard running on http://localhost:${port}`);
+});

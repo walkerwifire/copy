@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Tech 4682",
+    "status": "Off Duty",
+    "techNo": "4682",
+    "workSkill": "FTTH, COAX",
+    "provider": "Altice/Optimum",
+    "lastActivity": "N/A"
+  },
+  {
+    "name": "Tech 4693",
+    "status": "Off Duty",
+    "techNo": "4693",
+    "workSkill": "FTTH, COAX",
+    "provider": "Altice/Optimum",
+    "lastActivity": "N/A"
+  },
+  {
+    "name": "Tech 4834",
+    "status": "Off Duty",
+    "techNo": "4834",
+    "workSkill": "FTTH, COAX",
+    "provider": "Altice/Optimum",
+    "lastActivity": "N/A"
+  }
+]

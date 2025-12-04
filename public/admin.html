@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Panel – Cache Viewer</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 20px; }
+    header { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+    form { display:flex; gap:8px; }
+    input, button, select { padding:6px 10px; }
+    .row { display:flex; gap:8px; align-items:center; }
+    table { border-collapse: collapse; width: 100%; margin-top: 16px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #f7f7f7; }
+    .actions { display:flex; gap:8px; }
+    .hidden { display:none; }
+    .status { font-size: 0.9em; color: #555; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Admin Panel</h1>
+    <button id="logoutBtn" class="hidden">Log out</button>
+    <span id="loginStatus" class="status"></span>
+  </header>
+
+  <section id="loginSection">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Log in</button>
+    </form>
+  </section>
+
+  <section id="cacheSection" class="hidden">
+    <div class="row">
+      <h2 style="margin:0;">Cache Entries</h2>
+      <button id="refreshBtn">Refresh</button>
+      <button id="clearAllBtn">Clear All</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Tech</th>
+          <th>Date</th>
+          <th>Path</th>
+          <th>Last Modified</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="cacheTableBody"></tbody>
+    </table>
+  </section>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const loginSection = document.getElementById('loginSection');
+    const cacheSection = document.getElementById('cacheSection');
+    const cacheTableBody = document.getElementById('cacheTableBody');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const clearAllBtn = document.getElementById('clearAllBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const loginStatus = document.getElementById('loginStatus');
+
+    async function login(username, password) {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      if (!res.ok) throw new Error('Login failed');
+      return res.json();
+    }
+
+    async function logout() {
+      const res = await fetch('/api/admin/logout', { method: 'POST' });
+      return res.ok;
+    }
+
+    async function loadCacheList() {
+      const res = await fetch('/api/cache/routes/list');
+      if (!res.ok) throw new Error('Unauthorized or error loading cache');
+      const data = await res.json();
+      renderCacheTable(data);
+    }
+
+    function renderCacheTable(items) {
+      cacheTableBody.innerHTML = '';
+      if (!items || items.length === 0) {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 5;
+        td.textContent = 'No cache entries';
+        tr.appendChild(td);
+        cacheTableBody.appendChild(tr);
+        return;
+      }
+      for (const item of items) {
+        const tr = document.createElement('tr');
+        const mtime = new Date(item.mtimeMs).toLocaleString();
+        tr.innerHTML = `
+          <td>${item.tech}</td>
+          <td>${item.date}</td>
+          <td>${item.path}</td>
+          <td>${mtime}</td>
+          <td class="actions">
+            <button data-tech="${item.tech}" data-date="${item.date}" class="deleteBtn">Delete</button>
+          </td>
+        `;
+        cacheTableBody.appendChild(tr);
+      }
+      cacheTableBody.querySelectorAll('.deleteBtn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const tech = btn.getAttribute('data-tech');
+          const date = btn.getAttribute('data-date');
+          const url = `/api/cache/routes?tech=${encodeURIComponent(tech)}&date=${encodeURIComponent(date)}`;
+          const res = await fetch(url, { method: 'DELETE' });
+          if (res.ok) {
+            await loadCacheList();
+          } else {
+            alert('Delete failed');
+          }
+        });
+      });
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      try {
+        await login(username, password);
+        loginSection.classList.add('hidden');
+        cacheSection.classList.remove('hidden');
+        logoutBtn.classList.remove('hidden');
+        loginStatus.textContent = `Logged in as ${username}`;
+        await loadCacheList();
+      } catch (err) {
+        alert(err.message || 'Login failed');
+      }
+    });
+
+    refreshBtn.addEventListener('click', async () => {
+      try { await loadCacheList(); } catch (e) { alert(e.message); }
+    });
+
+    clearAllBtn.addEventListener('click', async () => {
+      const rows = Array.from(cacheTableBody.querySelectorAll('.deleteBtn'));
+      for (const btn of rows) {
+        const tech = btn.getAttribute('data-tech');
+        const date = btn.getAttribute('data-date');
+        const url = `/api/cache/routes?tech=${encodeURIComponent(tech)}&date=${encodeURIComponent(date)}`;
+        await fetch(url, { method: 'DELETE' });
+      }
+      await loadCacheList();
+    });
+
+    logoutBtn.addEventListener('click', async () => {
+      const ok = await logout();
+      if (ok) {
+        loginSection.classList.remove('hidden');
+        cacheSection.classList.add('hidden');
+        logoutBtn.classList.add('hidden');
+        loginStatus.textContent = '';
+        cacheTableBody.innerHTML = '';
+      } else {
+        alert('Logout failed');
+      }
+    });
+  </script>
+</body>
+</html>

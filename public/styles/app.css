@@ -1,0 +1,137 @@
+/* Imported sample Tailwind-like CSS (part 2) */
+*,:after,:before {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x: ;
+    --tw-pan-y: ;
+    --tw-pinch-zoom: ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-gradient-from-position: ;
+    --tw-gradient-via-position: ;
+    --tw-gradient-to-position: ;
+    --tw-ordinal: ;
+    --tw-slashed-zero: ;
+    --tw-numeric-figure: ;
+    --tw-numeric-spacing: ;
+    --tw-numeric-fraction: ;
+    --tw-ring-inset: ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgba(53,91,184,.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    --tw-blur: ;
+    --tw-brightness: ;
+    --tw-contrast: ;
+    --tw-grayscale: ;
+    --tw-hue-rotate: ;
+    --tw-invert: ;
+    --tw-saturate: ;
+    --tw-sepia: ;
+    --tw-drop-shadow: ;
+    --tw-backdrop-blur: ;
+    --tw-backdrop-brightness: ;
+    --tw-backdrop-contrast: ;
+    --tw-backdrop-grayscale: ;
+    --tw-backdrop-hue-rotate: ;
+    --tw-backdrop-invert: ;
+    --tw-backdrop-opacity: ;
+    --tw-backdrop-saturate: ;
+    --tw-backdrop-sepia: ;
+    --tw-contain-size: ;
+    --tw-contain-layout: ;
+    --tw-contain-paint: ;
+    --tw-contain-style:
+}
+
+/* Backdrop styles can be added here if needed */
+
+/* Tailwind base + utilities (partial) */
+*,:after,:before { box-sizing: border-box; border: 0 solid #e5e7eb }
+:after,:before { --tw-content: "" }
+:host,html { line-height: 1.5; font-family: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji; }
+body { margin: 0; line-height: inherit }
+/* ... full user-provided CSS continues ... */
+
+/* Dashboard theme tokens */
+:root { --bg: #f7f9fc; --card: #ffffff; --text: #1f2937; --muted: #6b7280; --accent: #2563eb; --accent-2: #16a34a; --danger: #ef4444; }
+body { background: var(--bg); color: var(--text); font-size: 18px; line-height: 1.7; }
+
+/* Layout */
+.header { padding: 16px 20px; background: #ffffff; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between; }
+.header-left { display:flex; align-items:center; gap:10px; }
+.toolbar { display:flex; align-items:center; gap:8px; }
+.main { padding: 24px; max-width: 1400px; margin: 0 auto; }
+
+/* Typography */
+.title { font-weight: 700; }
+.sub { font-size: 16px; color: var(--muted); }
+
+/* Controls */
+.select { padding:8px 10px; border:1px solid #e5e7eb; border-radius:6px; }
+.btn { background: #f3f4f6; color: #111827; border: 1px solid #e5e7eb; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+.btn-primary { background: #2563eb; color: white; border-color: #1d4ed8; }
+.btn-success { background: #22c55e; color: white; border-color: #16a34a; }
+.btn-warning { background: #f59e0b; color: white; border-color: #d97706; }
+.btn-outline { background: white; border-color: #e5e7eb; }
+.btn-route { background:#5b21b6; color:#fff; border-color:#4c1d95; display:flex; align-items:center; gap:8px; }
+.btn-route .chev { display:inline-block; transition: transform 0.2s ease; }
+.btn-route[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.close-btn { background:#111827; color:#fff; border-color:#111827; }
+
+/* Cards */
+.card { background: var(--card); padding: 20px; border-radius: 12px; margin-bottom: 16px; border:1px solid #eef2f7; }
+
+/* Badges and pills */
+.badge { display:inline-block; font-size: 13px; padding: 4px 8px; border-radius: 6px; margin-right: 8px; border:1px solid #e5e7eb; }
+.badge-skill { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
+.badge-status { background:#fee2e2; border-color:#fecaca; color:#b91c1c; }
+.pill { display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:20px; font-weight:600; color:#fff; }
+.pill-profile { background: linear-gradient(90deg,#6d28d9,#9333ea); }
+.pill-schedule { background: linear-gradient(90deg,#2563eb,#1d4ed8); }
+.pill-notes { background: linear-gradient(90deg,#16a34a,#22c55e); }
+.pill small { background: rgba(255,255,255,0.15); padding:2px 8px; border-radius:14px; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; }
+thead th { background:#f9fafb; font-weight:600; font-size:13px; color:#6b7280; text-transform:uppercase; }
+th, td { border-bottom: 1px solid #e5e7eb; padding: 12px; }
+
+/* Rows */
+.row { display:flex; align-items:center; gap:12px; }
+.actions { display:flex; gap:8px; }
+.chips { flex-wrap: wrap; gap:8px; }
+
+/* Routes */
+.route-row { display:grid; grid-template-columns: 300px 300px 1fr; align-items:center; padding:12px; border-bottom:1px solid #e5e7eb; gap:12px; }
+.route-row .left { flex-wrap: wrap; }
+.route-row .left .badge { margin-right:4px; }
+.route-row .sub { word-break: break-word; }
+.route-section { margin-top:16px; }
+.route-section .title { font-size: 16px; }
+.route-body { margin-top: 12px; }
+
+/* Modal */
+.modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.35); display:none; align-items:center; justify-content:center; z-index:999; }
+.modal { width: 760px; max-width: 95vw; background:#fff; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.2); overflow:hidden; }
+.modal-header { display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid #e5e7eb; }
+.modal-title { font-weight:700; }
+.modal-body { padding:20px; }
+.modal-actions { padding:16px 20px; border-top:1px solid #e5e7eb; display:flex; justify-content:flex-end; gap:10px; }
+
+/* Grids */
+.grid-tiles { display:grid; grid-template-columns: repeat(5, minmax(140px, 1fr)); gap:10px; }
+
+/* Responsive */
+@media (max-width: 1400px) {
+    .route-row { grid-template-columns: 1fr; gap:6px; }
+}

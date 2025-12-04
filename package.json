@@ -1,0 +1,20 @@
+{
+  "name": "technet-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lightweight dashboard that fetches Altice Technet data with server-side login and shows parsed results.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "playwright:install": "npx playwright install --with-deps"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "playwright": "^1.48.0"
+  }
+}
