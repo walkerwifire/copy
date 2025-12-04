@@ -1056,7 +1056,8 @@ app.get('/api/tech/:id/activity', async (req, res) => {
 // Job details: fetch and parse fields for a specific job number
 app.get('/api/job/:jobId', async (req, res) => {
   try {
-    const jobId = String(req.params.jobId || '').trim();
+    const rawJob = String(req.params.jobId || '').trim();
+    const jobId = (rawJob.match(/\d{6,}/) || [rawJob])[0];
     if (!jobId) return res.status(400).json({ error: 'jobId is required' });
     // Attempt offline cache first
     let dataObj = null;
@@ -1348,7 +1349,7 @@ app.get('/api/test/techs', async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Technet dashboard running on http://localhost:${port}`);
 });
