@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Technician Routes Map</title>
+  <link rel="stylesheet" href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" />
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #map { position: absolute; inset: 0; }
+    .toolbar { position: fixed; top: 12px; left: 12px; z-index: 1000; display:flex; gap:8px; }
+    .btn { background:#4338ca; color:white; border:none; border-radius:8px; padding:8px 12px; cursor:pointer; }
+    .legend { position: fixed; bottom: 12px; left: 12px; background: rgba(255,255,255,0.95); border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); font-family: system-ui; }
+    .legend-row { display:flex; align-items:center; gap:8px; margin:4px 0; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; display:inline-block; }
+    .toast { position: fixed; bottom: 12px; right: 12px; z-index: 1000; background: rgba(11,30,59,0.95); color:#fff; border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); font-family: system-ui; }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button id="todayBtn" class="btn">Today</button>
+    <input type="date" id="routeDate" class="btn" style="background:#eef2ff;color:#111" />
+    <button id="reloadBtn" class="btn">Reload</button>
+    <button id="measureBtn" class="btn" title="Measure driving distance between two stops">Measure</button>
+    <select id="techFilter" class="btn" style="background:#eef2ff;color:#111">
+      <option value="all">All Techs</option>
+    </select>
+  </div>
+  <div id="map"></div>
+  <div class="legend">
+    <div style="font-weight:600;margin-bottom:4px">Legend</div>
+    <div class="legend-row"><span class="dot" style="background:#22c55e"></span> Completed</div>
+    <div class="legend-row"><span class="dot" style="background:#f59e0b"></span> Pending</div>
+    <div class="legend-row"><span class="dot" style="background:#3b82f6"></span> Assigned</div>
+    <div class="legend-row"><span class="dot" style="background:#ef4444"></span> Cancelled / Not Done</div>
+  </div>
+  <div id="toast" class="toast" style="display:none"></div>
+  <script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.js"></script>
+  <script>
+    function showToast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(()=>t.style.display='none', 3000); }
+    function setDefaultDate(){ const rd = document.getElementById('routeDate'); if (!rd.value){ const d=new Date(); const y=d.getFullYear(); const m=('0'+(d.getMonth()+1)).slice(-2); const day=('0'+d.getDate()).slice(-2); rd.value=`${y}-${m}-${day}`; } }
+    function getParam(name){ const p = new URLSearchParams(location.search); return p.get(name)||''; }
+    function badgeColor(status){ const s=String(status||'').toLowerCase(); if (s.includes('complete')) return '#22c55e'; if (s.includes('pending')) return '#f59e0b'; if (s.includes('cancel')||s.includes('not-done')) return '#ef4444'; return '#3b82f6'; }
+    function buildUrl(){
+      const date = document.getElementById('routeDate').value;
+      let u = '/api/dashboard?tech=all';
+      if (date){ u += '&date=' + encodeURIComponent(date); }
+      // Only force refresh for today; for past days, read the preserved cache
+      const today = new Date().toISOString().slice(0,10);
+      if (!date || date === today) { u += '&force=1'; }
+      u += '&_=' + Date.now();
+      return u;
+    }
+    // Initialize MapTiler map
+    const MAPTILER_KEY = window.MAPTILER_KEY || 'N9Z8E42lF1vVQ86Gaimu';
+    if (!MAPTILER_KEY || MAPTILER_KEY === 'YOUR_MAPTILER_API_KEY') {
+      showToast('MapTiler key missing. Set window.MAPTILER_KEY or edit map.html.');
+    }
+    maptilersdk.config.apiKey = MAPTILER_KEY;
+    const map = new maptilersdk.Map({
+      container: 'map',
+      style: maptilersdk.MapStyle.BASIC,
+      center: [-74.0060, 40.7128],
+      zoom: 11
+    });
+    let sourceReady = false;
+    let rawFeatures = [];
+    let measureMode = false;
+    let measurePts = [];
+    let TECHS = new Set();
+    let currentTechFilter = 'all';
+    // Setup clustered GeoJSON source and layers once on load
+    map.on('load', () => {
+      map.addSource('stops', {
+        type: 'geojson',
+        data: { type:'FeatureCollection', features: [] },
+        cluster: true,
+        clusterMaxZoom: 14,
+        clusterRadius: 50
+      });
+      map.addSource('measure', { type: 'geojson', data: { type:'FeatureCollection', features: [] } });
+      // Cluster circles
+      map.addLayer({
+        id: 'clusters',
+        type: 'circle',
+        source: 'stops',
+        filter: ['has','point_count'],
+        paint: {
+          'circle-color': '#10b981',
+          'circle-radius': [
+            'step', ['get','point_count'],
+            18, 25, 24, 100, 30, 250, 36
+          ],
+          'circle-stroke-color': '#111827',
+          'circle-stroke-width': 1.5
+        }
+      });
+      // Cluster counts
+      map.addLayer({
+        id: 'cluster-count',
+        type: 'symbol',
+        source: 'stops',
+        filter: ['has','point_count'],
+        layout: {
+          'text-field': ['get','point_count_abbreviated'],
+          'text-font': ['Noto Sans Regular'],
+          'text-size': 12
+        },
+        paint: { 'text-color': '#ffffff' }
+      });
+      // Unclustered base circle
+      map.addLayer({
+        id: 'unclustered-point',
+        type: 'circle',
+        source: 'stops',
+        filter: ['!',['has','point_count']],
+        paint: {
+          'circle-color': ['get','color'],
+          'circle-radius': 18,
+          'circle-stroke-color': [
+            'case', ['==',['get','lowAcc'], true], '#ffffff', '#0b132b'
+          ],
+          'circle-stroke-width': [
+            'case', ['==',['get','lowAcc'], true], 3, 1.5
+          ]
+        }
+      });
+      // Unclustered labels (full tech number)
+      map.addLayer({
+        id: 'unclustered-label',
+        type: 'symbol',
+        source: 'stops',
+        filter: ['!',['has','point_count']],
+        layout: {
+          'text-field': ['get','label'],
+          'text-font': ['Noto Sans Bold'],
+          'text-size': 12,
+          'text-allow-overlap': true
+        },
+        paint: { 'text-color': '#ffffff', 'text-halo-color': '#000000', 'text-halo-width': 1 }
+      });
+      // Measure line layer
+      map.addLayer({ id: 'measure-line', type: 'line', source: 'measure', paint: { 'line-color': '#111827', 'line-width': 3, 'line-dasharray': [2,2] } });
+      // Click to expand clusters
+      map.on('click','clusters', (e) => {
+        const features = map.queryRenderedFeatures(e.point, { layers:['clusters'] });
+        const clusterId = features[0].properties.cluster_id;
+        const src = map.getSource('stops');
+        src.getClusterExpansionZoom(clusterId, (err, zoom) => {
+          if (err) return;
+          map.easeTo({ center: features[0].geometry.coordinates, zoom });
+        });
+      });
+      // Click for popup on unclustered
+      map.on('click','unclustered-point', async (e) => {
+        const f = e.features && e.features[0];
+        if (!f) return;
+        if (measureMode) {
+          const coord = f.geometry && f.geometry.coordinates;
+          if (!coord) return;
+          measurePts.push(coord);
+          if (measurePts.length === 2) {
+            const [a,b] = measurePts;
+            const distText = await computeDrivingDistance(a,b);
+            setMeasureLine(a,b);
+            showToast(distText);
+            measurePts = [];
+          } else {
+            showToast('Pick second stop to measure');
+          }
+          return;
+        }
+        const p = f.properties || {};
+        const html = `<div style=\"font-weight:600\">${p.name||''}</div>`+
+          `<div>${p.address||''}</div>`+
+          `<div style=\"margin-top:4px\"><span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${p.type||''}</span> `+
+          `<span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${p.job||''}</span> `+
+          `<span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${p.status||''}</span></div>`+
+          `<div style=\"margin-top:4px;color:#334155\"><strong>Tech:</strong> ${p.label||''}</div>`;
+        new maptilersdk.Popup({ offset: 12 })
+          .setLngLat(e.lngLat)
+          .setHTML(html)
+          .addTo(map);
+      });
+      // Re-spiderfy on zoom changes
+      map.on('zoomend', () => { if (rawFeatures.length) updateMapData(); });
+      sourceReady = true;
+      // Now that the source and layers exist, load data
+      try { loadAndPlot(); } catch {}
+    });
+
+    function setMeasureLine(a,b){
+      const src = map.getSource('measure');
+      if (!src) return;
+      const fc = { type:'FeatureCollection', features: [ { type:'Feature', geometry:{ type:'LineString', coordinates:[a,b] }, properties:{} } ] };
+      src.setData(fc);
+    }
+    function clearMeasure(){
+      const src = map.getSource('measure');
+      if (!src) return;
+      src.setData({ type:'FeatureCollection', features: [] });
+      measurePts = [];
+    }
+    async function computeDrivingDistance(a,b){
+      // Try MapTiler Directions (imperial), fallback to haversine
+      try {
+        const url = `https://api.maptiler.com/directions/v2/route?key=${MAPTILER_KEY}&start=${a[0]},${a[1]}&end=${b[0]},${b[1]}&profile=driving&units=imperial`;
+        const res = await fetch(url);
+        if (res.ok) {
+          const j = await res.json();
+          const r = j && j.routes && j.routes[0];
+          if (r && typeof r.distance === 'number') {
+            const miles = r.distance; // MapTiler returns miles when units=imperial
+            const km = (miles / 0.621371).toFixed(1);
+            return `${miles.toFixed(1)} miles (${km} km)`;
+          }
+        }
+      } catch {}
+      const R = 6371e3;
+      const toRad = d => d * Math.PI/180;
+      const dLat = toRad(b[1]-a[1]);
+      const dLng = toRad(b[0]-a[0]);
+      const lat1 = toRad(a[1]);
+      const lat2 = toRad(b[1]);
+      const h = Math.sin(dLat/2)**2 + Math.cos(lat1)*Math.cos(lat2)*Math.sin(dLng/2)**2;
+      const meters = 2*R*Math.asin(Math.sqrt(h));
+      const miles = meters/1609.344; const km = meters/1000;
+      return `${miles.toFixed(1)} miles (${km.toFixed(1)} km, straight-line)`;
+    }
+
+    function spiderfy(features, zoom){
+      if (zoom < 15) return features;
+      const groups = new Map();
+      features.forEach((f, idx) => {
+        const [lng, lat] = f.geometry.coordinates;
+        const key = lat.toFixed(5)+','+lng.toFixed(5);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push({ f, idx });
+      });
+      const out = features.map(f => ({...f}));
+      groups.forEach(list => {
+        if (list.length <= 1) return;
+        const center = list[0].f.geometry.coordinates;
+        const angleStep = (2*Math.PI)/list.length;
+        const base = 0.00012 * (1 + Math.floor(list.length/6));
+        let i = 0;
+        for (const item of list){
+          const ang = i*angleStep;
+          const dx = base*Math.cos(ang);
+          const dy = base*Math.sin(ang);
+          const coord = [ center[0]+dx, center[1]+dy ];
+          out[item.idx] = { ...item.f, geometry:{ type:'Point', coordinates: coord } };
+          i++;
+        }
+      });
+      return out;
+    }
+
+    function updateMapData(){
+      const src = map.getSource('stops');
+      const zoom = map.getZoom();
+      const sf = spiderfy(rawFeatures, zoom);
+      src.setData({ type:'FeatureCollection', features: sf });
+    }
+    // Client geocoding disabled: rely on server-enriched coordinates in /api/dashboard
+    async function loadAndPlot(){
+      try {
+        const url = buildUrl();
+        showToast('Loading ' + url);
+        const res = await fetch(url);
+        const data = await res.json();
+        const routes = data.routes || [];
+        // Populate tech filter from returned routes
+        TECHS = new Set();
+        routes.forEach(r => { if (r.techNo) TECHS.add(String(r.techNo)); });
+        const tf = document.getElementById('techFilter');
+        if (tf) {
+          const prev = tf.value;
+          const options = ['<option value="all">All Techs</option>'].concat(Array.from(TECHS).sort((a,b)=>Number(a)-Number(b)).map(t=>`<option value="${t}">${t}</option>`));
+          tf.innerHTML = options.join('');
+          tf.value = prev && (prev === 'all' || TECHS.has(prev)) ? prev : 'all';
+        }
+        // First pass: collect candidates, geocode missing points
+        const candidates = [];
+        routes.forEach(r => (r.stops||[]).forEach(s => {
+          // Apply tech filter
+          if (currentTechFilter !== 'all' && String(r.techNo) !== String(currentTechFilter)) return;
+          candidates.push({ r, s });
+        }));
+        // Build FeatureCollection
+        const features = [];
+        let missing = 0;
+        for (const { r, s } of candidates) {
+          const p = s.point || s.location;
+          if (!p || typeof p.lat !== 'number' || typeof p.lng !== 'number') { missing++; continue; }
+          const status = s.normalizedStatus || s.badge || s.status;
+          features.push({
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [p.lng, p.lat] },
+            properties: {
+              label: String(r.techNo || r.tech || ''),
+              color: badgeColor(status),
+              status: status || '',
+              type: s.type || '',
+              job: s.job || '',
+              name: s.name || '',
+              address: s.address || '',
+              lowAcc: p.accuracy && !/^(address|poi|street)$/i.test(p.accuracy) ? true : false
+            }
+          });
+        }
+        rawFeatures = features;
+        const fc = { type: 'FeatureCollection', features: spiderfy(rawFeatures, map.getZoom()) };
+        if (sourceReady) {
+          const src = map.getSource('stops');
+          src.setData(fc);
+          // Fit bounds
+          if (features.length) {
+            const b = new maptilersdk.LngLatBounds();
+            features.forEach(f => b.extend(f.geometry.coordinates));
+            map.fitBounds(b, { padding: 40 });
+          }
+          showToast(`Plotted ${features.length} stops` + (missing? `, ${missing} missing coords` : ''));
+        }
+      } catch (e) {
+        showToast('Error: ' + e.message);
+      }
+    }
+    document.getElementById('techFilter').addEventListener('change', (e)=>{ currentTechFilter = e.target.value || 'all'; loadAndPlot(); });
+    document.getElementById('todayBtn').addEventListener('click', ()=>{ document.getElementById('routeDate').value=''; setDefaultDate(); loadAndPlot(); });
+    document.getElementById('reloadBtn').addEventListener('click', ()=> loadAndPlot());
+    document.getElementById('measureBtn').addEventListener('click', ()=>{
+      measureMode = !measureMode;
+      clearMeasure();
+      const btn = document.getElementById('measureBtn');
+      btn.style.background = measureMode ? '#0ea5e9' : '#4338ca';
+      btn.textContent = measureMode ? 'Measuring…' : 'Measure';
+      showToast(measureMode ? 'Pick two stops to measure' : 'Measure off');
+    });
+    // Initialize
+    const qpDate = getParam('date'); if (qpDate){ document.getElementById('routeDate').value = qpDate; } setDefaultDate(); if (sourceReady) { loadAndPlot(); }
+  </script>
+</body>
+</html>
