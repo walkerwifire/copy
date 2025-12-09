@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4634",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836805552",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "LOACH,JOSEPH",
+        "address": "2886 ATLANTIC AV, APT 2W, BROOKLYN, NY 11207",
+        "phone": "646-943-9039",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836807288",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "BROWN,KIANA",
+        "address": "250 A EUCLID AV, APT 1203, BROOKLYN, NY 11208",
+        "phone": "979-758-3866",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836473600",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "PUGH,LINDA",
+        "address": "675 LINCOLN AV, APT 8E, BROOKLYN, NY 11208-4033",
+        "phone": "646-789-3969",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836784991",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "PASHA,TAMANNA",
+        "address": "706 AUTUMN AV, APT 2, BROOKLYN, NY 11208",
+        "phone": "856-278-2807",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836431206",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "SOJOS,HECTOR",
+        "address": "1158 GLENMORE AV, APT 3, BROOKLYN, NY 11208-3346",
+        "phone": "917-304-8484",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "5h 36m"
+  }
+]

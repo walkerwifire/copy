@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "5726",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836762508",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "BARDBURY,LESLIE",
+        "address": "171 THROOP AV, APT 210, BROOKLYN, NY 11206",
+        "phone": "646-944-9420",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836963234",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "KANG,MICHAEL",
+        "address": "262 TAAFFE PL, APT 519, BROOKLYN, NY 11205",
+        "phone": "646-915-2399",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836121719",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "Coustantin,Antonia",
+        "address": "919 MYRTLE AV, APT 1F, BROOKLYN, NY 11206",
+        "phone": "347-475-5997",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836089023",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "ORTIZ,BEJAMIN",
+        "address": "150 MALCOLM X BL, APT 2F, BROOKLYN, NY 11221-2222",
+        "phone": "917-651-4554",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "5h 12m"
+  }
+]

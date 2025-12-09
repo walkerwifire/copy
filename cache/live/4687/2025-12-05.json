@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4687",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836596368",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "CONEY ISLAND,RESIDENT",
+        "address": "2949 W 28TH ST, APT 614B, BROOKLYN, NY 11224-1932",
+        "phone": "929-204-7425",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836596186",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "AMADUO,ISMILA",
+        "address": "2947 W 28TH ST, A 1005, BROOKLYN, NY 11224",
+        "phone": "646-778-1911",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836695549",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "GRANOVSKAYA,ALEXANDR",
+        "address": "3848 MAPLE AV, APT 1, BROOKLYN, NY 11224-1314",
+        "phone": "718-372-0443",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836451578",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "VOJNOVIC,JUDY",
+        "address": "3145 BRIGHTON 4TH ST, APT 415, BROOKLYN, NY 11235-7273",
+        "phone": "718-934-8095",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836560101",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "ROSARIO,LOUIS",
+        "address": "2946 W 23RD ST, APT 3E, BROOKLYN, NY 11224-2231",
+        "phone": "111-111-1111",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836914776",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4687",
+        "name": "BASIS,MAYYA",
+        "address": "2928 30 W 5TH ST, APT 15B, BROOKLYN, NY 11224",
+        "phone": "718-314-4155",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "4h 48m"
+  }
+]

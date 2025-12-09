@@ -25,13 +25,15 @@
     <select id="techFilter" class="btn" style="background:#eef2ff;color:#111">
       <option value="all">All Techs</option>
     </select>
+    <input id="searchBox" type="text" class="btn" placeholder="Search address" style="background:#fff;color:#111;min-width:240px" />
+    <button id="searchBtn" class="btn" title="Search address">Search</button>
   </div>
   <div id="map"></div>
   <div class="legend">
     <div style="font-weight:600;margin-bottom:4px">Legend</div>
     <div class="legend-row"><span class="dot" style="background:#22c55e"></span> Completed</div>
     <div class="legend-row"><span class="dot" style="background:#f59e0b"></span> Pending</div>
-    <div class="legend-row"><span class="dot" style="background:#3b82f6"></span> Assigned</div>
+    <div class="legend-row"><span class="dot" style="background:#3b82f6"></span> In Progress</div>
     <div class="legend-row"><span class="dot" style="background:#ef4444"></span> Cancelled / Not Done</div>
   </div>
   <div id="toast" class="toast" style="display:none"></div>
@@ -40,7 +42,14 @@
     function showToast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(()=>t.style.display='none', 3000); }
     function setDefaultDate(){ const rd = document.getElementById('routeDate'); if (!rd.value){ const d=new Date(); const y=d.getFullYear(); const m=('0'+(d.getMonth()+1)).slice(-2); const day=('0'+d.getDate()).slice(-2); rd.value=`${y}-${m}-${day}`; } }
     function getParam(name){ const p = new URLSearchParams(location.search); return p.get(name)||''; }
-    function badgeColor(status){ const s=String(status||'').toLowerCase(); if (s.includes('complete')) return '#22c55e'; if (s.includes('pending')) return '#f59e0b'; if (s.includes('cancel')||s.includes('not-done')) return '#ef4444'; return '#3b82f6'; }
+    function badgeColor(status){
+      const s=String(status||'').toLowerCase();
+      if (s.includes('complete')) return '#22c55e';
+      if (s.includes('pending')) return '#f59e0b';
+      if (s.includes('cancel')||s.includes('not-done')) return '#ef4444';
+      // default bucket now represents In Progress
+      return '#3b82f6';
+    }
     function buildUrl(){
       const date = document.getElementById('routeDate').value;
       let u = '/api/dashboard?tech=all';
@@ -69,6 +78,7 @@
     let measurePts = [];
     let TECHS = new Set();
     let currentTechFilter = 'all';
+    let searchMarker = null;
     // Setup clustered GeoJSON source and layers once on load
     map.on('load', () => {
       map.addSource('stops', {
@@ -151,7 +161,7 @@
           map.easeTo({ center: features[0].geometry.coordinates, zoom });
         });
       });
-      // Click for popup on unclustered
+      // Click for popup on unclustered (with temporary fix: drag marker and save override)
       map.on('click','unclustered-point', async (e) => {
         const f = e.features && e.features[0];
         if (!f) return;
@@ -171,16 +181,41 @@
           return;
         }
         const p = f.properties || {};
+        const statusKey = String(p.status||'').toLowerCase();
+        const statusLabel = statusKey.includes('pending') ? 'Pending' : (statusKey.includes('complete') ? 'Completed' : ((statusKey.includes('cancel') || statusKey.includes('not-done')) ? (p.status||'Cancelled') : 'In Progress'));
         const html = `<div style=\"font-weight:600\">${p.name||''}</div>`+
           `<div>${p.address||''}</div>`+
           `<div style=\"margin-top:4px\"><span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${p.type||''}</span> `+
           `<span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${p.job||''}</span> `+
-          `<span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${p.status||''}</span></div>`+
+          `<span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${statusLabel}</span></div>`+
           `<div style=\"margin-top:4px;color:#334155\"><strong>Tech:</strong> ${p.label||''}</div>`;
-        new maptilersdk.Popup({ offset: 12 })
+        const popup = new maptilersdk.Popup({ offset: 12 })
           .setLngLat(e.lngLat)
           .setHTML(html)
           .addTo(map);
+        // Temporary fix: add a draggable marker to adjust location and save override
+        const marker = new maptilersdk.Marker({ draggable: true })
+          .setLngLat(e.lngLat)
+          .addTo(map);
+        marker.on('dragend', async () => {
+          try {
+            const pos = marker.getLngLat();
+            const payload = {
+              jobId: f.properties && f.properties.job || '',
+              address: f.properties && f.properties.address || '',
+              lat: pos.lat,
+              lng: pos.lng
+            };
+            const res = await fetch('/api/geocode/override', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(payload) });
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            showToast('Saved corrected location for job ' + (payload.jobId || ''));
+            marker.remove(); popup.remove();
+            // Reload to reflect update
+            loadAndPlot();
+          } catch (err) {
+            showToast('Save failed: ' + err.message);
+          }
+        });
       });
       // Re-spiderfy on zoom changes
       map.on('zoomend', () => { if (rawFeatures.length) updateMapData(); });
@@ -339,6 +374,43 @@
     });
     // Initialize
     const qpDate = getParam('date'); if (qpDate){ document.getElementById('routeDate').value = qpDate; } setDefaultDate(); if (sourceReady) { loadAndPlot(); }
+
+    // Address search using MapTiler Geocoding, biased to current view
+    async function searchAddress() {
+      try {
+        const box = document.getElementById('searchBox');
+        const q = (box && box.value || '').trim();
+        if (!q) { showToast('Enter an address'); return; }
+        const center = map.getCenter();
+        const b = map.getBounds();
+        const params = new URLSearchParams();
+        params.set('limit', '1');
+        params.set('language', 'en');
+        params.set('country', 'US');
+        params.set('proximity', `${center.lng},${center.lat}`);
+        if (b) {
+          const sw = b.getSouthWest(); const ne = b.getNorthEast();
+          params.set('bbox', `${sw.lng},${sw.lat},${ne.lng},${ne.lat}`);
+        }
+        params.set('key', MAPTILER_KEY);
+        const url = `https://api.maptiler.com/geocoding/${encodeURIComponent(q)}.json?${params.toString()}`;
+        const res = await fetch(url);
+        if (!res.ok) { showToast('Search failed'); return; }
+        const j = await res.json();
+        const f = j && j.features && j.features[0];
+        if (!f || !f.center) { showToast('No results'); return; }
+        const lng = Number(f.center[0]);
+        const lat = Number(f.center[1]);
+        if (searchMarker) searchMarker.remove();
+        searchMarker = new maptilersdk.Marker({ color: '#111827' }).setLngLat([lng, lat]).addTo(map);
+        map.easeTo({ center: [lng, lat], zoom: Math.max(15, map.getZoom()) });
+        showToast('Centered on search result');
+      } catch (e) {
+        showToast('Search error: ' + e.message);
+      }
+    }
+    document.getElementById('searchBtn').addEventListener('click', searchAddress);
+    document.getElementById('searchBox').addEventListener('keydown', (e) => { if (e.key === 'Enter') searchAddress(); });
   </script>
 </body>
 </html>

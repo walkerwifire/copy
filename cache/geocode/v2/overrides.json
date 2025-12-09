@@ -1,0 +1,314 @@
+{
+  "jobs": {
+    "07836749448": {
+      "lat": 40.67195753726773,
+      "lng": -73.86985357919386,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836625507": {
+      "lat": 40.68034239332633,
+      "lng": -73.9721029593828,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836762308": {
+      "lat": 40.69515735185604,
+      "lng": -73.95966073471824,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836535281": {
+      "lat": 40.69853875404203,
+      "lng": -73.94169313149555,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836140127": {
+      "lat": 40.68892212728977,
+      "lng": -73.92509193571362,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836450649": {
+      "lat": 40.671379384176106,
+      "lng": -73.93130877909837,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836368092": {
+      "lat": 40.67608025789286,
+      "lng": -73.93509831054995,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836198522": {
+      "lat": 40.67472013503229,
+      "lng": -73.94347066056918,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836312656": {
+      "lat": 40.666128742081696,
+      "lng": -73.94030740480686,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836360064": {
+      "lat": 40.69282066966866,
+      "lng": -73.94435166745994,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836096581": {
+      "lat": 40.681345653874104,
+      "lng": -73.95010775018966,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836473600": {
+      "lat": 40.670660620522284,
+      "lng": -73.86773983142807,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836363936": {
+      "lat": 40.63916042971579,
+      "lng": -73.97356135415879,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836122233": {
+      "lat": 40.69564105454691,
+      "lng": -73.95292450938827,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836093911": {
+      "lat": 40.68805092517445,
+      "lng": -73.93502046822042,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836107311": {
+      "lat": 40.695340729566254,
+      "lng": -73.93569851509615,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836068934": {
+      "lat": 40.68979176608272,
+      "lng": -73.93494410870095,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836142839": {
+      "lat": 40.67911157020862,
+      "lng": -73.9256485439617,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836393176": {
+      "lat": 40.658855922950465,
+      "lng": -73.94205206427523,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07837340338": {
+      "lat": 40.81635181785006,
+      "lng": -73.92487346918487,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07837725003": {
+      "lat": 40.81395261396307,
+      "lng": -73.92342356260424,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "07836296063": {
+      "lat": 40.646614566062595,
+      "lng": -73.96274769720847,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    }
+  },
+  "addresses": {
+    "639 crescent st, apt bsmt, brooklyn, ny 11208-3935": {
+      "lat": 40.67195753726773,
+      "lng": -73.86985357919386,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "541 bergen st, apt 4a, brooklyn, ny 11217-2452": {
+      "lat": 40.68034239332633,
+      "lng": -73.9721029593828,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "914 broadway, apt 3, brooklyn, ny 11206-5902": {
+      "lat": 40.69515735185604,
+      "lng": -73.95966073471824,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "1160 gates av, apt 3l, brooklyn, ny 11221-4653": {
+      "lat": 40.69853875404203,
+      "lng": -73.94169313149555,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "280 herkimer st, apt 3s, brooklyn, ny 11216-2617": {
+      "lat": 40.68892212728977,
+      "lng": -73.92509193571362,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "193 albany av, apt 10a, brooklyn, ny 11213-2109": {
+      "lat": 40.671379384176106,
+      "lng": -73.93130877909837,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "901 troy av, brooklyn, ny 11203-4115": {
+      "lat": 40.67608025789286,
+      "lng": -73.93509831054995,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "139 st nicholas av, apt 3, brooklyn, ny 11237-4033": {
+      "lat": 40.67472013503229,
+      "lng": -73.94347066056918,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "304 e 5th st, apt 1, brooklyn, ny 11218-2406": {
+      "lat": 40.666128742081696,
+      "lng": -73.94030740480686,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "171 throop av, apt 709, brooklyn, ny 11206": {
+      "lat": 40.69282066966866,
+      "lng": -73.94435166745994,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "179 putnam av, apt 1, brooklyn, ny 11216-1625": {
+      "lat": 40.681345653874104,
+      "lng": -73.95010775018966,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "675 lincoln av, apt 8e, brooklyn, ny 11208-4033": {
+      "lat": 40.670660620522284,
+      "lng": -73.86773983142807,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "555 e 5th st, apt a3, brooklyn, ny 11218-4661": {
+      "lat": 40.63916042971579,
+      "lng": -73.97356135415879,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "744 park av, apt 4b, brooklyn, ny 11206-5234": {
+      "lat": 40.69564105454691,
+      "lng": -73.95292450938827,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "690 gates av, apt 1f, brooklyn, ny 11221-1738": {
+      "lat": 40.68805092517445,
+      "lng": -73.93502046822042,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "383 pulaski st, apt 2g, brooklyn, ny 11206-7215": {
+      "lat": 40.695340729566254,
+      "lng": -73.93569851509615,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "674 madison st, apt 2, brooklyn, ny 11221-2106": {
+      "lat": 40.68979176608272,
+      "lng": -73.93494410870095,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "1831 fulton st, apt 1c, brooklyn, ny 11233-2210": {
+      "lat": 40.67911157020862,
+      "lng": -73.9256485439617,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "751 troy av, apt 1a, brooklyn, ny 11203-3126": {
+      "lat": 40.658855922950465,
+      "lng": -73.94205206427523,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "424 morris av, apt 3g, bronx, ny 10451-5540": {
+      "lat": 40.81635181785006,
+      "lng": -73.92487346918487,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "1007 union av., apt 5g, bronx, ny 10459-2958": {
+      "lat": 40.81395261396307,
+      "lng": -73.92342356260424,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    },
+    "165 e 19th st, apt 5b, brooklyn, ny 11226-4822": {
+      "lat": 40.646614566062595,
+      "lng": -73.96274769720847,
+      "provider": "override",
+      "quality": "rooftop",
+      "confidence": 1
+    }
+  }
+}

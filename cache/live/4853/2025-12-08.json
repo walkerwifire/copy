@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4853",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836932728",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "FELDEN,ALEX",
+        "address": "172 WILSON AV, APT 4L, BROOKLYN, NY 11237-3554",
+        "phone": "516-695-4369",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836240896",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "COCHA,GLADYS",
+        "address": "111 WILSON AV, APT 1L, BROOKLYN, NY 11237",
+        "phone": "347-922-3812",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836029155",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "KLEIN,GENE",
+        "address": "5318 FILLMORE AV, APT 2, BROOKLYN, NY 11234-4639",
+        "phone": "347-603-4203",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 18m"
+  }
+]

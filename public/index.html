@@ -28,7 +28,9 @@
         <input type="date" id="routeDate" class="select" />
         <button id="refreshBtn" class="btn">Refresh</button>
         <button id="refreshAllBtn" class="btn">Refresh All</button>
-        <a id="routesCsvLink" class="btn" href="/api/routes.csv" download>Export Routes CSV</a>
+        <a id="routesCsvLink" class="btn" href="api/routes.csv?force=1" download>Export Routes CSV</a>
+        <a id="routesXlsxLink" class="btn" href="api/routes.xlsx?force=1" download>Export Routes Excel</a>
+        <a id="viewOnMapLink" class="btn btn-primary" href="/map.html" target="_blank">📍 View on Map</a>
         <span id="status" class="muted" style="margin-left:auto"></span>
       </div>
     </div>
@@ -48,10 +50,7 @@
         <tbody id="techRows"></tbody>
       </table>
       <div id="emptyState" class="muted" style="display:none; padding:12px">No technicians</div>
-    </div>
-
-    <div id="rawHtml" class="card" style="display:none"></div>
-  </div>
+      <div id="rawHtml" class="card" style="display:none"></div>
       <form id="liveForm" class="row" style="margin-top:12px; flex-wrap:wrap">
         <input type="text" id="liveUser" placeholder="User" class="select" style="background:#0b1e3b; color:#fff; border-color:#2d4f8b" />
         <input type="password" id="livePass" placeholder="Password" class="select" style="background:#0b1e3b; color:#fff; border-color:#2d4f8b" />
@@ -63,11 +62,29 @@
     document.getElementById('refreshBtn').addEventListener('click', async () => {
       const tech = getSelectedTech();
       const date = document.getElementById('routeDate')?.value || '';
-        const url = '/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1';
-      const dash = await (await fetch(url)).json();
-      renderSummaryTiles(dash);
-      renderTechniciansWithRoutes(dash);
-      updateRoutesCsvLink();
+      let dash = null;
+      try {
+        const today = new Date().toISOString().slice(0,10);
+        if (date && date !== today) {
+          const stored = await fetchStoredRoutesForDate(date);
+          if (stored && stored.length) {
+            dash = { routes: stored, mode: 'stored', technicians: buildTechniciansFromRoutes(stored) };
+          }
+        }
+        if (!dash) {
+          const url = '/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now();
+          const res = await fetch(url);
+          if (res.ok) dash = await res.json();
+        }
+      } catch (e) { dash = null; }
+      if (dash) {
+        renderSummaryTiles(dash);
+        renderTechniciansWithRoutes(dash);
+        updateRoutesCsvLink();
+      } else {
+        renderTechniciansWithRoutes({ technicians: [], routes: [] });
+        updateRoutesCsvLink();
+      }
     });
     (function setDefaultRouteDate() {
       const rd = document.getElementById('routeDate');
@@ -80,30 +97,165 @@
         rd.value = `${y}-${m}-${day}`;
       }
     })();
+    async function fetchStoredRoutesForDate(date) {
+      try {
+        const res = await fetch('/api/stored?date=' + encodeURIComponent(date));
+        if (!res.ok) return null;
+        const json = await res.json();
+        if (json && Array.isArray(json.routes) && json.routes.length) return json.routes;
+        // If aggregated file exists but is empty, attempt server-side rebuild from per-tech caches
+        try {
+          const statusEl = document.getElementById('status');
+          if (statusEl) statusEl.textContent = 'Rebuilding stored aggregated routes...';
+          await fetch('/api/debug/aggregate/rebuild', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ date })
+          });
+          // re-fetch after rebuild
+          const r2 = await fetch('/api/stored?date=' + encodeURIComponent(date) + '&_=' + Date.now());
+          if (r2.ok) {
+            const j2 = await r2.json();
+            if (j2 && Array.isArray(j2.routes) && j2.routes.length) {
+              if (statusEl) statusEl.textContent = '';
+              return j2.routes;
+            }
+          }
+          if (statusEl) statusEl.textContent = '';
+        } catch (e) {
+          // ignore rebuild failures, fall back to returned json
+        }
+        return json && Array.isArray(json.routes) ? json.routes : null;
+      } catch (e) { return null; }
+    }
+
+    function buildTechniciansFromRoutes(routes) {
+      try {
+        const set = new Set();
+        (routes || []).forEach(r => { if (r && r.techNo) set.add(String(r.techNo)); });
+        const out = [];
+        Array.from(set).forEach(t => out.push({ techNo: String(t), name: getTechName(t, `Tech ${t}`), status: 'N/A' }));
+        return out;
+      } catch (e) { return []; }
+    }
+
     document.getElementById('routeDate').addEventListener('change', async () => {
       const tech = getSelectedTech();
       const date = document.getElementById('routeDate')?.value || '';
-        const dash = await (await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now())).json();
-      renderTechniciansWithRoutes(dash);
-      updateRoutesCsvLink();
+      let dash = null;
+      try {
+        // Prefer stored aggregated routes for past dates to avoid falling back to sample data
+        const today = new Date().toISOString().slice(0,10);
+        if (date && date !== today) {
+          const stored = await fetchStoredRoutesForDate(date);
+          if (stored && stored.length) {
+            dash = { routes: stored, mode: 'stored', technicians: buildTechniciansFromRoutes(stored) };
+          }
+        }
+        if (!dash) {
+          const res = await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now());
+          if (res.ok) dash = await res.json();
+          else dash = null;
+        }
+      } catch (e) { dash = null; }
+      if (dash) {
+        renderTechniciansWithRoutes(dash);
+        updateRoutesCsvLink();
+      } else {
+        // nothing to render
+        renderTechniciansWithRoutes({ technicians: [], routes: [] });
+        updateRoutesCsvLink();
+      }
     });
     document.getElementById('techSelect').addEventListener('change', async () => {
       const tech = getSelectedTech();
       const date = document.getElementById('routeDate')?.value || '';
-        const dash = await (await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now())).json();
-      renderSummaryTiles(dash);
-      renderTechniciansWithRoutes(dash);
-      updateRoutesCsvLink();
+      try {
+        let dash = null;
+        // For past dates, prefer stored aggregated first
+        const today = new Date().toISOString().slice(0,10);
+        if (date && date !== today) {
+          const stored = await fetchStoredRoutesForDate(date);
+          if (stored && stored.length) {
+            dash = { routes: stored, mode: 'stored', technicians: buildTechniciansFromRoutes(stored) };
+          }
+        }
+        if (!dash) {
+          const res = await fetch('/api/dashboard?mode=live' + (tech ? ('&tech=' + encodeURIComponent(tech)) : '') + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now());
+          if (!res.ok) {
+            const msg = await res.text().catch(() => '');
+            const status = document.getElementById('status');
+            const techLabel = tech ? ('Tech ' + tech) : 'Login';
+            if (status) status.textContent = `${techLabel} error: ${msg}`;
+            alert(`Login Failed for ${techLabel}. Attempts paused to protect the account.`);
+            return;
+          }
+          dash = await res.json();
+        }
+        renderSummaryTiles(dash);
+        renderTechniciansWithRoutes(dash);
+        updateRoutesCsvLink();
+      } catch (e) {
+        const status = document.getElementById('status');
+        status.textContent = 'Dashboard fetch error: ' + e.message;
+      }
     });
+    // Show export URL on click
+    (function attachExportNotifier(){
+      const a = document.getElementById('routesCsvLink');
+      const status = document.getElementById('status');
+      if (!a) return;
+      a.addEventListener('click', () => {
+        try {
+          // Ensure latest href
+          updateRoutesCsvLink();
+          const url = a.getAttribute('href') || '/api/routes.csv';
+          if (status) status.textContent = `Exporting CSV: ${url}`;
+        } catch {}
+      });
+    })();
+    (function attachExcelExportNotifier(){
+      const a = document.getElementById('routesXlsxLink');
+      const status = document.getElementById('status');
+      if (!a) return;
+      a.addEventListener('click', () => {
+        try {
+          updateRoutesCsvLink();
+          const url = a.getAttribute('href') || 'api/routes.xlsx';
+          if (status) status.textContent = `Exporting Excel: ${url}`;
+        } catch {}
+      });
+    })();
     // Refresh All button: force tech=all
     document.getElementById('refreshAllBtn').addEventListener('click', async () => {
       const date = document.getElementById('routeDate')?.value || '';
-        const dash = await (await fetch('/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now())).json();
+      let dash = null;
+      try {
+        const today = new Date().toISOString().slice(0,10);
+        if (date && date !== today) {
+          const stored = await fetchStoredRoutesForDate(date);
+          if (stored && stored.length) dash = { routes: stored, mode: 'stored', technicians: buildTechniciansFromRoutes(stored) };
+        }
+        if (!dash) {
+          const res = await fetch('/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now());
+          if (!res.ok) {
+            const msg = await res.text();
+            const status = document.getElementById('status');
+            status.textContent = 'Login error: ' + msg;
+            alert('Login Failed. Attempts paused to protect the account.');
+            return;
+          }
+          dash = await res.json();
+        }
+      } catch (e) { dash = null; }
       const sel = document.getElementById('techSelect');
       if (sel) sel.value = 'all';
-      renderSummaryTiles(dash);
-      renderTechniciansWithRoutes(dash);
-      updateRoutesCsvLink();
+      if (dash) {
+        renderSummaryTiles(dash);
+        renderTechniciansWithRoutes(dash);
+        updateRoutesCsvLink();
+      } else {
+        renderTechniciansWithRoutes({ technicians: [], routes: [] });
+        updateRoutesCsvLink();
+      }
     });
     document.getElementById('liveForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -158,24 +310,63 @@
       const n = String(techNo || '').trim();
       return TECH_NAME_MAP[n] || fallbackLabel || (n ? ('Tech ' + n) : '');
     }
+    function getSelectedTech() {
+      const sel = document.getElementById('techSelect');
+      const val = sel ? sel.value : '';
+      return (val && val !== 'all') ? val : '';
+    }
     function updateRoutesCsvLink() {
       const date = document.getElementById('routeDate')?.value || '';
       const tech = document.getElementById('techSelect')?.value || '';
-      const base = '/api/routes.csv';
+      const base = 'api/routes.csv';
       const qs = [];
+      // Always include date; backend defaults to today if missing
       if (date) qs.push('date=' + encodeURIComponent(date));
+      // When 'All Techs' selected, omit tech param to aggregate
       if (tech && tech !== 'all') qs.push('tech=' + encodeURIComponent(tech));
-        qs.push('force=1');
-      const href = qs.length ? (base + '?' + qs.join('&')) : base;
+      qs.push('force=1');
+      const href = base + '?' + qs.join('&');
       const a = document.getElementById('routesCsvLink');
       if (a) a.href = href;
+      // Build Excel link similarly, but always aggregate all techs
+      const xbase = 'api/routes.xlsx';
+      const xqs = [];
+      if (date) xqs.push('date=' + encodeURIComponent(date));
+      xqs.push('force=1');
+      const xhref = xbase + '?' + xqs.join('&');
+      const xa = document.getElementById('routesXlsxLink');
+      if (xa) xa.href = xhref;
+      // Build View on Map link with current date (aggregate all techs)
+      const mapBase = '/map.html';
+      const mapQs = [];
+      if (date) mapQs.push('date=' + encodeURIComponent(date));
+      const mapHref = mapBase + (mapQs.length ? ('?' + mapQs.join('&')) : '');
+      const mla = document.getElementById('viewOnMapLink');
+      if (mla) mla.href = mapHref;
     }
     async function loadData() {
       const techSel = document.getElementById('techSelect');
       const date = document.getElementById('routeDate')?.value || '';
-      const url = '/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now();
       try {
-        const dash = await (await fetch(url)).json();
+        let dash = null;
+        // Prefer stored aggregated routes first for past dates
+        const today = new Date().toISOString().slice(0,10);
+        if (date && date !== today) {
+          const stored = await fetchStoredRoutesForDate(date);
+          if (stored && stored.length) dash = { routes: stored, mode: 'stored', technicians: buildTechniciansFromRoutes(stored) };
+        }
+        if (!dash) {
+          const url = '/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&_=' + Date.now();
+          const res = await fetch(url);
+          if (!res.ok) {
+            const msg = await res.text().catch(() => '');
+            const status = document.getElementById('status');
+            if (status) status.textContent = 'Login error: ' + msg;
+            alert('Login Failed. Attempts paused to protect the account.');
+            return;
+          }
+          dash = await res.json();
+        }
         // Populate tech selector from data if empty or minimal
         if (techSel && techSel.options.length <= 1) {
           const opts = ['<option value="all">All Techs</option>'];
@@ -200,16 +391,17 @@
       if (!el) return;
       const routes = dash.routes || [];
       const kinds = ['TC','IN','COS'];
-      const totals = { SUMMARY: { total:0, pending:0, done:0, cancelled:0 } };
-      kinds.forEach(k => totals[k] = { total:0, pending:0, done:0, cancelled:0 });
+        const totals = { SUMMARY: { total:0, pending:0, done:0, cancelled:0, notDone:0 } };
+        kinds.forEach(k => totals[k] = { total:0, pending:0, done:0, cancelled:0, notDone:0 });
       routes.forEach(r => (r.stops||[]).forEach(s => {
         const k = kinds.includes(s.type) ? s.type : null;
-        const badge = String(s.badge||'').toLowerCase();
+          const badge = String((s.normalizedStatus || s.badge || '')).toLowerCase();
         const inc = (obj) => {
           obj.total++;
           if (badge.includes('pending')) obj.pending++;
           else if (badge.includes('complete')) obj.done++;
           else if (badge.includes('cancel')) obj.cancelled++;
+            else if (badge.includes('not-done')) obj.notDone++;
         };
         if (k) inc(totals[k]);
         inc(totals.SUMMARY);
@@ -235,6 +427,10 @@
               <span class="tile__row-label">Cancelled</span>
               <span class="tile__count tile__count--cancelled">${data.cancelled}</span>
             </div>
+              <div class="tile__row">
+                <span class="tile__row-label">Not Done</span>
+                <span class="tile__count tile__count--cancelled">${data.notDone}</span>
+              </div>
           </div>
         </div>`;
       el.style.display = 'block';
@@ -257,9 +453,23 @@
       if (!technicians.length) { empty.style.display = 'block'; return; }
       empty.style.display = 'none';
       const routes = dash.routes || [];
-      const selectedDate = document.getElementById('routeDate')?.value || '';
+      // Normalize selected date for comparison. Support YYYY-MM-DD and MM/DD/YYYY inputs.
+      const rawSelected = document.getElementById('routeDate')?.value || '';
+      const selectedDate = (function(d){
+        if (!d) return '';
+        // If already ISO (YYYY-MM-DD), return as-is
+        if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+        // Try MM/DD/YYYY -> convert
+        const m = d.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+        if (m) {
+          const mm = ('0' + m[1]).slice(-2);
+          const dd = ('0' + m[2]).slice(-2);
+          return `${m[3]}-${mm}-${dd}`;
+        }
+        return d;
+      })(rawSelected);
       const byTech = {};
-      routes.filter(r => !selectedDate || r.date === selectedDate).forEach(r => { (byTech[r.techNo] ||= []).push(r); });
+      routes.filter(r => !selectedDate || String(r.date) === String(selectedDate)).forEach(r => { (byTech[r.techNo] ||= []).push(r); });
       // When a specific tech is selected, filter technicians list
       const techSel = document.getElementById('techSelect');
       const selectedTech = techSel?.value;
@@ -308,14 +518,16 @@
           (route.stops||[]).forEach(s => {
             const row = document.createElement('div');
             row.className = 'route-row';
-            const statusKey = String((s.badge||'').toLowerCase());
-            const statusClass = statusKey.includes('pending') ? 'pending' : (statusKey.includes('complete') ? 'completed' : (statusKey.includes('cancel') ? 'cancelled' : ''));
+            const statusKey = String((s.normalizedStatus || s.badge || s.status || '').toLowerCase());
+            // Treat not-done as red (same style as cancelled); default bucket is In Progress
+            const statusClass = statusKey.includes('pending') ? 'pending' : (statusKey.includes('complete') ? 'completed' : ((statusKey.includes('cancel') || statusKey.includes('not-done')) ? 'cancelled' : 'in-progress'));
+            const statusLabel = statusKey.includes('pending') ? 'Pending' : (statusKey.includes('complete') ? 'Completed' : ((statusKey.includes('cancel') || statusKey.includes('not-done')) ? (s.normalizedStatus || s.badge || 'Cancelled') : 'In Progress'));
             row.innerHTML = `
               <div class="route-left">
                 <span class="pill pill--time">${s.time || ''}</span>
-                <span class="pill pill--job">${s.job || ''}</span>
+                <span class="pill pill--job">${s.job || ''}${statusClass==='in-progress' ? ' 🔵' : ''}</span>
                 <span class="pill pill--type">${s.type || ''}</span>
-                <span class="pill pill--status ${statusClass}">${s.badge || ''}</span>
+                <span class="pill pill--status ${statusClass}">${statusLabel}</span>
                 <span class="pill pill--tech">${route.techNo || s.tech || ''}</span>
               </div>
               <div class="route-right">
@@ -450,8 +662,8 @@
   </script>
   <script>
     function openJobModal(stop, route, techNo) {
-      const statusKey = String((stop.badge||'').toLowerCase());
-      const statusClass = statusKey.includes('pending') ? 'pending' : (statusKey.includes('complete') ? 'completed' : (statusKey.includes('cancel') ? 'cancelled' : ''));
+      const statusKey = String((stop.normalizedStatus || stop.badge || stop.status || '').toLowerCase());
+      const statusClass = statusKey.includes('pending') ? 'pending' : (statusKey.includes('complete') ? 'completed' : ((statusKey.includes('cancel')||statusKey.includes('not-done')) ? 'cancelled' : 'in-progress'));
       const body = `
         <div class="card" style="margin:0">
           <div class="title">Manage Job</div>
@@ -459,7 +671,7 @@
             <span class="pill pill--time">${stop.time || ''}</span>
             <span class="pill pill--job">${stop.job || ''}</span>
             <span class="pill pill--type">${stop.type || ''}</span>
-            <span class="pill pill--status ${statusClass}">${stop.badge || ''}</span>
+            <span class="pill pill--status ${statusClass}">${(stop.normalizedStatus ? (stop.normalizedStatus==='in-progress'?'In Progress': stop.normalizedStatus) : (stop.badge || stop.status || ''))}</span>
             <span class="pill pill--tech">${route.techNo || stop.tech || techNo || ''}</span>
           </div>
           <div class="route-right" style="margin-top:12px">
@@ -504,25 +716,39 @@
       const actions = `
         <button class="btn btn-success" id="jobImport">Import</button>
         <button class="btn btn-primary" id="jobAddStop">Add Stop</button>
-        <button class="btn btn-warning" id="jobReassign">Reassign Jobs</button>`;
+        <button class="btn btn-warning" id="jobReassign">Reassign Jobs</button>
+        <button class="btn" id="jobFixLocation">Fix Location</button>`;
       openModal('Manage Job', body, actions);
       // Fetch and hydrate additional job details from backend
       (async () => {
         try {
           if (!stop.job) return;
-          const res = await fetch(`/api/job/${encodeURIComponent(stop.job)}?_=${Date.now()}`);
+          const techQuery = encodeURIComponent(String(route.techNo || stop.tech || techNo || '').trim());
+          const res = await fetch(`/api/job/${encodeURIComponent(stop.job)}?tech=${techQuery}&_=${Date.now()}`);
           if (!res.ok) return;
           const j = await res.json();
           // Update details if available
           const map = [
-            ['Priority','priority'],
-            ['Schedule Date','scheduleDate'],
-            ['Full Account Number','accountNumber'],
+            ['Create','create'],
+            ['Schedule Date (Schd)','scheduleDate'],
+            ['CpTime','staticCompletionTime'],
+            ['DS (Status)','staticStatus'],
+            ['TS (Time Frame)','timeFrame'],
             ['Units','units'],
-            ['Static Status','staticStatus'],
-            ['Static Completion Time','staticCompletionTime'],
+            ['ReaCd/ReaDesc','reason'],
+            ['Addr2','address2'],
+            ['City','city'],
+            ['Home #','homePhone'],
+            ['Work #','workPhone'],
+            ['Map CD','mapCd'],
+            ['Job Cmt','jobComment'],
+            ['Node','node'],
+            ['Delq','delq'],
+            ['Dispatch Cmt','dispatchComment'],
+            ['Receipt Cmt','receiptComment'],
+            ['FSM Cmt','fsmComment'],
+            ['Full Account Number','accountNumber'],
             ['Resolution Codes','resolutionCodes'],
-            ['Job Origin','origin'],
             ['Customer Name','name'],
             ['Customer Phone','phone'],
             ['Address','address']
@@ -545,6 +771,22 @@
       document.getElementById('jobImport').onclick = () => toast('Import triggered for job ' + (stop.job||''));
       document.getElementById('jobAddStop').onclick = () => toast('Add Stop for job ' + (stop.job||''));
       document.getElementById('jobReassign').onclick = () => toast('Reassign Jobs from job ' + (stop.job||''));
+      document.getElementById('jobFixLocation').onclick = async () => {
+        try {
+          const cur = { lat: (stop.point&&stop.point.lat)||'', lng: (stop.point&&stop.point.lng)||'' };
+          const lat = prompt('Enter latitude', String(cur.lat));
+          if (lat == null) return;
+          const lng = prompt('Enter longitude', String(cur.lng));
+          if (lng == null) return;
+          const payload = { jobId: stop.job || '', address: stop.address || '', lat: Number(lat), lng: Number(lng) };
+          const res = await fetch('/api/geocode/override', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(payload) });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          alert('Saved corrected location.');
+          close();
+        } catch (e) {
+          alert('Failed to save location: ' + e.message);
+        }
+      };
     }
   </script>
 </body>

@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4631",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836652673",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "J CARLTON,MARION",
+        "address": "1230 PENNSYLVANIA AV, APT 3F, BROOKLYN, NY 11239-1109",
+        "phone": "917-803-0968",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836838110",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "WILSON,WAYNE",
+        "address": "1455 E 87TH ST, APT BMST, BROOKLYN, NY 11236-5137",
+        "phone": "718-679-0735",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836370970",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "MCKENZIE,BONIFACE",
+        "address": "699 LINDEN BL, APT 1B, BROOKLYN, NY 11203-3314",
+        "phone": "347-248-0640",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836895708",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "WRIGHT,RONDA",
+        "address": "805 E NEW YORK AV, APT 6A, BROOKLYN, NY 11203",
+        "phone": "332-280-9024",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836895676",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "WRIGHT,RONDA",
+        "address": "805 E NEW YORK AV, APT 4E, BROOKLYN, NY 11203",
+        "phone": "332-280-9024",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "4h 30m"
+  }
+]

@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "556",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836235266",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "WALDMAN,JOSEPH",
+        "address": "1842 63RD ST, BROOKLYN, NY 11204-2932",
+        "phone": "718-438-2880",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836342346",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "SHARIPOV,TOSHPOLO",
+        "address": "1801 50TH ST, APT D2, BROOKLYN, NY 11204-1280",
+        "phone": "347-916-2924",
+        "hasIS": false
+      },
+      {
+        "time": "ALL DAY",
+        "job": "W51828",
+        "type": "Assisting",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "WFX INTERNAL,",
+        "address": "City: ,, ,",
+        "phone": "Work #:",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836503279",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "556",
+        "name": "WILLIS,MARIE",
+        "address": "2737 W 33RD ST, APT 7F, BROOKLYN, NY 11224-1636",
+        "phone": "718-946-3042",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836325160",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "556",
+        "name": "MALOWICKI,SINAI",
+        "address": "1448 53RD ST, APT 1, BROOKLYN, NY 11219-3948",
+        "phone": "718-972-2621",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "4h 36m"
+  }
+]

@@ -1,0 +1,140 @@
+{
+  "chosen": {
+    "lat": 40.667764,
+    "lng": -73.8654793,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.667764,
+      "lng": -73.8654793,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 40' 3.95040'' N",
+            "lng": "73° 51' 55.72548'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWL9589302495",
+          "Maidenhead": "FN30bq60dg",
+          "Mercator": {
+            "x": -8222667.543,
+            "y": 4935608.471
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=247463113#map=17/40.66776/-73.86548",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/40.66776/-73.86548&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.66776&mlon=-73.86548#map=17/40.66776/-73.86548"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5rr5kfcsdtestbk8bj",
+          "qibla": 58.58,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Loring Avenue",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193820,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229220,
+              "astronomical": 1765235100,
+              "civil": 1765231080,
+              "nautical": 1765233120
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "ridge.spray.tape"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.6679856,
+            "lng": -73.8653565
+          },
+          "southwest": {
+            "lat": 40.6675244,
+            "lng": -73.8658989
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "1257",
+          "postcode": "11208",
+          "residential": "Louis H. Pink Houses",
+          "road": "Loring Avenue",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "1257 Loring Avenue, New York, NY 11208, United States of America",
+        "geometry": {
+          "lat": 40.667764,
+          "lng": -73.8654793
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "18232",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836083914",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "ALTHKHISATI,RASHIL",
+        "address": "936 AVENUE S, APT 1, BROOKLYN, NY 11223",
+        "phone": "718-998-1956",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836604670",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "ASHKENAZIE,MARK",
+        "address": "1214 AVENUE V, APT 3FLR, BROOKLYN, NY 11229",
+        "phone": "718-376-9221",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836230331",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "ACOSTA,BRIANNA",
+        "address": "125 BAY 29TH ST, APT *1, BROOKLYN, NY 11214-5005",
+        "phone": "929-785-2790",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836662646",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "STRIPKO,TETYANA",
+        "address": "8632 BAY 16TH ST, APT 2, BROOKLYN, NY 11214",
+        "phone": "347-791-6978",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "6h 24m"
+  }
+]

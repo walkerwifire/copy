@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "5907",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836478074",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "MARLBORO,RESIDENT",
+        "address": "29 AVENUE W, APT 12D, BROOKLYN, NY 11223-5606",
+        "phone": "929-444-6083",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836323511",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "BABUSHKIN,OLEG",
+        "address": "5302 15TH AV, APT 5C, BROOKLYN, NY 11219-4332",
+        "phone": "718-853-3656",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836863525",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "DOMINGUEZ,ARMANDO",
+        "address": "807 41ST ST, APT 2R, BROOKLYN, NY 11232-3855",
+        "phone": "317-678-7484",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "4h 0m"
+  }
+]

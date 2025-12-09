@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "5736",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07837537619",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "GROCERY,HILARIO",
+        "address": "81 W 162ND ST, BRONX, NY 10452",
+        "phone": "347-664-8999",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07837501033",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "LLC,WALTON",
+        "address": "561 WALTON AV, FLR GRND, BRONX, NY 10451",
+        "phone": "917-805-6151",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07837620924",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "GO DELI,STOPAND",
+        "address": "839 -D PROSPECT AV, COMM, BRONX, NY 10459-3912",
+        "phone": "917-455-5595",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 0m"
+  }
+]

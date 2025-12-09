@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "17880",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836979533",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "WILLIAMS,DAWN",
+        "address": "516 SCHROEDERS AVE, APT 7G, BROOKLYN, NY 11239",
+        "phone": "718-484-0600",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836029174",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "DRAKES,MAUREEN",
+        "address": "959 E 101ST ST, APT 2, BROOKLYN, NY 11236-2617",
+        "phone": "347-867-6000",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836649986",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "TURSUNOVA,IRINA",
+        "address": "160 SCHROEDERS AV, APT 11F, BROOKLYN, NY 11239-2204",
+        "phone": "646-510-5307",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836866969",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "RACKS,WANDA",
+        "address": "23 25 NEW LOTS AV, APT 2C, BROOKLYN, NY 11212-6938",
+        "phone": "347-597-0216",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836573780",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "PETTUS,ELIZABET",
+        "address": "1407 LINDEN BL, APT 5H, BROOKLYN, NY 11212-5106",
+        "phone": "646-884-2245",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836668442",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "RODRIGUEZ,FRANK",
+        "address": "463 HERZL ST, APT 1C, BROOKLYN, NY 11212-4954",
+        "phone": "347-672-3348",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "5h 24m"
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "techNo": "4853",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836908290",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "MOLDOVAN,JULIUS",
+        "address": "1506 AVENUE J, 2FLR, BROOKLYN, NY 11230",
+        "phone": "347-522-8896",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836162519",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "WARD,BERNADET",
+        "address": "1249 E 39TH ST, APT 2, BROOKLYN, NY 11210",
+        "phone": "917-501-1407",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836160452",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "GARZA,JESSICA",
+        "address": "1103 E 34TH ST, APT 1F, BROOKLYN, NY 11210-4160",
+        "phone": "347-228-8521",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836582571",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "DAVY,URSULA",
+        "address": "114 FENIMORE ST, APT 6C, BROOKLYN, NY 11225-5318",
+        "phone": "718-462-4672",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836018851",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "WOODING,ANTHONY",
+        "address": "1046 E 81ST ST, APT 1, BROOKLYN, NY 11236-4222",
+        "phone": "718-872-8094",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836603781",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "CUFFIE,GLORIA",
+        "address": "885 E 38TH ST, APT 35, BROOKLYN, NY 11210-3539",
+        "phone": "347-941-8162",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836348169",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "KHOLOVA,DILNOZA",
+        "address": "1365 E 14TH ST, APT 1C, BROOKLYN, NY 11230-5900",
+        "phone": "845-200-8098",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836264954",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4853",
+        "name": "HERZ,DAVID",
+        "address": "1650 OCEAN AV, APT B2, BROOKLYN, NY 11230-4943",
+        "phone": "718-338-6881",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 8,
+    "estimatedDuration": "7h 18m"
+  }
+]

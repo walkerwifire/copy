@@ -1,0 +1,18 @@
+{
+  "chosen": {
+    "lat": 40.656811,
+    "lng": -73.95819599999999,
+    "provider": "maptiler",
+    "quality": "address",
+    "confidence": 0.813333
+  },
+  "candidates": [
+    {
+      "lat": 40.656811,
+      "lng": -73.95819599999999,
+      "provider": "maptiler",
+      "quality": "address",
+      "confidence": 0.813333
+    }
+  ]
+}

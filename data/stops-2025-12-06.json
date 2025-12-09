@@ -1,0 +1,731 @@
+{
+  "date": "2025-12-06",
+  "generatedAt": "2025-12-08T17:11:53.407Z",
+  "routes": [
+    {
+      "techNo": "17880",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836360064",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "17880",
+          "name": "kumar,Surendra",
+          "address": "171 THROOP AV, APT 709, BROOKLYN, NY 11206",
+          "phone": "813-377-5518",
+          "hasIS": false
+        },
+        {
+          "time": "8-11",
+          "job": "07836106942",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "17880",
+          "name": "BLAIR,JAMES",
+          "address": "109 111 LEWIS AV, APT 3E, BROOKLYN, NY 11206",
+          "phone": "347-496-3387",
+          "hasIS": false
+        },
+        {
+          "time": "12-3",
+          "job": "07836762308",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "17880",
+          "name": "Victoriano,JOSE",
+          "address": "914 BROADWAY, APT 3, BROOKLYN, NY 11206-5902",
+          "phone": "917-704-9634",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836462677",
+          "type": "COS",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "17880",
+          "name": "BRAITHWAITE,SONYA",
+          "address": "901 SARATOGA AV, APT 2B, BROOKLYN, NY 11212",
+          "phone": "347-384-1828",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836159057",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "17880",
+          "name": "BENJAMIN,JOEDY",
+          "address": "1802 SCHENECTADY AV, APT 1, BROOKLYN, NY 11234-2004",
+          "phone": "908-265-1531",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": "4h 48m"
+    },
+    {
+      "techNo": "18228",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836265061",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "18228",
+          "name": "SIEGEL,ANDREW",
+          "address": "1680 OCEAN AV, APT 6D, BROOKLYN, NY 11230-4909",
+          "phone": "718-627-8267",
+          "hasIS": false
+        },
+        {
+          "time": "9-12",
+          "job": "07836653984",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "18228",
+          "name": "PALMER,DAWN",
+          "address": "4205 FARRAGUT RD, APT 1, BROOKLYN, NY 11203-6517",
+          "phone": "347-713-3132",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836440586",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "18228",
+          "name": "KERNIZAN,MARIE",
+          "address": "1412 BROOKLYN AV, APT 6A, BROOKLYN, NY 11210-1862",
+          "phone": "718-773-9564",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836165137",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "18228",
+          "name": "ALEXIS,CLEONORE",
+          "address": "980 E 40TH ST, BROOKLYN, NY 11210-3530",
+          "phone": "718-951-0479",
+          "hasIS": false
+        },
+        {
+          "time": "12-3",
+          "job": "07836673908",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "18228",
+          "name": "DANIELS,LYNETTE",
+          "address": "662 E 37TH ST, APT 1, BROOKLYN, NY 11203-5604",
+          "phone": "347-240-8769",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836332085",
+          "type": "COS",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "18228",
+          "name": "DELBURY,DAMIAN",
+          "address": "1820 CORTELYOU RD, APT 6C, BROOKLYN, NY 11226-5823",
+          "phone": "347-413-9290",
+          "hasIS": false
+        },
+        {
+          "time": "12-3",
+          "job": "07836365737",
+          "type": "TC",
+          "status": "Cancel",
+          "normalizedStatus": "cancelled",
+          "badge": "cancelled",
+          "tech": "18228",
+          "name": "RIVERA,DAISY",
+          "address": "380 RUGBY RD, 3, BROOKLYN, NY 11226",
+          "phone": "347-737-5292",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 7,
+      "estimatedDuration": "6h 0m"
+    },
+    {
+      "techNo": "4625",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "11-2",
+          "job": "07836368092",
+          "type": "COS",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4625",
+          "name": "AMANKWAH,LUCKISHA",
+          "address": "901 TROY AV, BROOKLYN, NY 11203-4115",
+          "phone": "347-405-9184",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836783698",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4625",
+          "name": "LETICS INC,LEAP ATH",
+          "address": "2361 RALPH AV, BROOKLYN, NY 11234-5516",
+          "phone": "347-973-4840",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 2,
+      "estimatedDuration": "3h 42m"
+    },
+    {
+      "techNo": "4631",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836139259",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4631",
+          "name": "Mikhelso,Sergei",
+          "address": "2546 E 13TH ST, APT E1, BROOKLYN, NY 11235-4375",
+          "phone": "917-623-7274",
+          "hasIS": false
+        },
+        {
+          "time": "9-12",
+          "job": "07836529899",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4631",
+          "name": "YOUNAS,MARIA",
+          "address": "3126 CONEY ISLAND AV, APT B6, BROOKLYN, NY 11235-6439",
+          "phone": "917-514-0227",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836135040",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4631",
+          "name": "POLYAK,BETTY",
+          "address": "1075 SHEPSHEAD BY RD, APT 3H, BROOKLYN, NY 11229-4260",
+          "phone": "718-648-8118",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836336809",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4631",
+          "name": "MIRZAZADA,RASUL",
+          "address": "1457 E 28TH ST, APT BSMT, BROOKLYN, NY 11210",
+          "phone": "305-586-2325",
+          "hasIS": false
+        },
+        {
+          "time": "12-3",
+          "job": "07836377886",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4631",
+          "name": "KEARNS,CLAUDETT",
+          "address": "4813 SNYDER AV, APT 2, BROOKLYN, NY 11203-4305",
+          "phone": "917-541-5947",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": "6h 54m"
+    },
+    {
+      "techNo": "4634",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "9-12",
+          "job": "07836618646",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4634",
+          "name": "CLIFFORD,MARLYN",
+          "address": "451 PROSPECT PL, APT 1A, BROOKLYN, NY 11238",
+          "phone": "347-787-6044",
+          "hasIS": false
+        },
+        {
+          "time": "8-11",
+          "job": "07836228285",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4634",
+          "name": "JUAREZ,ROSA A",
+          "address": "16 LOCUST ST, APT 2R, BROOKLYN, NY 11206",
+          "phone": "718-349-9969",
+          "hasIS": false
+        },
+        {
+          "time": "12-3",
+          "job": "07836544577",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4634",
+          "name": "ISA,TOLINE",
+          "address": "753 CLASSON AV, APT 7L, BROOKLYN, NY 11238-4697",
+          "phone": "347-833-6847",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836544533",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4634",
+          "name": "MURSHAD,MINHAZ",
+          "address": "753 CLASSON AV, APT 3L, BROOKLYN, NY 11238-4683",
+          "phone": "347-545-7130",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836509458",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4634",
+          "name": "Van Zandt,Emma",
+          "address": "793 FRANKLIN AV, APT 3C, BROOKLYN, NY 11238",
+          "phone": "571-201-4489",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836312656",
+          "type": "TC",
+          "status": "Cancel",
+          "normalizedStatus": "cancelled",
+          "badge": "cancelled",
+          "tech": "4634",
+          "name": "DEONA,BIBI",
+          "address": "304 E 5TH ST, APT 1, BROOKLYN, NY 11218-2406",
+          "phone": "212-767-9263",
+          "hasIS": false
+        },
+        {
+          "time": "8-11",
+          "job": "07836544522",
+          "type": "TC",
+          "status": "Cancel",
+          "normalizedStatus": "cancelled",
+          "badge": "cancelled",
+          "tech": "4634",
+          "name": "POPOOLA,OLUFEMI",
+          "address": "753 CLASSON AV, APT 2L, BROOKLYN, NY 11238-4683",
+          "phone": "979-308-6055",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 7,
+      "estimatedDuration": "4h 54m"
+    },
+    {
+      "techNo": "4682",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "11-2",
+          "job": "07836143498",
+          "type": "COS",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4682",
+          "name": "RITZMAN,JOHNATHA",
+          "address": "261 GATES AV, APT 5B, BROOKLYN, NY 11238-2037",
+          "phone": "303-775-3675",
+          "hasIS": false
+        },
+        {
+          "time": "12-3",
+          "job": "07836483929",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4682",
+          "name": "RASH,TIA",
+          "address": "228 E 38TH ST, APT C2, BROOKLYN, NY 11203",
+          "phone": "347-554-9040",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836542511",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4682",
+          "name": "SMART,JOHN",
+          "address": "707 TROY AV, APT BSMT, BROOKLYN, NY 11203",
+          "phone": "347-543-8517",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 3,
+      "estimatedDuration": "3h 30m"
+    },
+    {
+      "techNo": "4687",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836036221",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4687",
+          "name": "CRIPPIN,DOMONIQU",
+          "address": "2105 ROCKAWAY PK, APT 6I, BROOKLYN, NY 11236-5815",
+          "phone": "347-290-1807",
+          "hasIS": false
+        },
+        {
+          "time": "9-12",
+          "job": "07836802969",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4687",
+          "name": "FLEARY,JIM",
+          "address": "25 PAERDEGT 6TH ST, APT 2, BROOKLYN, NY 11236",
+          "phone": "718-763-7388",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836031755",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4687",
+          "name": "BURRELL,RADELLIF",
+          "address": "10806 AVENUE N, APT 1FL, BROOKLYN, NY 11236-4616",
+          "phone": "718-757-5262",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836649667",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4687",
+          "name": "RICHARDSON,TANYA",
+          "address": "1425 PENNSYLVANIA AV, APT 4D, BROOKLYN, NY 11239-2105",
+          "phone": "347-413-6897",
+          "hasIS": false
+        },
+        {
+          "time": "12-3",
+          "job": "07836506422",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4687",
+          "name": "TRENCH,DONALD",
+          "address": "550 E 96TH ST, APT 1, BROOKLYN, NY 11212-2413",
+          "phone": "718-385-3018",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": "4h 48m"
+    },
+    {
+      "techNo": "4819",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "11-2",
+          "job": "07836548629",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4819",
+          "name": "SUNDBERG,MARGARET",
+          "address": "105 WYONA ST, APT 1, BROOKLYN, NY 11207",
+          "phone": "718-801-4903",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836201511",
+          "type": "COS",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4819",
+          "name": "GUALLPA,RIGOBERT",
+          "address": "437 BLEECKER ST, APT 1L, BROOKLYN, NY 11237",
+          "phone": "718-873-7449",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 2,
+      "estimatedDuration": "4h 12m"
+    },
+    {
+      "techNo": "4856",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "9-12",
+          "job": "07836371374",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4856",
+          "name": "SAMUEL,SABRINA",
+          "address": "549 E 49TH ST, APT 2, BROOKLYN, NY 11203-4303",
+          "phone": "917-893-8967",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836514472",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4856",
+          "name": "COLLADO,YUNELKIS",
+          "address": "327 COVERT ST, APT BSMT, BROOKLYN, NY 11237",
+          "phone": "347-325-5726",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836548788",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4856",
+          "name": "HUNTER,MUELINE",
+          "address": "491 E 95TH ST, FLR 2, BROOKLYN, NY 11212",
+          "phone": "347-337-9036",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836514652",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4856",
+          "name": "INNIS,BRENDA",
+          "address": "426 ROCKAWAY PK, APT F1, BROOKLYN, NY 11212-3229",
+          "phone": "718-342-4255",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 4,
+      "estimatedDuration": "5h 12m"
+    },
+    {
+      "techNo": "4891",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836113208",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4891",
+          "name": "ROBERTS,SHWANA",
+          "address": "987 PUTNAM AV, APT 2, BROOKLYN, NY 11221-4103",
+          "phone": "347-240-9850",
+          "hasIS": false
+        },
+        {
+          "time": "8-11",
+          "job": "07836479798",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4891",
+          "name": "Jones,BEVERLY",
+          "address": "630 KINGSBOR 6TH WK, APT 1F, BROOKLYN, NY 11233",
+          "phone": "929-434-6141",
+          "hasIS": false
+        },
+        {
+          "time": "9-12",
+          "job": "07836116505",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4891",
+          "name": "BELK,YVETTE",
+          "address": "339 BAINBRIDGE ST, APT 2, BROOKLYN, NY 11233",
+          "phone": "646-522-1770",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836580861",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4891",
+          "name": "CLEMMOS,SHAMEKA",
+          "address": "1580 E NEW YORK AV, APT 5D, BROOKLYN, NY 11212-6810",
+          "phone": "980-800-4384",
+          "hasIS": false
+        },
+        {
+          "time": "12-3",
+          "job": "07836231268",
+          "type": "TC",
+          "status": "Cancel",
+          "normalizedStatus": "cancelled",
+          "badge": "cancelled",
+          "tech": "4891",
+          "name": "RODRIGUEZ,ZOILA",
+          "address": "232 SCHAEFER ST, APT 2, BROOKLYN, NY 11207",
+          "phone": "718-386-5713",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836479800",
+          "type": "TC",
+          "status": "Cancel",
+          "normalizedStatus": "cancelled",
+          "badge": "cancelled",
+          "tech": "4891",
+          "name": "WHITE,CAROL",
+          "address": "630 KINGSBOR 6TH WK, APT 2B, BROOKLYN, NY 11233",
+          "phone": "718-647-8356",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 6,
+      "estimatedDuration": "4h 48m"
+    },
+    {
+      "techNo": "5647",
+      "date": "2025-12-06",
+      "stops": [
+        {
+          "time": "11-2",
+          "job": "07836572315",
+          "type": "TC",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "5647",
+          "name": "DUBOSE,THOMAS",
+          "address": "299 GATES AV, APT 5, BROOKLYN, NY 11216-1356",
+          "phone": "929-510-6356",
+          "hasIS": false
+        },
+        {
+          "time": "11-2",
+          "job": "07836480024",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "5647",
+          "name": "ROBERSON,VANNESSA",
+          "address": "120 KINGSBOR 1ST WK, APT 5B, BROOKLYN, NY 11233",
+          "phone": "347-265-5859",
+          "hasIS": false
+        },
+        {
+          "time": "2-5",
+          "job": "07836198522",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "5647",
+          "name": "QUICHIMBO,ANA",
+          "address": "139 ST NICHOLAS AV, APT 3, BROOKLYN, NY 11237-4033",
+          "phone": "929-405-5204",
+          "hasIS": false
+        }
+      ],
+      "totalStops": 3,
+      "estimatedDuration": "5h 24m"
+    }
+  ]
+}

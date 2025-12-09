@@ -1,0 +1,412 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[8810], {
+    8810: function(e, t, s) {
+        s.d(t, {
+            Z: function() {
+                return l
+            }
+        });
+        var a = s(7437)
+          , o = s(2265)
+          , n = s(4362)
+          , r = s(3504)
+          , d = s(5978)
+          , i = s(6410);
+        function l(e) {
+            let {user: t, isOpen: s, onClose: l, onUpdate: c} = e
+              , {company: u, user: m} = (0,
+            n.a)()
+              , {addNotification: y} = (0,
+            r.z)()
+              , [x,f] = (0,
+            o.useState)("")
+              , [h,b] = (0,
+            o.useState)(!1)
+              , [p,g] = (0,
+            o.useState)([])
+              , [N,w] = (0,
+            o.useState)(null)
+              , [j,v] = (0,
+            o.useState)("");
+            (0,
+            o.useEffect)( () => {
+                t && (g(t.notesHistory || []),
+                f(""))
+            }
+            , [t]),
+            (0,
+            o.useEffect)( () => {
+                s && t && u && m && D()
+            }
+            , [s]),
+            (0,
+            o.useEffect)( () => (s ? document.body.style.overflow = "hidden" : document.body.style.overflow = "unset",
+            () => {
+                document.body.style.overflow = "unset"
+            }
+            ), [s]);
+            let D = async () => {
+                if (t && u && m)
+                    try {
+                        let e = (0,
+                        d.doc)(i.db, "companies", u.companyId, "users", t.id)
+                          , s = t.notesHistory ? JSON.stringify(t.notesHistory) : t.notes || "";
+                        await (0,
+                        d.updateDoc)(e, {
+                            ["notesReadBy.".concat(m.id)]: {
+                                lastReadAt: new Date,
+                                lastNotesContent: s
+                            },
+                            updatedAt: new Date
+                        })
+                    } catch (e) {
+                        console.error("Error marking notes as read:", e)
+                    }
+            }
+              , k = async () => {
+                if (t && u && m && x.trim())
+                    try {
+                        b(!0);
+                        let e = (0,
+                        d.doc)(i.db, "companies", u.companyId, "users", t.id)
+                          , s = {
+                            id: Date.now().toString(),
+                            content: x.trim(),
+                            addedBy: m.id,
+                            addedByName: "".concat(m.firstName, " ").concat(m.lastName),
+                            addedAt: new Date
+                        }
+                          , a = [...p, s];
+                        await (0,
+                        d.updateDoc)(e, {
+                            notesHistory: a,
+                            ["notesReadBy.".concat(m.id)]: {
+                                lastReadAt: new Date,
+                                lastNotesContent: JSON.stringify(a)
+                            },
+                            updatedAt: new Date
+                        }),
+                        g(a),
+                        f(""),
+                        y({
+                            title: "Success",
+                            body: "Note added successfully",
+                            type: "success"
+                        })
+                    } catch (e) {
+                        console.error("Error adding note:", e),
+                        y({
+                            title: "Error",
+                            body: "Failed to add note",
+                            type: "error"
+                        })
+                    } finally {
+                        b(!1)
+                    }
+            }
+              , C = async () => {
+                if (t && u && m)
+                    try {
+                        let e = (0,
+                        d.doc)(i.db, "companies", u.companyId, "users", t.id)
+                          , s = p.length > 0 ? JSON.stringify(p) : t.notes || "";
+                        await (0,
+                        d.updateDoc)(e, {
+                            ["notesReadBy.".concat(m.id)]: {
+                                lastReadAt: new Date,
+                                lastNotesContent: s
+                            }
+                        })
+                    } catch (e) {
+                        console.error("Error marking notes as read on close:", e)
+                    }
+                null == c || c(),
+                l()
+            }
+              , A = e => !!m && ("admin" === m.role || "dispatcher" === m.role && e.addedBy === m.id)
+              , S = e => !!m && ("admin" === m.role || "dispatcher" === m.role && e.addedBy === m.id)
+              , E = e => {
+                w(e.id),
+                v(e.content)
+            }
+              , B = () => {
+                w(null),
+                v("")
+            }
+              , R = async () => {
+                if (t && u && m && N && j.trim())
+                    try {
+                        b(!0);
+                        let e = (0,
+                        d.doc)(i.db, "companies", u.companyId, "users", t.id)
+                          , s = p.map(e => e.id === N ? {
+                            ...e,
+                            content: j.trim(),
+                            editedBy: m.id,
+                            editedByName: "".concat(m.firstName, " ").concat(m.lastName),
+                            editedAt: new Date
+                        } : e);
+                        await (0,
+                        d.updateDoc)(e, {
+                            notesHistory: s,
+                            ["notesReadBy.".concat(m.id)]: {
+                                lastReadAt: new Date,
+                                lastNotesContent: JSON.stringify(s)
+                            },
+                            updatedAt: new Date
+                        }),
+                        g(s),
+                        w(null),
+                        v(""),
+                        y({
+                            title: "Success",
+                            body: "Note updated successfully",
+                            type: "success"
+                        })
+                    } catch (e) {
+                        console.error("Error updating note:", e),
+                        y({
+                            title: "Error",
+                            body: "Failed to update note",
+                            type: "error"
+                        })
+                    } finally {
+                        b(!1)
+                    }
+            }
+              , I = async e => {
+                if (t && u && m && window.confirm("Are you sure you want to delete this note? This action cannot be undone."))
+                    try {
+                        b(!0);
+                        let s = (0,
+                        d.doc)(i.db, "companies", u.companyId, "users", t.id)
+                          , a = p.filter(t => t.id !== e);
+                        await (0,
+                        d.updateDoc)(s, {
+                            notesHistory: a,
+                            ["notesReadBy.".concat(m.id)]: {
+                                lastReadAt: new Date,
+                                lastNotesContent: JSON.stringify(a)
+                            },
+                            updatedAt: new Date
+                        }),
+                        g(a),
+                        y({
+                            title: "Success",
+                            body: "Note deleted successfully",
+                            type: "success"
+                        })
+                    } catch (e) {
+                        console.error("Error deleting note:", e),
+                        y({
+                            title: "Error",
+                            body: "Failed to delete note",
+                            type: "error"
+                        })
+                    } finally {
+                        b(!1)
+                    }
+            }
+              , H = e => {
+                try {
+                    let t;
+                    if (t = e && "function" == typeof e.toDate ? e.toDate() : e instanceof Date ? e : "string" == typeof e || "number" == typeof e ? new Date(e) : new Date,
+                    isNaN(t.getTime()))
+                        return "Invalid date";
+                    return new Intl.DateTimeFormat("en-US",{
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    }).format(t)
+                } catch (t) {
+                    return console.error("Error formatting date:", t, e),
+                    "Invalid date"
+                }
+            }
+            ;
+            return s && t ? (0,
+            a.jsx)("div", {
+                className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4",
+                children: (0,
+                a.jsxs)("div", {
+                    className: "bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden",
+                    children: [(0,
+                    a.jsxs)("div", {
+                        className: "flex items-center justify-between p-6 border-b border-gray-200",
+                        children: [(0,
+                        a.jsxs)("h2", {
+                            className: "text-xl font-semibold text-gray-900",
+                            children: ["Notes for ", t.firstName, " ", t.lastName]
+                        }), (0,
+                        a.jsx)("button", {
+                            onClick: C,
+                            className: "text-gray-400 hover:text-gray-600 transition-colors",
+                            children: (0,
+                            a.jsx)("svg", {
+                                className: "w-6 h-6",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: (0,
+                                a.jsx)("path", {
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: 2,
+                                    d: "M6 18L18 6M6 6l12 12"
+                                })
+                            })
+                        })]
+                    }), (0,
+                    a.jsxs)("div", {
+                        className: "p-6 overflow-y-auto max-h-[calc(90vh-200px)]",
+                        children: [(0,
+                        a.jsx)("div", {
+                            className: "space-y-4 mb-6",
+                            children: 0 === p.length ? (0,
+                            a.jsxs)("div", {
+                                className: "text-center text-gray-500 py-8",
+                                children: [(0,
+                                a.jsx)("svg", {
+                                    className: "w-12 h-12 mx-auto mb-4 text-gray-300",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    viewBox: "0 0 24 24",
+                                    children: (0,
+                                    a.jsx)("path", {
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        strokeWidth: 2,
+                                        d: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                    })
+                                }), (0,
+                                a.jsx)("p", {
+                                    children: "No notes yet. Add the first note below."
+                                })]
+                            }) : p.map( (e, t) => (0,
+                            a.jsxs)("div", {
+                                className: "bg-gray-50 rounded-lg p-4 border-l-4 border-blue-500",
+                                children: [(0,
+                                a.jsxs)("div", {
+                                    className: "flex items-start justify-between mb-2",
+                                    children: [(0,
+                                    a.jsxs)("div", {
+                                        className: "flex items-center space-x-2",
+                                        children: [(0,
+                                        a.jsx)("span", {
+                                            className: "font-medium text-gray-900",
+                                            children: e.addedByName
+                                        }), (0,
+                                        a.jsx)("span", {
+                                            className: "text-sm text-gray-500",
+                                            children: "•"
+                                        }), (0,
+                                        a.jsx)("span", {
+                                            className: "text-sm text-gray-500",
+                                            children: H(e.addedAt)
+                                        }), e.editedAt && (0,
+                                        a.jsxs)(a.Fragment, {
+                                            children: [(0,
+                                            a.jsx)("span", {
+                                                className: "text-sm text-gray-500",
+                                                children: "•"
+                                            }), (0,
+                                            a.jsxs)("span", {
+                                                className: "text-sm text-orange-600",
+                                                children: ["edited by ", e.editedByName, " at ", H(e.editedAt)]
+                                            })]
+                                        })]
+                                    }), (0,
+                                    a.jsxs)("div", {
+                                        className: "flex items-center space-x-2",
+                                        children: [A(e) && (0,
+                                        a.jsx)("button", {
+                                            onClick: () => E(e),
+                                            className: "text-blue-600 hover:text-blue-800 text-sm font-medium",
+                                            disabled: h,
+                                            children: "Edit"
+                                        }), S(e) && (0,
+                                        a.jsx)("button", {
+                                            onClick: () => I(e.id),
+                                            className: "text-red-600 hover:text-red-800 text-sm font-medium",
+                                            disabled: h,
+                                            children: "Delete"
+                                        })]
+                                    })]
+                                }), N === e.id ? (0,
+                                a.jsxs)("div", {
+                                    className: "space-y-3",
+                                    children: [(0,
+                                    a.jsx)("textarea", {
+                                        value: j,
+                                        onChange: e => v(e.target.value),
+                                        className: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none",
+                                        rows: 3,
+                                        disabled: h
+                                    }), (0,
+                                    a.jsxs)("div", {
+                                        className: "flex justify-end space-x-2",
+                                        children: [(0,
+                                        a.jsx)("button", {
+                                            onClick: B,
+                                            className: "px-3 py-1 text-sm text-gray-600 hover:text-gray-800",
+                                            disabled: h,
+                                            children: "Cancel"
+                                        }), (0,
+                                        a.jsx)("button", {
+                                            onClick: R,
+                                            disabled: h || !j.trim(),
+                                            className: "px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50",
+                                            children: h ? "Saving..." : "Save"
+                                        })]
+                                    })]
+                                }) : (0,
+                                a.jsx)("p", {
+                                    className: "text-gray-700 whitespace-pre-wrap",
+                                    children: e.content
+                                })]
+                            }, e.id))
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "border-t border-gray-200 pt-6",
+                            children: [(0,
+                            a.jsx)("h3", {
+                                className: "text-lg font-medium text-gray-900 mb-4",
+                                children: "Add New Note"
+                            }), (0,
+                            a.jsxs)("div", {
+                                className: "space-y-4",
+                                children: [(0,
+                                a.jsx)("textarea", {
+                                    value: x,
+                                    onChange: e => f(e.target.value),
+                                    placeholder: "Enter your note here...",
+                                    className: "w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none",
+                                    rows: 4,
+                                    disabled: h
+                                }), (0,
+                                a.jsxs)("div", {
+                                    className: "flex justify-end space-x-3",
+                                    children: [(0,
+                                    a.jsx)("button", {
+                                        onClick: C,
+                                        className: "px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+                                        disabled: h,
+                                        children: "Close"
+                                    }), (0,
+                                    a.jsx)("button", {
+                                        onClick: k,
+                                        disabled: h || !x.trim(),
+                                        className: "px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed",
+                                        children: h ? "Adding..." : "Add Note"
+                                    })]
+                                })]
+                            })]
+                        })]
+                    })]
+                })
+            }) : null
+        }
+    }
+}]);

@@ -1,0 +1,101 @@
+[
+  {
+    "techNo": "4634",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836618646",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "CLIFFORD,MARLYN",
+        "address": "451 PROSPECT PL, APT 1A, BROOKLYN, NY 11238",
+        "phone": "347-787-6044",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836228285",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "JUAREZ,ROSA A",
+        "address": "16 LOCUST ST, APT 2R, BROOKLYN, NY 11206",
+        "phone": "718-349-9969",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836544577",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "ISA,TOLINE",
+        "address": "753 CLASSON AV, APT 7L, BROOKLYN, NY 11238-4697",
+        "phone": "347-833-6847",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836544533",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "MURSHAD,MINHAZ",
+        "address": "753 CLASSON AV, APT 3L, BROOKLYN, NY 11238-4683",
+        "phone": "347-545-7130",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836509458",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "Van Zandt,Emma",
+        "address": "793 FRANKLIN AV, APT 3C, BROOKLYN, NY 11238",
+        "phone": "571-201-4489",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836312656",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4634",
+        "name": "DEONA,BIBI",
+        "address": "304 E 5TH ST, APT 1, BROOKLYN, NY 11218-2406",
+        "phone": "212-767-9263",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836544522",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4634",
+        "name": "POPOOLA,OLUFEMI",
+        "address": "753 CLASSON AV, APT 2L, BROOKLYN, NY 11238-4683",
+        "phone": "979-308-6055",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 7,
+    "estimatedDuration": "4h 54m"
+  }
+]

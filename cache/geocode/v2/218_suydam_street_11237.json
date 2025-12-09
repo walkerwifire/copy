@@ -1,0 +1,140 @@
+{
+  "chosen": {
+    "lat": 40.7007613,
+    "lng": -73.9247928,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.7007613,
+      "lng": -73.9247928,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 42' 2.74068'' N",
+            "lng": "73° 55' 29.25408'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWL9083506095",
+          "Maidenhead": "FN30aq98ae",
+          "Mercator": {
+            "x": -8229270.291,
+            "y": 4940433.734
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=250419401#map=17/40.70076/-73.92479",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/40.70076/-73.92479&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.70076&mlon=-73.92479#map=17/40.70076/-73.92479"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5rtc3e57z60qqr3e8s",
+          "qibla": 58.54,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Suydam Street",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193880,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229220,
+              "astronomical": 1765235100,
+              "civil": 1765231080,
+              "nautical": 1765233120
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "ranks.during.player"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.700836,
+            "lng": -73.9246762
+          },
+          "southwest": {
+            "lat": 40.7006865,
+            "lng": -73.9249024
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "218",
+          "postcode": "11237",
+          "quarter": "Bushwick",
+          "road": "Suydam Street",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "218 Suydam Street, New York, NY 11237, United States of America",
+        "geometry": {
+          "lat": 40.7007613,
+          "lng": -73.9247928
+        }
+      }
+    }
+  ]
+}

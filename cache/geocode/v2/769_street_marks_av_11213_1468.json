@@ -1,0 +1,270 @@
+{
+  "chosen": {
+    "lat": 40.6735138,
+    "lng": -73.9139114,
+    "provider": "opencage",
+    "quality": "bus_stop",
+    "confidence": 0.7
+  },
+  "candidates": [
+    {
+      "lat": 28.557257,
+      "lng": -81.3184262,
+      "provider": "opencage",
+      "quality": "road",
+      "confidence": 0.9,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "28° 33' 26.12520'' N",
+            "lng": "81° 19' 6.33432'' W"
+          },
+          "FIPS": {
+            "county": "12095",
+            "state": "12"
+          },
+          "MGRS": "17RMM6885358976",
+          "Maidenhead": "EL98in13sr",
+          "Mercator": {
+            "x": -9052325.797,
+            "y": 3298993.081
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=44074990#map=17/28.55726/-81.31843",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/28.55726/-81.31843&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=28.55726&mlon=-81.31843#map=17/28.55726/-81.31843"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "djn4mw9wp6d97wnuuvc1",
+          "qibla": 55.33,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Roush Avenue",
+            "road_type": "residential",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195620,
+              "astronomical": 1765190580,
+              "civil": 1765194060,
+              "nautical": 1765192320
+            },
+            "set": {
+              "apparent": 1765232880,
+              "astronomical": 1765237920,
+              "civil": 1765234440,
+              "nautical": 1765236180
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "intelligent.negligent.polka"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 28.5572579,
+            "lng": -81.3179261
+          },
+          "southwest": {
+            "lat": 28.557256,
+            "lng": -81.3189264
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-FL"
+          ],
+          "_category": "road",
+          "_normalized_city": "Azalea Park",
+          "_type": "road",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Orange County",
+          "postcode": "32814",
+          "residential": "Lake Barton Park",
+          "road": "Roush Avenue",
+          "road_type": "residential",
+          "state": "Florida",
+          "state_code": "FL",
+          "town": "Azalea Park"
+        },
+        "confidence": 9,
+        "formatted": "Roush Avenue, Azalea Park, FL 32814, United States of America",
+        "geometry": {
+          "lat": 28.557257,
+          "lng": -81.3184262
+        }
+      }
+    }
+  ],
+  "_last_suggested": {
+    "lat": 28.557257,
+    "lng": -81.3184262,
+    "provider": "opencage",
+    "quality": "road",
+    "confidence": 0.9,
+    "raw": {
+      "annotations": {
+        "DMS": {
+          "lat": "28° 33' 26.12520'' N",
+          "lng": "81° 19' 6.33432'' W"
+        },
+        "FIPS": {
+          "county": "12095",
+          "state": "12"
+        },
+        "MGRS": "17RMM6885358976",
+        "Maidenhead": "EL98in13sr",
+        "Mercator": {
+          "x": -9052325.797,
+          "y": 3298993.081
+        },
+        "OSM": {
+          "edit_url": "https://www.openstreetmap.org/edit?way=44074990#map=17/28.55726/-81.31843",
+          "note_url": "https://www.openstreetmap.org/note/new#map=17/28.55726/-81.31843&layers=N",
+          "url": "https://www.openstreetmap.org/?mlat=28.55726&mlon=-81.31843#map=17/28.55726/-81.31843"
+        },
+        "UN_M49": {
+          "regions": {
+            "AMERICAS": "019",
+            "NORTHERN_AMERICA": "021",
+            "US": "840",
+            "WORLD": "001"
+          },
+          "statistical_groupings": [
+            "MEDC"
+          ]
+        },
+        "callingcode": 1,
+        "currency": {
+          "alternate_symbols": [
+            "US$"
+          ],
+          "decimal_mark": ".",
+          "disambiguate_symbol": "US$",
+          "html_entity": "$",
+          "iso_code": "USD",
+          "iso_numeric": "840",
+          "name": "United States Dollar",
+          "smallest_denomination": 1,
+          "subunit": "Cent",
+          "subunit_to_unit": 100,
+          "symbol": "$",
+          "symbol_first": 1,
+          "thousands_separator": ","
+        },
+        "flag": "🇺🇸",
+        "geohash": "djn4mw9wp6d97wnuuvc1",
+        "qibla": 55.33,
+        "roadinfo": {
+          "drive_on": "right",
+          "road": "Roush Avenue",
+          "road_type": "residential",
+          "speed_in": "mph"
+        },
+        "sun": {
+          "rise": {
+            "apparent": 1765195620,
+            "astronomical": 1765190580,
+            "civil": 1765194060,
+            "nautical": 1765192320
+          },
+          "set": {
+            "apparent": 1765232880,
+            "astronomical": 1765237920,
+            "civil": 1765234440,
+            "nautical": 1765236180
+          }
+        },
+        "timezone": {
+          "name": "America/New_York",
+          "now_in_dst": 0,
+          "offset_sec": -18000,
+          "offset_string": "-0500",
+          "short_name": "EST"
+        },
+        "what3words": {
+          "words": "intelligent.negligent.polka"
+        }
+      },
+      "bounds": {
+        "northeast": {
+          "lat": 28.5572579,
+          "lng": -81.3179261
+        },
+        "southwest": {
+          "lat": 28.557256,
+          "lng": -81.3189264
+        }
+      },
+      "components": {
+        "ISO_3166-1_alpha-2": "US",
+        "ISO_3166-1_alpha-3": "USA",
+        "ISO_3166-2": [
+          "US-FL"
+        ],
+        "_category": "road",
+        "_normalized_city": "Azalea Park",
+        "_type": "road",
+        "continent": "North America",
+        "country": "United States",
+        "country_code": "us",
+        "county": "Orange County",
+        "postcode": "32814",
+        "residential": "Lake Barton Park",
+        "road": "Roush Avenue",
+        "road_type": "residential",
+        "state": "Florida",
+        "state_code": "FL",
+        "town": "Azalea Park"
+      },
+      "confidence": 9,
+      "formatted": "Roush Avenue, Azalea Park, FL 32814, United States of America",
+      "geometry": {
+        "lat": 28.557257,
+        "lng": -81.3184262
+      }
+    },
+    "time": "2025-12-08T20:43:45.425Z"
+  }
+}

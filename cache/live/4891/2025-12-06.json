@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4891",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836113208",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "ROBERTS,SHWANA",
+        "address": "987 PUTNAM AV, APT 2, BROOKLYN, NY 11221-4103",
+        "phone": "347-240-9850",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836479798",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "Jones,BEVERLY",
+        "address": "630 KINGSBOR 6TH WK, APT 1F, BROOKLYN, NY 11233",
+        "phone": "929-434-6141",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836116505",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "BELK,YVETTE",
+        "address": "339 BAINBRIDGE ST, APT 2, BROOKLYN, NY 11233",
+        "phone": "646-522-1770",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836580861",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "CLEMMOS,SHAMEKA",
+        "address": "1580 E NEW YORK AV, APT 5D, BROOKLYN, NY 11212-6810",
+        "phone": "980-800-4384",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836231268",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4891",
+        "name": "RODRIGUEZ,ZOILA",
+        "address": "232 SCHAEFER ST, APT 2, BROOKLYN, NY 11207",
+        "phone": "718-386-5713",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836479800",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4891",
+        "name": "WHITE,CAROL",
+        "address": "630 KINGSBOR 6TH WK, APT 2B, BROOKLYN, NY 11233",
+        "phone": "718-647-8356",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "4h 48m"
+  }
+]

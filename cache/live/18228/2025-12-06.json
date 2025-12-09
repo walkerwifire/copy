@@ -1,0 +1,101 @@
+[
+  {
+    "techNo": "18228",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836265061",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "SIEGEL,ANDREW",
+        "address": "1680 OCEAN AV, APT 6D, BROOKLYN, NY 11230-4909",
+        "phone": "718-627-8267",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836653984",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "PALMER,DAWN",
+        "address": "4205 FARRAGUT RD, APT 1, BROOKLYN, NY 11203-6517",
+        "phone": "347-713-3132",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836440586",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "KERNIZAN,MARIE",
+        "address": "1412 BROOKLYN AV, APT 6A, BROOKLYN, NY 11210-1862",
+        "phone": "718-773-9564",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836165137",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "ALEXIS,CLEONORE",
+        "address": "980 E 40TH ST, BROOKLYN, NY 11210-3530",
+        "phone": "718-951-0479",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836673908",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "DANIELS,LYNETTE",
+        "address": "662 E 37TH ST, APT 1, BROOKLYN, NY 11203-5604",
+        "phone": "347-240-8769",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836332085",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "DELBURY,DAMIAN",
+        "address": "1820 CORTELYOU RD, APT 6C, BROOKLYN, NY 11226-5823",
+        "phone": "347-413-9290",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836365737",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "18228",
+        "name": "RIVERA,DAISY",
+        "address": "380 RUGBY RD, 3, BROOKLYN, NY 11226",
+        "phone": "347-737-5292",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 7,
+    "estimatedDuration": "6h 0m"
+  }
+]

@@ -1,0 +1,140 @@
+{
+  "chosen": {
+    "lat": 40.633091,
+    "lng": -73.990682,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.633091,
+      "lng": -73.990682,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 37' 59.12760'' N",
+            "lng": "73° 59' 26.45520'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWK8535498517",
+          "Maidenhead": "FN30ap11cw",
+          "Mercator": {
+            "x": -8236605.044,
+            "y": 4930540.758
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=221595228#map=17/40.63309/-73.99068",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/40.63309/-73.99068&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.63309&mlon=-73.99068#map=17/40.63309/-73.99068"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5rhm18ujhtnukwv2vn",
+          "qibla": 58.5,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "14th Avenue",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193880,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229280,
+              "astronomical": 1765235160,
+              "civil": 1765231080,
+              "nautical": 1765233180
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "dwell.stroke.booth"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.633141,
+            "lng": -73.990632
+          },
+          "southwest": {
+            "lat": 40.633041,
+            "lng": -73.990732
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "5000",
+          "neighbourhood": "Borough Park",
+          "postcode": "11219",
+          "road": "14th Avenue",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "5000 14th Avenue, New York, NY 11219, United States of America",
+        "geometry": {
+          "lat": 40.633091,
+          "lng": -73.990682
+        }
+      }
+    }
+  ]
+}

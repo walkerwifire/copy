@@ -1,0 +1,141 @@
+{
+  "chosen": {
+    "lat": 40.5918188,
+    "lng": -73.9827672,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.5918188,
+      "lng": -73.9827672,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 35' 30.54768'' N",
+            "lng": "73° 58' 57.96192'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWK8607793943",
+          "Maidenhead": "FN30ao22ba",
+          "Mercator": {
+            "x": -8235723.972,
+            "y": 4924511.979
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=248851368#map=17/40.59182/-73.98277",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/40.59182/-73.98277&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.59182&mlon=-73.98277#map=17/40.59182/-73.98277"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5qumx2kx6qvkh1thxn",
+          "qibla": 58.5,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Avenue W",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193820,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229280,
+              "astronomical": 1765235160,
+              "civil": 1765231140,
+              "nautical": 1765233180
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "shock.result.vibes"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.5922573,
+            "lng": -73.9826953
+          },
+          "southwest": {
+            "lat": 40.591556,
+            "lng": -73.982953
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "building": "Marlboro Houses 1",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "29",
+          "neighbourhood": "Gravesend",
+          "postcode": "11223",
+          "road": "Avenue W",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "Marlboro Houses 1, 29 Avenue W, New York, NY 11223, United States of America",
+        "geometry": {
+          "lat": 40.5918188,
+          "lng": -73.9827672
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "5647",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836572315",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "DUBOSE,THOMAS",
+        "address": "299 GATES AV, APT 5, BROOKLYN, NY 11216-1356",
+        "phone": "929-510-6356",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836480024",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "ROBERSON,VANNESSA",
+        "address": "120 KINGSBOR 1ST WK, APT 5B, BROOKLYN, NY 11233",
+        "phone": "347-265-5859",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836198522",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "QUICHIMBO,ANA",
+        "address": "139 ST NICHOLAS AV, APT 3, BROOKLYN, NY 11237-4033",
+        "phone": "929-405-5204",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "5h 24m"
+  }
+]

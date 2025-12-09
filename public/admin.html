@@ -45,8 +45,10 @@
         <tr>
           <th>Tech</th>
           <th>Date</th>
-          <th>Path</th>
+          <th>Routes</th>
+          <th>Stops</th>
           <th>Last Modified</th>
+          <th>File</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -100,11 +102,14 @@
       for (const item of items) {
         const tr = document.createElement('tr');
         const mtime = new Date(item.mtimeMs).toLocaleString();
+        const size = item.size ? ` (${(item.size/1024).toFixed(1)} KB)` : '';
         tr.innerHTML = `
           <td>${item.tech}</td>
           <td>${item.date}</td>
-          <td>${item.path}</td>
+          <td style="text-align:right">${item.routesCount ?? ''}</td>
+          <td style="text-align:right">${item.stopsCount ?? ''}</td>
           <td>${mtime}</td>
+          <td title="${item.path}">${item.path.split('/').pop() || item.path}${size}</td>
           <td class="actions">
             <button data-tech="${item.tech}" data-date="${item.date}" class="deleteBtn">Delete</button>
           </td>

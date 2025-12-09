@@ -1,0 +1,964 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[6408], {
+    3504: function(e, o, t) {
+        t.d(o, {
+            NotificationProvider: function() {
+                return r
+            },
+            z: function() {
+                return i
+            }
+        });
+        var n = t(7437)
+          , a = t(2265)
+          , c = t(6410);
+        let l = (0,
+        a.createContext)(void 0)
+          , i = () => {
+            let e = (0,
+            a.useContext)(l);
+            if (void 0 === e)
+                throw Error("useNotifications must be used within a NotificationProvider");
+            return e
+        }
+          , r = e => {
+            let {children: o} = e
+              , [t,i] = (0,
+            a.useState)([])
+              , r = (0,
+            a.useCallback)(e => {
+                i(o => o.filter(o => o.id !== e))
+            }
+            , [])
+              , d = (0,
+            a.useCallback)(e => {
+                let o = {
+                    ...e,
+                    id: "".concat(Date.now(), "-").concat(Math.random().toString(36).slice(2, 8)),
+                    timestamp: new Date
+                };
+                i(e => [...e, o]),
+                setTimeout( () => {
+                    r(o.id)
+                }
+                , 5e3)
+            }
+            , [r])
+              , s = (0,
+            a.useCallback)( () => {
+                i([])
+            }
+            , []);
+            return (0,
+            a.useEffect)( () => {
+                (0,
+                c.Lu)().then(e => {
+                    if (e) {
+                        let {title: o, body: t, data: n} = e.notification || e;
+                        d({
+                            title: o || "New Notification",
+                            body: t || "You have a new message",
+                            type: "info",
+                            data: n || e.data
+                        })
+                    }
+                }
+                ).catch(e => {
+                    console.error("Error receiving foreground message:", e)
+                }
+                )
+            }
+            , [d]),
+            (0,
+            n.jsx)(l.Provider, {
+                value: {
+                    notifications: t,
+                    addNotification: d,
+                    removeNotification: r,
+                    clearNotifications: s
+                },
+                children: o
+            })
+        }
+    },
+    1259: function(e, o, t) {
+        function n() {
+            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "America/New_York";
+            try {
+                let o = new Date
+                  , t = new Date(o.toLocaleString("en-US", {
+                    timeZone: e
+                }))
+                  , n = t.getFullYear()
+                  , a = String(t.getMonth() + 1).padStart(2, "0")
+                  , c = String(t.getDate()).padStart(2, "0");
+                return "".concat(n, "-").concat(a, "-").concat(c)
+            } catch (c) {
+                console.warn("Invalid timezone, falling back to local date:", e, c);
+                let o = new Date
+                  , t = o.getFullYear()
+                  , n = String(o.getMonth() + 1).padStart(2, "0")
+                  , a = String(o.getDate()).padStart(2, "0");
+                return "".concat(t, "-").concat(n, "-").concat(a)
+            }
+        }
+        function a() {
+            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "America/New_York";
+            try {
+                let o = new Date;
+                return new Date(o.toLocaleString("en-US", {
+                    timeZone: e
+                }))
+            } catch (o) {
+                return console.warn("Invalid timezone, falling back to local date:", e, o),
+                new Date
+            }
+        }
+        function c() {
+            let e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "America/New_York";
+            return a(e)
+        }
+        function l(e) {
+            let o = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "America/New_York";
+            try {
+                let t = new Date(e.toLocaleString("en-US", {
+                    timeZone: o
+                }))
+                  , n = t.getFullYear()
+                  , a = String(t.getMonth() + 1).padStart(2, "0")
+                  , c = String(t.getDate()).padStart(2, "0");
+                return "".concat(n, "-").concat(a, "-").concat(c)
+            } catch (c) {
+                console.warn("Invalid timezone, falling back to local formatting:", o, c);
+                let t = e.getFullYear()
+                  , n = String(e.getMonth() + 1).padStart(2, "0")
+                  , a = String(e.getDate()).padStart(2, "0");
+                return "".concat(t, "-").concat(n, "-").concat(a)
+            }
+        }
+        function i(e) {
+            let o = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "America/New_York";
+            return e && "string" == typeof e.timezone && e.timezone.trim() ? e.timezone : o
+        }
+        t.d(o, {
+            RS: function() {
+                return n
+            },
+            Wr: function() {
+                return c
+            },
+            ZN: function() {
+                return a
+            },
+            cE: function() {
+                return l
+            },
+            fO: function() {
+                return i
+            }
+        })
+    },
+    3496: function(e, o, t) {
+        t.d(o, {
+            CC: function() {
+                return s
+            },
+            Ox: function() {
+                return g
+            },
+            Ql: function() {
+                return i
+            },
+            RF: function() {
+                return D
+            },
+            XF: function() {
+                return u
+            },
+            iH: function() {
+                return b
+            },
+            iP: function() {
+                return p
+            },
+            rY: function() {
+                return h
+            },
+            rd: function() {
+                return d
+            },
+            uX: function() {
+                return m
+            }
+        });
+        var n = t(6410)
+          , a = t(5978)
+          , c = t(62)
+          , l = t(1259);
+        async function i(e, o, t, c, i, r, d, s, u, h, m, D, g, b, p) {
+            try {
+                console.log("\uD83D\uDD04 DOCUMENT ID HANDSHAKE: updateJobStatusByDocumentId called with:", {
+                    companyId: e,
+                    documentId: o,
+                    status: t,
+                    performedByUserId: d,
+                    performedByUserName: s
+                });
+                let h = (0,
+                a.doc)(n.db, "companies", e, "jobs", o)
+                  , y = await (0,
+                a.getDoc)(h);
+                if (!y.exists())
+                    throw console.error("❌ DOCUMENT ID HANDSHAKE FAILED: Job not found by document ID:", o),
+                    Error("Job not found by document ID: ".concat(o));
+                let w = {
+                    id: y.id,
+                    ...y.data()
+                };
+                if (console.log("✅ DOCUMENT ID HANDSHAKE SUCCESS: Found exact job:", {
+                    documentId: w.id,
+                    jobId: w.jobId,
+                    type: w.type,
+                    timeFrame: w.timeFrame,
+                    status: w.status
+                }),
+                !0 === w.archived)
+                    throw Error("Cannot update archived job ".concat(w.jobId, ". Archived jobs are locked and cannot be modified."));
+                let j = !1;
+                if (d)
+                    try {
+                        let o = (0,
+                        a.doc)(n.db, "companies", e, "users", d)
+                          , t = await (0,
+                        a.getDoc)(o);
+                        if (t.exists()) {
+                            let e = t.data();
+                            j = "dispatcher" === e.role || "admin" === e.role
+                        }
+                    } catch (e) {
+                        console.warn("⚠️ Could not determine user role for updateJobStatusByDocumentId, proceeding with minimal fields")
+                    }
+                let I = {
+                    status: t
+                };
+                j && (I.updatedAt = (0,
+                a.serverTimestamp)(),
+                I.lastModifiedBy = d,
+                I.lastModifiedByName = s),
+                "completed" === t && (I.completedAt = p ? (0,
+                l.Wr)(p) : (0,
+                a.serverTimestamp)(),
+                void 0 !== c && (I.completedByTechId = c),
+                void 0 !== i && (I.completedByTechName = i),
+                I.completedUnderDifferentId = u || !1,
+                null != r && (I.completionCancelComment = r),
+                j && (m && m.length > 0 && (I.completionPhotos = m),
+                D && D.length > 0 && (I.selfQCPhotos = D))),
+                "cancelled" === t && (I.isRepeatFixed = g || !1,
+                null != r && (I.completionCancelComment = r),
+                j && (I.cancelledAt = (0,
+                a.serverTimestamp)(),
+                void 0 !== d && (I.cancelledBy = d),
+                void 0 !== s && (I.cancelledByName = s),
+                I.completedByOtherCompanyTech = b || !1,
+                m && m.length > 0 && (I.cancellationPhotos = m))),
+                await (0,
+                a.updateDoc)(h, I),
+                console.log("✅ DOCUMENT ID HANDSHAKE: Job status updated successfully:", {
+                    documentId: o,
+                    newStatus: t
+                });
+                try {
+                    var f, v;
+                    let o = {
+                        id: y.id,
+                        ...y.data()
+                    };
+                    if ("cancelled" === t && !0 === b && (null == o ? void 0 : o.isRepeat) === !0 && (null == o ? void 0 : null === (f = o.repeatInfo) || void 0 === f ? void 0 : f.originalJobId)) {
+                        if (j) {
+                            let t = (0,
+                            a.doc)(n.db, "companies", e, "jobs", o.repeatInfo.originalJobId);
+                            (await (0,
+                            a.getDoc)(t)).exists() && (await (0,
+                            a.updateDoc)(t, {
+                                excludeFromRepeatDetection: !0,
+                                exclusionReason: "completed_by_other_company_tech",
+                                exclusionSetAt: (0,
+                                a.serverTimestamp)(),
+                                exclusionSetBy: d || null,
+                                exclusionSetByName: s || null
+                            }),
+                            console.log("✅ Parent job marked as excluded from repeat detection:", o.repeatInfo.originalJobId))
+                        } else
+                            console.log("ℹ️ Skipping parent exclusion update: insufficient privileges")
+                    }
+                    if ("cancelled" !== t && (null == o ? void 0 : o.status) === "cancelled" && (null == o ? void 0 : o.completedByOtherCompanyTech) === !0 && (null == o ? void 0 : o.isRepeat) === !0 && (null == o ? void 0 : null === (v = o.repeatInfo) || void 0 === v ? void 0 : v.originalJobId)) {
+                        if (j) {
+                            let t = (0,
+                            a.doc)(n.db, "companies", e, "jobs", o.repeatInfo.originalJobId);
+                            (await (0,
+                            a.getDoc)(t)).exists() && (await (0,
+                            a.updateDoc)(t, {
+                                excludeFromRepeatDetection: !1,
+                                exclusionReason: null,
+                                exclusionSetAt: null,
+                                exclusionSetBy: null,
+                                exclusionSetByName: null,
+                                exclusionClearedAt: (0,
+                                a.serverTimestamp)(),
+                                exclusionClearedBy: d || null,
+                                exclusionClearedByName: s || null
+                            }),
+                            console.log("\uD83D\uDD04 Parent job exclusion reset due to uncancel/delete of repeat job:", o.repeatInfo.originalJobId))
+                        } else
+                            console.log("ℹ️ Skipping parent exclusion reset: insufficient privileges")
+                    }
+                } catch (e) {
+                    console.warn("⚠️ Failed to exclude parent from repeat detection:", e)
+                }
+            } catch (e) {
+                throw console.error("❌ DOCUMENT ID HANDSHAKE ERROR:", e.message),
+                e
+            }
+        }
+        async function r(e) {
+            let o = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 100;
+            try {
+                let t = (0,
+                a.collection)(n.db, "companies", e, "jobs")
+                  , c = (0,
+                a.query)(t, (0,
+                a.orderBy)("createdAt", "desc"), (0,
+                a.limit)(o));
+                return (await (0,
+                a.getDocs)(c)).docs.map(e => ({
+                    id: e.id,
+                    ...e.data()
+                }))
+            } catch (e) {
+                throw console.error("Error getting jobs:", e),
+                e
+            }
+        }
+        async function d(e, o, t, c, i, r, d, s, u, h, m, D, g, b, p) {
+            try {
+                let y, w, j, I;
+                console.log("updateJobStatusWithCompletion called with:", {
+                    companyId: e,
+                    jobId: o,
+                    status: t,
+                    completedByTechId: c,
+                    completedByTechName: i,
+                    techRouteId: h,
+                    completionPhotos: (null == m ? void 0 : m.length) || 0,
+                    selfQCPhotos: (null == D ? void 0 : D.length) || 0
+                });
+                let C = /^\d+$/.test(o)
+                  , T = !C && o.length >= 15;
+                if (console.log("Job ID analysis:", {
+                    jobId: o,
+                    isNumericOnly: C,
+                    isLikelyDocumentId: T,
+                    length: o.length
+                }),
+                T)
+                    try {
+                        let t = (0,
+                        a.doc)(n.db, "companies", e, "jobs", o)
+                          , c = await (0,
+                        a.getDoc)(t);
+                        if (c.exists())
+                            w = {
+                                id: (y = c).id,
+                                ...y.data()
+                            },
+                            console.log("Found job by document ID:", {
+                                documentId: w.id,
+                                jobId: w.jobId,
+                                status: w.status,
+                                archived: w.archived
+                            });
+                        else
+                            throw console.error("Job not found by document ID:", o),
+                            Error("Job not found by document ID: ".concat(o))
+                    } catch (e) {
+                        throw console.error("Error fetching job by document ID:", e),
+                        Error("Job not found by document ID: ".concat(o))
+                    }
+                else {
+                    console.log("Searching for job by jobId (job number):", o);
+                    let t = (0,
+                    a.collection)(n.db, "companies", e, "jobs")
+                      , c = (0,
+                    a.query)(t, (0,
+                    a.where)("jobId", "==", o))
+                      , l = await (0,
+                    a.getDocs)(c);
+                    if (l.empty)
+                        throw console.error("Job not found by jobId:", o),
+                        Error("Job not found: ".concat(o));
+                    if (l.docs.length > 1) {
+                        console.warn("⚠️ AMBIGUOUS JOB LOOKUP: Found ".concat(l.docs.length, " jobs with jobId ").concat(o, ":")),
+                        l.docs.forEach( (e, o) => {
+                            let t = e.data();
+                            console.warn("  ".concat(o + 1, ". Doc ID: ").concat(e.id, ", Type: ").concat(t.type, ", TimeFrame: ").concat(t.timeFrame, ", Status: ").concat(t.status))
+                        }
+                        );
+                        let e = l.docs.find(e => !e.data().archived);
+                        e ? (y = e,
+                        console.warn("  → Using non-archived job: ".concat(e.id))) : (y = l.docs[0],
+                        console.warn("  → All jobs archived, using first one: ".concat(y.id)))
+                    } else
+                        y = l.docs[0];
+                    w = {
+                        id: y.id,
+                        ...y.data()
+                    },
+                    console.log("Found job by jobId (job number):", {
+                        documentId: w.id,
+                        jobId: w.jobId,
+                        type: w.type,
+                        timeFrame: w.timeFrame,
+                        status: w.status,
+                        assignedTechNumber: w.assignedTechNumber,
+                        archived: w.archived
+                    })
+                }
+                if (!0 === w.archived)
+                    throw Error("Cannot update archived job ".concat(w.jobId, ". Archived jobs are locked and cannot be modified."));
+                let A = (0,
+                a.doc)(n.db, "companies", e, "jobs", w.id)
+                  , N = !1;
+                if (d)
+                    try {
+                        let o = (0,
+                        a.doc)(n.db, "companies", e, "users", d)
+                          , t = await (0,
+                        a.getDoc)(o);
+                        if (t.exists()) {
+                            let e = t.data();
+                            N = "dispatcher" === e.role || "admin" === e.role,
+                            console.log("\uD83D\uDD0D User role check:", {
+                                userId: d,
+                                role: e.role,
+                                isDispatcherOrAdmin: N
+                            })
+                        }
+                    } catch (e) {
+                        console.error("Error checking user role:", e)
+                    }
+                if (h && d && h === d && !N) {
+                    let t = w.assignedTechId === d;
+                    if (console.log("\uD83D\uDD0D Initial permission check for tech user:", {
+                        jobId: w.jobId,
+                        assignedtechnumber: w.assignedtechnumber,
+                        assignedTechNumber: w.assignedTechNumber,
+                        assignedTechId: w.assignedTechId,
+                        techRouteId: h,
+                        performedByUserId: d,
+                        isAssignedToTech: t,
+                        comparison: "".concat(w.assignedTechId, " === ").concat(d, " = ").concat(w.assignedTechId === d)
+                    }),
+                    !t && w.assignedTechNumber) {
+                        console.log("\uD83D\uDD0D Fallback authorization check - job has assignedTechNumber:", w.assignedTechNumber);
+                        try {
+                            let o = (0,
+                            a.doc)(n.db, "companies", e, "users", d)
+                              , c = await (0,
+                            a.getDoc)(o);
+                            if (c.exists()) {
+                                let e = c.data()
+                                  , o = e.techNumber || e.technumber || e.techId;
+                                console.log("\uD83D\uDD0D User profile data:", {
+                                    techNumber: e.techNumber,
+                                    technumber: e.technumber,
+                                    techId: e.techId,
+                                    selectedUserTechNumber: o
+                                }),
+                                console.log("\uD83D\uDD0D Comparing tech numbers:", {
+                                    jobAssignedTechNumber: w.assignedTechNumber,
+                                    userTechNumber: o,
+                                    match: w.assignedTechNumber === o
+                                }),
+                                w.assignedTechNumber === o ? (console.log("✅ Authorization passed - tech number match"),
+                                t = !0) : console.log("❌ Authorization failed - tech number mismatch")
+                            } else
+                                console.log("❌ User document not found for ID:", d)
+                        } catch (e) {
+                            console.error("❌ Error checking user tech number:", e)
+                        }
+                    } else
+                        console.log("\uD83D\uDD0D Skipping fallback check:", {
+                            isAssignedToTech: t,
+                            hasAssignedTechNumber: !!w.assignedTechNumber
+                        });
+                    if (!t)
+                        throw console.error("Tech not authorized to update this job:", {
+                            jobId: w.jobId,
+                            assignedtechnumber: w.assignedtechnumber,
+                            assignedTechNumber: w.assignedTechNumber,
+                            techRouteId: h,
+                            performedByUserId: d
+                        }),
+                        Error("Job not assigned to current user: ".concat(o))
+                } else
+                    console.log("Skipping authorization check - dispatcher/admin user or different tech:", {
+                        jobId: w.jobId,
+                        techRouteId: h,
+                        performedByUserId: d,
+                        assignedTechId: w.assignedTechId,
+                        isDispatcherOrAdmin: N,
+                        isDifferentTech: h !== d
+                    });
+                try {
+                    await (0,
+                    a.runTransaction)(n.db, async e => {
+                        let n = await e.get(A);
+                        if (!n.exists())
+                            throw Error("Job not found: ".concat(o));
+                        n.data();
+                        let d = {
+                            status: t
+                        };
+                        ("completed" === t || "cancelled" === t) && (d.completedAt = p ? (0,
+                        l.Wr)(p) : (0,
+                        a.serverTimestamp)(),
+                        void 0 !== c && (d.completedByTechId = c),
+                        void 0 !== i && (d.completedByTechName = i),
+                        void 0 !== u && (d.completedUnderDifferentId = u),
+                        null != r && (d.completionCancelComment = r),
+                        "cancelled" === t && void 0 !== g && (d.isRepeatFixed = g)),
+                        N && (d.updatedAt = (0,
+                        a.serverTimestamp)(),
+                        ("completed" === t || "cancelled" === t) && (void 0 !== m && m.length > 0 && (d.completionPhotos = m),
+                        void 0 !== D && D.length > 0 && (d.selfQCPhotos = D)),
+                        "cancelled" === t && void 0 !== b && (d.completedByOtherCompanyTech = b)),
+                        console.log("Transaction updating job with data:", d),
+                        e.update(A, d)
+                    }
+                    ),
+                    console.log("Job updated successfully via transaction")
+                } catch (o) {
+                    console.error("Transaction failed, trying direct update:", o);
+                    let e = {
+                        status: t,
+                        updatedAt: (0,
+                        a.serverTimestamp)()
+                    };
+                    ("completed" === t || "cancelled" === t) && (e.completedAt = p ? (0,
+                    l.Wr)(p) : (0,
+                    a.serverTimestamp)(),
+                    void 0 !== c && (e.completedByTechId = c),
+                    void 0 !== i && (e.completedByTechName = i),
+                    void 0 !== u && (e.completedUnderDifferentId = u),
+                    null != r && (e.completionCancelComment = r),
+                    void 0 !== m && m.length > 0 && (e.completionPhotos = m),
+                    void 0 !== D && D.length > 0 && (e.selfQCPhotos = D),
+                    "cancelled" === t && void 0 !== g && (e.isRepeatFixed = g),
+                    "cancelled" === t && void 0 !== b && N && (e.completedByOtherCompanyTech = b)),
+                    console.log("Direct update with data:", e),
+                    await (0,
+                    a.updateDoc)(A, e),
+                    console.log("Job updated successfully via direct update")
+                }
+                "completed" === t ? (j = "completed",
+                I = r || "Job completed by ".concat(i || "Unknown Tech")) : "cancelled" === t ? (j = "cancelled",
+                I = r || "Job cancelled by ".concat(s || "Unknown User")) : (j = "status_changed",
+                I = r || "Job status changed to ".concat(t));
+                let S = {
+                    jobId: w.jobId,
+                    companyId: e,
+                    action: j,
+                    performedBy: d,
+                    performedByUserName: s,
+                    notes: I
+                };
+                void 0 !== c && (S.completedByUserId = c),
+                void 0 !== i && (S.completedByUserName = i);
+                let x = {
+                    action: j,
+                    performedBy: d,
+                    performedByUserName: s,
+                    notes: I,
+                    timestamp: new Date
+                };
+                "status_changed" === j && (x.previousStatus = w.status,
+                x.newStatus = t),
+                void 0 !== c && (x.completedByUserId = c),
+                void 0 !== i && (x.completedByUserName = i),
+                void 0 !== m && m.length > 0 && (x.completionPhotos = m),
+                void 0 !== D && D.length > 0 && (x.selfQCPhotos = D),
+                await (0,
+                a.updateDoc)(A, {
+                    auditLogs: (0,
+                    a.arrayUnion)(x)
+                }),
+                console.log("Audit log added to job document:", w.jobId);
+                try {
+                    if (N) {
+                        var f, v;
+                        if ("cancelled" === t && !0 === b && (null == w ? void 0 : w.isRepeat) === !0 && (null == w ? void 0 : null === (f = w.repeatInfo) || void 0 === f ? void 0 : f.originalJobId)) {
+                            let o = (0,
+                            a.doc)(n.db, "companies", e, "jobs", w.repeatInfo.originalJobId);
+                            (await (0,
+                            a.getDoc)(o)).exists() && (await (0,
+                            a.updateDoc)(o, {
+                                excludeFromRepeatDetection: !0,
+                                exclusionReason: "completed_by_other_company_tech",
+                                exclusionSetAt: (0,
+                                a.serverTimestamp)(),
+                                exclusionSetBy: d || null,
+                                exclusionSetByName: s || null
+                            }),
+                            console.log("✅ Parent job marked as excluded from repeat detection:", w.repeatInfo.originalJobId))
+                        }
+                        if ("cancelled" !== t && (null == w ? void 0 : w.status) === "cancelled" && (null == w ? void 0 : w.completedByOtherCompanyTech) === !0 && (null == w ? void 0 : w.isRepeat) === !0 && (null == w ? void 0 : null === (v = w.repeatInfo) || void 0 === v ? void 0 : v.originalJobId)) {
+                            let o = (0,
+                            a.doc)(n.db, "companies", e, "jobs", w.repeatInfo.originalJobId);
+                            (await (0,
+                            a.getDoc)(o)).exists() && (await (0,
+                            a.updateDoc)(o, {
+                                excludeFromRepeatDetection: !1,
+                                exclusionReason: null,
+                                exclusionSetAt: null,
+                                exclusionSetBy: null,
+                                exclusionSetByName: null,
+                                exclusionClearedAt: (0,
+                                a.serverTimestamp)(),
+                                exclusionClearedBy: d || null,
+                                exclusionClearedByName: s || null
+                            }),
+                            console.log("\uD83D\uDD04 Parent job exclusion reset due to uncancel/delete of repeat job:", w.repeatInfo.originalJobId))
+                        }
+                    } else
+                        console.log("ℹ️ Skipping parent exclusion updates: insufficient privileges")
+                } catch (e) {
+                    console.warn("⚠️ Failed to update parent repeat detection metadata:", e)
+                }
+            } catch (e) {
+                throw console.error("Error updating job status with completion:", e),
+                Error("Failed to update job status")
+            }
+        }
+        async function s(e, o) {
+            try {
+                console.log("\uD83D\uDDD1️ Starting job deletion for document ID: ".concat(o));
+                let c = (0,
+                a.doc)(n.db, "companies", e, "jobs", o)
+                  , l = await (0,
+                a.getDoc)(c);
+                if (!l.exists())
+                    throw Error("Job with document ID ".concat(o, " not found"));
+                let i = l.data();
+                if (!0 === i.archived)
+                    throw Error("Cannot delete archived job ".concat(i.jobId, ". Archived jobs are locked and cannot be modified."));
+                try {
+                    var t;
+                    if ((null == i ? void 0 : i.status) === "cancelled" && (null == i ? void 0 : i.completedByOtherCompanyTech) === !0 && (null == i ? void 0 : i.isRepeat) === !0 && (null == i ? void 0 : null === (t = i.repeatInfo) || void 0 === t ? void 0 : t.originalJobId)) {
+                        let o = (0,
+                        a.doc)(n.db, "companies", e, "jobs", i.repeatInfo.originalJobId);
+                        (await (0,
+                        a.getDoc)(o)).exists() && (await (0,
+                        a.updateDoc)(o, {
+                            excludeFromRepeatDetection: !1,
+                            exclusionReason: null,
+                            exclusionSetAt: null,
+                            exclusionSetBy: null,
+                            exclusionSetByName: null,
+                            exclusionClearedAt: (0,
+                            a.serverTimestamp)(),
+                            exclusionClearedBy: null,
+                            exclusionClearedByName: null
+                        }),
+                        console.log("\uD83D\uDD04 Parent job exclusion reset due to repeat job deletion:", i.repeatInfo.originalJobId))
+                    }
+                } catch (e) {
+                    console.warn("⚠️ Failed to reset parent exclusion before deletion:", e)
+                }
+                await (0,
+                a.deleteDoc)(c),
+                console.log("Job deleted successfully from jobs collection:", o)
+            } catch (e) {
+                throw console.error("Error deleting job:", e),
+                e
+            }
+        }
+        async function u(e, o, t, c) {
+            try {
+                console.log("\uD83D\uDCE6 Starting job archiving for jobId: ".concat(o));
+                let c = (0,
+                a.collection)(n.db, "companies", e, "jobs")
+                  , l = (0,
+                a.query)(c, (0,
+                a.where)("jobId", "==", o))
+                  , i = await (0,
+                a.getDocs)(l);
+                if (i.empty)
+                    throw console.log("Job not found in jobs collection:", o),
+                    Error("Job ".concat(o, " not found"));
+                let r = i.docs[0];
+                if (i.docs.length > 1) {
+                    let e = i.docs.find(e => !e.data().archived);
+                    e ? r = e : console.warn("Multiple jobs found with jobId ".concat(o, ", all are archived. Using first one."))
+                }
+                let d = (0,
+                a.doc)(n.db, "companies", e, "jobs", r.id);
+                await (0,
+                a.updateDoc)(d, {
+                    archived: !0,
+                    archivedAt: (0,
+                    a.serverTimestamp)(),
+                    archivedBy: t
+                }),
+                console.log("✅ Job ".concat(o, " archived successfully"))
+            } catch (e) {
+                throw console.error("Error archiving job:", e),
+                e
+            }
+        }
+        async function h(e, o, t, c) {
+            try {
+                console.log("\uD83D\uDCE4 Starting job unarchiving for jobId: ".concat(o));
+                let t = (0,
+                a.collection)(n.db, "companies", e, "jobs")
+                  , c = (0,
+                a.query)(t, (0,
+                a.where)("jobId", "==", o))
+                  , l = await (0,
+                a.getDocs)(c);
+                if (l.empty)
+                    throw console.log("Job not found in jobs collection:", o),
+                    Error("Job ".concat(o, " not found"));
+                let i = l.docs[0];
+                if (l.docs.length > 1) {
+                    let e = l.docs.find(e => e.data().archived);
+                    e ? i = e : console.warn("Multiple jobs found with jobId ".concat(o, ", none are archived. Using first one."))
+                }
+                let r = (0,
+                a.doc)(n.db, "companies", e, "jobs", i.id);
+                await (0,
+                a.updateDoc)(r, {
+                    archived: !1,
+                    archivedAt: null,
+                    archivedBy: null
+                }),
+                console.log("✅ Job ".concat(o, " unarchived successfully"))
+            } catch (e) {
+                throw console.error("Error unarchiving job:", e),
+                e
+            }
+        }
+        async function m(e, o, t) {
+            try {
+                let c = (0,
+                a.collection)(n.db, "companies", e, "jobLogs")
+                  , l = await (0,
+                a.addDoc)(c, {
+                    ...o,
+                    timestamp: t || (0,
+                    a.serverTimestamp)()
+                });
+                return console.log("Job log created with ID:", l.id),
+                l.id
+            } catch (e) {
+                throw console.error("Error creating job log:", e),
+                e
+            }
+        }
+        async function D(e, o, t, n) {
+            try {
+                console.log("\uD83D\uDCE6 Starting bulk archive for jobs in company: ".concat(e).concat(n ? " for date: ".concat(n) : ""));
+                let a = await r(e, 1e3);
+                if (n) {
+                    let e = a.length;
+                    a = a.filter(e => e.scheduleDate === n),
+                    console.log("Filtered jobs by schedule date ".concat(n, ": ").concat(e, " → ").concat(a.length, " jobs"))
+                }
+                if (0 === a.length) {
+                    console.log("No jobs to archive");
+                    return
+                }
+                console.log("Found ".concat(a.length, " jobs to archive"));
+                let c = a.map(n => u(e, n.jobId, o, t));
+                await Promise.all(c),
+                console.log("Successfully archived ".concat(a.length, " jobs"))
+            } catch (e) {
+                throw console.error("Error archiving all jobs:", e),
+                e
+            }
+        }
+        async function g(e) {
+            try {
+                if (console.log("\uD83D\uDD22 countArchivedJobs called for company:", e),
+                !e)
+                    throw Error("Company ID is required");
+                let o = (0,
+                a.collection)(n.db, "companies", e, "archive");
+                console.log("\uD83D\uDD22 Getting snapshot for archive collection...");
+                let t = await (0,
+                a.getDocs)(o);
+                return console.log("\uD83D\uDD22 Archive count result:", t.size),
+                t.size
+            } catch (e) {
+                throw console.error("❌ Error counting archived jobs:", e),
+                console.error("❌ Error stack:", e.stack),
+                e
+            }
+        }
+        async function b(e, o) {
+            let t = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 1
+              , c = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 50;
+            try {
+                let l;
+                if (console.log("\uD83D\uDD0D getFilteredArchivesPaginatedComprehensive called with:", {
+                    companyId: e,
+                    filters: o,
+                    page: t,
+                    pageSize: c
+                }),
+                !e)
+                    throw Error("Company ID is required");
+                let i = (0,
+                a.collection)(n.db, "companies", e, "archive")
+                  , r = (0,
+                a.query)(i, (0,
+                a.orderBy)("createdAt", "desc"));
+                console.log("\uD83D\uDCCA Query with orderBy created, trying to get documents..."),
+                o.status && "" !== o.status && console.log("\uD83D\uDD0D Status filter will be applied client-side:", o.status),
+                o.assignedTech && o.assignedTech,
+                o.priority && "" !== o.priority && (r = (0,
+                a.query)(r, (0,
+                a.where)("priority", "==", o.priority))),
+                o.jobId && "" !== o.jobId && (r = (0,
+                a.query)(r, (0,
+                a.where)("jobId", "==", o.jobId))),
+                console.log("\uD83D\uDCCA Executing Firestore query...");
+                try {
+                    l = await (0,
+                    a.getDocs)(r)
+                } catch (o) {
+                    console.warn("⚠️ OrderBy query failed, trying without orderBy:", o);
+                    let e = (0,
+                    a.query)(i);
+                    l = await (0,
+                    a.getDocs)(e)
+                }
+                console.log("\uD83D\uDCCA Firestore query returned", l.docs.length, "documents");
+                let d = l.docs.map(e => ({
+                    id: e.id,
+                    ...e.data()
+                }));
+                console.log("\uD83D\uDCCA Mapped archives:", d.length),
+                o.status && "" !== o.status && console.log("\uD83D\uDCCA After status filter applied, found", d.length, "documents with status:", o.status);
+                let s = [...new Set(d.map(e => e.status).filter(Boolean))];
+                console.log("\uD83D\uDCCA Unique status values in archives:", s);
+                let u = d.filter(e => {
+                    var o;
+                    return null === (o = e.jobData) || void 0 === o ? void 0 : o.status
+                }
+                ).map(e => e.jobData.status)
+                  , h = [...new Set(u)];
+                console.log("\uD83D\uDCCA Unique status values in jobData:", h);
+                let m = d.filter(e => e.status).length
+                  , D = d.length - m;
+                if (console.log("\uD83D\uDCCA Archives with status field:", m, "without status field:", D),
+                o.status && "" !== o.status) {
+                    console.log("\uD83D\uDD0D Applying client-side status filter:", o.status);
+                    let e = d.length;
+                    d = d.filter(e => {
+                        var t;
+                        return (e.status || (null === (t = e.jobData) || void 0 === t ? void 0 : t.status) || e.originalStatus) === o.status
+                    }
+                    ),
+                    console.log("\uD83D\uDCCA After client-side status filter:", e, "→", d.length, "documents")
+                }
+                if (o.searchText && "" !== o.searchText) {
+                    let e = o.searchText.toLowerCase();
+                    d = d.filter(o => o.customerName && o.customerName.toLowerCase().includes(e) || o.address && o.address.toLowerCase().includes(e) || o.jobId && o.jobId.toLowerCase().includes(e) || o.customerPhone && o.customerPhone.toLowerCase().includes(e) || o.city && o.city.toLowerCase().includes(e))
+                }
+                if (o.jobOrigin && "" !== o.jobOrigin && (d = d.filter(e => e.jobOrigin && e.jobOrigin.toLowerCase().includes(o.jobOrigin.toLowerCase()))),
+                o.assignedTech && "" !== o.assignedTech) {
+                    let e = o.assignedTech.toLowerCase();
+                    d = d.filter(o => o.assignedTechName && o.assignedTechName.toLowerCase().includes(e) || o.assignedTechNumber && o.assignedTechNumber.toLowerCase().includes(e) || o.assignedtechnumber && o.assignedtechnumber.toLowerCase().includes(e) || o.assignedTechId && o.assignedTechId.toLowerCase().includes(e))
+                }
+                if (o.customerName && "" !== o.customerName && (d = d.filter(e => e.customerName && e.customerName.toLowerCase().includes(o.customerName.toLowerCase()))),
+                o.dateFrom && "" !== o.dateFrom) {
+                    let e = new Date(o.dateFrom);
+                    e.setHours(0, 0, 0, 0),
+                    console.log("\uD83D\uDD0D Applying dateFrom filter:", o.dateFrom, "(start of day)"),
+                    d = d.filter(o => {
+                        var t, n, a, c, l, i, r, d, s;
+                        let u = (null == o ? void 0 : null === (t = o.scheduleDate) || void 0 === t ? void 0 : t.toDate) ? o.scheduleDate.toDate() : (null == o ? void 0 : o.scheduleDate) ? new Date(o.scheduleDate) : void 0
+                          , h = (null == o ? void 0 : null === (a = o.jobData) || void 0 === a ? void 0 : null === (n = a.scheduleDate) || void 0 === n ? void 0 : n.toDate) ? o.jobData.scheduleDate.toDate() : (null == o ? void 0 : null === (c = o.jobData) || void 0 === c ? void 0 : c.scheduleDate) ? new Date(o.jobData.scheduleDate) : void 0
+                          , m = (null == o ? void 0 : null === (l = o.createdAt) || void 0 === l ? void 0 : l.toDate) ? o.createdAt.toDate() : (null == o ? void 0 : o.createdAt) ? new Date(o.createdAt) : void 0
+                          , D = (null == o ? void 0 : null === (r = o.jobData) || void 0 === r ? void 0 : null === (i = r.createdAt) || void 0 === i ? void 0 : i.toDate) ? o.jobData.createdAt.toDate() : (null == o ? void 0 : null === (d = o.jobData) || void 0 === d ? void 0 : d.createdAt) ? new Date(o.jobData.createdAt) : void 0
+                          , g = (null == o ? void 0 : null === (s = o.createdDate) || void 0 === s ? void 0 : s.toDate) ? o.createdDate.toDate() : (null == o ? void 0 : o.createdDate) ? new Date(o.createdDate) : void 0
+                          , b = u || h || m || D || g;
+                        return !!b && b >= e
+                    }
+                    ),
+                    console.log("\uD83D\uDCCA After dateFrom filter:", d.length, "documents remain")
+                }
+                if (o.dateTo && "" !== o.dateTo) {
+                    let e = new Date(o.dateTo);
+                    e.setHours(23, 59, 59, 999),
+                    console.log("\uD83D\uDD0D Applying dateTo filter:", o.dateTo),
+                    d = d.filter(o => {
+                        var t, n, a, c, l, i, r, d, s;
+                        let u = (null == o ? void 0 : null === (t = o.scheduleDate) || void 0 === t ? void 0 : t.toDate) ? o.scheduleDate.toDate() : (null == o ? void 0 : o.scheduleDate) ? new Date(o.scheduleDate) : void 0
+                          , h = (null == o ? void 0 : null === (a = o.jobData) || void 0 === a ? void 0 : null === (n = a.scheduleDate) || void 0 === n ? void 0 : n.toDate) ? o.jobData.scheduleDate.toDate() : (null == o ? void 0 : null === (c = o.jobData) || void 0 === c ? void 0 : c.scheduleDate) ? new Date(o.jobData.scheduleDate) : void 0
+                          , m = (null == o ? void 0 : null === (l = o.createdAt) || void 0 === l ? void 0 : l.toDate) ? o.createdAt.toDate() : (null == o ? void 0 : o.createdAt) ? new Date(o.createdAt) : void 0
+                          , D = (null == o ? void 0 : null === (r = o.jobData) || void 0 === r ? void 0 : null === (i = r.createdAt) || void 0 === i ? void 0 : i.toDate) ? o.jobData.createdAt.toDate() : (null == o ? void 0 : null === (d = o.jobData) || void 0 === d ? void 0 : d.createdAt) ? new Date(o.jobData.createdAt) : void 0
+                          , g = (null == o ? void 0 : null === (s = o.createdDate) || void 0 === s ? void 0 : s.toDate) ? o.createdDate.toDate() : (null == o ? void 0 : o.createdDate) ? new Date(o.createdDate) : void 0
+                          , b = u || h || m || D || g;
+                        return !!b && b <= e
+                    }
+                    ),
+                    console.log("\uD83D\uDCCA After dateTo filter:", d.length, "documents remain")
+                }
+                let g = d.length
+                  , b = Math.ceil(g / c)
+                  , p = (t - 1) * c
+                  , f = {
+                    archives: d.slice(p, p + c),
+                    totalCount: g,
+                    currentPage: t,
+                    totalPages: b,
+                    hasNextPage: t < b,
+                    hasPrevPage: t > 1
+                };
+                return console.log("✅ Returning result:", f),
+                f
+            } catch (e) {
+                throw console.error("❌ Error getting filtered archives:", e),
+                e
+            }
+        }
+        async function p(e, o, t, l) {
+            try {
+                let e = new URL(t)
+                  , o = e.pathname.indexOf("/o/");
+                if (-1 === o)
+                    throw Error("Invalid Firebase Storage URL");
+                let a = e.pathname.substring(o + 3)
+                  , l = decodeURIComponent(a)
+                  , i = (0,
+                c.iH)(n.tO, l);
+                await (0,
+                c.oq)(i)
+            } catch (e) {
+                console.warn("Storage deletion failed for photo", {
+                    photoUrl: t,
+                    error: e
+                })
+            }
+            let i = (0,
+            a.doc)(n.db, "companies", e, "jobs", o);
+            await (0,
+            a.updateDoc)(i, {
+                ["completion" === l ? "completionPhotos" : "selfQCPhotos"]: (0,
+                a.arrayRemove)(t)
+            })
+        }
+    }
+}]);

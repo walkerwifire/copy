@@ -1,0 +1,1469 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[8158], {
+    3922: function(e, t, s) {
+        var a = s(7437)
+          , n = s(2265)
+          , r = s(4362);
+        t.Z = e => {
+            let {className: t=""} = e
+              , {getNotificationStatus: s, requestNotificationPermission: l} = (0,
+            r.a)()
+              , [i,d] = (0,
+            n.useState)(s())
+              , [o,c] = (0,
+            n.useState)(!1)
+              , [u,g] = (0,
+            n.useState)(!1);
+            (0,
+            n.useEffect)( () => {
+                let e = s();
+                d(e),
+                g(e.supported && "granted" !== e.permission && "denied" !== e.permission)
+            }
+            , [s]);
+            let x = async () => {
+                c(!0);
+                try {
+                    let e = await l()
+                      , t = s();
+                    d(t),
+                    e && g(!1)
+                } catch (e) {
+                    console.error("Error requesting permission:", e)
+                } finally {
+                    c(!1)
+                }
+            }
+              , h = () => {
+                g(!1)
+            }
+            ;
+            return u ? (0,
+            a.jsx)("div", {
+                className: "glass border border-blue-200/50 rounded-2xl p-6 sm:p-8 ".concat(t),
+                children: (0,
+                a.jsxs)("div", {
+                    className: "flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-4",
+                    children: [(0,
+                    a.jsx)("div", {
+                        className: "flex-shrink-0",
+                        children: (0,
+                        a.jsx)("div", {
+                            className: "w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center",
+                            children: (0,
+                            a.jsx)("svg", {
+                                className: "h-6 w-6 text-blue-600",
+                                viewBox: "0 0 20 20",
+                                fill: "currentColor",
+                                children: (0,
+                                a.jsx)("path", {
+                                    d: "M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+                                })
+                            })
+                        })
+                    }), (0,
+                    a.jsxs)("div", {
+                        className: "flex-1 min-w-0",
+                        children: [(0,
+                        a.jsx)("h3", {
+                            className: "text-lg sm:text-xl font-bold text-gray-900 mb-2",
+                            children: "Enable Push Notifications"
+                        }), (0,
+                        a.jsx)("div", {
+                            className: "text-sm sm:text-base text-gray-600 leading-relaxed mb-6",
+                            children: (0,
+                            a.jsx)("p", {
+                                children: "Get real-time updates and important notifications directly on your device, even when the app is closed. Stay connected with your team and never miss important updates."
+                            })
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4",
+                            children: [(0,
+                            a.jsxs)("button", {
+                                onClick: x,
+                                disabled: o,
+                                className: "group relative bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center",
+                                children: [(0,
+                                a.jsx)("svg", {
+                                    className: "w-5 h-5 mr-2 group-hover:rotate-12 transition-transform",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    viewBox: "0 0 24 24",
+                                    children: (0,
+                                    a.jsx)("path", {
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        strokeWidth: 2,
+                                        d: "M15 17h5l-5 5v-5zM4 19h6v-6H4v6zM20 4h-6v6h6V4zM10 4H4v6h6V4z"
+                                    })
+                                }), o ? "Enabling..." : "Enable Notifications"]
+                            }), (0,
+                            a.jsx)("button", {
+                                onClick: h,
+                                className: "bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 px-6 py-3 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 active:scale-95 min-h-[48px] flex items-center justify-center",
+                                children: "Maybe Later"
+                            })]
+                        })]
+                    }), (0,
+                    a.jsx)("div", {
+                        className: "flex-shrink-0",
+                        children: (0,
+                        a.jsx)("button", {
+                            onClick: h,
+                            className: "text-gray-400 hover:text-gray-600 p-2 rounded-lg hover:bg-gray-100 transition-colors",
+                            children: (0,
+                            a.jsx)("svg", {
+                                className: "h-5 w-5",
+                                viewBox: "0 0 20 20",
+                                fill: "currentColor",
+                                children: (0,
+                                a.jsx)("path", {
+                                    fillRule: "evenodd",
+                                    d: "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+                                    clipRule: "evenodd"
+                                })
+                            })
+                        })
+                    })]
+                })
+            }) : null
+        }
+    },
+    1444: function(e, t, s) {
+        var a = s(7437)
+          , n = s(2265)
+          , r = s(4362);
+        t.Z = e => {
+            let {showButton: t=!1, className: s=""} = e
+              , {getNotificationStatus: l, requestNotificationPermission: i} = (0,
+            r.a)()
+              , [d,o] = (0,
+            n.useState)({
+                supported: !1,
+                permission: "default"
+            })
+              , [c,u] = (0,
+            n.useState)(!1);
+            (0,
+            n.useEffect)( () => {
+                o(l())
+            }
+            , [l]);
+            let g = async () => {
+                u(!0);
+                try {
+                    await i();
+                    let e = l();
+                    o(e)
+                } catch (e) {
+                    console.error("Error requesting permission:", e)
+                } finally {
+                    u(!1)
+                }
+            }
+            ;
+            return d.supported ? (0,
+            a.jsxs)("div", {
+                className: "flex items-center text-sm font-medium ".concat(( () => {
+                    switch (d.permission) {
+                    case "granted":
+                        return "text-green-600";
+                    case "denied":
+                        return "text-red-600";
+                    default:
+                        return "text-yellow-600"
+                    }
+                }
+                )(), " ").concat(s),
+                children: [( () => {
+                    switch (d.permission) {
+                    case "granted":
+                        return (0,
+                        a.jsx)("div", {
+                            className: "w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"
+                        });
+                    case "denied":
+                        return (0,
+                        a.jsx)("div", {
+                            className: "w-2 h-2 bg-red-500 rounded-full mr-2"
+                        });
+                    default:
+                        return (0,
+                        a.jsx)("div", {
+                            className: "w-2 h-2 bg-yellow-500 rounded-full mr-2"
+                        })
+                    }
+                }
+                )(), (0,
+                a.jsx)("span", {
+                    children: ( () => {
+                        switch (d.permission) {
+                        case "granted":
+                            return "Notifications enabled";
+                        case "denied":
+                            return "Notifications blocked";
+                        default:
+                            return "Notifications not enabled"
+                        }
+                    }
+                    )()
+                }), t && "granted" !== d.permission && "denied" !== d.permission && (0,
+                a.jsx)("button", {
+                    onClick: g,
+                    disabled: c,
+                    className: "ml-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 disabled:opacity-50 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm hover:shadow-md",
+                    children: c ? "Requesting..." : "Enable"
+                }), "denied" === d.permission && (0,
+                a.jsx)("span", {
+                    className: "ml-2 text-xs text-gray-500 font-normal",
+                    children: "(Check browser settings)"
+                })]
+            }) : (0,
+            a.jsxs)("div", {
+                className: "flex items-center text-gray-500 text-xs ".concat(s),
+                children: [(0,
+                a.jsx)("div", {
+                    className: "w-2 h-2 bg-gray-400 rounded-full mr-2"
+                }), "Notifications not supported"]
+            })
+        }
+    },
+    4508: function(e, t, s) {
+        s.d(t, {
+            Z: function() {
+                return i
+            }
+        });
+        var a = s(7437)
+          , n = s(2265)
+          , r = s(5978)
+          , l = s(6410);
+        function i(e) {
+            var t;
+            let {user: s, onWorkingDaysChange: i, isReadOnly: d=!1, currentUserRole: o="admin", companyId: c, currentUserId: u, currentUserName: g, company: x} = e
+              , [h,m] = (0,
+            n.useState)(new Date)
+              , [p,b] = (0,
+            n.useState)(null)
+              , [f,y] = (0,
+            n.useState)([])
+              , [v,j] = (0,
+            n.useState)(!1)
+              , [w,N] = (0,
+            n.useState)(!1)
+              , [k,D] = (0,
+            n.useState)([])
+              , [S,q] = (0,
+            n.useState)(!1)
+              , [C,W] = (0,
+            n.useState)((null == x ? void 0 : x.dayOffRequestRules) || "")
+              , [R,O] = (0,
+            n.useState)(!1)
+              , [T,M] = (0,
+            n.useState)(!1)
+              , [E,A] = (0,
+            n.useState)({
+                date: "",
+                isWorking: !0,
+                reason: "",
+                notes: "",
+                status: void 0
+            })
+              , B = e => {
+                if (!s.schedule) {
+                    let t = e.getDay();
+                    return t >= 1 && t <= 5
+                }
+                let t = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"][e.getDay()];
+                return s.schedule.toLowerCase().split(",").map(e => e.trim()).includes(t)
+            }
+              , [L,F] = (0,
+            n.useState)({
+                isWorking: !1,
+                reason: "",
+                notes: ""
+            });
+            (0,
+            n.useEffect)( () => {
+                if (!c || !s.id)
+                    return;
+                let e = (0,
+                r.doc)(l.db, "companies", c, "users", s.id)
+                  , t = (0,
+                r.onSnapshot)(e, e => {
+                    e.exists() && D(Object.values(e.data().dayOffRequests || {}))
+                }
+                , e => {
+                    console.error("Error listening to day-off requests:", e)
+                }
+                );
+                return () => t()
+            }
+            , [c, s.id]);
+            let P = e => {
+                if (!d) {
+                    if ("admin" === o || "dispatcher" === o)
+                        f.includes(e.date) ? y(t => t.filter(t => t !== e.date)) : y(t => [...t, e.date]);
+                    else if (e.workingStatus.isWorking)
+                        f.includes(e.date) ? y(t => t.filter(t => t !== e.date)) : y(t => [...t, e.date]);
+                    else {
+                        var t;
+                        let a = null === (t = s.workingDays) || void 0 === t ? void 0 : t[e.date];
+                        b(e.date),
+                        A({
+                            date: e.date,
+                            isWorking: e.workingStatus.isWorking,
+                            reason: e.workingStatus.reason || "",
+                            notes: e.workingStatus.notes || "",
+                            status: null == a ? void 0 : a.status
+                        }),
+                        j(!0)
+                    }
+                }
+            }
+              , _ = async () => {
+                if (p && c && u && g) {
+                    q(!0);
+                    try {
+                        if ("tech" !== o || E.isWorking) {
+                            let e = {
+                                isWorking: E.isWorking,
+                                requestedBy: o,
+                                requestedAt: new Date
+                            };
+                            E.reason && (e.reason = E.reason),
+                            E.notes && (e.notes = E.notes);
+                            let t = {
+                                ...s.workingDays,
+                                [p]: e
+                            };
+                            if (E.isWorking) {
+                                let e = (0,
+                                r.doc)(l.db, "companies", c, "users", s.id)
+                                  , t = await (0,
+                                r.getDoc)(e);
+                                if (t.exists()) {
+                                    let s = t.data().dayOffRequests || {}
+                                      , a = Object.keys(s).find(e => s[e].date === p);
+                                    if (a) {
+                                        let t = {
+                                            ...s
+                                        };
+                                        delete t[a],
+                                        await (0,
+                                        r.updateDoc)(e, {
+                                            dayOffRequests: t
+                                        })
+                                    }
+                                }
+                            }
+                            i(t)
+                        } else {
+                            let e = (0,
+                            r.doc)(l.db, "companies", c, "users", s.id)
+                              , t = await (0,
+                            r.getDoc)(e);
+                            if (!t.exists()) {
+                                alert("User not found. Please try again."),
+                                q(!1);
+                                return
+                            }
+                            let a = t.data().dayOffRequests || {};
+                            if (Object.values(a).find(e => e.date === p)) {
+                                alert("You already have a request for this date. Please choose a different date."),
+                                q(!1);
+                                return
+                            }
+                            let n = "".concat(p, "_").concat(Date.now(), "_").concat(Math.random().toString(36).substr(2, 9))
+                              , i = {
+                                id: n,
+                                techId: s.id,
+                                techName: "".concat(s.firstName, " ").concat(s.lastName),
+                                requestedByTechId: u,
+                                requestedByTechName: g,
+                                date: p,
+                                reason: E.reason,
+                                status: "pending",
+                                requestedAt: new Date,
+                                companyId: c
+                            };
+                            s.technumber && (i.techNumber = s.technumber),
+                            E.notes && E.notes.trim() && (i.notes = E.notes.trim());
+                            let d = {
+                                ...a,
+                                [n]: i
+                            };
+                            await (0,
+                            r.updateDoc)(e, {
+                                dayOffRequests: d
+                            }),
+                            "tech" === o && alert("Day-off request submitted successfully! You will be notified once it's reviewed.")
+                        }
+                        j(!1),
+                        b(null)
+                    } catch (e) {
+                        console.error("Error saving day:", e)
+                    } finally {
+                        q(!1)
+                    }
+                }
+            }
+              , z = async () => {
+                if (p && c && s.id)
+                    try {
+                        q(!0);
+                        let e = (0,
+                        r.doc)(l.db, "companies", c, "users", s.id)
+                          , t = await (0,
+                        r.getDoc)(e);
+                        if (t.exists()) {
+                            let s = t.data().dayOffRequests || {}
+                              , a = Object.keys(s).find(e => s[e].date === p);
+                            if (a) {
+                                let t = {
+                                    ...s
+                                };
+                                delete t[a],
+                                await (0,
+                                r.updateDoc)(e, {
+                                    dayOffRequests: t
+                                })
+                            }
+                        }
+                        let a = {
+                            ...s.workingDays
+                        };
+                        delete a[p],
+                        i(a),
+                        j(!1),
+                        b(null)
+                    } catch (e) {
+                        console.error("Error deleting day:", e)
+                    } finally {
+                        q(!1)
+                    }
+            }
+              , I = async () => {
+                if (0 !== f.length && c && u && g) {
+                    q(!0);
+                    try {
+                        let e = (0,
+                        r.doc)(l.db, "companies", c, "users", s.id)
+                          , t = await (0,
+                        r.getDoc)(e);
+                        if (!t.exists()) {
+                            alert("User not found. Please try again."),
+                            q(!1);
+                            return
+                        }
+                        let a = t.data().dayOffRequests || {}
+                          , n = {
+                            ...a
+                        }
+                          , i = []
+                          , d = [...f].sort()
+                          , o = []
+                          , x = e => Object.values(a).some(t => {
+                            if (t.date === e || Array.isArray(t.dates) && t.dates.includes(e))
+                                return !0;
+                            if (t.startDate && t.endDate) {
+                                let s = new Date(e + "T00:00:00")
+                                  , a = new Date(t.startDate + "T00:00:00")
+                                  , n = new Date(t.endDate + "T00:00:00");
+                                return s.getTime() >= a.getTime() && s.getTime() <= n.getTime()
+                            }
+                            return !1
+                        }
+                        )
+                          , h = (e, t) => {
+                            let s = new Date(e + "T00:00:00")
+                              , a = new Date(t + "T00:00:00");
+                            return s.setDate(s.getDate() + 1),
+                            s.getFullYear() === a.getFullYear() && s.getMonth() === a.getMonth() && s.getDate() === a.getDate()
+                        }
+                        ;
+                        for (let e of d) {
+                            if (x(e)) {
+                                i.push(e);
+                                continue
+                            }
+                            let t = o[o.length - 1];
+                            if (t) {
+                                let s = t[t.length - 1];
+                                h(s, e) ? t.push(e) : o.push([e])
+                            } else
+                                o.push([e])
+                        }
+                        let m = o.length;
+                        for (let e of o) {
+                            let t = e[0]
+                              , a = e[e.length - 1]
+                              , r = "".concat(t, "_").concat(a, "_").concat(Date.now(), "_").concat(Math.random().toString(36).substr(2, 9))
+                              , l = {
+                                id: r,
+                                techId: s.id,
+                                techName: "".concat(s.firstName, " ").concat(s.lastName),
+                                requestedByTechId: u,
+                                requestedByTechName: g,
+                                date: t,
+                                dates: e,
+                                startDate: t,
+                                endDate: a,
+                                reason: L.reason,
+                                status: "pending",
+                                requestedAt: new Date,
+                                companyId: c
+                            };
+                            s.technumber && (l.techNumber = s.technumber),
+                            L.notes && L.notes.trim() && (l.notes = L.notes.trim()),
+                            n[r] = l
+                        }
+                        if (m > 0 && await (0,
+                        r.updateDoc)(e, {
+                            dayOffRequests: n
+                        }),
+                        m > 0 && 0 === i.length)
+                            alert(1 === m ? "Request submitted successfully!" : "".concat(m, " requests submitted successfully!"));
+                        else if (m > 0 && i.length > 0)
+                            alert("".concat(m, " requests submitted. ").concat(i.length, " dates already have pending requests."));
+                        else if (i.length > 0) {
+                            alert("All selected dates already have pending requests. Please choose different dates."),
+                            q(!1);
+                            return
+                        }
+                        y([]),
+                        F({
+                            isWorking: !1,
+                            reason: "",
+                            notes: ""
+                        }),
+                        N(!1)
+                    } catch (e) {
+                        console.error("Error submitting multi-day requests:", e),
+                        alert("Failed to submit requests. Please try again.")
+                    } finally {
+                        q(!1)
+                    }
+                }
+            }
+              , Y = async () => {
+                if (console.log("handleMultiDaySave called", {
+                    selectedDates: f,
+                    multiDayModalData: L,
+                    companyId: c,
+                    userId: s.id
+                }),
+                0 === f.length || !c || !s.id) {
+                    console.log("Early return: missing required data", {
+                        selectedDates: f.length,
+                        companyId: c,
+                        userId: s.id
+                    });
+                    return
+                }
+                try {
+                    if (q(!0),
+                    console.log("Starting multi-day save process..."),
+                    L.isWorking) {
+                        console.log("Cleaning up day-off requests for working days...");
+                        let e = (0,
+                        r.doc)(l.db, "companies", c, "users", s.id)
+                          , t = await (0,
+                        r.getDoc)(e);
+                        if (t.exists()) {
+                            let s = t.data().dayOffRequests || {}
+                              , a = {
+                                ...s
+                            };
+                            console.log("Current day-off requests:", Object.keys(s)),
+                            f.forEach(e => {
+                                let t = Object.keys(a).find(t => {
+                                    let s = a[t];
+                                    if (s.date === e || Array.isArray(s.dates) && s.dates.includes(e))
+                                        return !0;
+                                    if (s.startDate && s.endDate) {
+                                        let t = new Date(e + "T00:00:00")
+                                          , a = new Date(s.startDate + "T00:00:00")
+                                          , n = new Date(s.endDate + "T00:00:00");
+                                        return t.getTime() >= a.getTime() && t.getTime() <= n.getTime()
+                                    }
+                                    return !1
+                                }
+                                );
+                                t && (console.log("Deleting request:", t, "for date:", e),
+                                delete a[t])
+                            }
+                            ),
+                            Object.keys(a).length !== Object.keys(s).length ? (console.log("Updating day-off requests in Firestore..."),
+                            await (0,
+                            r.updateDoc)(e, {
+                                dayOffRequests: a
+                            }),
+                            console.log("Day-off requests updated successfully")) : console.log("No day-off requests to delete")
+                        }
+                    }
+                    console.log("Updating working days...");
+                    let e = {
+                        ...s.workingDays
+                    };
+                    f.forEach(t => {
+                        let s = {
+                            isWorking: L.isWorking,
+                            requestedBy: o,
+                            requestedAt: new Date
+                        };
+                        L.reason && (s.reason = L.reason),
+                        L.notes && (s.notes = L.notes),
+                        console.log("Setting working day data for", t, ":", s),
+                        e[t] = s
+                    }
+                    ),
+                    console.log("Calling onWorkingDaysChange..."),
+                    i(e),
+                    console.log("Closing modal and resetting state..."),
+                    N(!1),
+                    y([]),
+                    F({
+                        isWorking: !1,
+                        reason: "",
+                        notes: ""
+                    }),
+                    console.log("Multi-day save completed successfully")
+                } catch (e) {
+                    console.error("Error saving multi-day schedule:", e),
+                    alert("Failed to save schedule changes. Please try again.")
+                } finally {
+                    q(!1)
+                }
+            }
+              , U = e => {
+                let t = "w-8 h-8 flex items-center justify-center text-sm rounded cursor-pointer transition-colors relative"
+                  , a = f.includes(e.date);
+                if (!e.isCurrentMonth)
+                    return "".concat(t, " text-gray-300");
+                if (e.isToday)
+                    return "".concat(t, " bg-blue-500 text-white font-bold ").concat(a ? "ring-2 ring-orange-400" : "");
+                if (a && ("admin" === o || "dispatcher" === o))
+                    return "".concat(t, " bg-orange-200 text-orange-900 ring-2 ring-orange-400 font-semibold");
+                if (e.workingStatus.isWorking)
+                    return "".concat(t, " bg-green-100 text-green-800 hover:bg-green-200");
+                {
+                    var n;
+                    let a = null === (n = s.workingDays) || void 0 === n ? void 0 : n[e.date]
+                      , r = e.workingStatus.requestStatus
+                      , l = (null == a ? void 0 : a.status) === "pending" || "pending" === r
+                      , i = (null == a ? void 0 : a.status) === "rejected" || "rejected" === r
+                      , d = "";
+                    switch (e.workingStatus.reason) {
+                    case "vacation":
+                        d = l ? "bg-blue-200 text-blue-900" : i ? "bg-red-200 text-red-900" : "bg-blue-100 text-blue-800";
+                        break;
+                    case "emergency":
+                    case "suspended":
+                        d = l ? "bg-red-200 text-red-900" : i ? "bg-red-300 text-red-900" : "bg-red-100 text-red-800";
+                        break;
+                    case "sick":
+                        d = l ? "bg-yellow-200 text-yellow-900" : i ? "bg-red-200 text-red-900" : "bg-yellow-100 text-yellow-800";
+                        break;
+                    case "personal":
+                        d = l ? "bg-purple-200 text-purple-900" : i ? "bg-red-200 text-red-900" : "bg-purple-100 text-purple-800";
+                        break;
+                    case "call_out":
+                        d = l ? "bg-orange-200 text-orange-900" : i ? "bg-red-200 text-red-900" : "bg-orange-100 text-orange-800";
+                        break;
+                    default:
+                        d = l ? "bg-gray-200 text-gray-900" : i ? "bg-red-200 text-red-900" : "bg-gray-100 text-gray-800"
+                    }
+                    return "".concat(t, " ").concat(d, " hover:opacity-80")
+                }
+            }
+              , V = e => {
+                if (e.workingStatus.isWorking)
+                    return "Working day";
+                {
+                    var t;
+                    let a = null === (t = s.workingDays) || void 0 === t ? void 0 : t[e.date]
+                      , n = e.workingStatus.reason || "Day off"
+                      , r = e.workingStatus.notes ? " - ".concat(e.workingStatus.notes) : ""
+                      , l = null == a ? void 0 : a.status
+                      , i = "";
+                    return "pending" === l ? i = " (Pending Approval)" : "approved" === l ? i = " (Approved)" : "rejected" === l && (i = " (Rejected)"),
+                    "".concat(n).concat(i).concat(r)
+                }
+            }
+              , J = e => {
+                let t = new Date(h);
+                "prev" === e ? t.setMonth(t.getMonth() - 1) : t.setMonth(t.getMonth() + 1),
+                m(t)
+            }
+              , Z = async () => {
+                if (c && x)
+                    try {
+                        let e = (0,
+                        r.doc)(l.db, "companies", c);
+                        await (0,
+                        r.updateDoc)(e, {
+                            dayOffRequestRules: C,
+                            updatedAt: new Date
+                        }),
+                        O(!1)
+                    } catch (e) {
+                        console.error("Error saving rules:", e)
+                    }
+            }
+              , $ = e => {
+                let[t,s,a] = e.split("-");
+                return new Date(parseInt(t),parseInt(s) - 1,parseInt(a)).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric"
+                })
+            }
+            ;
+            return (0,
+            a.jsxs)("div", {
+                className: "bg-white rounded-lg shadow-sm border p-4",
+                children: [(0,
+                a.jsxs)("div", {
+                    className: "flex items-center justify-between mb-4",
+                    children: [(0,
+                    a.jsx)("button", {
+                        onClick: () => J("prev"),
+                        className: "p-2 hover:bg-gray-100 rounded",
+                        children: "←"
+                    }), (0,
+                    a.jsxs)("h3", {
+                        className: "text-lg font-semibold",
+                        children: [["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][h.getMonth()], " ", h.getFullYear()]
+                    }), (0,
+                    a.jsx)("button", {
+                        onClick: () => J("next"),
+                        className: "p-2 hover:bg-gray-100 rounded",
+                        children: "→"
+                    })]
+                }), (0,
+                a.jsx)("div", {
+                    className: "mb-4",
+                    children: (0,
+                    a.jsxs)("button", {
+                        onClick: () => M(!0),
+                        className: "flex items-center space-x-2 px-3 py-2 text-sm text-blue-600 hover:text-blue-800 border border-blue-200 rounded-lg hover:bg-blue-50",
+                        children: [(0,
+                        a.jsx)("svg", {
+                            className: "w-4 h-4",
+                            fill: "none",
+                            stroke: "currentColor",
+                            viewBox: "0 0 24 24",
+                            children: (0,
+                            a.jsx)("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M13 16h-1v-4h-1m1-4h.01M12 18a6 6 0 110-12 6 6 0 010 12z"
+                            })
+                        }), (0,
+                        a.jsx)("span", {
+                            children: "Day Off Request Rules"
+                        })]
+                    })
+                }), T && (0,
+                a.jsx)("div", {
+                    className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4",
+                    children: (0,
+                    a.jsxs)("div", {
+                        className: "bg-white rounded-lg p-6 w-full max-w-xl",
+                        children: [(0,
+                        a.jsxs)("div", {
+                            className: "flex justify-between items-center mb-4",
+                            children: [(0,
+                            a.jsx)("h4", {
+                                className: "text-lg font-semibold",
+                                children: "Day Off Request Rules"
+                            }), (0,
+                            a.jsx)("button", {
+                                onClick: () => M(!1),
+                                className: "text-gray-400 hover:text-gray-600 text-xl",
+                                children: "\xd7"
+                            })]
+                        }), !R && (0,
+                        a.jsx)("div", {
+                            className: "mb-4 p-3 bg-blue-50 border border-blue-200 rounded",
+                            children: (0,
+                            a.jsx)("p", {
+                                className: "text-sm text-blue-700 whitespace-pre-wrap",
+                                children: (null == x ? void 0 : x.dayOffRequestRules) || "No rules defined."
+                            })
+                        }), ("admin" === o || "dispatcher" === o) && (0,
+                        a.jsx)("div", {
+                            className: "flex justify-end gap-2",
+                            children: !R && (0,
+                            a.jsx)("button", {
+                                onClick: () => O(!0),
+                                className: "px-3 py-2 text-sm text-blue-600 hover:text-blue-800 border border-blue-200 rounded hover:bg-blue-50",
+                                children: (null == x ? void 0 : x.dayOffRequestRules) ? "Edit" : "Add Rules"
+                            })
+                        }), R && ("admin" === o || "dispatcher" === o) && (0,
+                        a.jsxs)("div", {
+                            className: "mt-2",
+                            children: [(0,
+                            a.jsx)("textarea", {
+                                value: C,
+                                onChange: e => W(e.target.value),
+                                className: "w-full border border-gray-300 rounded-md px-3 py-2 h-24 text-sm",
+                                placeholder: "Enter rules or guidelines for day off requests..."
+                            }), (0,
+                            a.jsxs)("div", {
+                                className: "flex justify-end space-x-2 mt-2",
+                                children: [(0,
+                                a.jsx)("button", {
+                                    onClick: () => {
+                                        W((null == x ? void 0 : x.dayOffRequestRules) || ""),
+                                        O(!1)
+                                    }
+                                    ,
+                                    className: "px-3 py-1 text-sm text-gray-600 hover:text-gray-800",
+                                    children: "Cancel"
+                                }), (0,
+                                a.jsx)("button", {
+                                    onClick: Z,
+                                    className: "px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700",
+                                    children: "Save Rules"
+                                })]
+                            })]
+                        })]
+                    })
+                }), (0,
+                a.jsx)("div", {
+                    className: "grid grid-cols-7 gap-1 mb-2",
+                    children: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(e => (0,
+                    a.jsx)("div", {
+                        className: "text-center text-sm font-medium text-gray-500 py-2",
+                        children: e
+                    }, e))
+                }), (0,
+                a.jsx)("div", {
+                    className: "grid grid-cols-7 gap-1",
+                    children: ( () => {
+                        let e = h.getFullYear()
+                          , t = h.getMonth()
+                          , a = new Date(e,t,1)
+                          , n = new Date(a)
+                          , r = a.getDay();
+                        n.setDate(n.getDate() - (0 === r ? 6 : r - 1));
+                        let l = []
+                          , i = new Date
+                          , d = "".concat(i.getFullYear(), "-").concat(String(i.getMonth() + 1).padStart(2, "0"), "-").concat(String(i.getDate()).padStart(2, "0"));
+                        for (let e = 0; e < 42; e++) {
+                            var o, c;
+                            let a = new Date(n);
+                            a.setDate(n.getDate() + e);
+                            let r = "".concat(a.getFullYear(), "-").concat(String(a.getMonth() + 1).padStart(2, "0"), "-").concat(String(a.getDate()).padStart(2, "0"))
+                              , i = a.getDate()
+                              , u = a.getMonth() === t
+                              , g = r === d
+                              , x = 0 === a.getDay() || 6 === a.getDay()
+                              , h = null === (o = s.workingDays) || void 0 === o ? void 0 : o[r]
+                              , m = k.find(e => {
+                                if (e.date === r || Array.isArray(e.dates) && e.dates.includes(r))
+                                    return !0;
+                                if (e.startDate && e.endDate) {
+                                    let t = new Date(r + "T00:00:00")
+                                      , s = new Date(e.startDate + "T00:00:00")
+                                      , a = new Date(e.endDate + "T00:00:00");
+                                    return t.getTime() >= s.getTime() && t.getTime() <= a.getTime()
+                                }
+                                return !1
+                            }
+                            )
+                              , p = {
+                                isWorking: null !== (c = null == h ? void 0 : h.isWorking) && void 0 !== c ? c : B(a),
+                                reason: (null == h ? void 0 : h.reason) || (null == m ? void 0 : m.reason),
+                                requestedBy: null == h ? void 0 : h.requestedBy,
+                                approvedBy: null == h ? void 0 : h.approvedBy,
+                                notes: (null == h ? void 0 : h.notes) || (null == m ? void 0 : m.notes),
+                                requestStatus: null == m ? void 0 : m.status
+                            };
+                            l.push({
+                                date: r,
+                                day: i,
+                                isCurrentMonth: u,
+                                isToday: g,
+                                isWeekend: x,
+                                workingStatus: p
+                            })
+                        }
+                        return l
+                    }
+                    )().map(e => (0,
+                    a.jsx)("div", {
+                        className: U(e),
+                        onClick: () => P(e),
+                        title: V(e),
+                        children: e.day
+                    }, e.date))
+                }), ("admin" === o || "dispatcher" === o) && f.length > 0 && (0,
+                a.jsx)("div", {
+                    className: "mt-4 p-4 bg-orange-50 border border-orange-200 rounded-lg",
+                    children: (0,
+                    a.jsxs)("div", {
+                        className: "flex items-center justify-between",
+                        children: [(0,
+                        a.jsxs)("div", {
+                            children: [(0,
+                            a.jsxs)("p", {
+                                className: "text-sm font-medium text-orange-800",
+                                children: [f.length, " day", f.length > 1 ? "s" : "", " selected"]
+                            }), (0,
+                            a.jsx)("p", {
+                                className: "text-xs text-orange-600",
+                                children: f.map(e => $(e)).join(", ")
+                            })]
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "flex space-x-2",
+                            children: [(0,
+                            a.jsx)("button", {
+                                onClick: () => y([]),
+                                className: "px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded hover:bg-gray-300",
+                                children: "Clear"
+                            }), (0,
+                            a.jsx)("button", {
+                                onClick: () => N(!0),
+                                className: "px-3 py-1 text-xs bg-orange-500 text-white rounded hover:bg-orange-600",
+                                children: "Set Schedule"
+                            })]
+                        })]
+                    })
+                }), "tech" === o && f.length > 0 && (0,
+                a.jsx)("div", {
+                    className: "mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg",
+                    children: (0,
+                    a.jsxs)("div", {
+                        className: "flex items-center justify-between",
+                        children: [(0,
+                        a.jsxs)("div", {
+                            children: [(0,
+                            a.jsxs)("p", {
+                                className: "text-sm font-medium text-blue-800",
+                                children: [f.length, " day", f.length > 1 ? "s" : "", " selected for time off request"]
+                            }), (0,
+                            a.jsx)("p", {
+                                className: "text-xs text-blue-600",
+                                children: f.map(e => $(e)).join(", ")
+                            })]
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "flex space-x-2",
+                            children: [(0,
+                            a.jsx)("button", {
+                                onClick: () => y([]),
+                                className: "px-3 py-1 text-xs bg-gray-200 text-gray-700 rounded hover:bg-gray-300",
+                                children: "Clear"
+                            }), (0,
+                            a.jsx)("button", {
+                                onClick: () => N(!0),
+                                className: "px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600",
+                                children: "Request Days Off"
+                            })]
+                        })]
+                    })
+                }), (0,
+                a.jsxs)("div", {
+                    className: "mt-4 flex flex-wrap gap-4 text-xs",
+                    children: [(0,
+                    a.jsxs)("div", {
+                        className: "flex items-center gap-1",
+                        children: [(0,
+                        a.jsx)("div", {
+                            className: "w-3 h-3 bg-green-100 rounded"
+                        }), (0,
+                        a.jsx)("span", {
+                            children: "Working"
+                        })]
+                    }), (0,
+                    a.jsxs)("div", {
+                        className: "flex items-center gap-1",
+                        children: [(0,
+                        a.jsx)("div", {
+                            className: "w-3 h-3 bg-blue-100 rounded"
+                        }), (0,
+                        a.jsx)("span", {
+                            children: "Vacation"
+                        })]
+                    }), (0,
+                    a.jsxs)("div", {
+                        className: "flex items-center gap-1",
+                        children: [(0,
+                        a.jsx)("div", {
+                            className: "w-3 h-3 bg-red-100 rounded"
+                        }), (0,
+                        a.jsx)("span", {
+                            children: "Emergency"
+                        })]
+                    }), (0,
+                    a.jsxs)("div", {
+                        className: "flex items-center gap-1",
+                        children: [(0,
+                        a.jsx)("div", {
+                            className: "w-3 h-3 bg-yellow-100 rounded"
+                        }), (0,
+                        a.jsx)("span", {
+                            children: "Sick"
+                        })]
+                    }), (0,
+                    a.jsxs)("div", {
+                        className: "flex items-center gap-1",
+                        children: [(0,
+                        a.jsx)("div", {
+                            className: "w-3 h-3 bg-purple-100 rounded"
+                        }), (0,
+                        a.jsx)("span", {
+                            children: "Personal"
+                        })]
+                    }), ("admin" === o || "dispatcher" === o) && (0,
+                    a.jsxs)("div", {
+                        className: "flex items-center gap-1",
+                        children: [(0,
+                        a.jsx)("div", {
+                            className: "w-3 h-3 bg-orange-200 rounded ring-2 ring-orange-400"
+                        }), (0,
+                        a.jsx)("span", {
+                            children: "Selected"
+                        })]
+                    }), "tech" === o && (0,
+                    a.jsxs)("div", {
+                        className: "flex items-center gap-1",
+                        children: [(0,
+                        a.jsx)("div", {
+                            className: "w-3 h-3 bg-blue-200 rounded ring-2 ring-blue-400"
+                        }), (0,
+                        a.jsx)("span", {
+                            children: "Selected"
+                        })]
+                    }), "tech" === o && (0,
+                    a.jsxs)(a.Fragment, {
+                        children: [(0,
+                        a.jsxs)("div", {
+                            className: "flex items-center gap-1",
+                            children: [(0,
+                            a.jsx)("div", {
+                                className: "w-3 h-3 bg-blue-200 rounded"
+                            }), (0,
+                            a.jsx)("span", {
+                                children: "Pending"
+                            })]
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "flex items-center gap-1",
+                            children: [(0,
+                            a.jsx)("div", {
+                                className: "w-3 h-3 bg-red-200 rounded"
+                            }), (0,
+                            a.jsx)("span", {
+                                children: "Rejected"
+                            })]
+                        })]
+                    })]
+                }), v && (0,
+                a.jsx)("div", {
+                    className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50",
+                    children: (0,
+                    a.jsxs)("div", {
+                        className: "bg-white rounded-lg p-6 w-96 max-w-full mx-4",
+                        children: [(0,
+                        a.jsx)("h4", {
+                            className: "text-lg font-semibold mb-4",
+                            children: "tech" !== o || !1 !== E.isWorking || E.reason ? "Edit Day: ".concat(new Date(/^\d{4}-\d{2}-\d{2}$/.test(E.date) ? E.date + "T00:00:00" : E.date).toLocaleDateString()) : "Request Day Off: ".concat(new Date(/^\d{4}-\d{2}-\d{2}$/.test(E.date) ? E.date + "T00:00:00" : E.date).toLocaleDateString())
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "space-y-4",
+                            children: [(0,
+                            a.jsxs)("div", {
+                                children: [(0,
+                                a.jsx)("label", {
+                                    className: "block text-sm font-medium text-gray-700 mb-2",
+                                    children: "Status"
+                                }), (0,
+                                a.jsxs)("div", {
+                                    className: "flex gap-4",
+                                    children: [(0,
+                                    a.jsxs)("label", {
+                                        className: "flex items-center",
+                                        children: [(0,
+                                        a.jsx)("input", {
+                                            type: "radio",
+                                            checked: E.isWorking,
+                                            onChange: () => A(e => ({
+                                                ...e,
+                                                isWorking: !0,
+                                                reason: ""
+                                            })),
+                                            disabled: "tech" === o && !1 === E.isWorking && !E.reason,
+                                            className: "mr-2"
+                                        }), "Working"]
+                                    }), (0,
+                                    a.jsxs)("label", {
+                                        className: "flex items-center",
+                                        children: [(0,
+                                        a.jsx)("input", {
+                                            type: "radio",
+                                            checked: !E.isWorking,
+                                            onChange: () => A(e => ({
+                                                ...e,
+                                                isWorking: !1
+                                            })),
+                                            disabled: "tech" === o && !1 === E.isWorking && !E.reason,
+                                            className: "mr-2"
+                                        }), "Day Off"]
+                                    })]
+                                }), "tech" === o && !1 === E.isWorking && !E.reason && (0,
+                                a.jsx)("p", {
+                                    className: "text-xs text-blue-600 mt-1",
+                                    children: "You are requesting a day off for this date."
+                                })]
+                            }), !E.isWorking && (0,
+                            a.jsxs)("div", {
+                                children: [(0,
+                                a.jsxs)("label", {
+                                    className: "block text-sm font-medium text-gray-700 mb-2",
+                                    children: ["Reason ", "tech" === o && !1 === E.isWorking && !E.reason && (0,
+                                    a.jsx)("span", {
+                                        className: "text-red-500",
+                                        children: "*"
+                                    })]
+                                }), (0,
+                                a.jsxs)("select", {
+                                    value: E.reason,
+                                    onChange: e => A(t => ({
+                                        ...t,
+                                        reason: e.target.value
+                                    })),
+                                    required: "tech" === o && !1 === E.isWorking && !E.reason,
+                                    className: "w-full border border-gray-300 rounded-md px-3 py-2",
+                                    children: [(0,
+                                    a.jsx)("option", {
+                                        value: "",
+                                        children: "Select reason"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "vacation",
+                                        children: "Vacation"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "emergency",
+                                        children: "Emergency"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "sick",
+                                        children: "Sick"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "personal",
+                                        children: "Personal"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "call_out",
+                                        children: "Call Out"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "suspended",
+                                        children: "Suspended"
+                                    })]
+                                })]
+                            }), (0,
+                            a.jsxs)("div", {
+                                children: [(0,
+                                a.jsx)("label", {
+                                    className: "block text-sm font-medium text-gray-700 mb-2",
+                                    children: "Notes"
+                                }), (0,
+                                a.jsx)("textarea", {
+                                    value: E.notes,
+                                    onChange: e => A(t => ({
+                                        ...t,
+                                        notes: e.target.value
+                                    })),
+                                    className: "w-full border border-gray-300 rounded-md px-3 py-2 h-20",
+                                    placeholder: "Optional notes..."
+                                })]
+                            })]
+                        }), E.status && (0,
+                        a.jsx)("div", {
+                            className: "mt-4 p-3 rounded-lg bg-gray-50",
+                            children: (0,
+                            a.jsxs)("p", {
+                                className: "text-sm font-medium text-gray-700",
+                                children: ["Status: ", (0,
+                                a.jsx)("span", {
+                                    className: "font-bold ".concat("pending" === E.status ? "text-yellow-600" : "approved" === E.status ? "text-green-600" : "text-red-600"),
+                                    children: E.status.charAt(0).toUpperCase() + E.status.slice(1)
+                                })]
+                            })
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "flex justify-between mt-6",
+                            children: [(0,
+                            a.jsx)("button", {
+                                onClick: () => j(!1),
+                                className: "px-4 py-2 text-gray-600 hover:text-gray-800",
+                                children: "Cancel"
+                            }), (0,
+                            a.jsxs)("div", {
+                                className: "flex gap-2",
+                                children: ["tech" !== o && "pending" === E.status && (0,
+                                a.jsxs)(a.Fragment, {
+                                    children: [(0,
+                                    a.jsx)("button", {
+                                        onClick: () => {
+                                            var e;
+                                            if (!p)
+                                                return;
+                                            let t = null === (e = s.workingDays) || void 0 === e ? void 0 : e[p];
+                                            if (!t)
+                                                return;
+                                            let a = {
+                                                ...t,
+                                                status: "rejected",
+                                                approvedBy: "admin" === o ? "admin" : "dispatcher",
+                                                approvedAt: new Date
+                                            };
+                                            i({
+                                                ...s.workingDays,
+                                                [p]: a
+                                            }),
+                                            j(!1),
+                                            b(null)
+                                        }
+                                        ,
+                                        className: "px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600",
+                                        children: "Reject"
+                                    }), (0,
+                                    a.jsx)("button", {
+                                        onClick: () => {
+                                            var e;
+                                            if (!p)
+                                                return;
+                                            let t = null === (e = s.workingDays) || void 0 === e ? void 0 : e[p];
+                                            if (!t)
+                                                return;
+                                            let a = {
+                                                ...t,
+                                                status: "approved",
+                                                approvedBy: "admin" === o ? "admin" : "dispatcher",
+                                                approvedAt: new Date
+                                            };
+                                            i({
+                                                ...s.workingDays,
+                                                [p]: a
+                                            }),
+                                            j(!1),
+                                            b(null)
+                                        }
+                                        ,
+                                        className: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600",
+                                        children: "Approve"
+                                    })]
+                                }), "tech" !== o && p && (null === (t = s.workingDays) || void 0 === t ? void 0 : t[p]) && (0,
+                                a.jsx)("button", {
+                                    onClick: z,
+                                    className: "px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600",
+                                    children: "Delete"
+                                }), ("tech" === o || "pending" !== E.status) && (0,
+                                a.jsx)("button", {
+                                    onClick: _,
+                                    className: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600",
+                                    children: "tech" !== o || !1 !== E.isWorking || E.reason ? "Save" : "Submit Request"
+                                })]
+                            })]
+                        })]
+                    })
+                }), w && (0,
+                a.jsx)("div", {
+                    className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50",
+                    children: (0,
+                    a.jsxs)("div", {
+                        className: "bg-white rounded-lg p-6 w-96 max-w-full mx-4",
+                        children: [(0,
+                        a.jsx)("h4", {
+                            className: "text-lg font-semibold mb-4",
+                            children: "tech" === o ? "Request Days Off (".concat(f.length, " day").concat(f.length > 1 ? "s" : "", ")") : "Set Schedule (".concat(f.length, " day").concat(f.length > 1 ? "s" : "", ")")
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "space-y-4",
+                            children: [(0,
+                            a.jsxs)("div", {
+                                children: [(0,
+                                a.jsx)("label", {
+                                    className: "block text-sm font-medium text-gray-700 mb-2",
+                                    children: "Selected Dates"
+                                }), (0,
+                                a.jsx)("div", {
+                                    className: "bg-gray-50 p-3 rounded text-sm",
+                                    children: f.map(e => (0,
+                                    a.jsxs)("div", {
+                                        className: "flex items-center justify-between py-1",
+                                        children: [(0,
+                                        a.jsx)("span", {
+                                            children: new Date(/^\d{4}-\d{2}-\d{2}$/.test(e) ? e + "T00:00:00" : e).toLocaleDateString("en-US", {
+                                                weekday: "short",
+                                                year: "numeric",
+                                                month: "short",
+                                                day: "numeric"
+                                            })
+                                        }), (0,
+                                        a.jsx)("button", {
+                                            onClick: () => y(t => t.filter(t => t !== e)),
+                                            className: "text-red-500 hover:text-red-700 text-xs",
+                                            children: "Remove"
+                                        })]
+                                    }, e))
+                                })]
+                            }), "tech" !== o && (0,
+                            a.jsxs)("div", {
+                                children: [(0,
+                                a.jsx)("label", {
+                                    className: "block text-sm font-medium text-gray-700 mb-2",
+                                    children: "Working Status"
+                                }), (0,
+                                a.jsxs)("div", {
+                                    className: "space-y-2",
+                                    children: [(0,
+                                    a.jsxs)("label", {
+                                        className: "flex items-center",
+                                        children: [(0,
+                                        a.jsx)("input", {
+                                            type: "radio",
+                                            name: "isWorking",
+                                            checked: L.isWorking,
+                                            onChange: () => F(e => ({
+                                                ...e,
+                                                isWorking: !0
+                                            })),
+                                            className: "mr-2"
+                                        }), (0,
+                                        a.jsx)("span", {
+                                            children: "Working Day"
+                                        })]
+                                    }), (0,
+                                    a.jsxs)("label", {
+                                        className: "flex items-center",
+                                        children: [(0,
+                                        a.jsx)("input", {
+                                            type: "radio",
+                                            name: "isWorking",
+                                            checked: !L.isWorking,
+                                            onChange: () => F(e => ({
+                                                ...e,
+                                                isWorking: !1
+                                            })),
+                                            className: "mr-2"
+                                        }), (0,
+                                        a.jsx)("span", {
+                                            children: "Day Off"
+                                        })]
+                                    })]
+                                })]
+                            }), "tech" === o && (0,
+                            a.jsx)("div", {
+                                className: "p-3 bg-blue-50 border border-blue-200 rounded-lg",
+                                children: (0,
+                                a.jsxs)("p", {
+                                    className: "text-sm text-blue-800",
+                                    children: ["You are requesting time off for ", f.length, " day", f.length > 1 ? "s" : "", "."]
+                                })
+                            }), (!L.isWorking || "tech" === o) && (0,
+                            a.jsxs)("div", {
+                                children: [(0,
+                                a.jsxs)("label", {
+                                    className: "block text-sm font-medium text-gray-700 mb-2",
+                                    children: ["Reason ", "tech" === o && (0,
+                                    a.jsx)("span", {
+                                        className: "text-red-500",
+                                        children: "*"
+                                    })]
+                                }), (0,
+                                a.jsxs)("select", {
+                                    value: L.reason,
+                                    onChange: e => F(t => ({
+                                        ...t,
+                                        reason: e.target.value
+                                    })),
+                                    required: "tech" === o,
+                                    className: "w-full border border-gray-300 rounded-md px-3 py-2",
+                                    children: [(0,
+                                    a.jsx)("option", {
+                                        value: "",
+                                        children: "Select a reason"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "vacation",
+                                        children: "Vacation"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "emergency",
+                                        children: "Emergency"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "sick",
+                                        children: "Sick"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "personal",
+                                        children: "Personal"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "call_out",
+                                        children: "Call Out"
+                                    }), (0,
+                                    a.jsx)("option", {
+                                        value: "suspended",
+                                        children: "Suspended"
+                                    })]
+                                })]
+                            }), (0,
+                            a.jsxs)("div", {
+                                children: [(0,
+                                a.jsx)("label", {
+                                    className: "block text-sm font-medium text-gray-700 mb-2",
+                                    children: "Notes (Optional)"
+                                }), (0,
+                                a.jsx)("textarea", {
+                                    value: L.notes,
+                                    onChange: e => F(t => ({
+                                        ...t,
+                                        notes: e.target.value
+                                    })),
+                                    className: "w-full border border-gray-300 rounded-md px-3 py-2 h-20",
+                                    placeholder: "Add any additional notes..."
+                                })]
+                            })]
+                        }), (0,
+                        a.jsxs)("div", {
+                            className: "flex justify-between mt-6",
+                            children: [(0,
+                            a.jsx)("button", {
+                                onClick: () => N(!1),
+                                className: "px-4 py-2 text-gray-600 hover:text-gray-800",
+                                children: "Cancel"
+                            }), (0,
+                            a.jsx)("button", {
+                                onClick: () => {
+                                    console.log("Multi-day modal button clicked", {
+                                        currentUserRole: o,
+                                        selectedDates: f,
+                                        multiDayModalData: L,
+                                        willCall: "tech" === o ? "handleMultiDayRequest" : "handleMultiDaySave"
+                                    }),
+                                    "tech" === o ? I() : Y()
+                                }
+                                ,
+                                disabled: 0 === f.length || "tech" === o && !L.reason,
+                                className: "px-4 py-2 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed ".concat("tech" === o ? "bg-blue-500 hover:bg-blue-600" : "bg-orange-500 hover:bg-orange-600"),
+                                children: "tech" === o ? "Submit ".concat(f.length, " Request").concat(f.length > 1 ? "s" : "") : "Update ".concat(f.length, " Day").concat(f.length > 1 ? "s" : "")
+                            })]
+                        })]
+                    })
+                })]
+            })
+        }
+    }
+}]);

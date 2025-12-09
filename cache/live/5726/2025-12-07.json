@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "5726",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836207089",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "MEZA,JASON",
+        "address": "290 BAY 17 ST, APT 1A, BROOKLYN, NY 11214-5915",
+        "phone": "718-502-4432",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836048606",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "LEEBO,ARABELLA",
+        "address": "2236 BATCHELDER ST, APT 5C, BROOKLYN, NY 11229-5209",
+        "phone": "718-934-0794",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836331691",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "SCHWARTZ,LESLIE",
+        "address": "1819 AVENUE L, APT 6C, BROOKLYN, NY 11230-4473",
+        "phone": "718-986-5636",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836880170",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "AMSEL,MICHAEL",
+        "address": "531 E 9TH ST, APT 1, BROOKLYN, NY 11218",
+        "phone": "718-851-5222",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836355973",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "HANIFF,MOHAMED",
+        "address": "746 E 10TH ST, APT 2, BROOKLYN, NY 11230-2302",
+        "phone": "347-777-4034",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "5h 48m"
+  }
+]

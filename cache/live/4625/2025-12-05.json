@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4625",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836925886",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "CLEANING LLC,IVANS",
+        "address": "1940 OCEAN AV, APT 6J, BROOKLYN, NY 11230",
+        "phone": "347-699-1272",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836271681",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "E,AFORC",
+        "address": "1616 AVENUE H, APT 1, BROOKLYN, NY 11230-2428",
+        "phone": "718-677-3768",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836742168",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "ASTER TRANSMI,JUNIOR M",
+        "address": "938 E 51ST ST, COMM, BROOKLYN, NY 11203-6736",
+        "phone": "631-805-5016",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836787069",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4625",
+        "name": "2223 LLC,ADOBO",
+        "address": "2223 CHURCH AV, COMM, BROOKLYN, NY 11226-3201",
+        "phone": "516-784-9844",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "6h 12m"
+  }
+]

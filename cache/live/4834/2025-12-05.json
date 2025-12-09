@@ -1,0 +1,101 @@
+[
+  {
+    "techNo": "4834",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836890345",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "GIRAULT,ARSENE",
+        "address": "1115 E 80TH ST, 2FL 1, BROOKLYN, NY 11236-4101",
+        "phone": "347-217-0163",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836911142",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "ALLMAN,CHELSEA",
+        "address": "185 WORTMAN AV, APT 3M, BROOKLYN, NY 11207-8520",
+        "phone": "908-274-5959",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836018767",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "POGGY,WANDERLE",
+        "address": "956 E 80TH ST, APT BSMT, BROOKLYN, NY 11236-3810",
+        "phone": "347-998-8443",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836689279",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "ALEXANDER,ALAIN",
+        "address": "525 E 78TH ST, APT BSMT, BROOKLYN, NY 11236-3120",
+        "phone": "347-276-5946",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836004954",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "WILLIAMS,DAWN",
+        "address": "1689 E 54TH ST, APT 2, BROOKLYN, NY 11234-3921",
+        "phone": "646-667-6783",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836040678",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "AZOR,JOSEPH",
+        "address": "1426 E 86TH ST, APT 1, BROOKLYN, NY 11236-5134",
+        "phone": "917-201-9011",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836408818",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "SANTOS,JUAN",
+        "address": "257 MILFORD ST, APT 1, BROOKLYN, NY 11208-2423",
+        "phone": "646-664-6264",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 7,
+    "estimatedDuration": "7h 36m"
+  }
+]

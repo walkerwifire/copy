@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "556",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836637402",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "RODRIGUEZ,JOSE",
+        "address": "130 VERNON AV, APT 3L, BROOKLYN, NY 11206",
+        "phone": "646-904-0665",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836122233",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "WILLIAMS,THOMASEN",
+        "address": "744 PARK AV, APT 4B, BROOKLYN, NY 11206-5234",
+        "phone": "718-782-2261",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836817697",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "MCNEIL,GABE",
+        "address": "1287 ATLANTIC AV, APT 3, BROOKLYN, NY 11216",
+        "phone": "608-738-8882",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836078385",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "WATERMAN,SHARIFA",
+        "address": "447 HANCOCK ST, APT 3, BROOKLYN, NY 11233-1016",
+        "phone": "347-262-2209",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836107311",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "FIGUEROA,RAQUEL",
+        "address": "383 PULASKI ST, APT 2G, BROOKLYN, NY 11206-7215",
+        "phone": "718-484-8587",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836393176",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "ROSE,CARLOS H",
+        "address": "751 TROY AV, APT 1A, BROOKLYN, NY 11203-3126",
+        "phone": "347-271-9023",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "6h 30m"
+  }
+]

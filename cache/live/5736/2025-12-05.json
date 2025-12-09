@@ -1,0 +1,23 @@
+[
+  {
+    "techNo": "5736",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "12-3",
+        "job": "07837425520",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "LOPEZ,NANCY",
+        "address": "430 E 138TH ST, APT 6G, BRONX, NY 10454-4954",
+        "phone": "111-111-1111",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 1,
+    "estimatedDuration": "0h 54m"
+  }
+]

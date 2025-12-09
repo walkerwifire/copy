@@ -1,0 +1,140 @@
+{
+  "chosen": {
+    "lat": 40.675831,
+    "lng": -73.8813377,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.675831,
+      "lng": -73.8813377,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 40' 32.99160'' N",
+            "lng": "73° 52' 52.81572'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWL9454103373",
+          "Maidenhead": "FN30bq42fe",
+          "Mercator": {
+            "x": -8224432.888,
+            "y": 4936787.903
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=5679990#map=17/40.67583/-73.88134",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/40.67583/-73.88134&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.67583&mlon=-73.88134#map=17/40.67583/-73.88134"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5rquc3bh3z0m6n7usn",
+          "qibla": 58.57,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Shepherd Avenue",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193820,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229220,
+              "astronomical": 1765235100,
+              "civil": 1765231080,
+              "nautical": 1765233120
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "rents.bucked.depend"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.675881,
+            "lng": -73.8812877
+          },
+          "southwest": {
+            "lat": 40.675781,
+            "lng": -73.8813877
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "360",
+          "postcode": "11208",
+          "quarter": "East New York",
+          "road": "Shepherd Avenue",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "360 Shepherd Avenue, New York, NY 11208, United States of America",
+        "geometry": {
+          "lat": 40.675831,
+          "lng": -73.8813377
+        }
+      }
+    }
+  ]
+}

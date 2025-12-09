@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4856",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836806157",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "ESGUERRA,RAFAEL",
+        "address": "455 VANDALIA AV, APT 2A, BROOKLYN, NY 11239",
+        "phone": "917-385-2373",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836907056",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "DE LOS SANTOS,JOSE A",
+        "address": "1165 ELTON ST, APT 6C, BROOKLYN, NY 11239",
+        "phone": "718-277-7807",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836650672",
+        "type": "RST",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "SYAROV,MYKHAYLO",
+        "address": "1275 DELMAR LP, APT 15A, BROOKLYN, NY 11239-1603",
+        "phone": "917-907-2249",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836386338",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "LOGAN,SHALOMA",
+        "address": "234 E 34TH ST, APT C5, BROOKLYN, NY 11203-2752",
+        "phone": "516-640-8620",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836813560",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "Weber,Alex",
+        "address": "700 BRADFORD ST, BSMT, BROOKLYN, NY 11207-7102",
+        "phone": "516-353-2280",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836649731",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "Hernandez Gon,Juanpabl",
+        "address": "120 SCHROEDERS AV, APT 12D, BROOKLYN, NY 11239-2211",
+        "phone": "646-986-3775",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "7h 42m"
+  }
+]

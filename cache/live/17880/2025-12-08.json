@@ -1,0 +1,36 @@
+[
+  {
+    "techNo": "17880",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836036129",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "SIN,SHARON",
+        "address": "2113 E 65TH ST, APT BSMT, BROOKLYN, NY 11234-6317",
+        "phone": "917-724-3094",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836157537",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "FRASER,AVERIL",
+        "address": "5222 AVENUE I, APT 2, BROOKLYN, NY 11234-1609",
+        "phone": "718-241-7263",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 2,
+    "estimatedDuration": "3h 36m"
+  }
+]

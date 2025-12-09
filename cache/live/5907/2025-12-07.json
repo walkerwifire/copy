@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "5907",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836536603",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "DERICO,DEBORAH",
+        "address": "260 LINDEN BL, APT 2A, BROOKLYN, NY 11226-9106",
+        "phone": "646-662-1416",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836511411",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "Radabaug,Tay",
+        "address": "386 E 31ST ST, APT 3B, BROOKLYN, NY 11226-7902",
+        "phone": "480-400-4141",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836599124",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "ADMAN,MARGERY",
+        "address": "55 WINTHROP ST, APT 4M, BROOKLYN, NY 11225-6055",
+        "phone": "212-518-6840",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836337425",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "SLATER,DARLENE",
+        "address": "100 WOODRUFF AV, APT 6E, BROOKLYN, NY 11226-1227",
+        "phone": "718-287-9196",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836534220",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "FERGUSON,JASMYN",
+        "address": "215 LENOX RD, APT 2, BROOKLYN, NY 11226-2167",
+        "phone": "718-282-2245",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "5h 24m"
+  }
+]

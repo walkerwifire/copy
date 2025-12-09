@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4856",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836026125",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "THAM,SHARON",
+        "address": "1469 E 96TH ST, APT 2, BROOKLYN, NY 11236-5003",
+        "phone": "646-961-6993",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836691302",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "ELLIS,JAMES",
+        "address": "5905 STRICKLAND AV, APT 211, BROOKLYN, NY 11234-6425",
+        "phone": "631-560-0609",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836221507",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "RESPETO,MARIA",
+        "address": "5712 FARRAGUT RD, APT 1E, BROOKLYN, NY 11234-1208",
+        "phone": "347-587-2268",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836035374",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "Espinal,RAYMOND",
+        "address": "9910 SEAVIEW AV, APT 8H, BROOKLYN, NY 11236-5537",
+        "phone": "347-355-2495",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "8h 54m"
+  }
+]

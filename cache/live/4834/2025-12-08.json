@@ -1,0 +1,23 @@
+[
+  {
+    "techNo": "4834",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836096581",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "BASTIAN,CLIFFORD",
+        "address": "179 PUTNAM AV, APT 1, BROOKLYN, NY 11216-1625",
+        "phone": "267-495-7966",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 1,
+    "estimatedDuration": "2h 24m"
+  }
+]

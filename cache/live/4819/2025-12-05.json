@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4819",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836747971",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "CODRINGTON,JEAN",
+        "address": "95 PULASKI ST, APT 2, BROOKLYN, NY 11206-6803",
+        "phone": "347-707-9800",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836294119",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "TAYLOR,RAYMOND",
+        "address": "1038 BROADWAY, APT 9F, BROOKLYN, NY 11221",
+        "phone": "646-626-0830",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836052848",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "MCCARTHY,MARY",
+        "address": "83 STUYVESANT AV, APT 2L, BROOKLYN, NY 11221",
+        "phone": "718-484-1967",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "2h 54m"
+  }
+]

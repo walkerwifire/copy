@@ -1,0 +1,101 @@
+[
+  {
+    "techNo": "5647",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836279684",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "RIVERA,ANNA",
+        "address": "785 OCEAN PKWY, APT 6D, BROOKLYN, NY 11230-2280",
+        "phone": "718-434-6795",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836346145",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "YONG,RACHEL",
+        "address": "901 AVENUE H, APT 6O, BROOKLYN, NY 11230-2825",
+        "phone": "650-291-2410",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836315646",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "LUDMIR,SIMCHA",
+        "address": "348 WALSH CT, BROOKLYN, NY 11230-2113",
+        "phone": "718-436-2610",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836315894",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "KHESIN,MIKHAIL",
+        "address": "870 OCEAN PKWY, APT 7H, BROOKLYN, NY 11230-3432",
+        "phone": "929-340-5501",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836327177",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "GILLANI,SYED",
+        "address": "1311 AVENUE K, APT 3E, BROOKLYN, NY 11230-4340",
+        "phone": "347-394-6026",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836286222",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "ABDUROZIKOV,DIYORBEK",
+        "address": "1112 AVENUE K, APT 3Z, BROOKLYN, NY 11230-4100",
+        "phone": "707-727-7000",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836435832",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "XIQUE,JULIO",
+        "address": "2694 86TH ST, APT 1, BROOKLYN, NY 11223-3546",
+        "phone": "347-548-7259",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 7,
+    "estimatedDuration": "5h 48m"
+  }
+]

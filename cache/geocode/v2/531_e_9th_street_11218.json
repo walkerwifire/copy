@@ -1,0 +1,140 @@
+{
+  "chosen": {
+    "lat": 40.6357197,
+    "lng": -73.9689104,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.6357197,
+      "lng": -73.9689104,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 38' 8.59092'' N",
+            "lng": "73° 58' 8.07744'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWK8719298830",
+          "Maidenhead": "FN30ap32rn",
+          "Mercator": {
+            "x": -8234181.44,
+            "y": 4930924.868
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=241850201#map=16/40.63572/-73.96891",
+            "note_url": "https://www.openstreetmap.org/note/new#map=16/40.63572/-73.96891&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.63572&mlon=-73.96891#map=16/40.63572/-73.96891"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5rhv92prnvcw20rjdc",
+          "qibla": 58.51,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "East 9th Street",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193880,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229280,
+              "astronomical": 1765235160,
+              "civil": 1765231080,
+              "nautical": 1765233180
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "outfit.resist.garden"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.6357658,
+            "lng": -73.9687802
+          },
+          "southwest": {
+            "lat": 40.6356736,
+            "lng": -73.9690406
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "531",
+          "neighbourhood": "Parkville",
+          "postcode": "11218",
+          "road": "East 9th Street",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "531 East 9th Street, New York, NY 11218, United States of America",
+        "geometry": {
+          "lat": 40.6357197,
+          "lng": -73.9689104
+        }
+      }
+    }
+  ]
+}

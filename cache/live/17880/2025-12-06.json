@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "17880",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836360064",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "kumar,Surendra",
+        "address": "171 THROOP AV, APT 709, BROOKLYN, NY 11206",
+        "phone": "813-377-5518",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836106942",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "BLAIR,JAMES",
+        "address": "109 111 LEWIS AV, APT 3E, BROOKLYN, NY 11206",
+        "phone": "347-496-3387",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836762308",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "Victoriano,JOSE",
+        "address": "914 BROADWAY, APT 3, BROOKLYN, NY 11206-5902",
+        "phone": "917-704-9634",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836462677",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "BRAITHWAITE,SONYA",
+        "address": "901 SARATOGA AV, APT 2B, BROOKLYN, NY 11212",
+        "phone": "347-384-1828",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836159057",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "BENJAMIN,JOEDY",
+        "address": "1802 SCHENECTADY AV, APT 1, BROOKLYN, NY 11234-2004",
+        "phone": "908-265-1531",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "4h 48m"
+  }
+]

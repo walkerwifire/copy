@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4625",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "12-3",
+        "job": "07836881570",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "SILVERMAN,YOSEF",
+        "address": "5304 NEW UTRECHT AV, COMM, BROOKLYN, NY 11219",
+        "phone": "845-641-6912",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836775980",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "CATERERS -AG,ONEG",
+        "address": "5000 14TH AV, BROOKLYN, NY 11219",
+        "phone": "347-675-7857",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836235860",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "GEM TATTOO,HIDDEN",
+        "address": "1767 BATH AV, APT *1, BROOKLYN, NY 11214-4517",
+        "phone": "929-332-3443",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836776829",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4625",
+        "name": "K MNGMENT,BARRYRIS",
+        "address": "4910 NEW UTRECHT AV, BROOKLYN, NY 11219",
+        "phone": "646-296-7971",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "3h 54m"
+  }
+]

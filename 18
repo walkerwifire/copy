@@ -1,0 +1,1034 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[7951], {
+    3426: function(e, t, o) {
+        o.d(t, {
+            De: function() {
+                return s
+            },
+            Ed: function() {
+                return r
+            },
+            GS: function() {
+                return c
+            },
+            Ky: function() {
+                return i
+            },
+            RZ: function() {
+                return u
+            }
+        });
+        var n = o(5978)
+          , a = o(6410);
+        let s = async (e, t) => {
+            let o = (0,
+            n.doc)(a.db, "companies", e, "settings", "csgAutoImportSettings");
+            await (0,
+            n.setDoc)(o, {
+                ...t,
+                nextRunAt: t.nextRunAt,
+                updatedAt: (0,
+                n.serverTimestamp)()
+            }, {
+                merge: !0
+            })
+        }
+          , i = (e, t) => {
+            let o = (0,
+            n.doc)(a.db, "companies", e, "settings", "csgAutoImportSettings");
+            return (0,
+            n.onSnapshot)(o, e => {
+                t(e.exists() ? e.data() : null)
+            }
+            )
+        }
+          , c = async (e, t) => {
+            let o = (0,
+            n.doc)(a.db, "companies", e, "settings", "csgAutoImportSettings");
+            await (0,
+            n.setDoc)(o, {
+                nextRunAt: t,
+                updatedAt: (0,
+                n.serverTimestamp)()
+            }, {
+                merge: !0
+            })
+        }
+          , r = async (e, t) => {
+            let o = (0,
+            n.doc)(a.db, "companies", e, "settings", "csgAutoImportStatus");
+            await (0,
+            n.setDoc)(o, {
+                ...t,
+                updatedAt: (0,
+                n.serverTimestamp)()
+            }, {
+                merge: !0
+            })
+        }
+          , u = (e, t) => {
+            let o = (0,
+            n.doc)(a.db, "companies", e, "settings", "csgAutoImportStatus");
+            return (0,
+            n.onSnapshot)(o, e => {
+                t(e.exists() ? e.data() : null)
+            }
+            )
+        }
+    },
+    2158: function(e, t, o) {
+        o.d(t, {
+            Hf: function() {
+                return u
+            },
+            KM: function() {
+                return r
+            },
+            Nb: function() {
+                return l
+            },
+            gN: function() {
+                return s
+            },
+            k0: function() {
+                return d
+            },
+            mR: function() {
+                return D
+            },
+            rQ: function() {
+                return g
+            }
+        });
+        var n = o(5978)
+          , a = o(6410);
+        let s = {
+            jobNumber: "Job ID:",
+            jobType: "Type:",
+            timeFrame: "TS:",
+            description: "ReaCd/ReaDesc:",
+            address: "Addr:",
+            unitNumber: "Addr2:",
+            city: "City:",
+            customerName: "Name:",
+            customerPhone: "Home #:",
+            additionalPhone: "Work #:",
+            comment: "Job Cmt:",
+            dispatchComment: "Dispatch Cmt:",
+            units: "Units:",
+            staticStatus: "DS:",
+            staticCompletionTime: "CpTime:",
+            resolutionCodes: "ResCd:"
+        }
+          , i = {
+            TC: "TC",
+            COS: "COS",
+            RST: "RST",
+            IN: "IN",
+            SRO: "SRO",
+            "In-house": "In-house"
+        }
+          , c = {
+            "2-5": "14-17",
+            "3-6": "15-18",
+            "11-2": "11-14",
+            "12-3": "12-15",
+            "ALL DAY": "8-20",
+            UNKNWN: "8-20",
+            "5-8": "17-20"
+        };
+        async function r(e) {
+            try {
+                let t = (0,
+                n.doc)(a.db, "companies", e)
+                  , o = await (0,
+                n.getDoc)(t);
+                if (!o.exists())
+                    return s;
+                let i = o.data().fieldMappings || {};
+                console.log("\uD83D\uDD0D Field Mappings Debug:", {
+                    companyId: e,
+                    savedMappingsKeys: Object.keys(i),
+                    defaultMappingsKeys: Object.keys(s),
+                    savedMappings: i,
+                    defaultMappings: s
+                });
+                let c = {
+                    ...s,
+                    ...i
+                };
+                return Object.keys(s).forEach(e => {
+                    e in c || (c[e] = s[e])
+                }
+                ),
+                console.log("\uD83D\uDD0D Merged Mappings:", {
+                    mergedKeys: Object.keys(c),
+                    mergedMappings: c
+                }),
+                c
+            } catch (e) {
+                return console.error("Error getting field mappings:", e),
+                s
+            }
+        }
+        async function u(e, t) {
+            try {
+                let o = (0,
+                n.doc)(a.db, "companies", e);
+                await (0,
+                n.updateDoc)(o, {
+                    fieldMappings: t,
+                    updatedAt: (0,
+                    n.serverTimestamp)()
+                })
+            } catch (e) {
+                throw console.error("Error saving field mappings:", e),
+                e
+            }
+        }
+        async function l(e) {
+            try {
+                let t = (0,
+                n.doc)(a.db, "companies", e)
+                  , o = await (0,
+                n.getDoc)(t);
+                if (!o.exists())
+                    return i;
+                let s = o.data().jobTypeMappings || {};
+                return Object.keys(s).length > 0 ? s : i
+            } catch (e) {
+                return console.error("Error getting job type mappings:", e),
+                i
+            }
+        }
+        async function d(e, t) {
+            try {
+                let o = (0,
+                n.doc)(a.db, "companies", e);
+                await (0,
+                n.updateDoc)(o, {
+                    jobTypeMappings: t,
+                    updatedAt: (0,
+                    n.serverTimestamp)()
+                })
+            } catch (e) {
+                throw console.error("Error saving job type mappings:", e),
+                e
+            }
+        }
+        async function D(e) {
+            try {
+                let t = (0,
+                n.doc)(a.db, "companies", e)
+                  , o = await (0,
+                n.getDoc)(t);
+                if (!o.exists())
+                    return c;
+                let s = o.data().timeFrameMappings || {};
+                return Object.keys(s).length > 0 ? s : c
+            } catch (e) {
+                return console.error("Error getting time frame mappings:", e),
+                c
+            }
+        }
+        async function g(e, t) {
+            try {
+                let o = (0,
+                n.doc)(a.db, "companies", e);
+                await (0,
+                n.updateDoc)(o, {
+                    timeFrameMappings: t,
+                    updatedAt: (0,
+                    n.serverTimestamp)()
+                })
+            } catch (e) {
+                throw console.error("Error saving time frame mappings:", e),
+                e
+            }
+        }
+    },
+    7390: function(e, t, o) {
+        o.d(t, {
+            $: function() {
+                return p
+            }
+        });
+        var n = o(2130)
+          , a = o(3496)
+          , s = o(1022)
+          , i = o(6410)
+          , c = o(5978);
+        async function r(e, t, o) {
+            let n = [];
+            try {
+                let a = await (0,
+                s.gA)(e, t);
+                if (a) {
+                    let e = "✅ Address validated successfully: ".concat(a.displayName);
+                    if (a.state && a.postcode) {
+                        let t = "".concat(e, " (").concat(a.state, " ").concat(a.postcode, ")");
+                        o(t)
+                    } else
+                        o(e);
+                    return {
+                        position: a.coordinates,
+                        warnings: n
+                    }
+                }
+                {
+                    let a = "❌ Address not found: ".concat(e, ", ").concat(t);
+                    return n.push(a),
+                    o(a),
+                    {
+                        position: null,
+                        warnings: n
+                    }
+                }
+            } catch (t) {
+                let e = "⚠️ Address validation error: ".concat(t.message);
+                return n.push(e),
+                o(e),
+                {
+                    position: null,
+                    warnings: n
+                }
+            }
+        }
+        async function u(e, t, o, n, s, r, u, l, D, g) {
+            try {
+                var m, p, h, f;
+                let u = (0,
+                c.collection)(i.db, "companies", e, "jobs")
+                  , l = (0,
+                c.query)(u, (0,
+                c.where)("jobId", "==", t.jobId), (0,
+                c.where)("type", "==", o), (0,
+                c.where)("timeFrame", "==", n), (0,
+                c.where)("scheduleDate", "==", s), (0,
+                c.where)("archived", "==", !1))
+                  , D = await (0,
+                c.getDocs)(l);
+                if (D.empty)
+                    return g("\uD83D\uDD0D No existing job found with jobId: ".concat(t.jobId, ", type: ").concat(o, ", timeFrame: ").concat(n, " - creating new job")),
+                    {
+                        isDuplicate: !1,
+                        differingFieldsCount: 0
+                    };
+                let b = D.docs[0].data()
+                  , S = D.docs[0].id;
+                g("\uD83D\uDD0D Found existing job (Doc ID: ".concat(S, ") with matching jobId, type, and timeFrame"));
+                let C = String(b.jobOrigin || b.originalId || b.assignedTechNumber || "").trim()
+                  , N = String(r || "").trim();
+                if (!(C && N && C === N)) {
+                    let o = String(t.staticStatus || "").toUpperCase()
+                      , n = D.docs.filter(e => {
+                        let t = e.data()
+                          , o = String(t.jobOrigin || t.originalId || t.assignedTechNumber || "").trim();
+                        return o && N && o !== N
+                    }
+                    ).filter(e => "UNASSGN" === String(e.data().staticStatus || "").toUpperCase());
+                    if ("UNASSGN" === o) {
+                        for (let t of n)
+                            await (0,
+                            a.CC)(e, t.id),
+                            g("\uD83D\uDDD1️ Deleted UNASSGN duplicate job ".concat(t.id, " due to origin mismatch"));
+                        return g("\uD83D\uDD35 Duplicate detected with incoming UNASSGN; skipping creation"),
+                        {
+                            isDuplicate: !0,
+                            differingFieldsCount: 0,
+                            existingJobId: S,
+                            updated: !1
+                        }
+                    }
+                    if (n.length > 0) {
+                        for (let t of n)
+                            await (0,
+                            a.CC)(e, t.id),
+                            g("\uD83D\uDDD1️ Deleted UNASSGN duplicate job ".concat(t.id, " due to origin mismatch"));
+                        return {
+                            isDuplicate: !1,
+                            differingFieldsCount: 0
+                        }
+                    }
+                    return g("\uD83D\uDD35 Origin mismatch without UNASSGN; skipping creation to avoid confusion"),
+                    {
+                        isDuplicate: !0,
+                        differingFieldsCount: 0,
+                        existingJobId: S,
+                        updated: !1
+                    }
+                }
+                let w = e => e ? String(e).replace(/^,\s*/, "").replace(/,\s*$/, "").replace(/^"|"$/g, "").trim() : ""
+                  , j = [{
+                    name: "customerName",
+                    existing: null === (m = w(b.customerName)) || void 0 === m ? void 0 : m.toLowerCase().trim(),
+                    new: null === (p = w(t.customerName)) || void 0 === p ? void 0 : p.toLowerCase().trim()
+                }, {
+                    name: "customerPhone",
+                    existing: null === (h = w(b.customerPhone)) || void 0 === h ? void 0 : h.replace(/\D/g, ""),
+                    new: null === (f = w(t.customerPhone)) || void 0 === f ? void 0 : f.replace(/\D/g, "")
+                }, {
+                    name: "units",
+                    existing: w(b.units),
+                    new: w(t.units)
+                }]
+                  , E = 0
+                  , y = [];
+                for (let e of j)
+                    e.existing !== e.new && (E++,
+                    y.push("".concat(e.name, ': "').concat(e.existing, '" vs "').concat(e.new, '"')));
+                g("   Found ".concat(E, " differing field(s) in remaining key fields")),
+                y.length > 0 && y.forEach(e => g("   - ".concat(e))),
+                g("\uD83D\uDD04 Duplicate found (same origin): Job ".concat(t.jobId, " (").concat(o, ", ").concat(n, ") matches existing job - updating")),
+                g("   Existing job document ID: ".concat(S));
+                let I = await d(S, e, t, g);
+                return {
+                    isDuplicate: !0,
+                    differingFieldsCount: E,
+                    existingJobId: S,
+                    updated: I,
+                    hasUpdates: I
+                }
+            } catch (e) {
+                return g("⚠️ Error checking for duplicates: ".concat(e.message)),
+                {
+                    isDuplicate: !1,
+                    differingFieldsCount: 0
+                }
+            }
+        }
+        async function l(e, t, o, n, s, r, l, d, g, m, p) {
+            try {
+                let h = (0,
+                c.collection)(i.db, "companies", e, "jobs")
+                  , f = (0,
+                c.query)(h, (0,
+                c.where)("jobId", "==", t.jobId), (0,
+                c.where)("type", "==", o), (0,
+                c.where)("timeFrame", "==", n), (0,
+                c.where)("scheduleDate", "==", s), (0,
+                c.where)("archived", "==", !1))
+                  , b = await (0,
+                c.getDocs)(f);
+                if (b.empty)
+                    return p("\uD83D\uDD0D No existing job found with jobId: ".concat(t.jobId, " - creating new job")),
+                    {
+                        isDuplicate: !1,
+                        differingFieldsCount: 0
+                    };
+                let S = b.docs[0].data()
+                  , C = b.docs[0].id;
+                p("\uD83D\uDD0D Found existing job (Doc ID: ".concat(C, ") - processing account-aware duplicate handling"));
+                let N = String(S.jobOrigin || S.originalId || S.assignedTechNumber || "").trim()
+                  , w = String(r || "").trim();
+                if (!(N && w && N === w)) {
+                    let o = String(t.staticStatus || "").toUpperCase()
+                      , n = b.docs.filter(e => {
+                        let t = e.data()
+                          , o = String(t.jobOrigin || t.originalId || t.assignedTechNumber || "").trim();
+                        return o && w && o !== w
+                    }
+                    ).filter(e => "UNASSGN" === String(e.data().staticStatus || "").toUpperCase());
+                    if ("UNASSGN" === o) {
+                        for (let t of n)
+                            await (0,
+                            a.CC)(e, t.id),
+                            p("\uD83D\uDDD1️ Deleted UNASSGN duplicate job ".concat(t.id, " due to origin mismatch"));
+                        return p("\uD83D\uDD35 Duplicate detected with incoming UNASSGN; skipping creation"),
+                        {
+                            isDuplicate: !0,
+                            differingFieldsCount: 0,
+                            existingJobId: C,
+                            updated: !1,
+                            messageProcessed: !1
+                        }
+                    }
+                    if (n.length > 0) {
+                        for (let t of n)
+                            await (0,
+                            a.CC)(e, t.id),
+                            p("\uD83D\uDDD1️ Deleted UNASSGN duplicate job ".concat(t.id, " due to origin mismatch"));
+                        return {
+                            isDuplicate: !1,
+                            differingFieldsCount: 0
+                        }
+                    }
+                    return p("\uD83D\uDD35 Origin mismatch without UNASSGN; skipping creation to avoid confusion"),
+                    {
+                        isDuplicate: !0,
+                        differingFieldsCount: 0,
+                        existingJobId: C,
+                        updated: !1,
+                        messageProcessed: !1
+                    }
+                }
+                p("\uD83D\uDD0D Same origin detected → processing related messages");
+                let j = function(e, t) {
+                    let o;
+                    let n = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+                      , a = RegExp("Job\\s+".concat(n, "\\s+(UNASSGN|ASSGN|COMPL|COMPLETE|CANCEL|CANCELED|HOLD|RESCHED|RSCHD|UNASSIGNED|ASSIGNED|COMPLETED|CANCELLED|ONHOLD|ON\\s+HOLD)\\s+(?:from|to|for|by)\\s+tech\\s+(\\d+)"), "gi")
+                      , s = []
+                      , i = !1
+                      , c = 0;
+                    for (console.log("\uD83D\uDD0D Searching for status messages for job ".concat(t, "...")),
+                    console.log("\uD83D\uDD0D Regex pattern: Job\\s+".concat(n, "\\s+(UNASSGN|ASSGN|COMPL|COMPLETE|CANCEL|CANCELED|HOLD|RESCHED|RSCHD|UNASSIGNED|ASSIGNED|COMPLETED|CANCELLED|ONHOLD|ON\\s+HOLD)\\s+(?:from|to|for|by)\\s+tech\\s+(\\d+)")); null !== (o = a.exec(e)); ) {
+                        c++;
+                        let n = o[1].toUpperCase()
+                          , a = o[2]
+                          , r = o[0];
+                        console.log("\uD83D\uDCE8 MATCH #".concat(c, " found for job ").concat(t, ': "').concat(r, '"')),
+                        console.log('   Action: "'.concat(n, '", Tech: "').concat(a, '"')),
+                        ("ASSGN" === n || "ASSIGNED" === n || n.includes("ASSGN") && "UNASSGN" !== n) && (i = !0,
+                        console.log("⏭️ Found assignment-style message (".concat(n, ") for job ").concat(t, " - will skip status update")));
+                        let u = Math.max(0, o.index - 500)
+                          , l = Math.min(e.length, o.index + 500)
+                          , d = e.substring(u, l).match(/MsgId=(\d+)/)
+                          , D = {
+                            action: n,
+                            fullMessage: r,
+                            msgId: d ? d[1] : void 0,
+                            techNumber: a
+                        };
+                        s.push(D),
+                        console.log("✅ Added message: ".concat(JSON.stringify(D)))
+                    }
+                    return console.log("\uD83D\uDD0D Message search completed. Total matches: ".concat(c)),
+                    console.log("\uD83D\uDCCB Found ".concat(s.length, " messages, shouldSkip: ").concat(i)),
+                    {
+                        foundMessages: s,
+                        shouldSkip: i
+                    }
+                }(m, t.jobId);
+                if (j.foundMessages.length > 0) {
+                    let o;
+                    let n = j.foundMessages.filter(e => !("ASSGN" === e.action || "ASSIGNED" === e.action || e.action.includes("ASSGN") && "UNASSGN" !== e.action))
+                      , a = n.filter(e => "UNASSGN" !== e.action);
+                    if (a.length > 0) {
+                        let e = a[a.length - 1].action;
+                        o = e,
+                        p("\uD83D\uDCDD Found ".concat(j.foundMessages.length, " related message(s) for job ").concat(t.jobId)),
+                        p("   All actions: ".concat(j.foundMessages.map(e => e.action).join(", "))),
+                        p("   Candidate actions (excluding assignment/unassignment): ".concat(a.map(e => e.action).join(", "))),
+                        p('   Using latest candidate action as static status: "'.concat(e, '"'))
+                    } else {
+                        if (!(n.length > 0))
+                            return p("\uD83D\uDCDD Only assignment messages found for job ".concat(t.jobId, " - keeping existing static status")),
+                            {
+                                isDuplicate: !0,
+                                differingFieldsCount: 0,
+                                existingJobId: C,
+                                updated: !1,
+                                messageProcessed: !0
+                            };
+                        let e = n[n.length - 1].action;
+                        o = e,
+                        p('\uD83D\uDCDD Only non-assignment messages are UNASSGN; setting status to "'.concat(e, '"'))
+                    }
+                    let s = await D(C, e, o, j.foundMessages, p);
+                    return {
+                        isDuplicate: !0,
+                        differingFieldsCount: 0,
+                        existingJobId: C,
+                        updated: s,
+                        messageProcessed: !0,
+                        newStaticStatus: o
+                    }
+                }
+                return p("\uD83D\uDD0D No related messages found for job ".concat(t.jobId, " - proceeding with normal duplicate handling")),
+                await u(e, t, o, n, s, r, l, d, g, p)
+            } catch (e) {
+                return p("⚠️ Error checking for duplicates with message processing: ".concat(e.message)),
+                {
+                    isDuplicate: !1,
+                    differingFieldsCount: 0
+                }
+            }
+        }
+        async function d(e, t, n, a) {
+            try {
+                let {updateDoc: s, doc: i, getDoc: c} = await Promise.resolve().then(o.bind(o, 5978))
+                  , {db: r} = await Promise.resolve().then(o.bind(o, 6410))
+                  , u = i(r, "companies", t, "jobs", e)
+                  , l = await c(u);
+                if (!l.exists())
+                    return a("⚠️ Existing job document not found: ".concat(e)),
+                    !1;
+                let d = l.data()
+                  , D = "SRO" === String(d.type || "").toUpperCase()
+                  , g = {}
+                  , m = !1;
+                if (D || void 0 === n.staticStatus || (g.staticStatus = n.staticStatus,
+                m = !0,
+                a('   \uD83D\uDCDD Updating staticStatus: "'.concat(d.staticStatus, '" → "').concat(n.staticStatus, '"'))),
+                n.comment && n.comment !== d.comment) {
+                    let e = d.comment || ""
+                      , t = n.comment.trim();
+                    if (e.split(" | ").map(e => e.trim()).includes(t))
+                        a('   ℹ️ Comment "'.concat(t, '" already exists in job comment - skipping to prevent duplication'));
+                    else {
+                        let o = e ? "".concat(e, " | ").concat(t) : t;
+                        g.comment = o,
+                        m = !0,
+                        a('   \uD83D\uDCDD Updating comment: appending "'.concat(t, '" to existing comment'))
+                    }
+                }
+                if (D || void 0 === n.staticCompletionTime || (g.staticCompletionTime = n.staticCompletionTime,
+                m = !0,
+                a('   \uD83D\uDCDD Updating staticCompletionTime: "'.concat(d.staticCompletionTime, '" → "').concat(n.staticCompletionTime, '"'))),
+                D || void 0 === n.resolutionCodes || (g.resolutionCodes = n.resolutionCodes,
+                m = !0,
+                a('   \uD83D\uDCDD Updating resolutionCodes: "'.concat(d.resolutionCodes, '" → "').concat(n.resolutionCodes, '"'))),
+                m)
+                    return await s(u, g),
+                    a("✅ Successfully updated existing job ".concat(e, " with new field values")),
+                    !0;
+                return a("ℹ️ No field updates needed for existing job ".concat(e)),
+                !0
+            } catch (e) {
+                return a("❌ Error updating existing job: ".concat(e.message)),
+                !1
+            }
+        }
+        async function D(e, t, n, a, s) {
+            try {
+                let r = (0,
+                c.doc)(i.db, "companies", t, "jobs", e)
+                  , u = await (await Promise.resolve().then(o.bind(o, 5978))).getDoc(r)
+                  , l = u.exists() ? u.data() : {}
+                  , d = String(l.staticStatus || "").toUpperCase()
+                  , D = String(n || "").toUpperCase();
+                if ("UNASSGN" === D && d && ["COMPL", "COMPLETE", "COMPLETED", "CANCEL", "CANCELED", "CANCELLED", "RSCHD", "RESCHED", "ONHOLD", "ON HOLD"].includes(d))
+                    return s('⛔ Skipping downgrade from strong status "'.concat(d, '" to UNASSGN for job ').concat(e)),
+                    !0;
+                let g = {
+                    staticStatus: n,
+                    lastUpdated: new Date,
+                    messageProcessedAt: new Date,
+                    relatedMessages: a.map(e => ({
+                        action: e.action,
+                        fullMessage: e.fullMessage,
+                        msgId: e.msgId,
+                        processedAt: new Date
+                    }))
+                }
+                  , m = {
+                    action: "static_status_updated_from_messages",
+                    timestamp: new Date,
+                    details: "Static status updated to: ".concat(n, " based on ").concat(a.length, " related message(s)"),
+                    messages: a.map(e => ({
+                        action: e.action,
+                        fullMessage: e.fullMessage,
+                        techNumber: e.techNumber,
+                        msgId: e.msgId
+                    }))
+                };
+                return g.auditLogs = (0,
+                c.arrayUnion)(m),
+                await (0,
+                c.updateDoc)(r, g),
+                s("✅ Updated job ".concat(e, " with new static status: ").concat(n)),
+                s("   Processed ".concat(a.length, " related message(s): ").concat(a.map(e => e.action).join(", "))),
+                !0
+            } catch (e) {
+                return s("❌ Error updating job with message status: ".concat(e.message)),
+                !1
+            }
+        }
+        async function g(e, t, o, a, s, i, c, u, d, D, g, m) {
+            let p = [];
+            try {
+                var h;
+                let f = t[e.type] || e.type || "Installation"
+                  , b = null === (h = e.timeFrame) || void 0 === h ? void 0 : h.toString();
+                g("\uD83D\uDCCB Processing job: ".concat(e.jobId)),
+                b && (b = b.replace(/^,\s*/, "").replace(/,\s*$/, "").replace(/^"|"$/g, ""));
+                let S = b;
+                if (b && !b.includes(":") && o[b] ? (S = o[b],
+                g('\uD83D\uDD50 Time frame mapped: "'.concat(b, '" → "').concat(S, '"'))) : b && (S = b,
+                g('ℹ️ No mapping found for "'.concat(b, '", using original value'))),
+                e.messageProcessed)
+                    return g("✅ Job ".concat(e.jobId, " was already processed by Cloud Function with message-derived status: ").concat(e.staticStatus)),
+                    {
+                        jobData: e,
+                        success: !0,
+                        error: null,
+                        warnings: ["Job processed with message-derived static status from Cloud Function: ".concat(e.staticStatus)]
+                    };
+                let C = await l(i, e, f, S, d, s, a, c, u, D, g);
+                if (C.isDuplicate) {
+                    if (C.messageProcessed)
+                        return g("✅ Job ".concat(e.jobId, " processed with message-derived status: ").concat(C.newStaticStatus)),
+                        {
+                            jobData: e,
+                            success: !0,
+                            error: null,
+                            warnings: ["Job processed with message-derived static status: ".concat(C.newStaticStatus)]
+                        };
+                    if (C.updated)
+                        return g("✅ Duplicate job ".concat(e.jobId, " updated with new field values")),
+                        {
+                            jobData: e,
+                            success: !0,
+                            error: null,
+                            warnings: ["Duplicate job updated - existing job (Document ID: ".concat(C.existingJobId, ") was updated with new field values")]
+                        };
+                    return g("\uD83D\uDD35 Duplicate detected, parsing skipped"),
+                    {
+                        jobData: e,
+                        success: !0,
+                        error: null,
+                        warnings: ["Duplicate detected, parsing skipped"]
+                    }
+                }
+                let {position: N, warnings: w} = await r(e.address, e.city, g);
+                p.push(...w);
+                let j = e.jobId;
+                j && (j = j.replace(/^,\s*/, "").replace(/,\s*$/, "").replace(/^"|"$/g, ""));
+                let E = e => e ? String(e).replace(/^,\s*/, "").replace(/,\s*$/, "").replace(/^"|"$/g, "").trim() : ""
+                  , y = {
+                    jobId: j,
+                    type: f,
+                    address: E(e.address),
+                    unitNumber: E(e.unitNumber),
+                    city: E(e.city),
+                    customerName: E(e.customerName),
+                    customerPhone: E(e.customerPhone),
+                    timeFrame: S,
+                    scheduleDate: d,
+                    priority: "medium",
+                    description: E(e.description || e.field_reacd_readesc || "Imported from ".concat(s, " - Job ").concat(j)),
+                    position: N || void 0,
+                    assignedTechId: a,
+                    originalId: s,
+                    jobOrigin: s,
+                    isExternalReassignment: !1,
+                    source: "altice-csg-import",
+                    catvProvider: "Altice/Optimum",
+                    additionalPhone: m ? "" : E(e.additionalPhone),
+                    comment: m ? "" : E(e.comment),
+                    dispatchComment: m ? "" : E(e.dispatchComment),
+                    units: e.units,
+                    staticStatus: m ? "" : E(e.staticStatus),
+                    staticCompletionTime: m ? "" : E(e.staticCompletionTime),
+                    fullAccountNumber: E(e.fullAccountNumber),
+                    resolutionCodes: m ? "" : E(e.resolutionCodes)
+                }
+                  , I = await (0,
+                n.Cq)(i, y, c, u);
+                return g("✅ Created job ".concat(e.jobId, " (Document ID: ").concat(I, ")")),
+                {
+                    jobData: e,
+                    success: !0,
+                    jobDocumentId: I,
+                    warnings: p
+                }
+            } catch (o) {
+                let t = o.message || "Unknown error";
+                return g("❌ Failed to create job ".concat(e.jobId, ": ").concat(t)),
+                {
+                    jobData: e,
+                    success: !1,
+                    error: t,
+                    warnings: p
+                }
+            }
+        }
+        async function m(e, t) {
+            try {
+                console.log("\uD83D\uDD25 SAVING IMPORT LOG START"),
+                console.log("\uD83D\uDD25 Company ID:", t),
+                console.log("\uD83D\uDD25 Log Data (raw):", e);
+                let o = Object.entries(e).reduce( (e, t) => {
+                    let[o,n] = t;
+                    return void 0 !== n && (Array.isArray(n) ? e[o] = n.map(e => "object" == typeof e && null !== e ? Object.entries(e).reduce( (e, t) => {
+                        let[o,n] = t;
+                        return void 0 !== n && (e[o] = n),
+                        e
+                    }
+                    , {}) : e) : e[o] = n),
+                    e
+                }
+                , {});
+                console.log("\uD83D\uDD25 Log Data (cleaned):", o);
+                let n = (0,
+                c.collection)(i.db, "companies", t, "importLogs");
+                console.log("\uD83D\uDD25 Collection reference created:", n.path);
+                let a = {
+                    ...o,
+                    timestamp: (0,
+                    c.serverTimestamp)()
+                };
+                console.log("\uD83D\uDD25 Data to save:", a);
+                let s = await (0,
+                c.addDoc)(n, a);
+                console.log("✅ IMPORT LOG SAVED SUCCESSFULLY WITH ID:", s.id),
+                console.log("✅ Document path:", s.path)
+            } catch (e) {
+                throw console.error("❌ ERROR SAVING IMPORT LOG:", e),
+                console.error("❌ Error name:", e.name),
+                console.error("❌ Error message:", e.message),
+                console.error("❌ Error code:", e.code),
+                console.error("❌ Full error:", JSON.stringify(e, null, 2)),
+                e
+            }
+        }
+        async function p(e, t, o, n, a, s, r, u, l, d, D, p) {
+            console.log("\uD83D\uDD25 PARSE TECHNET JOBS FUNCTION CALLED"),
+            console.log("\uD83D\uDD25 Credentials:", e),
+            console.log("\uD83D\uDD25 Assigned Tech ID:", a),
+            console.log("\uD83D\uDD25 Company ID:", r);
+            let h = []
+              , f = []
+              , b = []
+              , S = []
+              , C = null
+              , N = () => {
+                let e = new Date
+                  , t = e.getHours()
+                  , o = e.getMinutes().toString().padStart(2, "0")
+                  , n = e.getSeconds().toString().padStart(2, "0")
+                  , a = (t % 12 || 12).toString();
+                return "".concat(a, ":").concat(o, ":").concat(n, " ").concat(t >= 12 ? "PM" : "AM")
+            }
+              , w = e => {
+                let t = N()
+                  , o = "[".concat(t, "] ").concat(e);
+                f.push(o),
+                D(o)
+            }
+            ;
+            try {
+                var j, E;
+                w("\uD83D\uDE80 Starting TechNet parsing..."),
+                w("\uD83D\uDCCB Sending configuration to server:"),
+                w('   • Technician Number: "'.concat(e.technicianNumber, '"')),
+                w('   • Password: "'.concat("*".repeat(e.techPassword.length), '"')),
+                w('   • Assigned Tech ID: "'.concat(a, '"')),
+                w('   • Original ID: "'.concat(s, '"')),
+                w('   • Company ID: "'.concat(r, '"')),
+                w('   • Schedule Date: "'.concat(d, '"')),
+                w("\uD83D\uDCCB Field Mappings:"),
+                Object.entries(t).forEach(e => {
+                    let[t,o] = e;
+                    w("   • ".concat(t, ': "').concat(o, '"'))
+                }
+                ),
+                w("\uD83D\uDCCB Job Type Mappings:"),
+                Object.entries(o).forEach(e => {
+                    let[t,o] = e;
+                    w("   • ".concat(t, ' → "').concat(o, '"'))
+                }
+                ),
+                w("\uD83D\uDCCB Time Frame Mappings:"),
+                Object.entries(n).forEach(e => {
+                    let[t,o] = e;
+                    w('   • "'.concat(t, '" → "').concat(o, '"'))
+                }
+                ),
+                w("\uD83E\uDD16 Using Puppeteer-based TechNet parser...");
+                let c = i.I8.currentUser;
+                if (!c)
+                    throw Error("User must be authenticated");
+                let D = await c.getIdToken()
+                  , N = await fetch("https://us-central1-workforce-app-3cecc.cloudfunctions.net/parseTechNetJobsPuppeteerV2", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer ".concat(D)
+                    },
+                    signal: null == p ? void 0 : p.signal,
+                    body: JSON.stringify({
+                        credentials: e,
+                        fieldMappings: t,
+                        jobTypeMapping: o,
+                        timeFrameMapping: n,
+                        scheduleDate: d,
+                        companyId: r
+                    })
+                });
+                if (!N.ok) {
+                    let e = "HTTP error! status: ".concat(N.status);
+                    try {
+                        let t = await N.json();
+                        t && t.error && (e = String(t.error))
+                    } catch (e) {}
+                    let t = Error(e);
+                    throw (401 === N.status || /login failed|unauthenticated|expired/i.test(e)) && (t.code = "technet-login-failed",
+                    t.reason = /expired|session/i.test(e) ? "TechNet unreachable" : "Invalid credentials"),
+                    t
+                }
+                let y = await N.json();
+                if (!(null == y ? void 0 : y.success))
+                    throw Error((null == y ? void 0 : y.error) || "Failed to parse TechNet");
+                if (y.debug) {
+                    w("\uD83D\uDD0D Debug Info:"),
+                    w("   • HTML Length: ".concat(y.debug.htmlLength)),
+                    w("   • Page URL: ".concat(y.debug.url)),
+                    w("   • Page Title: ".concat(y.debug.title)),
+                    w("   • HTML Preview: ".concat(null === (E = y.debug.htmlPreview) || void 0 === E ? void 0 : E.substring(0, 200), "..."));
+                    let e = y.debug.htmlFull || ""
+                      , t = e.includes("Job ID") || e.includes("07836948289")
+                      , o = e.includes('class="job CP"') || e.includes('class="job"')
+                      , n = e.includes("CP:") || e.includes("IN") || e.includes("OUT");
+                    w('   • Contains "Job ID": '.concat(t)),
+                    w("   • Contains job divs: ".concat(o)),
+                    w("   • Contains CP/IN/OUT: ".concat(n)),
+                    e && e.length > 1e3 && w("   • Full HTML available for analysis (".concat(e.length, " characters)"))
+                }
+                let I = y.jobs || [];
+                if (0 === I.length) {
+                    w("ℹ️ No jobs found to import");
+                    let t = {
+                        technicianNumber: e.technicianNumber,
+                        techName: "Tech #".concat(e.technicianNumber),
+                        companyId: r,
+                        createdBy: u,
+                        createdByName: l,
+                        jobOrigin: s,
+                        totalJobs: 0,
+                        successfulJobs: 0,
+                        failedJobs: 0,
+                        logs: f,
+                        errors: b,
+                        warnings: S,
+                        jobDetails: []
+                    };
+                    console.log("\uD83D\uDE80 ABOUT TO SAVE IMPORT LOG (No jobs found)..."),
+                    console.log("\uD83D\uDE80 Import log data:", t),
+                    console.log("\uD83D\uDE80 Company ID:", r);
+                    try {
+                        await m(t, r),
+                        console.log("✅ IMPORT LOG SAVED SUCCESSFULLY (No jobs)"),
+                        w("\uD83D\uDCDD Import log saved to database")
+                    } catch (e) {
+                        console.error("❌ FAILED TO SAVE IMPORT LOG:", e),
+                        w("⚠️ Warning: Failed to save import log: ".concat(e))
+                    }
+                    return w("\n\uD83D\uDCCA Import Complete:"),
+                    w("   ✅ Successfully created: 0 jobs"),
+                    w("   ❌ Failed to create: 0 jobs"),
+                    w("   \uD83D\uDCCB Total processed: 0 jobs"),
+                    h
+                }
+                w("✅ Successfully parsed ".concat(I.length, " jobs from TechNet")),
+                w("\n\uD83D\uDE80 Creating ".concat(I.length, " jobs in the app..."));
+                let A = (null === (j = y.debug) || void 0 === j ? void 0 : j.htmlFull) || "";
+                for (let e of I) {
+                    let t = [String(e.address || "").trim().toLowerCase(), String(e.city || "").trim().toLowerCase(), String(e.customerName || "").trim().toLowerCase(), String(e.customerPhone || "").replace(/\D/g, ""), String(e.timeFrame || "").trim().toLowerCase(), String(e.units || "")].join("|")
+                      , i = !!(C && t === C)
+                      , c = await g(e, o, n, a, s, r, u, l, d, A, w, i);
+                    h.push(c),
+                    C = t,
+                    !c.success && c.error && b.push(c.error),
+                    c.warnings && c.warnings.length > 0 && S.push(...c.warnings)
+                }
+                let O = h.map(e => ({
+                    jobId: e.jobData.jobId,
+                    jobDocumentId: e.jobDocumentId,
+                    success: e.success,
+                    error: e.error,
+                    warnings: e.warnings
+                }))
+                  , T = h.filter(e => {
+                    var t;
+                    return !e.success && (null === (t = e.error) || void 0 === t ? void 0 : t.includes("Duplicate job skipped"))
+                }
+                ).length
+                  , v = {
+                    technicianNumber: e.technicianNumber,
+                    techName: "Tech #".concat(e.technicianNumber),
+                    companyId: r,
+                    createdBy: u,
+                    createdByName: l,
+                    jobOrigin: s,
+                    totalJobs: h.length,
+                    successfulJobs: h.filter(e => e.success).length,
+                    failedJobs: h.filter(e => {
+                        var t;
+                        return !e.success && !(null === (t = e.error) || void 0 === t ? void 0 : t.includes("Duplicate job skipped"))
+                    }
+                    ).length,
+                    skippedDuplicates: T,
+                    logs: f,
+                    errors: b,
+                    warnings: S,
+                    jobDetails: O
+                };
+                console.log("\uD83D\uDE80 ABOUT TO SAVE IMPORT LOG..."),
+                console.log("\uD83D\uDE80 Import log data:", v),
+                console.log("\uD83D\uDE80 Company ID:", r);
+                try {
+                    await m(v, r),
+                    console.log("✅ IMPORT LOG SAVED SUCCESSFULLY"),
+                    w("\uD83D\uDCDD Import log saved to database")
+                } catch (e) {
+                    console.error("❌ FAILED TO SAVE IMPORT LOG:", e),
+                    w("⚠️ Warning: Failed to save import log: ".concat(e))
+                }
+                let L = h.filter(e => e.success).length
+                  , U = h.filter(e => {
+                    var t;
+                    return !e.success && (null === (t = e.error) || void 0 === t ? void 0 : t.includes("Duplicate job skipped"))
+                }
+                ).length
+                  , P = h.filter(e => {
+                    var t;
+                    return !e.success && !(null === (t = e.error) || void 0 === t ? void 0 : t.includes("Duplicate job skipped"))
+                }
+                ).length;
+                return w("\n\uD83D\uDCCA Import Complete:"),
+                w("   ✅ Successfully created: ".concat(L, " jobs")),
+                U > 0 && w("   ⏭️ Skipped duplicates: ".concat(U, " jobs")),
+                w("   ❌ Failed to create: ".concat(P, " jobs")),
+                w("   \uD83D\uDCCB Total processed: ".concat(h.length, " jobs")),
+                console.log("\uD83D\uDD25 PARSE TECHNET JOBS FUNCTION COMPLETED SUCCESSFULLY"),
+                console.log("\uD83D\uDD25 Results:", h),
+                h
+            } catch (o) {
+                b.push(o.message),
+                w("❌ Parse failed: ".concat(o.message));
+                try {
+                    if (o && "technet-login-failed" === o.code) {
+                        let t = (0,
+                        c.collection)(i.db, "companies", r, "auditLogs");
+                        await (0,
+                        c.addDoc)(t, {
+                            type: "technet-login-failed",
+                            techNumber: e.technicianNumber,
+                            techName: "Tech #".concat(e.technicianNumber),
+                            timestamp: (0,
+                            c.serverTimestamp)(),
+                            message: String(o.reason || o.message || "Login failed")
+                        })
+                    }
+                } catch (e) {}
+                if ((null == o ? void 0 : o.name) === "AbortError")
+                    throw console.warn("⛔ Import cancelled by user. Skipping error log save."),
+                    o;
+                let t = {
+                    technicianNumber: e.technicianNumber,
+                    techName: "Tech #".concat(e.technicianNumber),
+                    companyId: r,
+                    createdBy: u,
+                    createdByName: l,
+                    jobOrigin: s,
+                    totalJobs: 0,
+                    successfulJobs: 0,
+                    failedJobs: 1,
+                    logs: f,
+                    errors: b,
+                    warnings: S,
+                    jobDetails: []
+                };
+                console.log("\uD83D\uDE80 ABOUT TO SAVE ERROR IMPORT LOG...");
+                try {
+                    await m(t, r),
+                    console.log("✅ ERROR IMPORT LOG SAVED SUCCESSFULLY")
+                } catch (e) {
+                    console.error("❌ FAILED TO SAVE ERROR LOG:", e)
+                }
+                throw o
+            }
+        }
+    }
+}]);

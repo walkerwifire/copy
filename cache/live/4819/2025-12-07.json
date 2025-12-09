@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4819",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836959802",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "THOMAS,RANJA",
+        "address": "500 GATES AV, APT 4I, BROOKLYN, NY 11216",
+        "phone": "347-303-9147",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836739751",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "THIAM,MARIAMA",
+        "address": "947 GATES AV, APT 2, BROOKLYN, NY 11221-2804",
+        "phone": "347-248-8959",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836590301",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "WEEKS,CORAL",
+        "address": "769 ST MARKS AV, APT 4-1F, BROOKLYN, NY 11213-1468",
+        "phone": "718-778-3788",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836729135",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "PADILLA,ALEYA",
+        "address": "12 UNDERHILL AV, APT 2R, BROOKLYN, NY 11238",
+        "phone": "646-463-2002",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836141791",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4819",
+        "name": "ELBERG,SETH",
+        "address": "927 PUTNAM AV, APT 4R, BROOKLYN, NY 11221",
+        "phone": "732-331-6253",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836562500",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4819",
+        "name": "RAPHAEL,ELI",
+        "address": "532 CHAUNCEY ST, APT 2R, BROOKLYN, NY 11233",
+        "phone": "917-698-8516",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "5h 24m"
+  }
+]

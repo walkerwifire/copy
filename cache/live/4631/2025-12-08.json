@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4631",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836892057",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "HENRY,APRYL",
+        "address": "591 SCHROEDERS AV, BROOKLYN, NY 11239",
+        "phone": "718-513-4136",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836171415",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "JOSEPPH,MARY",
+        "address": "743 E 102ND ST, 2ND FL, BROOKLYN, NY 11236",
+        "phone": "347-500-4447",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836569989",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "MARMOLEJO,YACAIRA",
+        "address": "223 MONTAUK AV, APT 2R, BROOKLYN, NY 11208-2494",
+        "phone": "929-605-8514",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836550455",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "raymond,gainslee",
+        "address": "1562 E 91ST ST, APT 2, BROOKLYN, NY 11236",
+        "phone": "917-689-2489",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "5h 42m"
+  }
+]

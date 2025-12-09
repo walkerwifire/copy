@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4634",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836549162",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "MARKS,JASON",
+        "address": "265 LOGAN ST, PH04, BROOKLYN, NY 11208",
+        "phone": "347-410-4512",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836612029",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "WATKINS,VIORIS",
+        "address": "361 WORTMAN AV, APT 2D, BROOKLYN, NY 11207-8926",
+        "phone": "718-513-1860",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836549295",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "ZIEGLER,SHANIA",
+        "address": "265 LOGAN ST, APT 909, BROOKLYN, NY 11208",
+        "phone": "347-433-4966",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836278124",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "RODRIGUEZ,BRIANNA",
+        "address": "180 HULL ST, APT 1C, BROOKLYN, NY 11233",
+        "phone": "347-277-9902",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836890570",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "GONZALEZ,JOSE",
+        "address": "1086 BROADWAY, APT 302, BROOKLYN, NY 11221-3014",
+        "phone": "929-353-8795",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836585169",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4634",
+        "name": "JAMES,CHRISTIN",
+        "address": "1257 LORING AV, APT 5G, BROOKLYN, NY 11208-4632",
+        "phone": "111-111-1111",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "6h 48m"
+  }
+]

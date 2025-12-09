@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4863",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836654392",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "shurland,randy",
+        "address": "385 CHRISTOPHER AV, APT 2, BROOKLYN, NY 11212-7108",
+        "phone": "929-503-6320",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836018854",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "NORBERT,PERDINE",
+        "address": "1048 E 81ST ST, APT 1, BROOKLYN, NY 11236-4222",
+        "phone": "267-242-6707",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836542008",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "BERNARD,PINKY",
+        "address": "247 AMBOY ST, FL 3, BROOKLYN, NY 11212",
+        "phone": "917-868-8452",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "5h 6m"
+  }
+]

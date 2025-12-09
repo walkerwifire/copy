@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4687",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836036221",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "CRIPPIN,DOMONIQU",
+        "address": "2105 ROCKAWAY PK, APT 6I, BROOKLYN, NY 11236-5815",
+        "phone": "347-290-1807",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836802969",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "FLEARY,JIM",
+        "address": "25 PAERDEGT 6TH ST, APT 2, BROOKLYN, NY 11236",
+        "phone": "718-763-7388",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836031755",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "BURRELL,RADELLIF",
+        "address": "10806 AVENUE N, APT 1FL, BROOKLYN, NY 11236-4616",
+        "phone": "718-757-5262",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836649667",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "RICHARDSON,TANYA",
+        "address": "1425 PENNSYLVANIA AV, APT 4D, BROOKLYN, NY 11239-2105",
+        "phone": "347-413-6897",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836506422",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "TRENCH,DONALD",
+        "address": "550 E 96TH ST, APT 1, BROOKLYN, NY 11212-2413",
+        "phone": "718-385-3018",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "4h 48m"
+  }
+]

@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "5736",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07837262337",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "FELL,JOHNETTE",
+        "address": "1176 WALTON AV, APT 5F, BRONX, NY 10452-8453",
+        "phone": "917-473-7230",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07837542856",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "PARENTHOOD,PLANNED",
+        "address": "349 E 149TH ST, FL 2, BRONX, NY 10451",
+        "phone": "212-965-4806",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07837725003",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "MARTINEZ,JOSE",
+        "address": "1007 UNION AV., APT 5G, BRONX, NY 10459-2958",
+        "phone": "347-282-7275",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 12m"
+  }
+]

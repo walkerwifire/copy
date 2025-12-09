@@ -1,0 +1,736 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[4049], {
+    3005: function(e, a, n) {
+        n.d(a, {
+            Z: function() {
+                return r
+            }
+        });
+        var o = n(7437)
+          , t = n(2265)
+          , i = n(7387)
+          , l = n(3050);
+        function r(e) {
+            let {initialCoordinates: a, onLocationSelect: n, onCancel: r} = e
+              , s = a || [-74.006, 40.7128]
+              , [c,d] = (0,
+            t.useState)(s)
+              , [u,m] = (0,
+            t.useState)(!0)
+              , [h,g] = (0,
+            t.useState)(null)
+              , p = (0,
+            t.useRef)(null)
+              , f = (0,
+            t.useRef)(null)
+              , v = (0,
+            t.useRef)(null)
+              , {isMobile: b} = (0,
+            l.h)();
+            return ((0,
+            t.useEffect)( () => {
+                if (!p.current)
+                    return;
+                let e = "7a3esiPZovS7pioDloSB";
+                if (!e) {
+                    console.error("MapTiler API key not found. Please set NEXT_PUBLIC_MAPTILER_KEY environment variable."),
+                    g("Map API key not configured. Please contact administrator."),
+                    m(!1);
+                    return
+                }
+                i.vc.apiKey = e;
+                try {
+                    f.current = new i.D5({
+                        container: p.current,
+                        style: i.UH.STREETS,
+                        center: s,
+                        zoom: 11,
+                        interactive: !0
+                    }),
+                    console.log("Map initialized successfully with coordinates:", s)
+                } catch (e) {
+                    console.error("Failed to initialize map:", e),
+                    g("Failed to load map. Please try again."),
+                    m(!1);
+                    return
+                }
+                console.log("Map initialized with center coordinates:", s),
+                f.current.on("moveend", () => {
+                    if (f.current) {
+                        let e = f.current.getCenter()
+                          , a = [e.lng, e.lat];
+                        d(a),
+                        console.log("Location updated to:", a),
+                        v.current && v.current.setLngLat(a)
+                    }
+                }
+                ),
+                f.current.on("load", () => {
+                    console.log("Map loaded successfully"),
+                    m(!1)
+                }
+                );
+                let a = p.current;
+                return a && (a.addEventListener("mouseenter", () => {
+                    a.style.cursor = "grab"
+                }
+                ),
+                a.addEventListener("mousedown", () => {
+                    a.style.cursor = "grabbing"
+                }
+                ),
+                a.addEventListener("mouseup", () => {
+                    a.style.cursor = "grab"
+                }
+                ),
+                a.addEventListener("mouseleave", () => {
+                    a.style.cursor = "default"
+                }
+                )),
+                () => {
+                    f.current && f.current.remove(),
+                    a && (a.removeEventListener("mouseenter", () => {}
+                    ),
+                    a.removeEventListener("mousedown", () => {}
+                    ),
+                    a.removeEventListener("mouseup", () => {}
+                    ),
+                    a.removeEventListener("mouseleave", () => {}
+                    ))
+                }
+            }
+            , []),
+            "function" != typeof r) ? (console.error("SimpleLocationPicker: onCancel prop is not a function:", r),
+            null) : "function" != typeof n ? (console.error("SimpleLocationPicker: onLocationSelect prop is not a function:", n),
+            null) : (0,
+            o.jsx)("div", {
+                className: "fixed inset-0 ".concat(b ? "bg-white flex flex-col" : "bg-black bg-opacity-50 flex items-center justify-center p-4"),
+                style: {
+                    position: "fixed",
+                    zIndex: 999999
+                },
+                onClick: b ? void 0 : r,
+                children: (0,
+                o.jsxs)("div", {
+                    className: "bg-white ".concat(b ? "h-full w-full flex flex-col" : "rounded-lg p-6 max-w-2xl w-full relative"),
+                    onClick: e => e.stopPropagation(),
+                    children: [(0,
+                    o.jsxs)("div", {
+                        className: "flex justify-between items-start ".concat(b ? "p-4 border-b" : "mb-4"),
+                        children: [(0,
+                        o.jsxs)("div", {
+                            children: [(0,
+                            o.jsx)("h3", {
+                                className: "font-bold text-gray-900 ".concat(b ? "text-xl" : "text-lg"),
+                                children: "Set Location on Map"
+                            }), (0,
+                            o.jsx)("p", {
+                                className: "text-gray-600 mt-1 ".concat(b ? "text-base" : "text-sm"),
+                                children: "Drag the map to position your desired location under the pin, then click Confirm."
+                            })]
+                        }), (0,
+                        o.jsx)("button", {
+                            onClick: () => {
+                                console.log("Close X button clicked"),
+                                r()
+                            }
+                            ,
+                            className: "text-gray-400 hover:text-gray-600 p-1 rounded hover:bg-gray-100 transition-colors z-10 relative ".concat(b ? "text-2xl" : ""),
+                            type: "button",
+                            children: (0,
+                            o.jsx)("svg", {
+                                className: "".concat(b ? "w-8 h-8" : "w-6 h-6"),
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: (0,
+                                o.jsx)("path", {
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: 2,
+                                    d: "M6 18L18 6M6 6l12 12"
+                                })
+                            })
+                        })]
+                    }), (0,
+                    o.jsxs)("div", {
+                        className: "relative flex-grow ".concat(b ? "" : "h-64 mb-4", " rounded-lg border border-gray-300 overflow-hidden"),
+                        children: [u && (0,
+                        o.jsx)("div", {
+                            className: "absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg z-10",
+                            children: (0,
+                            o.jsxs)("div", {
+                                className: "text-center",
+                                children: [(0,
+                                o.jsx)("div", {
+                                    className: "animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"
+                                }), (0,
+                                o.jsx)("p", {
+                                    className: "text-gray-600",
+                                    children: "Loading map..."
+                                })]
+                            })
+                        }), h && (0,
+                        o.jsx)("div", {
+                            className: "absolute inset-0 flex items-center justify-center bg-red-50 rounded-lg z-10",
+                            children: (0,
+                            o.jsxs)("div", {
+                                className: "text-center",
+                                children: [(0,
+                                o.jsx)("div", {
+                                    className: "text-red-500 mb-2",
+                                    children: (0,
+                                    o.jsx)("svg", {
+                                        className: "w-12 h-12 mx-auto",
+                                        fill: "none",
+                                        stroke: "currentColor",
+                                        viewBox: "0 0 24 24",
+                                        children: (0,
+                                        o.jsx)("path", {
+                                            strokeLinecap: "round",
+                                            strokeLinejoin: "round",
+                                            strokeWidth: 2,
+                                            d: "M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        })
+                                    })
+                                }), (0,
+                                o.jsx)("p", {
+                                    className: "text-red-700 font-medium",
+                                    children: h
+                                })]
+                            })
+                        }), (0,
+                        o.jsx)("div", {
+                            ref: p,
+                            className: "w-full h-full rounded-lg",
+                            style: {
+                                display: u || h ? "none" : "block",
+                                minHeight: "256px",
+                                background: "#f0f0f0"
+                            },
+                            onClick: () => console.log("Map container clicked")
+                        }), (0,
+                        o.jsx)("div", {
+                            className: "absolute inset-0 pointer-events-none z-20 flex items-center justify-center",
+                            children: (0,
+                            o.jsx)("div", {
+                                className: "filter drop-shadow-lg ".concat(b ? "text-6xl" : "text-4xl"),
+                                children: "\uD83D\uDCCD"
+                            })
+                        })]
+                    }), (0,
+                    o.jsxs)("div", {
+                        className: "flex justify-end space-x-3 z-10 ".concat(b ? "p-4 border-t" : "relative"),
+                        children: [(0,
+                        o.jsx)("button", {
+                            onClick: () => {
+                                console.log("Bottom cancel button clicked"),
+                                r()
+                            }
+                            ,
+                            className: "text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors ".concat(b ? "px-6 py-3 text-lg flex-1 mr-2" : "px-4 py-2"),
+                            disabled: u,
+                            type: "button",
+                            children: "Cancel"
+                        }), (0,
+                        o.jsx)("button", {
+                            onClick: () => {
+                                console.log("Confirm button clicked, selected location:", c),
+                                n(c)
+                            }
+                            ,
+                            className: "bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors ".concat(b ? "px-6 py-3 text-lg flex-1" : "px-4 py-2"),
+                            disabled: u || !!h,
+                            children: "Confirm Location"
+                        })]
+                    })]
+                })
+            })
+        }
+    },
+    3055: function(e, a, n) {
+        n.d(a, {
+            f: function() {
+                return i
+            },
+            r: function() {
+                return t
+            }
+        });
+        let o = {
+            "new york": [-74.006, 40.7128],
+            "new york, ny": [-74.006, 40.7128],
+            brooklyn: [-73.9442, 40.6782],
+            "brooklyn, ny": [-73.9442, 40.6782],
+            "los angeles": [-118.2437, 34.0522],
+            "los angeles, ca": [-118.2437, 34.0522],
+            chicago: [-87.6298, 41.8781],
+            "chicago, il": [-87.6298, 41.8781],
+            houston: [-95.3698, 29.7604],
+            "houston, tx": [-95.3698, 29.7604],
+            phoenix: [-112.074, 33.4484],
+            "phoenix, az": [-112.074, 33.4484],
+            philadelphia: [-75.1652, 39.9526],
+            "philadelphia, pa": [-75.1652, 39.9526],
+            "san antonio": [-98.4936, 29.4241],
+            "san antonio, tx": [-98.4936, 29.4241],
+            "san diego": [-117.1611, 32.7157],
+            "san diego, ca": [-117.1611, 32.7157],
+            dallas: [-96.797, 32.7767],
+            "dallas, tx": [-96.797, 32.7767],
+            "san jose": [-121.8863, 37.3382],
+            "san jose, ca": [-121.8863, 37.3382],
+            austin: [-97.7431, 30.2672],
+            "austin, tx": [-97.7431, 30.2672],
+            jacksonville: [-81.6557, 30.3322],
+            "jacksonville, fl": [-81.6557, 30.3322],
+            "fort worth": [-97.3308, 32.7555],
+            "fort worth, tx": [-97.3308, 32.7555],
+            columbus: [-82.9988, 39.9612],
+            "columbus, oh": [-82.9988, 39.9612],
+            charlotte: [-80.8431, 35.2271],
+            "charlotte, nc": [-80.8431, 35.2271],
+            "san francisco": [-122.4194, 37.7749],
+            "san francisco, ca": [-122.4194, 37.7749],
+            indianapolis: [-86.1581, 39.7684],
+            "indianapolis, in": [-86.1581, 39.7684],
+            seattle: [-122.3321, 47.6062],
+            "seattle, wa": [-122.3321, 47.6062],
+            denver: [-104.9903, 39.7392],
+            "denver, co": [-104.9903, 39.7392],
+            washington: [-77.0369, 38.9072],
+            "washington, dc": [-77.0369, 38.9072],
+            boston: [-71.0589, 42.3601],
+            "boston, ma": [-71.0589, 42.3601],
+            "el paso": [-106.485, 31.7619],
+            "el paso, tx": [-106.485, 31.7619],
+            nashville: [-86.7816, 36.1627],
+            "nashville, tn": [-86.7816, 36.1627],
+            detroit: [-83.0458, 42.3314],
+            "detroit, mi": [-83.0458, 42.3314],
+            "oklahoma city": [-97.5164, 35.4676],
+            "oklahoma city, ok": [-97.5164, 35.4676],
+            portland: [-122.6765, 45.5152],
+            "portland, or": [-122.6765, 45.5152],
+            "las vegas": [-115.1398, 36.1699],
+            "las vegas, nv": [-115.1398, 36.1699],
+            memphis: [-90.049, 35.1495],
+            "memphis, tn": [-90.049, 35.1495],
+            louisville: [-85.7585, 38.2527],
+            "louisville, ky": [-85.7585, 38.2527],
+            baltimore: [-76.6122, 39.2904],
+            "baltimore, md": [-76.6122, 39.2904],
+            milwaukee: [-87.9065, 43.0389],
+            "milwaukee, wi": [-87.9065, 43.0389],
+            albuquerque: [-106.6504, 35.0844],
+            "albuquerque, nm": [-106.6504, 35.0844],
+            tucson: [-110.9747, 32.2226],
+            "tucson, az": [-110.9747, 32.2226],
+            fresno: [-119.7871, 36.7378],
+            "fresno, ca": [-119.7871, 36.7378],
+            sacramento: [-121.4944, 38.5816],
+            "sacramento, ca": [-121.4944, 38.5816],
+            atlanta: [-84.388, 33.749],
+            "atlanta, ga": [-84.388, 33.749],
+            "kansas city": [-94.5786, 39.0997],
+            "kansas city, mo": [-94.5786, 39.0997],
+            "long beach": [-118.1937, 33.7701],
+            "long beach, ca": [-118.1937, 33.7701],
+            "colorado springs": [-104.8214, 38.8339],
+            "colorado springs, co": [-104.8214, 38.8339],
+            miami: [-80.1918, 25.7617],
+            "miami, fl": [-80.1918, 25.7617],
+            raleigh: [-78.6382, 35.7796],
+            "raleigh, nc": [-78.6382, 35.7796],
+            "virginia beach": [-75.978, 36.8529],
+            "virginia beach, va": [-75.978, 36.8529],
+            omaha: [-95.9345, 41.2565],
+            "omaha, ne": [-95.9345, 41.2565],
+            oakland: [-122.2711, 37.8044],
+            "oakland, ca": [-122.2711, 37.8044],
+            minneapolis: [-93.265, 44.9778],
+            "minneapolis, mn": [-93.265, 44.9778],
+            tulsa: [-95.9928, 36.154],
+            "tulsa, ok": [-95.9928, 36.154],
+            arlington: [-97.1081, 32.7357],
+            "arlington, tx": [-97.1081, 32.7357],
+            tampa: [-82.4572, 27.9506],
+            "tampa, fl": [-82.4572, 27.9506],
+            "new orleans": [-90.0715, 29.9511],
+            "new orleans, la": [-90.0715, 29.9511],
+            wichita: [-97.3308, 37.6872],
+            "wichita, ks": [-97.3308, 37.6872],
+            cleveland: [-81.6944, 41.4993],
+            "cleveland, oh": [-81.6944, 41.4993],
+            bakersfield: [-119.0187, 35.3733],
+            "bakersfield, ca": [-119.0187, 35.3733],
+            aurora: [-104.8319, 39.7294],
+            "aurora, co": [-104.8319, 39.7294],
+            anaheim: [-117.9145, 33.8366],
+            "anaheim, ca": [-117.9145, 33.8366],
+            honolulu: [-157.8583, 21.3099],
+            "honolulu, hi": [-157.8583, 21.3099],
+            "santa ana": [-117.8677, 33.7455],
+            "santa ana, ca": [-117.8677, 33.7455],
+            "corpus christi": [-97.3964, 27.8006],
+            "corpus christi, tx": [-97.3964, 27.8006],
+            riverside: [-117.3962, 33.9533],
+            "riverside, ca": [-117.3962, 33.9533],
+            lexington: [-84.5037, 38.0406],
+            "lexington, ky": [-84.5037, 38.0406],
+            stockton: [-121.2908, 37.9577],
+            "stockton, ca": [-121.2908, 37.9577],
+            henderson: [-114.9819, 36.0395],
+            "henderson, nv": [-114.9819, 36.0395],
+            "saint paul": [-93.093, 44.9537],
+            "saint paul, mn": [-93.093, 44.9537],
+            "st. paul": [-93.093, 44.9537],
+            "st. paul, mn": [-93.093, 44.9537],
+            "st louis": [-90.1994, 38.627],
+            "st. louis": [-90.1994, 38.627],
+            "st. louis, mo": [-90.1994, 38.627],
+            cincinnati: [-84.512, 39.1031],
+            "cincinnati, oh": [-84.512, 39.1031],
+            pittsburgh: [-79.9959, 40.4406],
+            "pittsburgh, pa": [-79.9959, 40.4406],
+            anchorage: [-149.9003, 61.2181],
+            "anchorage, ak": [-149.9003, 61.2181],
+            greensboro: [-79.792, 36.0726],
+            "greensboro, nc": [-79.792, 36.0726],
+            plano: [-96.6989, 33.0198],
+            "plano, tx": [-96.6989, 33.0198],
+            newark: [-74.1724, 40.7357],
+            "newark, nj": [-74.1724, 40.7357],
+            durham: [-78.8986, 35.994],
+            "durham, nc": [-78.8986, 35.994],
+            "chula vista": [-117.0842, 32.6401],
+            "chula vista, ca": [-117.0842, 32.6401],
+            toledo: [-83.5552, 41.6528],
+            "toledo, oh": [-83.5552, 41.6528],
+            "fort wayne": [-85.1394, 41.0793],
+            "fort wayne, in": [-85.1394, 41.0793],
+            "st. petersburg": [-82.4572, 27.7731],
+            "st. petersburg, fl": [-82.4572, 27.7731],
+            laredo: [-99.5075, 27.5064],
+            "laredo, tx": [-99.5075, 27.5064],
+            "jersey city": [-74.0776, 40.7178],
+            "jersey city, nj": [-74.0776, 40.7178],
+            chandler: [-111.8413, 33.3062],
+            "chandler, az": [-111.8413, 33.3062],
+            madison: [-89.4012, 43.0731],
+            "madison, wi": [-89.4012, 43.0731],
+            lubbock: [-101.8552, 33.5779],
+            "lubbock, tx": [-101.8552, 33.5779],
+            scottsdale: [-111.9261, 33.4942],
+            "scottsdale, az": [-111.9261, 33.4942],
+            reno: [-119.8138, 39.5296],
+            "reno, nv": [-119.8138, 39.5296],
+            buffalo: [-78.8784, 42.8864],
+            "buffalo, ny": [-78.8784, 42.8864],
+            gilbert: [-111.789, 33.3528],
+            "gilbert, az": [-111.789, 33.3528],
+            glendale: [-112.1851, 33.5387],
+            "glendale, az": [-112.1851, 33.5387],
+            "north las vegas": [-115.1175, 36.1989],
+            "north las vegas, nv": [-115.1175, 36.1989],
+            "winston-salem": [-80.2442, 36.0999],
+            "winston-salem, nc": [-80.2442, 36.0999],
+            chesapeake: [-76.2875, 36.7682],
+            "chesapeake, va": [-76.2875, 36.7682],
+            norfolk: [-76.2859, 36.8508],
+            "norfolk, va": [-76.2859, 36.8508],
+            fremont: [-121.9886, 37.5485],
+            "fremont, ca": [-121.9886, 37.5485],
+            garland: [-96.6389, 32.9126],
+            "garland, tx": [-96.6389, 32.9126],
+            irvine: [-117.8265, 33.6846],
+            "irvine, ca": [-117.8265, 33.6846],
+            hialeah: [-80.2781, 25.8576],
+            "hialeah, fl": [-80.2781, 25.8576],
+            richmond: [-77.436, 37.5407],
+            "richmond, va": [-77.436, 37.5407],
+            boise: [-116.2023, 43.615],
+            "boise, id": [-116.2023, 43.615],
+            spokane: [-117.426, 47.6588],
+            "spokane, wa": [-117.426, 47.6588],
+            "baton rouge": [-91.1871, 30.4515],
+            "baton rouge, la": [-91.1871, 30.4515],
+            tacoma: [-122.4443, 47.2529],
+            "tacoma, wa": [-122.4443, 47.2529],
+            "san bernardino": [-117.2898, 34.1083],
+            "san bernardino, ca": [-117.2898, 34.1083],
+            "grand rapids": [-85.6681, 42.9634],
+            "grand rapids, mi": [-85.6681, 42.9634],
+            huntsville: [-86.5861, 34.7304],
+            "huntsville, al": [-86.5861, 34.7304],
+            "salt lake city": [-111.891, 40.7608],
+            "salt lake city, ut": [-111.891, 40.7608],
+            frisco: [-96.8236, 33.1507],
+            "frisco, tx": [-96.8236, 33.1507],
+            yonkers: [-73.8987, 40.9312],
+            "yonkers, ny": [-73.8987, 40.9312],
+            worcester: [-71.8023, 42.2626],
+            "worcester, ma": [-71.8023, 42.2626],
+            knoxville: [-83.9207, 35.9606],
+            "knoxville, tn": [-83.9207, 35.9606],
+            providence: [-71.4128, 41.824],
+            "providence, ri": [-71.4128, 41.824],
+            "santa clarita": [-118.5426, 34.3917],
+            "santa clarita, ca": [-118.5426, 34.3917],
+            oceanside: [-117.3795, 33.1959],
+            "oceanside, ca": [-117.3795, 33.1959],
+            dayton: [-84.1916, 39.7589],
+            "dayton, oh": [-84.1916, 39.7589],
+            peoria: [-89.5889, 40.6936],
+            "peoria, il": [-89.5889, 40.6936],
+            "elk grove": [-121.3716, 38.4088],
+            "elk grove, ca": [-121.3716, 38.4088],
+            salem: [-123.0351, 44.9429],
+            "salem, or": [-123.0351, 44.9429],
+            springfield: [-93.292, 37.209],
+            "springfield, mo": [-93.292, 37.209],
+            corona: [-117.5664, 33.8753],
+            "corona, ca": [-117.5664, 33.8753],
+            eugene: [-123.0868, 44.0521],
+            "eugene, or": [-123.0868, 44.0521],
+            "pembroke pines": [-80.2331, 26.0031],
+            "pembroke pines, fl": [-80.2331, 26.0031],
+            "fort lauderdale": [-80.1373, 26.1224],
+            "fort lauderdale, fl": [-80.1373, 26.1224],
+            cary: [-78.7811, 35.7915],
+            "cary, nc": [-78.7811, 35.7915],
+            hayward: [-122.0808, 37.6688],
+            "hayward, ca": [-122.0808, 37.6688],
+            mckinney: [-96.6398, 33.1972],
+            "mckinney, tx": [-96.6398, 33.1972],
+            salinas: [-121.6555, 36.6777],
+            "salinas, ca": [-121.6555, 36.6777],
+            macon: [-83.6326, 32.8407],
+            "macon, ga": [-83.6326, 32.8407],
+            lakewood: [-105.0811, 39.7047],
+            "lakewood, co": [-105.0811, 39.7047],
+            alexandria: [-77.0469, 38.8048],
+            "alexandria, va": [-77.0469, 38.8048],
+            surprise: [-112.368, 33.6292],
+            "surprise, az": [-112.368, 33.6292],
+            roseville: [-121.288, 38.7521],
+            "roseville, ca": [-121.288, 38.7521],
+            clarksville: [-87.3595, 36.5298],
+            "clarksville, tn": [-87.3595, 36.5298],
+            palmdale: [-118.1165, 34.5794],
+            "palmdale, ca": [-118.1165, 34.5794],
+            springfield: [-72.5898, 42.1015],
+            "springfield, ma": [-72.5898, 42.1015],
+            hollywood: [-80.1495, 26.0112],
+            "hollywood, fl": [-80.1495, 26.0112],
+            paterson: [-74.1638, 40.9168],
+            "paterson, nj": [-74.1638, 40.9168],
+            sunnyvale: [-122.0363, 37.3688],
+            "sunnyvale, ca": [-122.0363, 37.3688],
+            escondido: [-117.0864, 33.1192],
+            "escondido, ca": [-117.0864, 33.1192],
+            "kansas city": [-94.5786, 39.0997],
+            "kansas city, ks": [-94.5786, 39.0997],
+            "moreno valley": [-117.1851, 33.9425],
+            "moreno valley, ca": [-117.1851, 33.9425],
+            "huntington beach": [-118, 33.6603],
+            "huntington beach, ca": [-118, 33.6603],
+            glendale: [-118.2551, 34.1425],
+            "glendale, ca": [-118.2551, 34.1425],
+            "santa rosa": [-122.7141, 38.4404],
+            "santa rosa, ca": [-122.7141, 38.4404],
+            warren: [-83.0277, 42.5145],
+            "warren, mi": [-83.0277, 42.5145],
+            "oakland park": [-80.1228, 26.1723],
+            "oakland park, fl": [-80.1228, 26.1723],
+            "el cajon": [-116.9625, 32.7948],
+            "el cajon, ca": [-116.9625, 32.7948],
+            centennial: [-104.8774, 39.5807],
+            "centennial, co": [-104.8774, 39.5807],
+            temecula: [-117.1484, 33.4936],
+            "temecula, ca": [-117.1484, 33.4936],
+            "east los angeles": [-118.172, 34.0239],
+            "east los angeles, ca": [-118.172, 34.0239],
+            "santa maria": [-120.4357, 34.953],
+            "santa maria, ca": [-120.4357, 34.953],
+            "thousand oaks": [-118.8376, 34.1706],
+            "thousand oaks, ca": [-118.8376, 34.1706],
+            "rancho cucamonga": [-117.5931, 34.1064],
+            "rancho cucamonga, ca": [-117.5931, 34.1064],
+            visalia: [-119.2921, 36.3302],
+            "visalia, ca": [-119.2921, 36.3302],
+            "simi valley": [-118.7815, 34.2694],
+            "simi valley, ca": [-118.7815, 34.2694],
+            chattanooga: [-85.3097, 35.0456],
+            "chattanooga, tn": [-85.3097, 35.0456],
+            "south bend": [-86.252, 41.6764],
+            "south bend, in": [-86.252, 41.6764],
+            meridian: [-116.3915, 43.6121],
+            "meridian, id": [-116.3915, 43.6121],
+            concord: [-122.0311, 37.9722],
+            "concord, ca": [-122.0311, 37.9722],
+            fargo: [-96.7898, 46.8772],
+            "fargo, nd": [-96.7898, 46.8772],
+            arlington: [-77.1044, 38.886],
+            "arlington, va": [-77.1044, 38.886],
+            evansville: [-87.5711, 37.9716],
+            "evansville, in": [-87.5711, 37.9716],
+            albany: [-73.7562, 42.6526],
+            "albany, ny": [-73.7562, 42.6526],
+            provo: [-111.6585, 40.2338],
+            "provo, ut": [-111.6585, 40.2338],
+            peoria: [-112.2374, 33.5806],
+            "peoria, az": [-112.2374, 33.5806],
+            lansing: [-84.5555, 42.7325],
+            "lansing, mi": [-84.5555, 42.7325],
+            "pompano beach": [-80.1248, 26.2379],
+            "pompano beach, fl": [-80.1248, 26.2379],
+            springfield: [-89.6501, 39.7817],
+            "springfield, il": [-89.6501, 39.7817],
+            elgin: [-88.2826, 42.0354],
+            "elgin, il": [-88.2826, 42.0354],
+            murfreesboro: [-86.3906, 35.8456],
+            "murfreesboro, tn": [-86.3906, 35.8456],
+            "south lyon": [-83.6519, 42.4606],
+            "south lyon, mi": [-83.6519, 42.4606],
+            davie: [-80.2331, 26.0765],
+            "davie, fl": [-80.2331, 26.0765],
+            dearborn: [-83.1763, 42.3223],
+            "dearborn, mi": [-83.1763, 42.3223],
+            livonia: [-83.3527, 42.3684],
+            "livonia, mi": [-83.3527, 42.3684],
+            westland: [-83.3865, 42.3239],
+            "westland, mi": [-83.3865, 42.3239],
+            canton: [-83.4821, 42.3086],
+            "canton, mi": [-83.4821, 42.3086],
+            waterford: [-83.4022, 42.693],
+            "waterford, mi": [-83.4022, 42.693],
+            "farmington hills": [-83.3677, 42.4989],
+            "farmington hills, mi": [-83.3677, 42.4989],
+            "west bloomfield": [-83.3835, 42.5689],
+            "west bloomfield, mi": [-83.3835, 42.5689],
+            novi: [-83.4755, 42.4806],
+            "novi, mi": [-83.4755, 42.4806],
+            "rochester hills": [-83.1499, 42.6583],
+            "rochester hills, mi": [-83.1499, 42.6583],
+            troy: [-83.1497, 42.6056],
+            "troy, mi": [-83.1497, 42.6056],
+            "sterling heights": [-83.0304, 42.5803],
+            "sterling heights, mi": [-83.0304, 42.5803],
+            "ann arbor": [-83.743, 42.2808],
+            "ann arbor, mi": [-83.743, 42.2808],
+            "grand rapids": [-85.6681, 42.9634],
+            "grand rapids, mi": [-85.6681, 42.9634],
+            warren: [-83.0277, 42.5145],
+            "warren, mi": [-83.0277, 42.5145],
+            flint: [-83.6875, 43.0125],
+            "flint, mi": [-83.6875, 43.0125],
+            lansing: [-84.5555, 42.7325],
+            "lansing, mi": [-84.5555, 42.7325],
+            saginaw: [-83.9439, 43.4195],
+            "saginaw, mi": [-83.9439, 43.4195],
+            "bay city": [-83.8889, 43.5945],
+            "bay city, mi": [-83.8889, 43.5945],
+            midland: [-84.2472, 43.6156],
+            "midland, mi": [-84.2472, 43.6156],
+            "mount pleasant": [-84.7675, 43.5978],
+            "mount pleasant, mi": [-84.7675, 43.5978],
+            alma: [-84.6597, 43.3789],
+            "alma, mi": [-84.6597, 43.3789],
+            "big rapids": [-85.4839, 43.6981],
+            "big rapids, mi": [-85.4839, 43.6981],
+            cadillac: [-85.4012, 44.2519],
+            "cadillac, mi": [-85.4012, 44.2519],
+            "traverse city": [-85.6024, 44.7631],
+            "traverse city, mi": [-85.6024, 44.7631],
+            petoskey: [-84.955, 45.3733],
+            "petoskey, mi": [-84.955, 45.3733],
+            cheboygan: [-84.4747, 45.6469],
+            "cheboygan, mi": [-84.4747, 45.6469],
+            "sault ste. marie": [-84.3453, 46.4953],
+            "sault ste. marie, mi": [-84.3453, 46.4953],
+            marquette: [-87.3954, 46.5437],
+            "marquette, mi": [-87.3954, 46.5437],
+            "iron mountain": [-88.0654, 45.8202],
+            "iron mountain, mi": [-88.0654, 45.8202],
+            ironwood: [-90.171, 46.4547],
+            "ironwood, mi": [-90.171, 46.4547],
+            houghton: [-88.5694, 47.1219],
+            "houghton, mi": [-88.5694, 47.1219],
+            "copper harbor": [-87.8884, 47.4689],
+            "copper harbor, mi": [-87.8884, 47.4689],
+            toronto: [-79.3832, 43.6532],
+            "toronto, on": [-79.3832, 43.6532],
+            montreal: [-73.5673, 45.5017],
+            "montreal, qc": [-73.5673, 45.5017],
+            vancouver: [-123.1207, 49.2827],
+            "vancouver, bc": [-123.1207, 49.2827],
+            calgary: [-114.0719, 51.0447],
+            "calgary, ab": [-114.0719, 51.0447],
+            edmonton: [-113.4909, 53.5461],
+            "edmonton, ab": [-113.4909, 53.5461],
+            ottawa: [-75.6972, 45.4215],
+            "ottawa, on": [-75.6972, 45.4215],
+            winnipeg: [-97.1384, 49.8951],
+            "winnipeg, mb": [-97.1384, 49.8951],
+            "quebec city": [-71.2074, 46.8139],
+            "quebec city, qc": [-71.2074, 46.8139],
+            hamilton: [-79.8711, 43.2557],
+            "hamilton, on": [-79.8711, 43.2557],
+            london: [-81.2453, 42.9849],
+            "london, on": [-81.2453, 42.9849],
+            victoria: [-123.3656, 48.4284],
+            "victoria, bc": [-123.3656, 48.4284],
+            halifax: [-63.5752, 44.6488],
+            "halifax, ns": [-63.5752, 44.6488],
+            saskatoon: [-106.67, 52.1332],
+            "saskatoon, sk": [-106.67, 52.1332],
+            regina: [-104.6066, 50.4452],
+            "regina, sk": [-104.6066, 50.4452],
+            "st. john's": [-52.7093, 47.5615],
+            "st. john's, nl": [-52.7093, 47.5615],
+            "st johns": [-52.7093, 47.5615],
+            "st johns, nl": [-52.7093, 47.5615],
+            yellowknife: [-114.3718, 62.454],
+            "yellowknife, nt": [-114.3718, 62.454],
+            whitehorse: [-135.057, 60.7212],
+            "whitehorse, yt": [-135.057, 60.7212],
+            iqaluit: [-68.5165, 63.7467],
+            "iqaluit, nu": [-68.5165, 63.7467]
+        };
+        function t(e) {
+            if (!e)
+                return [-74.006, 40.7128];
+            if (e.defaultMapCity && e.defaultMapState) {
+                let a = o["".concat(e.defaultMapCity.toLowerCase().trim(), ", ").concat(e.defaultMapState.toLowerCase().trim())];
+                if (a)
+                    return a;
+                let n = o[e.defaultMapCity.toLowerCase().trim()];
+                if (n)
+                    return n
+            } else if (e.defaultMapCity) {
+                let a = o[e.defaultMapCity.toLowerCase().trim()];
+                if (a)
+                    return a
+            }
+            return [-74.006, 40.7128]
+        }
+        function i(e, a) {
+            let n = (e || "").toLowerCase().trim()
+              , t = (a || "").toLowerCase().trim();
+            if (n && t) {
+                let e = o["".concat(n, ", ").concat(t)];
+                if (e)
+                    return e;
+                let a = o[n];
+                if (a)
+                    return a
+            } else if (n) {
+                let e = o[n];
+                if (e)
+                    return e
+            }
+            return null
+        }
+    }
+}]);

@@ -1,0 +1,147 @@
+{
+  "chosen": {
+    "lat": 40.5997098,
+    "lng": -73.997104,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.5997098,
+      "lng": -73.997104,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 35' 58.95528'' N",
+            "lng": "73° 59' 49.57440'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWK8485394805",
+          "Maidenhead": "FN30ao03iw",
+          "Mercator": {
+            "x": -8237319.937,
+            "y": 4925664.356
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=248888445#map=16/40.59971/-73.99710",
+            "note_url": "https://www.openstreetmap.org/note/new#map=16/40.59971/-73.99710&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.59971&mlon=-73.99710#map=16/40.59971/-73.99710"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5qunuyqw2ns0b1xr6d",
+          "qibla": 58.49,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Bay 29th Street",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193880,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229280,
+              "astronomical": 1765235160,
+              "civil": 1765231140,
+              "nautical": 1765233180
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "hotels.fires.note"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.5998036,
+            "lng": -73.9969772
+          },
+          "southwest": {
+            "lat": 40.5996168,
+            "lng": -73.9972307
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "125",
+          "neighbourhood": "Bath Beach",
+          "postcode": "11214",
+          "road": "Bay 29th Street",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "125 Bay 29th Street, New York, NY 11214, United States of America",
+        "geometry": {
+          "lat": 40.5997098,
+          "lng": -73.997104
+        }
+      }
+    },
+    {
+      "lat": 40.65260067215965,
+      "lng": -73.94972126930952,
+      "provider": "maptiler",
+      "quality": "joint_municipality",
+      "confidence": 0.55
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "chosen": {
+    "lat": 40.6773458,
+    "lng": -73.8661425,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.6773458,
+      "lng": -73.8661425,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 40' 38.44488'' N",
+            "lng": "73° 51' 58.11300'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWL9582303558",
+          "Maidenhead": "FN30bq62bn",
+          "Mercator": {
+            "x": -8222741.37,
+            "y": 4937009.389
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=241816701#map=17/40.67735/-73.86614",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/40.67735/-73.86614&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.67735&mlon=-73.86614#map=17/40.67735/-73.86614"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5rrjh6dnu571exw6wy",
+          "qibla": 58.58,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Glenmore Avenue",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193820,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229220,
+              "astronomical": 1765235100,
+              "civil": 1765231080,
+              "nautical": 1765233120
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "liked.casino.wires"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.6774656,
+            "lng": -73.8661032
+          },
+          "southwest": {
+            "lat": 40.6772949,
+            "lng": -73.86622
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "1158",
+          "postcode": "11208",
+          "road": "Glenmore Avenue",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "1158 Glenmore Avenue, New York, NY 11208, United States of America",
+        "geometry": {
+          "lat": 40.6773458,
+          "lng": -73.8661425
+        }
+      }
+    }
+  ]
+}

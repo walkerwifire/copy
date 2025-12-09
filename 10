@@ -1,0 +1,950 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[4362], {
+    4362: function(e, t, o) {
+        o.d(t, {
+            AuthProvider: function() {
+                return m
+            },
+            a: function() {
+                return u
+            }
+        });
+        var r = o(7437)
+          , a = o(2265)
+          , i = o(3301)
+          , n = o(5978)
+          , s = o(6410)
+          , l = o(263)
+          , c = o(9376);
+        let d = (0,
+        a.createContext)(void 0)
+          , u = () => {
+            let e = (0,
+            a.useContext)(d);
+            if (void 0 === e)
+                throw Error("useAuth must be used within an AuthProvider");
+            return e
+        }
+          , m = e => {
+            let {children: t} = e
+              , [u,m] = (0,
+            a.useState)(null)
+              , [p,h] = (0,
+            a.useState)(null)
+              , [y,g] = (0,
+            a.useState)(!0)
+              , [w,v] = (0,
+            a.useState)(!1)
+              , f = (0,
+            c.useRouter)()
+              , I = (0,
+            a.useRef)(f)
+              , b = (0,
+            a.useRef)(null);
+            (0,
+            a.useEffect)( () => {
+                I.current = f
+            }
+            , [f]),
+            (0,
+            a.useEffect)( () => {
+                if (!s.I8) {
+                    g(!1);
+                    return
+                }
+                let e = setTimeout( () => {
+                    console.warn("Authentication timeout - forcing loading to false"),
+                    g(!1)
+                }
+                , 15e3)
+                  , t = (0,
+                i.Aj)(s.I8, async e => {
+                    if (e)
+                        try {
+                            let o = (0,
+                            n.collection)(s.db, "companies")
+                              , r = await (0,
+                            n.getDocs)(o)
+                              , a = !1;
+                            for (let o of r.docs)
+                                try {
+                                    let r = (0,
+                                    n.doc)(s.db, "companies", o.id, "users", e.uid)
+                                      , i = await (0,
+                                    n.getDoc)(r);
+                                    if (i.exists()) {
+                                        let l = i.data()
+                                          , c = o.data()
+                                          , d = {
+                                            ...c,
+                                            name: P(c.name),
+                                            companyId: o.id
+                                        };
+                                        m(l),
+                                        h(d),
+                                        T(l),
+                                        g(!1),
+                                        setTimeout(async () => {
+                                            try {
+                                                await (0,
+                                                s.gm)();
+                                                let t = await (0,
+                                                s.tq)();
+                                                t && await k(e.uid, o.id, t)
+                                            } catch (e) {
+                                                console.warn("FCM initialization failed, continuing without push notifications:", e)
+                                            }
+                                        }
+                                        , 100);
+                                        try {
+                                            let r = e.email || ""
+                                              , a = (0,
+                                            n.doc)(s.db, "companies", o.id, "users", e.uid)
+                                              , i = await (0,
+                                            n.getDoc)(a)
+                                              , l = i.exists() ? i.data() : null;
+                                            if (l && r && l.email !== r) {
+                                                var t;
+                                                let e = await (null === (t = s.I8.currentUser) || void 0 === t ? void 0 : t.getIdToken(!0))
+                                                  , o = !1;
+                                                try {
+                                                    e && (await fetch("/api/auth/sync-user-email", {
+                                                        method: "POST",
+                                                        headers: {
+                                                            "Content-Type": "application/json"
+                                                        },
+                                                        body: JSON.stringify({
+                                                            idToken: e
+                                                        })
+                                                    }),
+                                                    o = !0)
+                                                } catch (e) {}
+                                                o || await (0,
+                                                n.updateDoc)(a, {
+                                                    email: r,
+                                                    updatedAt: new Date
+                                                });
+                                                let i = await (0,
+                                                n.getDoc)(a);
+                                                i.exists() && m(i.data())
+                                            }
+                                        } catch (e) {}
+                                        if (b.current) {
+                                            try {
+                                                b.current()
+                                            } catch (e) {}
+                                            b.current = null
+                                        }
+                                        b.current = (0,
+                                        n.onSnapshot)(r, e => {
+                                            if (e.exists()) {
+                                                let t = e.data();
+                                                m(t)
+                                            }
+                                        }
+                                        ),
+                                        a = !0;
+                                        break
+                                    }
+                                } catch (e) {
+                                    console.warn("Error checking user in company:", o.id, e);
+                                    continue
+                                }
+                            a || (console.warn("User not found in any company collection:", e.uid),
+                            g(!1))
+                        } catch (e) {
+                            console.error("Error fetching user data:", e),
+                            g(!1)
+                        }
+                    else
+                        m(null),
+                        h(null),
+                        g(!1)
+                }
+                );
+                return () => {
+                    if (clearTimeout(e),
+                    t(),
+                    b.current) {
+                        try {
+                            b.current()
+                        } catch (e) {}
+                        b.current = null
+                    }
+                }
+            }
+            , []);
+            let k = async (e, t, o) => {
+                try {
+                    let r = (0,
+                    n.doc)(s.db, "companies", t, "users", e, "devices", o);
+                    await (0,
+                    n.setDoc)(r, {
+                        token: o,
+                        platform: navigator.platform,
+                        createdAt: new Date
+                    })
+                } catch (e) {
+                    console.error("Error saving device token:", e)
+                }
+            }
+              , T = e => {
+                let t = window.location.pathname;
+                console.log("Handling role-based routing for user:", e.role, "at path:", t);
+                let o = "";
+                "tech" === e.role ? o = "/tech/dashboard" : "admin" === e.role ? o = "/admin/dashboard" : "dispatcher" === e.role && (o = "/dispatcher"),
+                ("/login" === t || "/company-login" === t || "/" === t || o && (t.startsWith("/auth") || t.startsWith("/signup"))) && o && (console.log("Redirecting to:", o),
+                I.current.push(o))
+            }
+            ;
+            (0,
+            a.useEffect)( () => {
+                if ("undefined" == typeof document)
+                    return;
+                let e = document.documentElement;
+                e.classList.remove("theme-legacy", "theme-techassist"),
+                e.classList.add("theme-techassist");
+                let t = document.querySelector('meta[name="theme-color"]');
+                t && t.setAttribute("content", "#0b1e3b")
+            }
+            , []);
+            let C = async (e, t) => {
+                try {
+                    if (!s.I8)
+                        throw Error("Firebase Auth not initialized");
+                    let r = await (0,
+                    i.signInWithEmailAndPassword)(s.I8, e, t)
+                      , a = null
+                      , n = (r.user.email || "").toString().trim();
+                    if (n) {
+                        try {
+                            let e = await fetch("/api/auth/role-by-email", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    email: n
+                                })
+                            })
+                              , t = (e.headers.get("content-type") || "").includes("application/json") ? await e.json() : null;
+                            a = (null == t ? void 0 : t.role) || null
+                        } catch (e) {}
+                        if (!a)
+                            try {
+                                let {getFunctions: e, httpsCallable: t} = await Promise.resolve().then(o.bind(o, 5434))
+                                  , r = e(s.app, "us-central1")
+                                  , i = t(r, "checkRoleByEmail")
+                                  , l = await i({
+                                    email: n
+                                })
+                                  , c = (null == l ? void 0 : l.data) || null;
+                                a = (null == c ? void 0 : c.role) || null
+                            } catch (e) {}
+                    }
+                    if ("admin" === a && !r.user.emailVerified)
+                        throw await (0,
+                        i.signOut)(s.I8),
+                        Error("Please verify your admin email before signing in.");
+                    try {
+                        let {getFunctions: e, httpsCallable: t} = await Promise.resolve().then(o.bind(o, 5434))
+                          , a = e(s.app, "us-central1")
+                          , i = t(a, "checkCompanyCreationStatus")
+                          , n = (await i({})).data;
+                        if (n.success && "completed" === n.status) {
+                            console.log("Company creation completed during sign in"),
+                            await N();
+                            try {
+                                let e = t(a, "seedCompanyDefaults");
+                                await e({
+                                    companyId: r.user.uid
+                                }),
+                                console.log("Seeded company defaults after completion")
+                            } catch (e) {
+                                console.warn("Error seeding company defaults:", e)
+                            }
+                            try {
+                                await S(r.user.uid)
+                            } catch (e) {}
+                        } else
+                            "pending_verification" === n.status && console.log("Email verification still pending")
+                    } catch (e) {
+                        console.warn("Error checking company creation status:", e)
+                    }
+                } catch (e) {
+                    throw console.error("Error signing in:", e),
+                    e
+                }
+            }
+              , E = async (e, t) => {
+                try {
+                    if (!s.I8)
+                        throw Error("Firebase services not initialized");
+                    let {getFunctions: r, httpsCallable: a} = await Promise.resolve().then(o.bind(o, 5434))
+                      , n = r(s.app)
+                      , l = a(n, "findTechUserByLoginId")
+                      , c = (await l({
+                        loginId: e
+                    })).data;
+                    if (!c.success)
+                        throw Error(c.message || "Invalid login ID or password");
+                    let d = c.user;
+                    try {
+                        await (0,
+                        i.signInWithEmailAndPassword)(s.I8, d.email, t)
+                    } catch (e) {
+                        throw console.error("Authentication error:", e),
+                        Error("Invalid login ID or password")
+                    }
+                } catch (e) {
+                    throw console.error("Error signing in tech:", e),
+                    e
+                }
+            }
+              , O = e => e.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "")
+              , P = e => e.replace(/\s*\(comp_\d+_[a-z0-9]+\)\s*$/, "").trim()
+              , A = async (e, t) => {
+                try {
+                    if (!s.I8)
+                        throw Error("Firebase services not initialized");
+                    let r = O(e.name);
+                    console.log("Starting company creation via Cloud Function:", {
+                        companyData: e,
+                        adminEmail: t.email,
+                        companyDocumentId: r
+                    });
+                    let {getFunctions: a, httpsCallable: i} = await Promise.resolve().then(o.bind(o, 5434))
+                      , n = a(s.app, "us-central1")
+                      , l = i(n, "createCompany")
+                      , c = (await l({
+                        companyData: {
+                            ...e,
+                            name: e.name,
+                            catvProviders: e.catvProviders && e.catvProviders.length > 0 ? e.catvProviders : ["Altice/Optimum"]
+                        },
+                        adminData: t,
+                        companyDocumentId: r
+                    })).data;
+                    if (!c.success)
+                        throw Error(c.message || "Failed to create company");
+                    return console.log("Company creation initiated via Cloud Function:", r),
+                    {
+                        companyId: r,
+                        userId: c.userId,
+                        companyDocumentId: r,
+                        message: c.message || "Verification email sent. Please check your email and click the verification link to complete company creation."
+                    }
+                } catch (e) {
+                    throw console.log("=== CREATE COMPANY CLOUD FUNCTION ERROR ==="),
+                    console.log("Original error:", e),
+                    console.log("Error code:", e.code),
+                    console.log("Error message:", e.message),
+                    console.log("=== END CREATE COMPANY CLOUD FUNCTION ERROR ==="),
+                    (0,
+                    l.RL)("createCompany-cloudFunction", e),
+                    Error(e.message || (0,
+                    l.Qj)(e))
+                }
+            }
+              , D = async () => {
+                try {
+                    if (!s.I8)
+                        throw Error("Firebase Auth not initialized");
+                    await (0,
+                    i.signOut)(s.I8),
+                    m(null),
+                    h(null)
+                } catch (e) {
+                    throw console.error("Error signing out:", e),
+                    e
+                }
+            }
+              , N = async () => {
+                try {
+                    if (!(null === s.I8 || void 0 === s.I8 ? void 0 : s.I8.currentUser))
+                        return;
+                    g(!0),
+                    await s.I8.currentUser.reload();
+                    let t = s.I8.currentUser
+                      , o = (0,
+                    n.collection)(s.db, "companies");
+                    for (let r of (await (0,
+                    n.getDocs)(o)).docs) {
+                        let o = (0,
+                        n.doc)(s.db, "companies", r.id, "users", t.uid)
+                          , a = await (0,
+                        n.getDoc)(o);
+                        if (a.exists()) {
+                            let i = a.data()
+                              , l = r.data()
+                              , c = {
+                                ...l,
+                                name: P(l.name),
+                                companyId: r.id
+                            };
+                            m(i),
+                            h(c),
+                            T(i),
+                            g(!1);
+                            try {
+                                let r = t.email || "";
+                                if (r && i.email !== r) {
+                                    var e;
+                                    let t = await (null === (e = s.I8.currentUser) || void 0 === e ? void 0 : e.getIdToken(!0))
+                                      , a = !1;
+                                    try {
+                                        t && (await fetch("/api/auth/sync-user-email", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/json"
+                                            },
+                                            body: JSON.stringify({
+                                                idToken: t
+                                            })
+                                        }),
+                                        a = !0)
+                                    } catch (e) {}
+                                    a || await (0,
+                                    n.updateDoc)(o, {
+                                        email: r,
+                                        updatedAt: new Date
+                                    });
+                                    let i = await (0,
+                                    n.getDoc)(o);
+                                    i.exists() && m(i.data())
+                                }
+                            } catch (e) {}
+                            return
+                        }
+                    }
+                    console.warn("User not found in any company collection during refresh:", t.uid),
+                    g(!1)
+                } catch (e) {
+                    console.error("Error refreshing user data:", e),
+                    g(!1)
+                }
+            }
+              , S = async e => {
+                try {
+                    let t = (0,
+                    n.doc)(s.db, "companies", e)
+                      , o = await (0,
+                    n.getDoc)(t);
+                    if (!o.exists())
+                        return;
+                    let r = o.data()
+                      , a = {};
+                    r.catvProviders && Array.isArray(r.catvProviders) && 0 !== r.catvProviders.length || (a.catvProviders = ["Altice/Optimum"]),
+                    r.jobTypes && Array.isArray(r.jobTypes) && 0 !== r.jobTypes.length || (a.jobTypes = ["TC", "IN", "COS", "RST", "SRO", "In-house"]),
+                    r.jobTypeMappings && 0 !== Object.keys(r.jobTypeMappings || {}).length || (a.jobTypeMappings = {
+                        TC: "TC",
+                        COS: "COS",
+                        RST: "RST",
+                        IN: "IN",
+                        SRO: "SRO",
+                        "In-house": "In-house"
+                    }),
+                    r.timeFrameMappings && 0 !== Object.keys(r.timeFrameMappings || {}).length || (a.timeFrameMappings = {
+                        "2-5": "14-17",
+                        "3-6": "15-18",
+                        "11-2": "11-14",
+                        "12-3": "12-15",
+                        "ALL DAY": "8-20",
+                        UNKNWN: "8-20",
+                        "5-8": "17-20"
+                    }),
+                    r.fieldMappings && 0 !== Object.keys(r.fieldMappings || {}).length || (a.fieldMappings = {
+                        jobNumber: "Job ID:",
+                        jobType: "Type:",
+                        timeFrame: "TS:",
+                        description: "ReaCd/ReaDesc:",
+                        address: "Addr:",
+                        unitNumber: "Addr2:",
+                        city: "City:",
+                        customerName: "Name:",
+                        customerPhone: "Home #:",
+                        additionalPhone: "Work #:",
+                        comment: "Job Cmt:",
+                        dispatchComment: "Dispatch Cmt:",
+                        units: "Units:",
+                        staticStatus: "DS:",
+                        staticCompletionTime: "CpTime:",
+                        resolutionCodes: "ResCd:"
+                    });
+                    let i = (a.catvProviders || r.catvProviders || []).some(e => /altice|optimum/i.test(e));
+                    r.metricTemplates && Array.isArray(r.metricTemplates) && 0 !== r.metricTemplates.length || (a.metricTemplates = i ? [{
+                        id: "completion",
+                        name: "Completion",
+                        goalType: "above",
+                        goalValue: 90,
+                        unit: "%",
+                        description: "completed to cancelled percentage",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "repeats_7_day",
+                        name: "Repeats - 7 Day",
+                        goalType: "below",
+                        goalValue: 4,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "repeats_30_day",
+                        name: "Repeats - 30 Day",
+                        goalType: "below",
+                        goalValue: 10,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "repeats_60_day",
+                        name: "Repeats - 60 Day",
+                        goalType: "below",
+                        goalValue: 10,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "connects_cos_repeats",
+                        name: "Connects/COS Repeats",
+                        goalType: "below",
+                        goalValue: 10,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "sv_repeats",
+                        name: "SV Repeats",
+                        goalType: "below",
+                        goalValue: 10,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "on_time_performance",
+                        name: "On Time Performance",
+                        goalType: "above",
+                        goalValue: 95,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "chargeable_sv_waived",
+                        name: "Chargeable SV Waived",
+                        goalType: "below",
+                        goalValue: 0,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "avoidable_sv",
+                        name: "Avoidable SV",
+                        goalType: "below",
+                        goalValue: 0,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "techspeed_compliance",
+                        name: "TechSpeed Compliance",
+                        goalType: "above",
+                        goalValue: 90,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "nps",
+                        name: "NPS",
+                        goalType: "above",
+                        goalValue: 70,
+                        unit: "%",
+                        catvProviders: ["Altice/Optimum"]
+                    }, {
+                        id: "osat",
+                        name: "OSAT",
+                        goalType: "above",
+                        goalValue: 9,
+                        unit: "",
+                        catvProviders: ["Altice/Optimum"]
+                    }] : []),
+                    Object.keys(a).length > 0 && await (0,
+                    n.updateDoc)(t, a)
+                } catch (e) {}
+            }
+              , R = async e => {
+                if (!p)
+                    throw Error("No company context");
+                if (!s.db)
+                    throw Error("Firebase Firestore not initialized");
+                try {
+                    let t = (0,
+                    n.doc)(s.db, "companies", p.companyId, "users", e.id);
+                    await (0,
+                    n.setDoc)(t, {
+                        ...e,
+                        companyId: p.companyId,
+                        availability: e.availability || "available",
+                        archived: !0 === e.archived,
+                        createdAt: new Date,
+                        updatedAt: new Date
+                    })
+                } catch (e) {
+                    throw console.error("Error creating user:", e),
+                    e
+                }
+            }
+              , U = async e => {
+                var t;
+                if (!p)
+                    throw Error("No company context");
+                if (!s.I8 || !s.db)
+                    throw Error("Firebase services not initialized");
+                if (!s.I8.currentUser)
+                    throw Error("Admin must be authenticated to invite users");
+                if (!u || "admin" !== u.role)
+                    throw Error("Only admins can invite users");
+                try {
+                    let e = (0,
+                    n.doc)(s.db, "companies", p.companyId, "users", s.I8.currentUser.uid)
+                      , t = await (0,
+                    n.getDoc)(e);
+                    if (!t.exists())
+                        throw Error("User document not found in company. Please refresh and try again.");
+                    let o = t.data();
+                    if ("admin" !== o.role)
+                        throw Error("User role is '".concat(o.role, "', but admin role is required to invite users."));
+                    console.log("User document verified:", o)
+                } catch (e) {
+                    throw console.error("Error verifying user document:", e),
+                    e
+                }
+                console.log("Starting user invitation process via Cloud Function:", {
+                    email: e.email,
+                    role: e.role,
+                    companyId: p.companyId,
+                    currentUser: null === (t = s.I8.currentUser) || void 0 === t ? void 0 : t.uid,
+                    currentUserRole: null == u ? void 0 : u.role,
+                    company: p
+                });
+                try {
+                    let {getFunctions: t, httpsCallable: r} = await Promise.resolve().then(o.bind(o, 5434))
+                      , {app: a} = await Promise.resolve().then(o.bind(o, 6410))
+                      , i = t(a, "us-central1")
+                      , n = r(i, "adminCreateUser")
+                      , s = (await n({
+                        email: e.email,
+                        firstName: e.firstName,
+                        lastName: e.lastName,
+                        phoneNumber: e.phoneNumber || "",
+                        role: e.role,
+                        techId: e.technumber || "",
+                        areaOfWork: e.areaOfWork || "",
+                        catvProvider: e.catvProvider || "",
+                        vendor: e.vendor || "",
+                        legalEntity: e.legalEntity || "",
+                        vehicle: e.vehicle || "",
+                        vehicleType: e.vehicleType || "",
+                        englishLevel: e.englishLevel || "",
+                        schedule: e.schedule || "",
+                        hoursOfWork: e.hoursOfWork || "",
+                        workskill: e.workskill || ((null == p ? void 0 : p.workSkills) && p.workSkills.length > 0 ? p.workSkills[0] : "FTTH"),
+                        profilePicture: e.profilePicture || "",
+                        badgeIdPhoto: e.badgeIdPhoto || "",
+                        workAppUsername: e.workAppUsername || "",
+                        workAppPassword: e.workAppPassword || "",
+                        companyId: p.companyId,
+                        companyIdentifier: p.companyIdentifier
+                    })).data;
+                    if (!s.success)
+                        throw Error(s.message || "Failed to create user");
+                    return console.log("User created successfully via Cloud Function:", s.userId),
+                    {
+                        userId: s.userId,
+                        tempPassword: s.tempPassword,
+                        loginId: s.loginId
+                    }
+                } catch (e) {
+                    throw console.log("=== INVITE USER CLOUD FUNCTION ERROR ==="),
+                    console.log("Original error:", e),
+                    console.log("Error code:", e.code),
+                    console.log("Error message:", e.message),
+                    console.log("=== END INVITE USER CLOUD FUNCTION ERROR ==="),
+                    (0,
+                    l.RL)("inviteUser-cloudFunction", e),
+                    Error(e.message || (0,
+                    l.Qj)(e))
+                }
+            }
+              , F = async (e, t) => {
+                if (!p)
+                    throw Error("No company context");
+                if (!s.db)
+                    throw Error("Firebase Firestore not initialized");
+                try {
+                    let o = (0,
+                    n.doc)(s.db, "companies", p.companyId, "users", e)
+                      , r = W(t)
+                      , a = Object.fromEntries(Object.entries(r).filter(e => {
+                        let[t,o] = e;
+                        return void 0 !== o
+                    }
+                    ));
+                    await (0,
+                    n.updateDoc)(o, {
+                        ...a,
+                        updatedAt: new Date
+                    })
+                } catch (e) {
+                    throw console.error("Error updating user:", e),
+                    e
+                }
+            }
+              , W = e => {
+                let t = e.role
+                  , o = {
+                    firstName: e.firstName,
+                    lastName: e.lastName,
+                    email: e.email,
+                    phoneNumber: e.phoneNumber,
+                    role: e.role,
+                    profilePicture: e.profilePicture,
+                    archived: e.archived
+                };
+                switch (t) {
+                case "admin":
+                    return {
+                        ...o
+                    };
+                case "dispatcher":
+                    return {
+                        ...o,
+                        schedule: e.schedule,
+                        hoursOfWork: e.hoursOfWork,
+                        notes: e.notes
+                    };
+                case "tech":
+                    return {
+                        ...o,
+                        techId: e.techNumber,
+                        areaOfWork: e.areaOfWork,
+                        catvProvider: e.catvProvider,
+                        vendor: e.vendor,
+                        legalEntity: e.legalEntity,
+                        vehicle: e.vehicle,
+                        vehicleType: e.vehicleType,
+                        englishLevel: e.englishLevel,
+                        workskill: e.workskill,
+                        badgeIdPhoto: e.badgeIdPhoto,
+                        workAppUsername: e.workAppUsername,
+                        workAppPassword: e.workAppPassword,
+                        loginId: e.loginId,
+                        availability: e.availability,
+                        isClockedIn: e.isClockedIn,
+                        lastClockIn: e.lastClockIn,
+                        lastClockOut: e.lastClockOut,
+                        notes: e.notes,
+                        schedule: e.schedule,
+                        hoursOfWork: e.hoursOfWork
+                    };
+                default:
+                    return o
+                }
+            }
+              , j = async (e, t) => {
+                if (!s.I8)
+                    throw Error("Firebase Auth not initialized");
+                try {
+                    let {getFunctions: r, httpsCallable: a} = await Promise.resolve().then(o.bind(o, 5434))
+                      , i = r(s.app)
+                      , n = a(i, "changeUserPassword");
+                    return (await n({
+                        email: e,
+                        newPassword: t
+                    })).data
+                } catch (e) {
+                    throw console.error("Error changing password:", e),
+                    e
+                }
+            }
+              , _ = async e => {
+                if (!p)
+                    throw Error("No company context");
+                if (!s.db)
+                    throw Error("Firebase Firestore not initialized");
+                try {
+                    let t = (0,
+                    n.doc)(s.db, "companies", p.companyId, "users", e);
+                    await (0,
+                    n.deleteDoc)(t)
+                } catch (e) {
+                    throw console.error("Error deleting user:", e),
+                    e
+                }
+            }
+              , V = async () => {
+                try {
+                    if (!u || !p)
+                        return console.log("No user or company context for notification permission"),
+                        !1;
+                    let e = await (0,
+                    s.eV)();
+                    if (e)
+                        return await k(u.id, p.companyId, e),
+                        console.log("Notification permission granted and token saved"),
+                        !0;
+                    return console.log("Notification permission denied or failed"),
+                    !1
+                } catch (e) {
+                    return console.error("Error requesting notification permission:", e),
+                    !1
+                }
+            }
+              , x = async () => {
+                if (!u || !p)
+                    throw Error("No user or company context");
+                if (!s.db)
+                    throw Error("Firebase Firestore not initialized");
+                try {
+                    let e = (0,
+                    n.doc)(s.db, "companies", p.companyId, "users", u.id)
+                      , t = new Date;
+                    await (0,
+                    n.updateDoc)(e, {
+                        isClockedIn: !0,
+                        lastClockIn: t,
+                        updatedAt: t
+                    }),
+                    m(e => e ? {
+                        ...e,
+                        isClockedIn: !0,
+                        lastClockIn: t
+                    } : null),
+                    console.log("User clocked in successfully")
+                } catch (e) {
+                    throw console.error("Error clocking in:", e),
+                    e
+                }
+            }
+              , L = async () => {
+                if (!u || !p)
+                    throw Error("No user or company context");
+                if (!s.db)
+                    throw Error("Firebase Firestore not initialized");
+                try {
+                    let e = (0,
+                    n.doc)(s.db, "companies", p.companyId, "users", u.id)
+                      , t = new Date
+                      , o = 0;
+                    if (u.lastClockIn) {
+                        let e = new Date(u.lastClockIn);
+                        o = Math.floor((t.getTime() - e.getTime()) / 6e4)
+                    }
+                    let r = (u.totalWorkTimeToday || 0) + o;
+                    await (0,
+                    n.updateDoc)(e, {
+                        isClockedIn: !1,
+                        lastClockOut: t,
+                        totalWorkTimeToday: r,
+                        updatedAt: t
+                    }),
+                    m(e => e ? {
+                        ...e,
+                        isClockedIn: !1,
+                        lastClockOut: t,
+                        totalWorkTimeToday: r
+                    } : null),
+                    console.log("User clocked out successfully. Session time: ".concat(o, " minutes, Total today: ").concat(r, " minutes"))
+                } catch (e) {
+                    throw console.error("Error clocking out:", e),
+                    e
+                }
+            }
+              , z = async () => {
+                if (u && s.db)
+                    try {
+                        let e = await (0,
+                        n.getDoc)((0,
+                        n.doc)(s.db, "companies", u.companyId));
+                        if (e.exists()) {
+                            let t = e.data()
+                              , o = {
+                                ...t,
+                                name: P(t.name)
+                            };
+                            h(o)
+                        }
+                    } catch (e) {
+                        console.error("Error refreshing company data:", e)
+                    }
+            }
+            ;
+            return (0,
+            r.jsx)(d.Provider, {
+                value: {
+                    user: u,
+                    company: p,
+                    loading: y,
+                    signIn: C,
+                    signInTech: E,
+                    signOut: D,
+                    refreshUserData: N,
+                    createCompany: A,
+                    createUser: R,
+                    inviteUser: U,
+                    updateUser: F,
+                    changeUserPassword: j,
+                    deleteUser: _,
+                    requestNotificationPermission: V,
+                    getNotificationStatus: () => ({
+                        supported: (0,
+                        s.Dv)(),
+                        permission: (0,
+                        s.qO)()
+                    }),
+                    clockIn: x,
+                    clockOut: L,
+                    getWorkStatus: () => {
+                        if (!u)
+                            return {
+                                isClockedIn: !1,
+                                lastClockIn: void 0,
+                                lastClockOut: void 0,
+                                totalWorkTimeToday: 0
+                            };
+                        let e = new Date;
+                        e.setHours(0, 0, 0, 0);
+                        let t = !1;
+                        if (u.lastClockIn) {
+                            let o = new Date(u.lastClockIn);
+                            o.setHours(0, 0, 0, 0),
+                            o.getTime() !== e.getTime() && (t = !0)
+                        } else if (u.lastClockOut) {
+                            let o = new Date(u.lastClockOut);
+                            o.setHours(0, 0, 0, 0),
+                            o.getTime() !== e.getTime() && (t = !0)
+                        }
+                        if (t && u.totalWorkTimeToday && u.totalWorkTimeToday > 0 && p) {
+                            let e = (0,
+                            n.doc)(s.db, "companies", p.companyId, "users", u.id);
+                            return (0,
+                            n.updateDoc)(e, {
+                                totalWorkTimeToday: 0,
+                                updatedAt: new Date
+                            }),
+                            m(e => e ? {
+                                ...e,
+                                totalWorkTimeToday: 0
+                            } : null),
+                            {
+                                isClockedIn: u.isClockedIn || !1,
+                                lastClockIn: u.lastClockIn,
+                                lastClockOut: u.lastClockOut,
+                                totalWorkTimeToday: 0
+                            }
+                        }
+                        return {
+                            isClockedIn: u.isClockedIn || !1,
+                            lastClockIn: u.lastClockIn,
+                            lastClockOut: u.lastClockOut,
+                            totalWorkTimeToday: u.totalWorkTimeToday || 0
+                        }
+                    }
+                    ,
+                    refreshCompanyData: z
+                },
+                children: t
+            })
+        }
+    }
+}]);

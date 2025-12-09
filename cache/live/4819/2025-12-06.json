@@ -1,0 +1,36 @@
+[
+  {
+    "techNo": "4819",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836548629",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "SUNDBERG,MARGARET",
+        "address": "105 WYONA ST, APT 1, BROOKLYN, NY 11207",
+        "phone": "718-801-4903",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836201511",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "GUALLPA,RIGOBERT",
+        "address": "437 BLEECKER ST, APT 1L, BROOKLYN, NY 11237",
+        "phone": "718-873-7449",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 2,
+    "estimatedDuration": "4h 12m"
+  }
+]

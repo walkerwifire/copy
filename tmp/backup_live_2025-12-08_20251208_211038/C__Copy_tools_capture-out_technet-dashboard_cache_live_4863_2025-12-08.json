@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4863",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836597698",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "HAMILTON,EVELENA",
+        "address": "178 AMBOY ST, APT 1A, BROOKLYN, NY 11212-5017",
+        "phone": "718-345-5008",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836093911",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "SMITH,SHELTON",
+        "address": "690 GATES AV, APT 1F, BROOKLYN, NY 11221-1738",
+        "phone": "347-284-2379",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836425842",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "Green,EDDIE",
+        "address": "712 CROWN ST, APT B11, BROOKLYN, NY 11213-5430",
+        "phone": "347-326-1894",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836973056",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "COCHRAN,SABRINA",
+        "address": "560 LEFFERTS AV, APT LL, BROOKLYN, NY 11203-1038",
+        "phone": "347-513-2960",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836692584",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "MANNING,MARGARET",
+        "address": "794 MIDWOOD ST, APT 6E, BROOKLYN, NY 11203-1414",
+        "phone": "718-953-4252",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836021452",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "ALLEYNE,TERESA",
+        "address": "1272 E 83RD ST, APT 1, BROOKLYN, NY 11236-4933",
+        "phone": "917-947-8611",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "5h 12m"
+  }
+]

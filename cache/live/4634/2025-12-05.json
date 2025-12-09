@@ -1,0 +1,36 @@
+[
+  {
+    "techNo": "4634",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836266278",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4634",
+        "name": "MALKOUKIAN,DAVID",
+        "address": "1255 E 21ST ST, BROOKLYN, NY 11210-4510",
+        "phone": "718-258-7112",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836323493",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4634",
+        "name": "BORD,DMITRY",
+        "address": "5302 15TH AV, APT 3A, BROOKLYN, NY 11219-4333",
+        "phone": "718-871-0826",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 2,
+    "estimatedDuration": "0h 54m"
+  }
+]

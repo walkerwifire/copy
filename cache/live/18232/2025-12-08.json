@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "18232",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836142839",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "BREVOORT,RESIDENT",
+        "address": "1831 FULTON ST, APT 1C, BROOKLYN, NY 11233-2210",
+        "phone": "347-683-1230",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836068934",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "TYBERG,JAMIE",
+        "address": "674 MADISON ST, APT 2, BROOKLYN, NY 11221-2106",
+        "phone": "404-483-9463",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836550412",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "TURNER,DOROTHY",
+        "address": "301 STERLING ST, APT 5H, BROOKLYN, NY 11225-4140",
+        "phone": "718-773-4631",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836543982",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "LIENKE,JULIA",
+        "address": "57 LINCOLN RD, APT B14, BROOKLYN, NY 11225-4058",
+        "phone": "323-481-5023",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836865381",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "QUIRICO,QUINCY",
+        "address": "177 WOODRUFF AV, APT 101, BROOKLYN, NY 11226",
+        "phone": "347-772-7937",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836800497",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "RAHMAN,MAISHA",
+        "address": "45 HINCKLEY PL, APT 5C, BROOKLYN, NY 11218",
+        "phone": "917-232-4238",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "8h 36m"
+  }
+]

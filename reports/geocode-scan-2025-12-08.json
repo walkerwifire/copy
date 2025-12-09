@@ -1,0 +1,3616 @@
+{
+  "generatedAt": "2025-12-08T20:15:42.890Z",
+  "geoBbox": {
+    "west": -74.5,
+    "south": 40.2,
+    "east": -72.5,
+    "north": 41.2
+  },
+  "confidenceThreshold": 0.8,
+  "totals": {
+    "files": 494,
+    "skipped": 0,
+    "noChosen": 325,
+    "lowConfidence": 126,
+    "outOfBounds": 8,
+    "errors": 0
+  },
+  "samples": {
+    "lowConfidence": [
+      {
+        "file": "100_woodruff_av_11226_1227.json",
+        "chosen": {
+          "lat": 40.6534949,
+          "lng": -73.9625661,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6534949,
+        "lng": -73.9625661,
+        "confidence": 0.7
+      },
+      {
+        "file": "1023_57th_street_11219.json",
+        "chosen": {
+          "lat": 40.6342622,
+          "lng": -74.0027549,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6342622,
+        "lng": -74.0027549,
+        "confidence": 0.7
+      },
+      {
+        "file": "1046_e_81st_street_11236_4222.json",
+        "chosen": {
+          "lat": 40.6333718,
+          "lng": -73.9099406,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6333718,
+        "lng": -73.9099406,
+        "confidence": 0.7
+      },
+      {
+        "file": "1086_broadway_11221_3014.json",
+        "chosen": {
+          "lat": 40.6941852,
+          "lng": -73.9308506,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6941852,
+        "lng": -73.9308506,
+        "confidence": 0.7
+      },
+      {
+        "file": "1103_e_34th_street_11210_4160.json",
+        "chosen": {
+          "lat": 40.6290761,
+          "lng": -73.9432318,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6290761,
+        "lng": -73.9432318,
+        "confidence": 0.7
+      },
+      {
+        "file": "111_wilson_av_11237.json",
+        "chosen": {
+          "lat": 40.7013616,
+          "lng": -73.9265082,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.7013616,
+        "lng": -73.9265082,
+        "confidence": 0.7
+      },
+      {
+        "file": "114_fenimore_street_11225_5318.json",
+        "chosen": {
+          "lat": 40.6579213,
+          "lng": -73.9586042,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6579213,
+        "lng": -73.9586042,
+        "confidence": 0.7
+      },
+      {
+        "file": "1158_glenmore_av_11208_3346.json",
+        "chosen": {
+          "lat": 40.6773458,
+          "lng": -73.8661425,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6773458,
+        "lng": -73.8661425,
+        "confidence": 0.7
+      },
+      {
+        "file": "115_lenox_road_11226_2463.json",
+        "chosen": {
+          "lat": 40.6542318,
+          "lng": -73.9556205,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6542318,
+        "lng": -73.9556205,
+        "confidence": 0.7
+      },
+      {
+        "file": "1165_elton_street_11239.json",
+        "chosen": {
+          "lat": 40.6561149,
+          "lng": -73.8736672,
+          "provider": "opencage",
+          "quality": "retail",
+          "confidence": 0.7
+        },
+        "lat": 40.6561149,
+        "lng": -73.8736672,
+        "confidence": 0.7
+      },
+      {
+        "file": "1176_walton_av_10452_8453.json",
+        "chosen": {
+          "lat": 40.8341505,
+          "lng": -73.9198735,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.8341505,
+        "lng": -73.9198735,
+        "confidence": 0.7
+      },
+      {
+        "file": "1209_dekalb_av_11221.json",
+        "chosen": {
+          "lat": 40.6957812,
+          "lng": -73.9278778,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6957812,
+        "lng": -73.9278778,
+        "confidence": 0.7
+      },
+      {
+        "file": "120_schroeders_av_11239_2211.json",
+        "chosen": {
+          "lat": 40.6476399,
+          "lng": -73.8808343,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6476399,
+        "lng": -73.8808343,
+        "confidence": 0.7
+      },
+      {
+        "file": "1214_avenue_v_11229.json",
+        "chosen": {
+          "lat": 40.5961085,
+          "lng": -73.9592637,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.5961085,
+        "lng": -73.9592637,
+        "confidence": 0.7
+      },
+      {
+        "file": "1230_pennsylvania_av_11239_1109.json",
+        "chosen": {
+          "lat": 40.650098,
+          "lng": -73.8847219,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.650098,
+        "lng": -73.8847219,
+        "confidence": 0.7
+      },
+      {
+        "file": "1239_stanley_av_11208_5637.json",
+        "chosen": {
+          "lat": 40.66648,
+          "lng": -73.8636781,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.66648,
+        "lng": -73.8636781,
+        "confidence": 0.7
+      },
+      {
+        "file": "1249_e_39th_street_11210.json",
+        "chosen": {
+          "lat": 40.6262921,
+          "lng": -73.9380639,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6262921,
+        "lng": -73.9380639,
+        "confidence": 0.7
+      },
+      {
+        "file": "1257_loring_av_11208_4632.json",
+        "chosen": {
+          "lat": 40.667764,
+          "lng": -73.8654793,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.667764,
+        "lng": -73.8654793,
+        "confidence": 0.7
+      },
+      {
+        "file": "125_bay_29th_street.json",
+        "chosen": {
+          "lat": 40.5997098,
+          "lng": -73.997104,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.5997098,
+        "lng": -73.997104,
+        "confidence": 0.7
+      },
+      {
+        "file": "125_bay_29th_street_apt_1_brooklyn_ny_11214_5005.json",
+        "chosen": {
+          "lat": 40.65260067215965,
+          "lng": -73.94972126930952,
+          "provider": "maptiler",
+          "quality": "joint_municipality",
+          "confidence": 0.55
+        },
+        "lat": 40.65260067215965,
+        "lng": -73.94972126930952,
+        "confidence": 0.55
+      },
+      {
+        "file": "1272_e_83rd_street_11236_4933.json",
+        "chosen": {
+          "lat": 40.6305098,
+          "lng": -73.9042323,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6305098,
+        "lng": -73.9042323,
+        "confidence": 0.7
+      },
+      {
+        "file": "1273_bushwick_av_11207_9505.json",
+        "chosen": {
+          "lat": 40.6871351,
+          "lng": -73.9134792,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6871351,
+        "lng": -73.9134792,
+        "confidence": 0.7
+      },
+      {
+        "file": "1275_delmar_lp_11239_1603.json",
+        "chosen": {
+          "lat": 40.6505381,
+          "lng": -73.8826927,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6505381,
+        "lng": -73.8826927,
+        "confidence": 0.7
+      },
+      {
+        "file": "1287_atlantic_av_11216.json",
+        "chosen": {
+          "lat": 40.6783092,
+          "lng": -73.9502009,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6783092,
+        "lng": -73.9502009,
+        "confidence": 0.7
+      },
+      {
+        "file": "12_underhill_av_11238.json",
+        "chosen": {
+          "lat": 40.6807085,
+          "lng": -73.9648934,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6807085,
+        "lng": -73.9648934,
+        "confidence": 0.7
+      },
+      {
+        "file": "130_vernon_av_11206.json",
+        "chosen": {
+          "lat": 40.6947089,
+          "lng": -73.9467339,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6947089,
+        "lng": -73.9467339,
+        "confidence": 0.7
+      },
+      {
+        "file": "1365_e_14th_street_11230_5900.json",
+        "chosen": {
+          "lat": 40.6163641,
+          "lng": -73.9603969,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6163641,
+        "lng": -73.9603969,
+        "confidence": 0.7
+      },
+      {
+        "file": "1455_e_87th_street_11236_5137.json",
+        "chosen": {
+          "lat": 40.6296789,
+          "lng": -73.8976693,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6296789,
+        "lng": -73.8976693,
+        "confidence": 0.7
+      },
+      {
+        "file": "1506_avenue_j_11230.json",
+        "chosen": {
+          "lat": 40.625001,
+          "lng": -73.9610759,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.625001,
+        "lng": -73.9610759,
+        "confidence": 0.7
+      },
+      {
+        "file": "1506_avenue_j_2flr_brooklyn_ny_11230.json",
+        "chosen": {
+          "lat": 40.624996,
+          "lng": -73.961075,
+          "provider": "maptiler",
+          "quality": "address",
+          "confidence": 0.767407
+        },
+        "lat": 40.624996,
+        "lng": -73.961075,
+        "confidence": 0.767407
+      },
+      {
+        "file": "150_malcolm_x_bl_11221_2222.json",
+        "chosen": {
+          "lat": 46.7235,
+          "lng": 7.09983,
+          "provider": "opencage",
+          "quality": "municipality",
+          "confidence": 0.7
+        },
+        "lat": 46.7235,
+        "lng": 7.09983,
+        "confidence": 0.7
+      },
+      {
+        "file": "1562_e_91st_street_11236.json",
+        "chosen": {
+          "lat": 40.6328913,
+          "lng": -73.8968138,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6328913,
+        "lng": -73.8968138,
+        "confidence": 0.7
+      },
+      {
+        "file": "1650_ocean_av_11230_4943.json",
+        "chosen": {
+          "lat": 40.6216889,
+          "lng": -73.9560519,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6216889,
+        "lng": -73.9560519,
+        "confidence": 0.7
+      },
+      {
+        "file": "1671_e_17th_street_11229_1272.json",
+        "chosen": {
+          "lat": 40.6090083,
+          "lng": -73.9560701,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6090083,
+        "lng": -73.9560701,
+        "confidence": 0.7
+      },
+      {
+        "file": "171_throop_av_11206.json",
+        "chosen": {
+          "lat": 40.698863,
+          "lng": -73.943965,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.698863,
+        "lng": -73.943965,
+        "confidence": 0.7
+      },
+      {
+        "file": "172_wilson_av_11237_3554.json",
+        "chosen": {
+          "lat": 40.6997052,
+          "lng": -73.9242779,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6997052,
+        "lng": -73.9242779,
+        "confidence": 0.7
+      },
+      {
+        "file": "1761_55th_street_11204_1925.json",
+        "chosen": {
+          "lat": 40.6253206,
+          "lng": -73.9848947,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6253206,
+        "lng": -73.9848947,
+        "confidence": 0.7
+      },
+      {
+        "file": "1767_bath_av.json",
+        "chosen": {
+          "lat": 40.6041483,
+          "lng": -74.0062163,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6041483,
+        "lng": -74.0062163,
+        "confidence": 0.7
+      },
+      {
+        "file": "177_woodruff_av_11226.json",
+        "chosen": {
+          "lat": 40.6548733,
+          "lng": -73.960334,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6548733,
+        "lng": -73.960334,
+        "confidence": 0.7
+      },
+      {
+        "file": "178_amboy_street_11212_5017.json",
+        "chosen": {
+          "lat": 40.6659999,
+          "lng": -73.9139866,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6659999,
+        "lng": -73.9139866,
+        "confidence": 0.7
+      },
+      {
+        "file": "180_hull_street_11233.json",
+        "chosen": {
+          "lat": 40.6795956,
+          "lng": -73.9082191,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6795956,
+        "lng": -73.9082191,
+        "confidence": 0.7
+      },
+      {
+        "file": "1819_avenue_l_11230_4473.json",
+        "chosen": {
+          "lat": 40.6209964,
+          "lng": -73.957214,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6209964,
+        "lng": -73.957214,
+        "confidence": 0.7
+      },
+      {
+        "file": "1869_66th_street_11204.json",
+        "chosen": {
+          "lat": 40.6176165,
+          "lng": -73.9889001,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6176165,
+        "lng": -73.9889001,
+        "confidence": 0.7
+      },
+      {
+        "file": "1965_bay_ridge_av_11204_4556.json",
+        "chosen": {
+          "lat": 40.6146782,
+          "lng": -73.9885638,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6146782,
+        "lng": -73.9885638,
+        "confidence": 0.7
+      },
+      {
+        "file": "1965_bay_ridge_av_brooklyn_ny_11204_4556.json",
+        "chosen": {
+          "lat": 40.65260067215965,
+          "lng": -73.94972126930952,
+          "provider": "maptiler",
+          "quality": "joint_municipality",
+          "confidence": 0.481481
+        },
+        "lat": 40.65260067215965,
+        "lng": -73.94972126930952,
+        "confidence": 0.481481
+      },
+      {
+        "file": "2024_avenue_l_11210_4523.json",
+        "chosen": {
+          "lat": 40.6208382,
+          "lng": -73.9545994,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6208382,
+        "lng": -73.9545994,
+        "confidence": 0.7
+      },
+      {
+        "file": "2038_cropsey_av_11214_6217.json",
+        "chosen": {
+          "lat": 40.5992463,
+          "lng": -74.0023203,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.5992463,
+        "lng": -74.0023203,
+        "confidence": 0.7
+      },
+      {
+        "file": "2113_e_65th_street_11234_6317.json",
+        "chosen": {
+          "lat": 40.6166755,
+          "lng": -73.9111558,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6166755,
+        "lng": -73.9111558,
+        "confidence": 0.7
+      },
+      {
+        "file": "213_suydam_street_11237_3109.json",
+        "chosen": {
+          "lat": 40.7009566,
+          "lng": -73.9251336,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.7009566,
+        "lng": -73.9251336,
+        "confidence": 0.7
+      },
+      {
+        "file": "215_lenox_road_11226_2167.json",
+        "chosen": {
+          "lat": 40.6543405,
+          "lng": -73.952319,
+          "provider": "opencage",
+          "quality": "building",
+          "confidence": 0.7
+        },
+        "lat": 40.6543405,
+        "lng": -73.952319,
+        "confidence": 0.7
+      }
+    ],
+    "outOfBounds": [
+      {
+        "file": "150_malcolm_x_bl_11221_2222.json",
+        "chosen": {
+          "lat": 46.7235,
+          "lng": 7.09983,
+          "provider": "opencage",
+          "quality": "municipality",
+          "confidence": 0.7
+        },
+        "lat": 46.7235,
+        "lng": 7.09983,
+        "confidence": 0.7
+      },
+      {
+        "file": "260_linden_bl_11226_9106.json",
+        "chosen": {
+          "lat": -1.50495,
+          "lng": 132.28638,
+          "provider": "opencage",
+          "quality": "county",
+          "confidence": 0.7
+        },
+        "lat": -1.50495,
+        "lng": 132.28638,
+        "confidence": 0.7
+      },
+      {
+        "file": "260_linden_bl_brooklyn_ny_11226_9106.json",
+        "chosen": {
+          "lat": 42.91383890006428,
+          "lng": -74.6952623873949,
+          "provider": "maptiler",
+          "quality": "joint_municipality",
+          "confidence": 0.808783
+        },
+        "lat": 42.91383890006428,
+        "lng": -74.6952623873949,
+        "confidence": 0.808783
+      },
+      {
+        "file": "290_bay_17_street_11214_5915.json",
+        "chosen": {
+          "lat": 46.72994,
+          "lng": 6.57991,
+          "provider": "opencage",
+          "quality": "municipality",
+          "confidence": 0.7
+        },
+        "lat": 46.72994,
+        "lng": 6.57991,
+        "confidence": 0.7
+      },
+      {
+        "file": "4912_fort_hamiltn_pk_11219_3344.json",
+        "chosen": {
+          "lat": 30,
+          "lng": 70,
+          "provider": "opencage",
+          "quality": "country",
+          "confidence": 0.7
+        },
+        "lat": 30,
+        "lng": 70,
+        "confidence": 0.7
+      },
+      {
+        "file": "699_linden_bl_11203_3314.json",
+        "chosen": {
+          "lat": -7.41278,
+          "lng": 110.935,
+          "provider": "opencage",
+          "quality": "county",
+          "confidence": 0.7
+        },
+        "lat": -7.41278,
+        "lng": 110.935,
+        "confidence": 0.7
+      },
+      {
+        "file": "805_e_new_york_av_brooklyn_ny_11203.json",
+        "chosen": {
+          "lat": 39.783730552755216,
+          "lng": -100.44588211923838,
+          "provider": "maptiler",
+          "quality": "country",
+          "confidence": 0.32716
+        },
+        "lat": 39.783730552755216,
+        "lng": -100.44588211923838,
+        "confidence": 0.32716
+      },
+      {
+        "file": "947_gates_av_brooklyn_ny_11221_2804.json",
+        "chosen": {
+          "lat": 43.15142263821426,
+          "lng": -77.71300066262484,
+          "provider": "maptiler",
+          "quality": "joint_municipality",
+          "confidence": 0.828677
+        },
+        "lat": 43.15142263821426,
+        "lng": -77.71300066262484,
+        "confidence": 0.828677
+      }
+    ],
+    "errors": []
+  },
+  "details": {
+    "1007_union_av_bronx_ny_10459_2958.json": {
+      "status": "noChosen"
+    },
+    "100_woodruff_av_11226_1227.json": {
+      "chosen": {
+        "lat": 40.6534949,
+        "lng": -73.9625661,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "100_woodruff_av_brooklyn_ny_11226_1227.json": {
+      "chosen": {
+        "lat": 40.653503,
+        "lng": -73.96254299999998,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1023_57th_street_11219.json": {
+      "chosen": {
+        "lat": 40.6342622,
+        "lng": -74.0027549,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1023_57th_street_brooklyn_ny_11219.json": {
+      "status": "noChosen"
+    },
+    "1038_broadway_apt_9f_brooklyn_ny_11221.json": {
+      "status": "noChosen"
+    },
+    "1038_broadway_brooklyn_ny_11221.json": {
+      "status": "noChosen"
+    },
+    "1039_e_10th_st_1_brooklyn_ny_11230.json": {
+      "status": "noChosen"
+    },
+    "1046_e_81st_street_11236_4222.json": {
+      "chosen": {
+        "lat": 40.6333718,
+        "lng": -73.9099406,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1046_e_81st_street_brooklyn_ny_11236_4222.json": {
+      "chosen": {
+        "lat": 40.633372,
+        "lng": -73.909941,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1048_e_81st_street_brooklyn_ny_11236_4222.json": {
+      "status": "noChosen"
+    },
+    "1048_e_81st_st_apt_1_brooklyn_ny_11236_4222.json": {
+      "status": "noChosen"
+    },
+    "1048_e_81st_st_apt_bsmt_brooklyn_ny_11236_4222.json": {
+      "status": "noChosen"
+    },
+    "105_wyona_street_brooklyn_ny_11207.json": {
+      "status": "noChosen"
+    },
+    "1075_liberty_av_com_brooklyn_ny_11208.json": {
+      "status": "noChosen"
+    },
+    "107_jefferson_av_apt_4b_brooklyn_ny_11216.json": {
+      "status": "noChosen"
+    },
+    "107_jefferson_av_brooklyn_ny_11216.json": {
+      "status": "noChosen"
+    },
+    "10806_avenue_n_brooklyn_ny_11236_4616.json": {
+      "status": "noChosen"
+    },
+    "1086_broadway_11221_3014.json": {
+      "chosen": {
+        "lat": 40.6941852,
+        "lng": -73.9308506,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1086_broadway_brooklyn_ny_11221_3014.json": {
+      "chosen": {
+        "lat": 40.811952790887766,
+        "lng": -73.95487755202936,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.872222
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1091_rogers_ave_apt_4r_brooklyn_ny_11226.json": {
+      "status": "noChosen"
+    },
+    "1103_e_34th_street_11210_4160.json": {
+      "chosen": {
+        "lat": 40.6290761,
+        "lng": -73.9432318,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1103_e_34th_street_brooklyn_ny_11210_4160.json": {
+      "chosen": {
+        "lat": 40.629076,
+        "lng": -73.94323199999997,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "110_martense_st_apt_d7_brooklyn_ny_11226_3310.json": {
+      "status": "noChosen"
+    },
+    "1112_avenue_k_brooklyn_ny_11230_4100.json": {
+      "status": "noChosen"
+    },
+    "1115_e_80th_street_2fl_1_brooklyn_ny_11236_4101.json": {
+      "status": "noChosen"
+    },
+    "1115_e_80th_st_2fl_1_brooklyn_ny_11236_4101.json": {
+      "status": "noChosen"
+    },
+    "111_wilson_av_11237.json": {
+      "chosen": {
+        "lat": 40.7013616,
+        "lng": -73.9265082,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "111_wilson_av_brooklyn_ny_11237.json": {
+      "status": "noChosen"
+    },
+    "1124_bedford_av_2nd_flr_brooklyn_ny_11216.json": {
+      "status": "noChosen"
+    },
+    "1149_59th_street_brooklyn_ny_11219.json": {
+      "status": "noChosen"
+    },
+    "114_fenimore_street_11225_5318.json": {
+      "chosen": {
+        "lat": 40.6579213,
+        "lng": -73.9586042,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "114_fenimore_street_brooklyn_ny_11225_5318.json": {
+      "chosen": {
+        "lat": 40.657932,
+        "lng": -73.95860500000003,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1158_glenmore_av_11208_3346.json": {
+      "chosen": {
+        "lat": 40.6773458,
+        "lng": -73.8661425,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1158_glenmore_av_brooklyn_ny_11208_3346.json": {
+      "status": "noChosen"
+    },
+    "115_lenox_road_11226_2463.json": {
+      "chosen": {
+        "lat": 40.6542318,
+        "lng": -73.9556205,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1160_gates_av_brooklyn_ny_11221_4653.json": {
+      "status": "noChosen"
+    },
+    "1165_elton_street_11239.json": {
+      "chosen": {
+        "lat": 40.6561149,
+        "lng": -73.8736672,
+        "provider": "opencage",
+        "quality": "retail",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1165_elton_street_brooklyn_ny_11239.json": {
+      "chosen": {
+        "lat": 40.656105,
+        "lng": -73.87357500000002,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1176_walton_av_10452_8453.json": {
+      "chosen": {
+        "lat": 40.8341505,
+        "lng": -73.9198735,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1176_walton_av_bronx_ny_10452_8453.json": {
+      "status": "noChosen"
+    },
+    "1180_ocean_pkwy_apt_5e_brooklyn_ny_11230_4032.json": {
+      "status": "noChosen"
+    },
+    "119_forbell_street_brooklyn_ny_11208_3008.json": {
+      "status": "noChosen"
+    },
+    "119_forbell_st_apt_2_brooklyn_ny_11208_3008.json": {
+      "status": "noChosen"
+    },
+    "1209_dekalb_av_11221.json": {
+      "chosen": {
+        "lat": 40.6957812,
+        "lng": -73.9278778,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1209_dekalb_av_brooklyn_ny_11221.json": {
+      "status": "noChosen"
+    },
+    "120_schroeders_av_11239_2211.json": {
+      "chosen": {
+        "lat": 40.6476399,
+        "lng": -73.8808343,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "120_schroeders_av_brooklyn_ny_11239_2211.json": {
+      "chosen": {
+        "lat": 40.647645,
+        "lng": -73.88073500000002,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1214_avenue_v_11229.json": {
+      "chosen": {
+        "lat": 40.5961085,
+        "lng": -73.9592637,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1214_avenue_v_brooklyn_ny_11229.json": {
+      "chosen": {
+        "lat": 40.596109,
+        "lng": -73.95926400000002,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1225_e_55th_st_apt_1_brooklyn_ny_11234_2417.json": {
+      "status": "noChosen"
+    },
+    "1229_findlay_av_bronx_ny_10456.json": {
+      "status": "noChosen"
+    },
+    "1230_pennsylvania_av_11239_1109.json": {
+      "chosen": {
+        "lat": 40.650098,
+        "lng": -73.8847219,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1230_pennsylvania_av_brooklyn_ny_11239_1109.json": {
+      "chosen": {
+        "lat": 40.650098,
+        "lng": -73.88472200000001,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1239_stanley_av_11208_5637.json": {
+      "chosen": {
+        "lat": 40.66648,
+        "lng": -73.8636781,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1239_stanley_av_brooklyn_ny_11208_5637.json": {
+      "status": "noChosen"
+    },
+    "1242_e_19th_st_brooklyn_ny_11230_5404.json": {
+      "status": "noChosen"
+    },
+    "1248_e_56th_st_apt_1_brooklyn_ny_11234.json": {
+      "status": "noChosen"
+    },
+    "1249_e_39th_street_11210.json": {
+      "chosen": {
+        "lat": 40.6262921,
+        "lng": -73.9380639,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1249_e_39th_street_brooklyn_ny_11210.json": {
+      "chosen": {
+        "lat": 40.626292,
+        "lng": -73.938064,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.903333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1255_e_21st_street_brooklyn_ny_11210_4510.json": {
+      "status": "noChosen"
+    },
+    "1255_e_21st_st_brooklyn_ny_11210_4510.json": {
+      "status": "noChosen"
+    },
+    "1256_brooklyn_av_apt_1_brooklyn_ny_11203_5537.json": {
+      "status": "noChosen"
+    },
+    "1257_loring_av_11208_4632.json": {
+      "chosen": {
+        "lat": 40.667764,
+        "lng": -73.8654793,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1257_loring_av_brooklyn_ny_11208_4632.json": {
+      "chosen": {
+        "lat": 40.667766,
+        "lng": -73.865613,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "125_bay_29th_street.json": {
+      "chosen": {
+        "lat": 40.5997098,
+        "lng": -73.997104,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "125_bay_29th_street_apt_1_brooklyn_ny_11214_5005.json": {
+      "chosen": {
+        "lat": 40.65260067215965,
+        "lng": -73.94972126930952,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.55
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1272_e_83rd_street_11236_4933.json": {
+      "chosen": {
+        "lat": 40.6305098,
+        "lng": -73.9042323,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1273_bushwick_av_11207_9505.json": {
+      "chosen": {
+        "lat": 40.6871351,
+        "lng": -73.9134792,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1273_bushwick_av_brooklyn_ny_11207_9505.json": {
+      "status": "noChosen"
+    },
+    "1275_delmar_lp_11239_1603.json": {
+      "chosen": {
+        "lat": 40.6505381,
+        "lng": -73.8826927,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1275_delmar_lp_brooklyn_ny_11239_1603.json": {
+      "chosen": {
+        "lat": 40.650526,
+        "lng": -73.88253099999997,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1279_e_17th_street_brooklyn_ny_11230_6031.json": {
+      "status": "noChosen"
+    },
+    "1287_atlantic_av_11216.json": {
+      "chosen": {
+        "lat": 40.6783092,
+        "lng": -73.9502009,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1287_atlantic_av_brooklyn_ny_11216.json": {
+      "status": "noChosen"
+    },
+    "12_underhill_av_11238.json": {
+      "chosen": {
+        "lat": 40.6807085,
+        "lng": -73.9648934,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "12_underhill_av_brooklyn_ny_11238.json": {
+      "chosen": {
+        "lat": 40.680713,
+        "lng": -73.96489400000002,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "130_vernon_av_11206.json": {
+      "chosen": {
+        "lat": 40.6947089,
+        "lng": -73.9467339,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "130_vernon_av_brooklyn_ny_11206.json": {
+      "status": "noChosen"
+    },
+    "1311_avenue_k_brooklyn_ny_11230_4340.json": {
+      "status": "noChosen"
+    },
+    "1313_e_69th_st_apt_2_brooklyn_ny_11234_5714.json": {
+      "status": "noChosen"
+    },
+    "1324_47th_st_2nd_flr_brooklyn_ny_11219.json": {
+      "status": "noChosen"
+    },
+    "135_clarkson_av_brooklyn_ny_11226_2079.json": {
+      "status": "noChosen"
+    },
+    "1365_e_14th_street_11230_5900.json": {
+      "chosen": {
+        "lat": 40.6163641,
+        "lng": -73.9603969,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1365_e_14th_street_brooklyn_ny_11230_5900.json": {
+      "chosen": {
+        "lat": 40.616358,
+        "lng": -73.96040800000003,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "139_street_nicholas_av_brooklyn_ny_11237_4033.json": {
+      "status": "noChosen"
+    },
+    "1402_avenue_k_brooklyn_ny_11230_4315.json": {
+      "status": "noChosen"
+    },
+    "1407_linden_bl_apt_5h_brooklyn_ny_11212_5106.json": {
+      "status": "noChosen"
+    },
+    "1407_linden_bl_brooklyn_ny_11212_5106.json": {
+      "status": "noChosen"
+    },
+    "1409_st_johns_pl_apt_10_brooklyn_ny_11213_3806.json": {
+      "status": "noChosen"
+    },
+    "1412_brooklyn_av_brooklyn_ny_11210_1862.json": {
+      "status": "noChosen"
+    },
+    "1425_pennsylvania_av_brooklyn_ny_11239_2105.json": {
+      "status": "noChosen"
+    },
+    "1426_e_86th_street_brooklyn_ny_11236_5134.json": {
+      "status": "noChosen"
+    },
+    "1426_e_86th_st_apt_1_brooklyn_ny_11236_5134.json": {
+      "status": "noChosen"
+    },
+    "1437_e_101st_st_apt_1_brooklyn_ny_11236_5507.json": {
+      "status": "noChosen"
+    },
+    "1448_53rd_street_brooklyn_ny_11219_3948.json": {
+      "status": "noChosen"
+    },
+    "1448_53rd_st_apt_1_brooklyn_ny_11219_3948.json": {
+      "status": "noChosen"
+    },
+    "1455_e_87th_street_11236_5137.json": {
+      "chosen": {
+        "lat": 40.6296789,
+        "lng": -73.8976693,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1455_e_87th_street_brooklyn_ny_11236_5137.json": {
+      "chosen": {
+        "lat": 40.629679,
+        "lng": -73.89767,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1457_e_28th_street_brooklyn_ny_11210.json": {
+      "status": "noChosen"
+    },
+    "1469_e_96th_street_brooklyn_ny_11236_5003.json": {
+      "status": "noChosen"
+    },
+    "1469_e_96th_st_apt_2_brooklyn_ny_11236_5003.json": {
+      "status": "noChosen"
+    },
+    "1484_e_55th_st_brooklyn_ny_11234_3902.json": {
+      "status": "noChosen"
+    },
+    "1499_bedford_av_apt_7f_brooklyn_ny_11216.json": {
+      "status": "noChosen"
+    },
+    "1506_avenue_j_11230.json": {
+      "chosen": {
+        "lat": 40.625001,
+        "lng": -73.9610759,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1506_avenue_j_2flr_brooklyn_ny_11230.json": {
+      "chosen": {
+        "lat": 40.624996,
+        "lng": -73.961075,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.767407
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "150_crown_st_apt_f6_brooklyn_ny_11225.json": {
+      "status": "noChosen"
+    },
+    "150_malcolm_x_bl_11221_2222.json": {
+      "chosen": {
+        "lat": 46.7235,
+        "lng": 7.09983,
+        "provider": "opencage",
+        "quality": "municipality",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": true
+    },
+    "1517_park_pl_apt_8r_brooklyn_ny_11213_3162.json": {
+      "status": "noChosen"
+    },
+    "1561_president_street_brooklyn_ny_11213_4732.json": {
+      "status": "noChosen"
+    },
+    "1562_e_91st_street_11236.json": {
+      "chosen": {
+        "lat": 40.6328913,
+        "lng": -73.8968138,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1562_e_91st_street_brooklyn_ny_11236.json": {
+      "status": "noChosen"
+    },
+    "1582_e_17th_st_apt_bsmt_brooklyn_ny_11230.json": {
+      "status": "noChosen"
+    },
+    "1589_bushwick_av_apt_1_brooklyn_ny_11207_1825.json": {
+      "status": "noChosen"
+    },
+    "158_martense_st_apt_3f_brooklyn_ny_11226_3392.json": {
+      "status": "noChosen"
+    },
+    "159_rogers_av_brooklyn_ny_11216.json": {
+      "status": "noChosen"
+    },
+    "160_schroeders_av_apt_11f_brooklyn_ny_11239_2204.json": {
+      "status": "noChosen"
+    },
+    "160_schroeders_av_brooklyn_ny_11239_2204.json": {
+      "status": "noChosen"
+    },
+    "1616_avenue_h_brooklyn_ny_11230_2428.json": {
+      "status": "noChosen"
+    },
+    "1623_pacific_street_brooklyn_ny_11213_1132.json": {
+      "status": "noChosen"
+    },
+    "1623_pacific_st_apt_1_brooklyn_ny_11213_1132.json": {
+      "status": "noChosen"
+    },
+    "1637_street_marks_av_brooklyn_ny_11233.json": {
+      "status": "noChosen"
+    },
+    "1637_st_marks_av_apt_2r_brooklyn_ny_11233.json": {
+      "status": "noChosen"
+    },
+    "1650_ocean_av_11230_4943.json": {
+      "chosen": {
+        "lat": 40.6216889,
+        "lng": -73.9560519,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1650_ocean_av_brooklyn_ny_11230_4943.json": {
+      "chosen": {
+        "lat": 40.621693,
+        "lng": -73.95604900000001,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "165_e_19th_street_brooklyn_ny_11226_4822.json": {
+      "status": "noChosen"
+    },
+    "165_st_anns_av_apt_1b_bronx_ny_10454.json": {
+      "status": "noChosen"
+    },
+    "1670_nelson_av_bronx_ny_10453.json": {
+      "status": "noChosen"
+    },
+    "1671_e_17th_street_11229_1272.json": {
+      "chosen": {
+        "lat": 40.6090083,
+        "lng": -73.9560701,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1671_e_17th_street_brooklyn_ny_11229_1272.json": {
+      "status": "noChosen"
+    },
+    "1680_ocean_av_brooklyn_ny_11230_4909.json": {
+      "status": "noChosen"
+    },
+    "1689_e_54th_street_brooklyn_ny_11234_3921.json": {
+      "status": "noChosen"
+    },
+    "1689_e_54th_st_apt_2_brooklyn_ny_11234_3921.json": {
+      "status": "noChosen"
+    },
+    "16_bay_10_st_bsmt_brooklyn_ny_11228.json": {
+      "status": "noChosen"
+    },
+    "16_locust_street_brooklyn_ny_11206.json": {
+      "status": "noChosen"
+    },
+    "1702_w_6th_street_brooklyn_ny_11223_1328.json": {
+      "status": "noChosen"
+    },
+    "1702_w_6th_st_apt_2l_brooklyn_ny_11223_1328.json": {
+      "status": "noChosen"
+    },
+    "1710_78th_st_flr_3_brooklyn_ny_11214.json": {
+      "status": "noChosen"
+    },
+    "171_throop_av_11206.json": {
+      "chosen": {
+        "lat": 40.698863,
+        "lng": -73.943965,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "171_throop_av_brooklyn_ny_11206.json": {
+      "status": "noChosen"
+    },
+    "172_wilson_av_11237_3554.json": {
+      "chosen": {
+        "lat": 40.6997052,
+        "lng": -73.9242779,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "172_wilson_av_brooklyn_ny_11237_3554.json": {
+      "status": "noChosen"
+    },
+    "1761_55th_street_11204_1925.json": {
+      "chosen": {
+        "lat": 40.6253206,
+        "lng": -73.9848947,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1761_55th_street_brooklyn_ny_11204_1925.json": {
+      "chosen": {
+        "lat": 40.625321,
+        "lng": -73.984895,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1761_55th_st_apt_1_brooklyn_ny_11204_1925.json": {
+      "status": "noChosen"
+    },
+    "1767_bath_av.json": {
+      "chosen": {
+        "lat": 40.6041483,
+        "lng": -74.0062163,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1771_72nd_st_apt_1_brooklyn_ny_11204.json": {
+      "status": "noChosen"
+    },
+    "177_woodruff_av_11226.json": {
+      "chosen": {
+        "lat": 40.6548733,
+        "lng": -73.960334,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "177_woodruff_av_brooklyn_ny_11226.json": {
+      "status": "noChosen"
+    },
+    "178_amboy_street_11212_5017.json": {
+      "chosen": {
+        "lat": 40.6659999,
+        "lng": -73.9139866,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "179_putnam_av_brooklyn_ny_11216_1625.json": {
+      "status": "noChosen"
+    },
+    "1801_50th_street_brooklyn_ny_11204_1280.json": {
+      "status": "noChosen"
+    },
+    "1801_50th_st_apt_d2_brooklyn_ny_11204_1280.json": {
+      "status": "noChosen"
+    },
+    "1802_schenectady_av_brooklyn_ny_11234_2004.json": {
+      "status": "noChosen"
+    },
+    "180_hull_street_11233.json": {
+      "chosen": {
+        "lat": 40.6795956,
+        "lng": -73.9082191,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "180_hull_street_brooklyn_ny_11233.json": {
+      "chosen": {
+        "lat": 40.679615,
+        "lng": -73.90822300000002,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1819_avenue_l_11230_4473.json": {
+      "chosen": {
+        "lat": 40.6209964,
+        "lng": -73.957214,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1819_avenue_l_brooklyn_ny_11230_4473.json": {
+      "chosen": {
+        "lat": 40.621002,
+        "lng": -73.95722599999999,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1820_cortelyou_road_brooklyn_ny_11226_5823.json": {
+      "status": "noChosen"
+    },
+    "1824_71st_st_apt_1_brooklyn_ny_11204_5311.json": {
+      "status": "noChosen"
+    },
+    "1831_fulton_street_brooklyn_ny_11233_2210.json": {
+      "status": "noChosen"
+    },
+    "1835_w_7th_street_brooklyn_ny_11223_2639.json": {
+      "status": "noChosen"
+    },
+    "1835_w_7th_st_brooklyn_ny_11223_2639.json": {
+      "status": "noChosen"
+    },
+    "1842_63rd_street_brooklyn_ny_11204_2932.json": {
+      "status": "noChosen"
+    },
+    "1842_63rd_st_brooklyn_ny_11204_2932.json": {
+      "status": "noChosen"
+    },
+    "185_wortman_av_apt_3m_brooklyn_ny_11207_8520.json": {
+      "status": "noChosen"
+    },
+    "185_wortman_av_brooklyn_ny_11207_8520.json": {
+      "status": "noChosen"
+    },
+    "1869_66th_street_11204.json": {
+      "chosen": {
+        "lat": 40.6176165,
+        "lng": -73.9889001,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1869_66th_street_brooklyn_ny_11204.json": {
+      "chosen": {
+        "lat": 40.617617,
+        "lng": -73.9889,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "1895_nostrand_av_brooklyn_ny_11226.json": {
+      "status": "noChosen"
+    },
+    "189_chauncey_st_apt_1_brooklyn_ny_11233_2114.json": {
+      "status": "noChosen"
+    },
+    "1908_e_26th_street_brooklyn_ny_11229_2440.json": {
+      "status": "noChosen"
+    },
+    "1908_e_26th_st_brooklyn_ny_11229_2440.json": {
+      "status": "noChosen"
+    },
+    "193_albany_av_brooklyn_ny_11213_2109.json": {
+      "status": "noChosen"
+    },
+    "1940_ocean_av_apt_6j_brooklyn_ny_11230.json": {
+      "status": "noChosen"
+    },
+    "1940_ocean_av_brooklyn_ny_11230.json": {
+      "status": "noChosen"
+    },
+    "1947_66th_st_apt_1_brooklyn_ny_11204_3805.json": {
+      "status": "noChosen"
+    },
+    "1965_bay_ridge_av_11204_4556.json": {
+      "chosen": {
+        "lat": 40.6146782,
+        "lng": -73.9885638,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1965_bay_ridge_av_brooklyn_ny_11204_4556.json": {
+      "chosen": {
+        "lat": 40.65260067215965,
+        "lng": -73.94972126930952,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.481481
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "1965_e_7th_street_brooklyn_ny_11223_3166.json": {
+      "status": "noChosen"
+    },
+    "1965_e_7th_st_apt_4g_brooklyn_ny_11223_3166.json": {
+      "status": "noChosen"
+    },
+    "2024_avenue_l_11210_4523.json": {
+      "chosen": {
+        "lat": 40.6208382,
+        "lng": -73.9545994,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2024_avenue_l_brooklyn_ny_11210_4523.json": {
+      "status": "noChosen"
+    },
+    "2038_cropsey_av_11214_6217.json": {
+      "chosen": {
+        "lat": 40.5992463,
+        "lng": -74.0023203,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2038_cropsey_av_brooklyn_ny_11214_6217.json": {
+      "status": "noChosen"
+    },
+    "2065_e_26th_street_brooklyn_ny_11229_2441.json": {
+      "status": "noChosen"
+    },
+    "2113_e_65th_street_11234_6317.json": {
+      "chosen": {
+        "lat": 40.6166755,
+        "lng": -73.9111558,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2113_e_65th_street_brooklyn_ny_11234_6317.json": {
+      "status": "noChosen"
+    },
+    "2121_bruckner_bl_apt_2r_bronx_ny_10472.json": {
+      "status": "noChosen"
+    },
+    "213_suydam_street_11237_3109.json": {
+      "chosen": {
+        "lat": 40.7009566,
+        "lng": -73.9251336,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "213_suydam_street_brooklyn_ny_11237_3109.json": {
+      "status": "noChosen"
+    },
+    "215_lenox_road_11226_2167.json": {
+      "chosen": {
+        "lat": 40.6543405,
+        "lng": -73.952319,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "215_lenox_road_brooklyn_ny_11226_2167.json": {
+      "chosen": {
+        "lat": 40.65260067215965,
+        "lng": -73.94972126930952,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.497355
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2169_pacific_st_apt_7_brooklyn_ny_11233.json": {
+      "status": "noChosen"
+    },
+    "218_suydam_street_11237.json": {
+      "chosen": {
+        "lat": 40.7007613,
+        "lng": -73.9247928,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "218_suydam_street_brooklyn_ny_11237.json": {
+      "status": "noChosen"
+    },
+    "2193_coney_island_av_apt_2f_brooklyn_ny_11223.json": {
+      "status": "noChosen"
+    },
+    "2223_church_av_comm_brooklyn_ny_11226_3201.json": {
+      "status": "noChosen"
+    },
+    "2236_batchelder_street_11229_5209.json": {
+      "chosen": {
+        "lat": 40.5977029,
+        "lng": -73.9393179,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2236_batchelder_street_brooklyn_ny_11229_5209.json": {
+      "chosen": {
+        "lat": 40.597703,
+        "lng": -73.93931800000001,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "223_montauk_av_11208_2494.json": {
+      "chosen": {
+        "lat": 40.6736648,
+        "lng": -73.8775425,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "223_montauk_av_brooklyn_ny_11208_2494.json": {
+      "status": "noChosen"
+    },
+    "228_e_38th_street_brooklyn_ny_11203.json": {
+      "status": "noChosen"
+    },
+    "2302_avenue_o_apt_e5_brooklyn_ny_11210_5151.json": {
+      "status": "noChosen"
+    },
+    "232_schaefer_street_brooklyn_ny_11207.json": {
+      "status": "noChosen"
+    },
+    "234_e_34th_street_11203_2752.json": {
+      "chosen": {
+        "lat": 40.6513672,
+        "lng": -73.9459049,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "234_e_34th_street_brooklyn_ny_11203_2752.json": {
+      "chosen": {
+        "lat": 40.74575599860362,
+        "lng": -73.97817693120345,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.8868
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "2361_ralph_av_brooklyn_ny_11234_5516.json": {
+      "status": "noChosen"
+    },
+    "23_25_new_lots_av_apt_2c_brooklyn_ny_11212_6938.json": {
+      "status": "noChosen"
+    },
+    "23_25_new_lots_av_brooklyn_ny_11212_6938.json": {
+      "status": "noChosen"
+    },
+    "247_amboy_street_brooklyn_ny_11212.json": {
+      "status": "noChosen"
+    },
+    "247_amboy_street_fl_3_brooklyn_ny_11212.json": {
+      "status": "noChosen"
+    },
+    "247_amboy_st_fl_3_brooklyn_ny_11212.json": {
+      "status": "noChosen"
+    },
+    "250_a_euclid_av_11208.json": {
+      "chosen": {
+        "lat": 40.6766173,
+        "lng": -73.872214,
+        "provider": "opencage",
+        "quality": "road",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2525_nostrand_av_apt_6f_brooklyn_ny_11210_4718.json": {
+      "status": "noChosen"
+    },
+    "2545_linden_bl_apt_2g_brooklyn_ny_11208_4912.json": {
+      "status": "noChosen"
+    },
+    "2545_linden_bl_brooklyn_ny_11208_4912.json": {
+      "status": "noChosen"
+    },
+    "2546_e_13th_street_brooklyn_ny_11235_4375.json": {
+      "status": "noChosen"
+    },
+    "254_stanley_av_brooklyn_ny_11207_7638.json": {
+      "status": "noChosen"
+    },
+    "257_halsey_street_brooklyn_ny_11216_2403.json": {
+      "status": "noChosen"
+    },
+    "257_milford_street_brooklyn_ny_11208_2423.json": {
+      "status": "noChosen"
+    },
+    "257_milford_st_apt_1_brooklyn_ny_11208_2423.json": {
+      "status": "noChosen"
+    },
+    "2602_fillmore_av_apt_1_brooklyn_ny_11229.json": {
+      "status": "noChosen"
+    },
+    "2607_avenue_o_apt_5c_brooklyn_ny_11210_5248.json": {
+      "status": "noChosen"
+    },
+    "260_linden_bl_11226_9106.json": {
+      "chosen": {
+        "lat": -1.50495,
+        "lng": 132.28638,
+        "provider": "opencage",
+        "quality": "county",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": true
+    },
+    "260_linden_bl_brooklyn_ny_11226_9106.json": {
+      "chosen": {
+        "lat": 42.91383890006428,
+        "lng": -74.6952623873949,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.808783
+      },
+      "lowConfidence": false,
+      "outOfBounds": true
+    },
+    "261_gates_av_brooklyn_ny_11238_2037.json": {
+      "status": "noChosen"
+    },
+    "262_taaffe_pl_11205.json": {
+      "chosen": {
+        "lat": 40.6908147,
+        "lng": -73.9596102,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "262_taaffe_pl_brooklyn_ny_11205.json": {
+      "status": "noChosen"
+    },
+    "265_logan_street_11208.json": {
+      "chosen": {
+        "lat": 40.679653,
+        "lng": -73.8772374,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "265_logan_street_brooklyn_ny_11208.json": {
+      "chosen": {
+        "lat": 40.679729,
+        "lng": -73.877116,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "265_logan_street_ph04_brooklyn_ny_11208.json": {
+      "chosen": {
+        "lat": 40.679729,
+        "lng": -73.877116,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.767407
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2694_86th_street_brooklyn_ny_11223_3546.json": {
+      "status": "noChosen"
+    },
+    "2694_86th_st_apt_1_brooklyn_ny_11223_3546.json": {
+      "status": "noChosen"
+    },
+    "26_radde_pl_brooklyn_ny_11233_3114.json": {
+      "status": "noChosen"
+    },
+    "2700_atlantic_av_11207.json": {
+      "chosen": {
+        "lat": 40.675848,
+        "lng": -73.894735,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2700_atlantic_av_brooklyn_ny_11207.json": {
+      "status": "noChosen"
+    },
+    "2737_w_33rd_street_brooklyn_ny_11224_1636.json": {
+      "status": "noChosen"
+    },
+    "2737_w_33rd_st_apt_7f_brooklyn_ny_11224_1636.json": {
+      "status": "noChosen"
+    },
+    "279_maple_st_apt_2_brooklyn_ny_11225_5106.json": {
+      "status": "noChosen"
+    },
+    "280_herkimer_street_brooklyn_ny_11216_2617.json": {
+      "status": "noChosen"
+    },
+    "2865_ocean_av_apt_3c_brooklyn_ny_11235_3148.json": {
+      "status": "noChosen"
+    },
+    "2865_ocean_av_brooklyn_ny_11235_3148.json": {
+      "status": "noChosen"
+    },
+    "2886_atlantic_av_11207.json": {
+      "chosen": {
+        "lat": 40.677131,
+        "lng": -73.8874597,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2886_atlantic_av_brooklyn_ny_11207.json": {
+      "status": "noChosen"
+    },
+    "290_bay_17_street_11214_5915.json": {
+      "chosen": {
+        "lat": 46.72994,
+        "lng": 6.57991,
+        "provider": "opencage",
+        "quality": "municipality",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": true
+    },
+    "290_bay_17_street_brooklyn_ny_11214_5915.json": {
+      "chosen": {
+        "lat": 40.601799,
+        "lng": -74.00973699999997,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "291_patchen_av_apt_7c_brooklyn_ny_11233_2124.json": {
+      "status": "noChosen"
+    },
+    "291_patchen_av_brooklyn_ny_11233_2124.json": {
+      "status": "noChosen"
+    },
+    "2926_w_25th_st_apt_815d_brooklyn_ny_11224.json": {
+      "status": "noChosen"
+    },
+    "2928_30_w_5th_st_apt_15b_brooklyn_ny_11224.json": {
+      "status": "noChosen"
+    },
+    "2929_brighton_5th_street_11235.json": {
+      "chosen": {
+        "lat": 40.5804065,
+        "lng": -73.9633693,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "2929_brighton_5th_street_brooklyn_ny_11235.json": {
+      "status": "noChosen"
+    },
+    "2946_w_23rd_street_brooklyn_ny_11224_2231.json": {
+      "status": "noChosen"
+    },
+    "2946_w_23rd_st_apt_3e_brooklyn_ny_11224_2231.json": {
+      "status": "noChosen"
+    },
+    "2947_w_28th_street_a_1005_brooklyn_ny_11224.json": {
+      "status": "noChosen"
+    },
+    "2947_w_28th_st_a_1005_brooklyn_ny_11224.json": {
+      "status": "noChosen"
+    },
+    "2949_w_28th_street_brooklyn_ny_11224_1932.json": {
+      "status": "noChosen"
+    },
+    "2949_w_28th_st_apt_614b_brooklyn_ny_11224_1932.json": {
+      "status": "noChosen"
+    },
+    "294_e_98th_street_11212_3938.json": {
+      "chosen": {
+        "lat": 40.6605357,
+        "lng": -73.918361,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "294_e_98th_street_brooklyn_ny_11212_3938.json": {
+      "status": "noChosen"
+    },
+    "2950_ocean_av_apt_b15_brooklyn_ny_11235_3218.json": {
+      "status": "noChosen"
+    },
+    "297_dumont_av_brooklyn_ny_11212_6148.json": {
+      "status": "noChosen"
+    },
+    "299_gates_av_brooklyn_ny_11216_1356.json": {
+      "status": "noChosen"
+    },
+    "29_avenue_w_11223_5606.json": {
+      "chosen": {
+        "lat": 40.5918188,
+        "lng": -73.9827672,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "29_avenue_w_brooklyn_ny_11223_5606.json": {
+      "status": "noChosen"
+    },
+    "2_virginia_pl_apt_3_brooklyn_ny_11213_2609.json": {
+      "status": "noChosen"
+    },
+    "301_sterling_street_11225_4140.json": {
+      "chosen": {
+        "lat": 40.6633128,
+        "lng": -73.9513402,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "3020_surf_av_apt_5d_brooklyn_ny_11224_1760.json": {
+      "status": "noChosen"
+    },
+    "3030_emmons_av_apt_6b_brooklyn_ny_11235_2228.json": {
+      "status": "noChosen"
+    },
+    "304_e_5th_street_brooklyn_ny_11218_2406.json": {
+      "status": "noChosen"
+    },
+    "305_fountain_av_apt_1g_brooklyn_ny_11208_4313.json": {
+      "status": "noChosen"
+    },
+    "3126_coney_island_av_brooklyn_ny_11235_6439.json": {
+      "status": "noChosen"
+    },
+    "3145_brighton_4th_street_brooklyn_ny_11235_7273.json": {
+      "status": "noChosen"
+    },
+    "3145_brighton_4th_st_apt_415_brooklyn_ny_11235_7273.json": {
+      "status": "noChosen"
+    },
+    "3208_glenwood_rd_apt_2f_brooklyn_ny_11210_2722.json": {
+      "status": "noChosen"
+    },
+    "327_covert_street_brooklyn_ny_11237.json": {
+      "status": "noChosen"
+    },
+    "339_bainbridge_street_brooklyn_ny_11233.json": {
+      "status": "noChosen"
+    },
+    "348_walsh_ct_brooklyn_ny_11230_2113.json": {
+      "status": "noChosen"
+    },
+    "349_e_149th_street_10451.json": {
+      "chosen": {
+        "lat": 40.816673,
+        "lng": -73.919664,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "349_e_149th_street_bronx_ny_10451.json": {
+      "status": "noChosen"
+    },
+    "350b_clarkson_av_apt_413_brooklyn_ny_11226.json": {
+      "status": "noChosen"
+    },
+    "360_shepherd_av_11208.json": {
+      "chosen": {
+        "lat": 40.675831,
+        "lng": -73.8813377,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "360_shepherd_av_brooklyn_ny_11208.json": {
+      "status": "noChosen"
+    },
+    "361_wortman_av_11207_8926.json": {
+      "chosen": {
+        "lat": 40.659345,
+        "lng": -73.8801058,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "361_wortman_av_apt_4e_brooklyn_ny_11207_8927.json": {
+      "status": "noChosen"
+    },
+    "361_wortman_av_brooklyn_ny_11207_8926.json": {
+      "chosen": {
+        "lat": 40.659345,
+        "lng": -73.88010600000001,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "368_e_152nd_street_bronx_ny_10455.json": {
+      "status": "noChosen"
+    },
+    "383_pulaski_street_brooklyn_ny_11206_7215.json": {
+      "status": "noChosen"
+    },
+    "3848_maple_av_apt_1_brooklyn_ny_11224_1314.json": {
+      "status": "noChosen"
+    },
+    "3848_maple_av_brooklyn_ny_11224_1314.json": {
+      "status": "noChosen"
+    },
+    "385_christopher_av_apt_2_brooklyn_ny_11212_7108.json": {
+      "status": "noChosen"
+    },
+    "385_christopher_av_brooklyn_ny_11212_7108.json": {
+      "status": "noChosen"
+    },
+    "386_e_31st_street_11226_7902.json": {
+      "chosen": {
+        "lat": 40.6411825,
+        "lng": -73.9477894,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "386_e_31st_street_brooklyn_ny_11226_7902.json": {
+      "chosen": {
+        "lat": 40.641183,
+        "lng": -73.94779,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "3903_13th_av_11218.json": {
+      "chosen": {
+        "lat": 40.6403429,
+        "lng": -73.9862144,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7999999999999999,
+        "adjusted": 0.8819999999999999
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "39_hegeman_av_apt_101_brooklyn_ny_11212_4705.json": {
+      "status": "noChosen"
+    },
+    "4114_9th_av_apt_6f_brooklyn_ny_11232_4012.json": {
+      "status": "noChosen"
+    },
+    "41_e_98th_st_apt_1_brooklyn_ny_11212_3824.json": {
+      "status": "noChosen"
+    },
+    "4205_farragut_road_brooklyn_ny_11203_6517.json": {
+      "status": "noChosen"
+    },
+    "420_e_149th_st_bronx_ny_10455_1311.json": {
+      "status": "noChosen"
+    },
+    "422_bainbridge_street_brooklyn_ny_11233_2314.json": {
+      "status": "noChosen"
+    },
+    "422_bainbridge_st_apt_3_brooklyn_ny_11233_2314.json": {
+      "status": "noChosen"
+    },
+    "424_morris_av_bronx_ny_10451_5540.json": {
+      "status": "noChosen"
+    },
+    "425_sterling_pl_11238.json": {
+      "chosen": {
+        "lat": 40.6749713,
+        "lng": -73.9639407,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "425_sterling_pl_brooklyn_ny_11238.json": {
+      "status": "noChosen"
+    },
+    "430_e_138th_street_bronx_ny_10454_4954.json": {
+      "status": "noChosen"
+    },
+    "430_e_138th_st_apt_6g_bronx_ny_10454_4954.json": {
+      "status": "noChosen"
+    },
+    "433_lafayette_av_11238_1414.json": {
+      "chosen": {
+        "lat": 40.6895361,
+        "lng": -73.9579103,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "433_lafayette_av_11238_1418.json": {
+      "chosen": {
+        "lat": 40.6895361,
+        "lng": -73.9579103,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "433_lafayette_av_brooklyn_ny_11238_1414.json": {
+      "status": "noChosen"
+    },
+    "433_lafayette_av_brooklyn_ny_11238_1418.json": {
+      "status": "noChosen"
+    },
+    "436_e_48th_st_apt_1_brooklyn_ny_11203_4316.json": {
+      "status": "noChosen"
+    },
+    "436_new_york_av_apt_c3_brooklyn_ny_11225_3246.json": {
+      "status": "noChosen"
+    },
+    "437_bleecker_street_brooklyn_ny_11237.json": {
+      "status": "noChosen"
+    },
+    "439_sterling_st_apt_2_brooklyn_ny_11225.json": {
+      "status": "noChosen"
+    },
+    "445_greene_av_brooklyn_ny_11216.json": {
+      "status": "noChosen"
+    },
+    "447_hancock_street_11233_1016.json": {
+      "chosen": {
+        "lat": 40.6841072,
+        "lng": -73.937879,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "447_hancock_street_brooklyn_ny_11233_1016.json": {
+      "status": "noChosen"
+    },
+    "451_prospect_pl_brooklyn_ny_11238.json": {
+      "status": "noChosen"
+    },
+    "455_vandalia_av_11239.json": {
+      "chosen": {
+        "lat": 40.6548696,
+        "lng": -73.8759239,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "455_vandalia_av_brooklyn_ny_11239.json": {
+      "chosen": {
+        "lat": 40.65487,
+        "lng": -73.875924,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "457_schenectady_av_bsmt_brooklyn_ny_11203.json": {
+      "status": "noChosen"
+    },
+    "45_hinckley_pl_11218.json": {
+      "chosen": {
+        "lat": 40.644647,
+        "lng": -73.9700513,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "45_hinckley_pl_brooklyn_ny_11218.json": {
+      "status": "noChosen"
+    },
+    "463_herzl_street_brooklyn_ny_11212_4954.json": {
+      "status": "noChosen"
+    },
+    "463_herzl_st_apt_1c_brooklyn_ny_11212_4954.json": {
+      "status": "noChosen"
+    },
+    "474_marcy_av_brooklyn_ny_11206_7415.json": {
+      "status": "noChosen"
+    },
+    "4813_snyder_av_brooklyn_ny_11203_4305.json": {
+      "status": "noChosen"
+    },
+    "483_ocean_pkwy_11218_5146.json": {
+      "chosen": {
+        "lat": 40.6367905,
+        "lng": -73.9721507,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "483_ocean_pkwy_brooklyn_ny_11218_5146.json": {
+      "chosen": {
+        "lat": 40.636795,
+        "lng": -73.97215,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "4910_new_utrecht_av_11219.json": {
+      "chosen": {
+        "lat": 40.6363906,
+        "lng": -73.995013,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "4910_new_utrecht_av_brooklyn_ny_11219.json": {
+      "status": "noChosen"
+    },
+    "4912_fort_hamiltn_pk_11219_3344.json": {
+      "chosen": {
+        "lat": 30,
+        "lng": 70,
+        "provider": "opencage",
+        "quality": "country",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": true
+    },
+    "4912_fort_hamiltn_pk_brooklyn_ny_11219_3344.json": {
+      "chosen": {
+        "lat": 40.65260067215965,
+        "lng": -73.94972126930952,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.583333
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "491_e_95th_street_flr_2_brooklyn_ny_11212.json": {
+      "status": "noChosen"
+    },
+    "494_sheffield_av_brooklyn_ny_11207.json": {
+      "status": "noChosen"
+    },
+    "5000_14th_av_11219.json": {
+      "chosen": {
+        "lat": 40.633091,
+        "lng": -73.990682,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "500_gates_av_11216.json": {
+      "chosen": {
+        "lat": 40.6865627,
+        "lng": -73.9458061,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "500_gates_av_brooklyn_ny_11216.json": {
+      "chosen": {
+        "lat": 40.686563,
+        "lng": -73.94580500000001,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "515_e_7th_street_11218_4817.json": {
+      "chosen": {
+        "lat": 40.6393182,
+        "lng": -73.9715937,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "515_e_7th_street_brooklyn_ny_11218_4817.json": {
+      "chosen": {
+        "lat": 40.639305,
+        "lng": -73.97157300000003,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "515_e_7th_st_apt_5m_brooklyn_ny_11218_4817.json": {
+      "status": "noChosen"
+    },
+    "516_schroeders_avenue_brooklyn_ny_11239.json": {
+      "status": "noChosen"
+    },
+    "516_schroeders_ave_apt_7g_brooklyn_ny_11239.json": {
+      "status": "noChosen"
+    },
+    "5222_avenue_i_11234_1609.json": {
+      "chosen": {
+        "lat": 40.6304443,
+        "lng": -73.9254265,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "525_e_78th_street_brooklyn_ny_11236_3120.json": {
+      "status": "noChosen"
+    },
+    "525_e_78th_st_apt_bsmt_brooklyn_ny_11236_3120.json": {
+      "status": "noChosen"
+    },
+    "5302_15th_av_11219_4332.json": {
+      "chosen": {
+        "lat": 40.6300941,
+        "lng": -73.99045,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "5302_15th_av_apt_3a_brooklyn_ny_11219_4333.json": {
+      "status": "noChosen"
+    },
+    "5302_15th_av_brooklyn_ny_11219_4332.json": {
+      "status": "noChosen"
+    },
+    "5302_15th_av_brooklyn_ny_11219_4333.json": {
+      "status": "noChosen"
+    },
+    "5304_new_utrecht_av_11219.json": {
+      "chosen": {
+        "lat": 40.6331476,
+        "lng": -73.9954782,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "5318_fillmore_av_11234_4639.json": {
+      "chosen": {
+        "lat": 40.6145293,
+        "lng": -73.9228398,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "5318_fillmore_av_brooklyn_ny_11234_4639.json": {
+      "status": "noChosen"
+    },
+    "531_e_9th_street_11218.json": {
+      "chosen": {
+        "lat": 40.6357197,
+        "lng": -73.9689104,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "531_e_9th_street_brooklyn_ny_11218.json": {
+      "chosen": {
+        "lat": 40.63572,
+        "lng": -73.96891099999999,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.903333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "532_chauncey_street_11233.json": {
+      "chosen": {
+        "lat": 40.6824391,
+        "lng": -73.9103554,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "532_chauncey_street_brooklyn_ny_11233.json": {
+      "chosen": {
+        "lat": 40.682395,
+        "lng": -73.910345,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "532_monroe_st_apt_1_brooklyn_ny_11221_1705.json": {
+      "status": "noChosen"
+    },
+    "541_bergen_street_brooklyn_ny_11217_2452.json": {
+      "status": "noChosen"
+    },
+    "541_bergen_st_apt_4a_brooklyn_ny_11217_2452.json": {
+      "status": "noChosen"
+    },
+    "549_e_49th_street_brooklyn_ny_11203_4303.json": {
+      "status": "noChosen"
+    },
+    "549_e_96th_street_11212.json": {
+      "chosen": {
+        "lat": 40.6549323,
+        "lng": -73.9143057,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "549_e_96th_street_brooklyn_ny_11212.json": {
+      "status": "noChosen"
+    },
+    "550_e_96th_street_brooklyn_ny_11212_2413.json": {
+      "status": "noChosen"
+    },
+    "555_e_5th_street_brooklyn_ny_11218_4661.json": {
+      "status": "noChosen"
+    },
+    "556_bergen_av_apt_417_bronx_ny_10455.json": {
+      "status": "noChosen"
+    },
+    "55_winthrop_street_11225_6055.json": {
+      "chosen": {
+        "lat": 40.6568125,
+        "lng": -73.9581927,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "55_winthrop_street_brooklyn_ny_11225_6055.json": {
+      "chosen": {
+        "lat": 40.656811,
+        "lng": -73.95819599999999,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "560_lefferts_av_11203_1038.json": {
+      "chosen": {
+        "lat": 40.6626162,
+        "lng": -73.9425821,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "560_lefferts_av_brooklyn_ny_11203_1038.json": {
+      "status": "noChosen"
+    },
+    "561_walton_av_10451.json": {
+      "chosen": {
+        "lat": 40.8192263,
+        "lng": -73.9283953,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "561_walton_av_flr_grnd_bronx_ny_10451.json": {
+      "chosen": {
+        "lat": 40.84665100834277,
+        "lng": -73.87859378010035,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.564815
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "568_willoughby_av_apt_1_brooklyn_ny_11206.json": {
+      "status": "noChosen"
+    },
+    "5712_farragut_rd_apt_1e_brooklyn_ny_11234_1208.json": {
+      "status": "noChosen"
+    },
+    "5712_farragut_road_brooklyn_ny_11234_1208.json": {
+      "status": "noChosen"
+    },
+    "57_lincoln_road_11225_4058.json": {
+      "chosen": {
+        "lat": 40.6612369,
+        "lng": -73.9602909,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "580_flatbush_av_11225_4907.json": {
+      "chosen": {
+        "lat": 40.6594561,
+        "lng": -73.9611496,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "580_flatbush_av_brooklyn_ny_11225_4907.json": {
+      "status": "noChosen"
+    },
+    "580_madison_st_apt_1_brooklyn_ny_11221_1606.json": {
+      "status": "noChosen"
+    },
+    "58_linden_bl_apt_3d_brooklyn_ny_11226_3158.json": {
+      "status": "noChosen"
+    },
+    "58_linden_bl_brooklyn_ny_11226_3158.json": {
+      "status": "noChosen"
+    },
+    "5905_strickland_av_apt_208_brooklyn_ny_11234.json": {
+      "status": "noChosen"
+    },
+    "5905_strickland_av_apt_211_brooklyn_ny_11234_6425.json": {
+      "status": "noChosen"
+    },
+    "5905_strickland_av_brooklyn_ny_11234.json": {
+      "status": "noChosen"
+    },
+    "5905_strickland_av_brooklyn_ny_11234_6425.json": {
+      "status": "noChosen"
+    },
+    "591_schroeders_av_11239.json": {
+      "chosen": {
+        "lat": 40.6561208,
+        "lng": -73.8704947,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "591_schroeders_av_brooklyn_ny_11239.json": {
+      "status": "noChosen"
+    },
+    "596_monroe_st_apt_1_brooklyn_ny_11221_1706.json": {
+      "status": "noChosen"
+    },
+    "600_bergen_av_apt_428_bronx_ny_10455.json": {
+      "status": "noChosen"
+    },
+    "602_avenue_t_brooklyn_ny_11223_4117.json": {
+      "status": "noChosen"
+    },
+    "603_bushwick_av_apt_2r_brooklyn_ny_11206_6027.json": {
+      "status": "noChosen"
+    },
+    "603_wilson_av_apt_2_brooklyn_ny_11207_1219.json": {
+      "status": "noChosen"
+    },
+    "603_wilson_av_brooklyn_ny_11207_1219.json": {
+      "status": "noChosen"
+    },
+    "61_schaefer_apt_1_brooklyn_ny_11207.json": {
+      "status": "noChosen"
+    },
+    "61_schaefer_brooklyn_ny_11207.json": {
+      "status": "noChosen"
+    },
+    "639_crescent_street_brooklyn_ny_11208_3935.json": {
+      "status": "noChosen"
+    },
+    "639_crescent_st_apt_bsmt_brooklyn_ny_11208_3935.json": {
+      "status": "noChosen"
+    },
+    "659_blake_av_apt_2_brooklyn_ny_11207_4701.json": {
+      "status": "noChosen"
+    },
+    "662_bergen_street_brooklyn_ny_11238.json": {
+      "status": "noChosen"
+    },
+    "662_e_37th_street_brooklyn_ny_11203_5604.json": {
+      "status": "noChosen"
+    },
+    "674_madison_street_brooklyn_ny_11221_2106.json": {
+      "status": "noChosen"
+    },
+    "675_lincoln_av_brooklyn_ny_11208_4033.json": {
+      "status": "noChosen"
+    },
+    "690_gates_av_brooklyn_ny_11221_1738.json": {
+      "status": "noChosen"
+    },
+    "699_linden_bl_11203_3314.json": {
+      "chosen": {
+        "lat": -7.41278,
+        "lng": 110.935,
+        "provider": "opencage",
+        "quality": "county",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": true
+    },
+    "699_linden_bl_brooklyn_ny_11203_3314.json": {
+      "chosen": {
+        "lat": 40.65260067215965,
+        "lng": -73.94972126930952,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.607143
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "700_bradford_street_11207_7102.json": {
+      "chosen": {
+        "lat": 40.6616478,
+        "lng": -73.8888813,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "700_bradford_street_bsmt_brooklyn_ny_11207_7102.json": {
+      "chosen": {
+        "lat": 40.65260067215965,
+        "lng": -73.94972126930952,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.583333
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "706_autumn_av_11208.json": {
+      "chosen": {
+        "lat": 40.6712978,
+        "lng": -73.8673442,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "706_autumn_av_brooklyn_ny_11208.json": {
+      "status": "noChosen"
+    },
+    "707_troy_av_brooklyn_ny_11203.json": {
+      "status": "noChosen"
+    },
+    "712_crown_street_11213_5430.json": {
+      "chosen": {
+        "lat": 40.6652585,
+        "lng": -73.9339614,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "735_sackman_st_brooklyn_ny_11212_7035.json": {
+      "status": "noChosen"
+    },
+    "738_albany_av_apt_2l_brooklyn_ny_11203_2166.json": {
+      "status": "noChosen"
+    },
+    "738_stanley_av_apt_1a_brooklyn_ny_11207_8026.json": {
+      "status": "noChosen"
+    },
+    "743_e_102nd_street_11236.json": {
+      "chosen": {
+        "lat": 40.6468627,
+        "lng": -73.8974127,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "744_park_av_brooklyn_ny_11206_5234.json": {
+      "status": "noChosen"
+    },
+    "746_e_10th_street_11230_2302.json": {
+      "chosen": {
+        "lat": 40.6306287,
+        "lng": -73.9676149,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "746_e_10th_street_brooklyn_ny_11230_2302.json": {
+      "chosen": {
+        "lat": 40.630627,
+        "lng": -73.9676,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "750_lefferts_av_brooklyn_ny_11203_1223.json": {
+      "status": "noChosen"
+    },
+    "751_troy_av_brooklyn_ny_11203_3126.json": {
+      "status": "noChosen"
+    },
+    "751_troy_av_brooklyn_ny_11203_3131.json": {
+      "status": "noChosen"
+    },
+    "753_classon_av_brooklyn_ny_11238_4683.json": {
+      "status": "noChosen"
+    },
+    "753_classon_av_brooklyn_ny_11238_4697.json": {
+      "status": "noChosen"
+    },
+    "769_street_marks_av_11213_1468.json": {
+      "chosen": {
+        "lat": 40.6735138,
+        "lng": -73.9139114,
+        "provider": "opencage",
+        "quality": "bus_stop",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "769_street_marks_av_brooklyn_ny_11213_1468.json": {
+      "chosen": {
+        "lat": 40.675486,
+        "lng": -73.94679300000001,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "785_ocean_pkwy_apt_6d_brooklyn_ny_11230_2280.json": {
+      "status": "noChosen"
+    },
+    "785_ocean_pkwy_brooklyn_ny_11230_2280.json": {
+      "status": "noChosen"
+    },
+    "789_street_marks_av_brooklyn_ny_11213_1423.json": {
+      "status": "noChosen"
+    },
+    "789_st_marks_av_apt_3b_brooklyn_ny_11213_1423.json": {
+      "status": "noChosen"
+    },
+    "793_franklin_av_brooklyn_ny_11238.json": {
+      "status": "noChosen"
+    },
+    "794_midwood_street_11203_1414.json": {
+      "chosen": {
+        "lat": 40.6607571,
+        "lng": -73.9339319,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "794_midwood_street_brooklyn_ny_11203_1414.json": {
+      "status": "noChosen"
+    },
+    "805_e_new_york_av_11203.json": {
+      "chosen": {
+        "lat": 40.6626684,
+        "lng": -73.9360031,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "805_e_new_york_av_brooklyn_ny_11203.json": {
+      "chosen": {
+        "lat": 39.783730552755216,
+        "lng": -100.44588211923838,
+        "provider": "maptiler",
+        "quality": "country",
+        "confidence": 0.32716
+      },
+      "lowConfidence": true,
+      "outOfBounds": true
+    },
+    "807_41st_street_11232_3855.json": {
+      "chosen": {
+        "lat": 40.6461029,
+        "lng": -73.9981758,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "807_41st_street_brooklyn_ny_11232_3855.json": {
+      "status": "noChosen"
+    },
+    "809_westchester_av_10455_1704.json": {
+      "chosen": {
+        "lat": 40.8192105,
+        "lng": -73.9028504,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "809_westchester_av_bronx_ny_10455_1704.json": {
+      "status": "noChosen"
+    },
+    "810_midwood_street_brooklyn_ny_11203_1425.json": {
+      "status": "noChosen"
+    },
+    "816_ashford_st_apt_5d_brooklyn_ny_11207_8126.json": {
+      "status": "noChosen"
+    },
+    "81_w_162nd_street_10452.json": {
+      "chosen": {
+        "lat": 40.8312804,
+        "lng": -73.9287157,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "81_w_162nd_street_bronx_ny_10452.json": {
+      "chosen": {
+        "lat": 40.831321,
+        "lng": -73.92885100000001,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.903333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "833_40th_st_apt_1_brooklyn_ny_11232_3803.json": {
+      "status": "noChosen"
+    },
+    "835_clarkson_av_11203_2247.json": {
+      "chosen": {
+        "lat": 40.6567548,
+        "lng": -73.9305688,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "835_clarkson_av_brooklyn_ny_11203_2247.json": {
+      "status": "noChosen"
+    },
+    "839_d_prospect_av_10459_3912.json": {
+      "chosen": {
+        "lat": 40.8278919,
+        "lng": -73.8982061,
+        "provider": "opencage",
+        "quality": "road",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "839_d_prospect_av_comm_bronx_ny_10459_3912.json": {
+      "chosen": {
+        "lat": 40.7127281077059,
+        "lng": -74.00601547211409,
+        "provider": "maptiler",
+        "quality": "subregion",
+        "confidence": 0.469136
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "83_stuyvesant_av_apt_2l_brooklyn_ny_11221.json": {
+      "status": "noChosen"
+    },
+    "83_stuyvesant_av_brooklyn_ny_11221.json": {
+      "status": "noChosen"
+    },
+    "842_40th_st_apt_2r_brooklyn_ny_11232_3828.json": {
+      "status": "noChosen"
+    },
+    "849_e_55th_st_apt_2_brooklyn_ny_11234_1212.json": {
+      "status": "noChosen"
+    },
+    "859_e_55th_st_apt_2_brooklyn_ny_11234_1212.json": {
+      "status": "noChosen"
+    },
+    "8632_bay_16th_street_11214.json": {
+      "chosen": {
+        "lat": 40.6075843,
+        "lng": -74.0049941,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "8632_bay_16th_street_brooklyn_ny_11214.json": {
+      "chosen": {
+        "lat": 40.607596,
+        "lng": -74.00501500000001,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.903333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "870_ocean_pkwy_brooklyn_ny_11230_3432.json": {
+      "status": "noChosen"
+    },
+    "885_e_38th_street_11210_3539.json": {
+      "chosen": {
+        "lat": 40.6336176,
+        "lng": -73.9397423,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "885_e_38th_street_brooklyn_ny_11210_3539.json": {
+      "chosen": {
+        "lat": 40.633621,
+        "lng": -73.939752,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.82
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "89_christopher_av_apt_17d_brooklyn_ny_11212_7832.json": {
+      "status": "noChosen"
+    },
+    "901_avenue_h_brooklyn_ny_11230_2825.json": {
+      "status": "noChosen"
+    },
+    "901_saratoga_av_brooklyn_ny_11212.json": {
+      "status": "noChosen"
+    },
+    "901_troy_av_brooklyn_ny_11203_4115.json": {
+      "status": "noChosen"
+    },
+    "914_47th_st_apt_bd1_brooklyn_ny_11219_2834.json": {
+      "status": "noChosen"
+    },
+    "914_broadway_brooklyn_ny_11206_5902.json": {
+      "status": "noChosen"
+    },
+    "919_myrtle_av_11206.json": {
+      "chosen": {
+        "lat": 40.6964704,
+        "lng": -73.945064,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "919_myrtle_av_brooklyn_ny_11206.json": {
+      "status": "noChosen"
+    },
+    "925_e_14th_st_apt_7g_brooklyn_ny_11230_3615.json": {
+      "status": "noChosen"
+    },
+    "927_putnam_av_11221.json": {
+      "chosen": {
+        "lat": 40.6872253,
+        "lng": -73.9241968,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "927_putnam_av_brooklyn_ny_11221.json": {
+      "chosen": {
+        "lat": 40.68722,
+        "lng": -73.924194,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "9327_kings_hy_11212.json": {
+      "chosen": {
+        "lat": 40.6625,
+        "lng": -73.9145,
+        "provider": "opencage",
+        "quality": "postcode",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "936_avenue_s_11223.json": {
+      "chosen": {
+        "lat": 40.602743,
+        "lng": -73.9618298,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "936_avenue_s_brooklyn_ny_11223.json": {
+      "chosen": {
+        "lat": 40.602732,
+        "lng": -73.96182799999997,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.900635
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "938_e_51st_street_comm_brooklyn_ny_11203_6736.json": {
+      "status": "noChosen"
+    },
+    "938_e_51st_st_comm_brooklyn_ny_11203_6736.json": {
+      "status": "noChosen"
+    },
+    "941_washington_av_11225_2441.json": {
+      "chosen": {
+        "lat": 40.6664514,
+        "lng": -73.9614123,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "941_washington_av_brooklyn_ny_11225_2441.json": {
+      "chosen": {
+        "lat": 40.666451,
+        "lng": -73.961412,
+        "provider": "maptiler",
+        "quality": "address",
+        "confidence": 0.813333
+      },
+      "lowConfidence": false,
+      "outOfBounds": false
+    },
+    "947_gates_av_11221_2804.json": {
+      "chosen": {
+        "lat": 40.6890192,
+        "lng": -73.9278864,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "947_gates_av_brooklyn_ny_11221_2804.json": {
+      "chosen": {
+        "lat": 43.15142263821426,
+        "lng": -77.71300066262484,
+        "provider": "maptiler",
+        "quality": "joint_municipality",
+        "confidence": 0.828677
+      },
+      "lowConfidence": false,
+      "outOfBounds": true
+    },
+    "9518_avenue_l_brooklyn_ny_11236_4811.json": {
+      "status": "noChosen"
+    },
+    "956_e_80th_street_brooklyn_ny_11236_3810.json": {
+      "status": "noChosen"
+    },
+    "956_e_80th_st_apt_bsmt_brooklyn_ny_11236_3810.json": {
+      "status": "noChosen"
+    },
+    "959_e_101st_street_brooklyn_ny_11236_2617.json": {
+      "status": "noChosen"
+    },
+    "959_e_101st_st_apt_2_brooklyn_ny_11236_2617.json": {
+      "status": "noChosen"
+    },
+    "95_pulaski_street_brooklyn_ny_11206_6803.json": {
+      "status": "noChosen"
+    },
+    "95_pulaski_st_apt_2_brooklyn_ny_11206_6803.json": {
+      "status": "noChosen"
+    },
+    "980_e_40th_street_brooklyn_ny_11210_3530.json": {
+      "status": "noChosen"
+    },
+    "986_jefferson_av_11221.json": {
+      "chosen": {
+        "lat": 40.6867521,
+        "lng": -73.9182207,
+        "provider": "opencage",
+        "quality": "building",
+        "confidence": 0.7
+      },
+      "lowConfidence": true,
+      "outOfBounds": false
+    },
+    "986_jefferson_av_brooklyn_ny_11221.json": {
+      "status": "noChosen"
+    },
+    "987_putnam_av_brooklyn_ny_11221_4103.json": {
+      "status": "noChosen"
+    },
+    "9910_seaview_av_apt_8h_brooklyn_ny_11236_5537.json": {
+      "status": "noChosen"
+    },
+    "9910_seaview_av_brooklyn_ny_11236_5537.json": {
+      "status": "noChosen"
+    },
+    "city_.json": {
+      "status": "noChosen"
+    },
+    "overrides.json": {
+      "status": "noChosen"
+    }
+  }
+}

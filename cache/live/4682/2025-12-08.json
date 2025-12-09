@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4682",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "12-3",
+        "job": "07836296063",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "SAMEDY,MARIE",
+        "address": "165 E 19TH ST, APT 5B, BROOKLYN, NY 11226-4822",
+        "phone": "347-512-8796",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836363936",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "STEWART,CYNITHIA",
+        "address": "555 E 5TH ST, APT A3, BROOKLYN, NY 11218-4661",
+        "phone": "347-744-2090",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836543185",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "Nichols,Justin",
+        "address": "580 FLATBUSH AV, APT 15E, BROOKLYN, NY 11225-4907",
+        "phone": "617-997-7294",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836498033",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4682",
+        "name": "HALL,DYSTANY",
+        "address": "115 LENOX RD, APT C1, BROOKLYN, NY 11226-2463",
+        "phone": "270-791-0030",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836105257",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4682",
+        "name": "SMITH,DERRICK",
+        "address": "433 LAFAYETTE AV, APT 13A, BROOKLYN, NY 11238-1414",
+        "phone": "347-885-0854",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "3h 36m"
+  }
+]

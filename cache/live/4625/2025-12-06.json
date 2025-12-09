@@ -1,0 +1,36 @@
+[
+  {
+    "techNo": "4625",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836368092",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "AMANKWAH,LUCKISHA",
+        "address": "901 TROY AV, BROOKLYN, NY 11203-4115",
+        "phone": "347-405-9184",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836783698",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "LETICS INC,LEAP ATH",
+        "address": "2361 RALPH AV, BROOKLYN, NY 11234-5516",
+        "phone": "347-973-4840",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 2,
+    "estimatedDuration": "3h 42m"
+  }
+]

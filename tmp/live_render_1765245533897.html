@@ -1,0 +1,132 @@
+<html><head>
+    <link rel="stylesheet" href="htm/Style_BASE.css" type="text/css" media="all">
+    <link rel="shortcut icon" href="itab/csglogo.ico">
+
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="iso-8859-15">
+
+   <link rel="shortcut icon" href="itab/csglogo.ico">
+
+
+<meta http-equiv="expires" content="0">
+<title>CSG TechNet®</title>
+<script type="text/javascript">
+<!--
+
+
+-->
+</script>
+
+<script type="text/javascript">
+
+  function nextPage(btn)
+  {
+    btn.disabled = true;
+    document.cookie = "LastAction=; expires=Fri, 31 Dec 1999 23:59:59 GMT;";
+    var curUrl = location.href;
+    if(curUrl.indexOf("?",0) != -1)
+    {
+      loginForm.action = curUrl.substr(0,curUrl.indexOf("?",0)+1);
+    }
+    else
+    {
+      loginForm.action = curUrl;
+    }
+
+
+   if (navigator.geolocation) {
+      var fm = document.forms[0];
+      navigator.geolocation.getCurrentPosition(
+        function (loc) {
+           fm.Latitude.value = loc.coords.latitude;
+           fm.Longitude.value = loc.coords.longitude;
+           fm.Speed.value= loc.coords.speed;
+           fm.XgeoX.value= 'geoData';
+           fm.submit();
+        },
+        function (geoPositionError) {
+           var rx = "";
+           switch (geoPositionError.code) {
+              case 1: // GeolocationPositionError.PERMISSION_DENIED
+                rx = "Permission to use Geolocation was denied";
+              break;
+              case 2: // GeolocationPositionError.POSITION_UNAVAILABLE
+                rx = "Could not find you...";
+              break;
+              case 3: // GeolocationPositionError.TIMEOUT
+                rx = "The Geolocation request took to long and timed out";
+              break;
+              default:
+                rx = "An unknown error occurred, sorry";
+           }
+           fm.XgeoX.value= 'geoError: ' + rx;
+           fm.submit();
+        },
+        { timeout: 4000, maximumAge: 60000, enableHighAccuracy: true } );
+   }
+   else
+   {
+      document.forms[0].XgeoX.value= 'geoNoNav';
+      document.forms[0].submit();
+   }
+  }
+
+
+  function checkDriver()
+  {
+      //setup trace token
+   // 24 hours
+   date = new Date();
+   date.setTime(date.getTime() + 86400000); 
+   document.cookie = "CSGTN_TOKEN=0676f41b-bce6-4003-8dac-fcf6a2e1a41a0100730342187Hlmtl_HTM; expires=" + date.toGMTString();
+
+  }
+
+
+
+
+</script>
+<style>
+@media all and (orientation:portrait) {
+   div.bottom-logo {
+ 	width:100%;
+ 	bottom: 0;
+        position: absolute;
+ }
+}
+@media all and (orientation:landscape) {
+   div.bottom-logo {
+ 	width:100%;
+ 	float:bottom;
+        position: relative;
+ }
+}
+
+</style>
+</head>
+<body link="red" onload="checkDriver()" style="margin:0 0 0 0">
+<form name="loginForm" action="" method="Post">
+  <input type="hidden" name="Id" value="27">
+  <input type="hidden" name="FcIdsOnly" value="0">
+  <input type="hidden" name="PhoneNumber" value="">
+  <input type="hidden" name="Latitude">
+  <input type="hidden" name="Longitude">
+  <input type="hidden" name="Speed">
+  <input type="hidden" name="XgeoX">
+
+<table align="center" width="100%" cellspacing="0">
+<tbody><tr><th colspan="2"><img src="TechNetSplash.jpg" width="100%"></th></tr>
+<!--tr> <th colspan="2" align="center" bgcolor="#98C0F4">(CSG TechNet&#174;) Tech Log On</th></tr-->
+<tr><td align="right" width="50%"><b>Technician Number:</b></td><td><input type="text" size="12" maxlength="32" name="techVal" value=""></td></tr>
+<tr><td align="right"><b>Tech PW:</b></td><td><input type="password" size="12" maxlength="32" name="pinVal" value=""></td></tr>
+
+<tr><td colspan="2" align="center" valign="middle"> <input type="button" value="Log On" onclick="nextPage(this)"></td></tr>
+
+</tbody></table>
+</form>
+
+
+
+</body></html>

@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4819",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836585169",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4819",
+        "name": "JAMES,CHRISTIN",
+        "address": "1257 LORING AV, APT 5G, BROOKLYN, NY 11208-4632",
+        "phone": "111-111-1111",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836248103",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "Brezina,PHILIP",
+        "address": "1273 BUSHWICK AV, APT 1, BROOKLYN, NY 11207-9505",
+        "phone": "607-435-9922",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836938006",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "ZHU,DIANA",
+        "address": "986 JEFFERSON AV, APT 1, BROOKLYN, NY 11221",
+        "phone": "503-593-3222",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836426547",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "PRIME,NISA",
+        "address": "835 CLARKSON AV, APT 3B, BROOKLYN, NY 11203-2247",
+        "phone": "347-547-5894",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836851137",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "Ruiz Val,Yuri",
+        "address": "9327 KINGS HY, APT 5C, BROOKLYN, NY 11212",
+        "phone": "646-527-4346",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836555900",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "RODNEY,SHEINA",
+        "address": "549 E 96TH ST, APT 1F, BROOKLYN, NY 11212",
+        "phone": "347-737-1399",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "5h 6m"
+  }
+]

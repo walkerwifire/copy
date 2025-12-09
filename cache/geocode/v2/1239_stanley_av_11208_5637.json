@@ -1,0 +1,139 @@
+{
+  "chosen": {
+    "lat": 40.66648,
+    "lng": -73.8636781,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.66648,
+      "lng": -73.8636781,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 39' 59.32800'' N",
+            "lng": "73° 51' 49.24116'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWL9604702354",
+          "Maidenhead": "FN30bp69iw",
+          "Mercator": {
+            "x": -8222467.034,
+            "y": 4935420.757
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=247463087#map=16/40.66648/-73.86368",
+            "note_url": "https://www.openstreetmap.org/note/new#map=16/40.66648/-73.86368&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.66648&mlon=-73.86368#map=16/40.66648/-73.86368"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5rr5n57t3dmcp9mftw",
+          "qibla": 58.58,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Stanley Avenue",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193820,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229220,
+              "astronomical": 1765235100,
+              "civil": 1765231080,
+              "nautical": 1765233120
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "stays.soils.tribe"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.66676,
+            "lng": -73.8635718
+          },
+          "southwest": {
+            "lat": 40.6662145,
+            "lng": -73.8638292
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "1239",
+          "postcode": "11208",
+          "road": "Stanley Avenue",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "1239 Stanley Avenue, New York, NY 11208, United States of America",
+        "geometry": {
+          "lat": 40.66648,
+          "lng": -73.8636781
+        }
+      }
+    }
+  ]
+}

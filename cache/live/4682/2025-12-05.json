@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4682",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836621575",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "HERNANDEZ,TIFFANY",
+        "address": "603 WILSON AV, APT 2, BROOKLYN, NY 11207-1219",
+        "phone": "929-603-4255",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836190173",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "AYALON,LIOR",
+        "address": "61 SCHAEFER, APT 1, BROOKLYN, NY 11207",
+        "phone": "954-608-8249",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836124953",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "BREVOORT,RESIDENT",
+        "address": "291 PATCHEN AV, APT 7C, BROOKLYN, NY 11233-2124",
+        "phone": "646-533-5794",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836593185",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "MILLER,ROBERT",
+        "address": "1623 PACIFIC ST, APT 1, BROOKLYN, NY 11213-1132",
+        "phone": "212-423-4279",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836116722",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "Kist,COURTNEY",
+        "address": "422 BAINBRIDGE ST, APT 3, BROOKLYN, NY 11233-2314",
+        "phone": "714-742-5265",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836427960",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "IQBAL,SINDEED",
+        "address": "119 FORBELL ST, APT 2, BROOKLYN, NY 11208-3008",
+        "phone": "929-782-6022",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "7h 36m"
+  }
+]

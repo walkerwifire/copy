@@ -1,0 +1,139 @@
+{
+  "chosen": {
+    "lat": 40.8192263,
+    "lng": -73.9283953,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.8192263,
+      "lng": -73.9283953,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 49' 9.21468'' N",
+            "lng": "73° 55' 42.22308'' W"
+          },
+          "FIPS": {
+            "county": "36005",
+            "state": "36"
+          },
+          "MGRS": "18TWL9037019242",
+          "Maidenhead": "FN30at86oo",
+          "Mercator": {
+            "x": -8229671.32,
+            "y": 4957776.998
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=275299531#map=17/40.81923/-73.92840",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/40.81923/-73.92840&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.81923&mlon=-73.92840#map=17/40.81923/-73.92840"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr72jwyvpx313qw27k6m",
+          "qibla": 58.53,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Walton Avenue",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195740,
+              "astronomical": 1765189800,
+              "civil": 1765193880,
+              "nautical": 1765191840
+            },
+            "set": {
+              "apparent": 1765229220,
+              "astronomical": 1765235100,
+              "civil": 1765231080,
+              "nautical": 1765233120
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "unity.burns.bands"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.8192616,
+            "lng": -73.9283028
+          },
+          "southwest": {
+            "lat": 40.819191,
+            "lng": -73.9284879
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "The Bronx",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Bronx County",
+          "house_number": "561",
+          "postcode": "10451",
+          "road": "Walton Avenue",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "561 Walton Avenue, New York, NY 10451, United States of America",
+        "geometry": {
+          "lat": 40.8192263,
+          "lng": -73.9283953
+        }
+      }
+    }
+  ]
+}

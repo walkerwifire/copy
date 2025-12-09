@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4687",
+    "date": "2025-12-08",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836227268",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "SUAREZ,NOE",
+        "address": "218 SUYDAM ST, APT 1L, BROOKLYN, NY 11237",
+        "phone": "111-111-1111",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836251924",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "Gonzales,Luisa",
+        "address": "213 SUYDAM ST, APT 1, BROOKLYN, NY 11237-3109",
+        "phone": "929-330-5761",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836919869",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "ELIS,MARK",
+        "address": "1209 DEKALB AV, APT 415, BROOKLYN, NY 11221",
+        "phone": "917-691-6767",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 42m"
+  }
+]

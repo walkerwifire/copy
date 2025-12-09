@@ -1,0 +1,1725 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[4102], {
+    4526: function(e, t, s) {
+        s.d(t, {
+            Z: function() {
+                return x
+            }
+        });
+        var l = s(7437)
+          , o = s(2265)
+          , n = s(4887)
+          , a = s(4362)
+          , r = s(3504)
+          , i = s(3496)
+          , c = s(1475)
+          , d = s(1947)
+          , m = s(9854)
+          , u = s(2832);
+        function x(e) {
+            let {jobId: t, jobNumber: s, jobTitle: x, job: h, isOpen: p, onClose: b, onJobCancelled: f} = e
+              , {user: g, company: j} = (0,
+            a.a)()
+              , {addNotification: v} = (0,
+            r.z)()
+              , [y,N] = (0,
+            o.useState)(!1)
+              , [w,k] = (0,
+            o.useState)("")
+              , [C,L] = (0,
+            o.useState)([])
+              , [P,M] = (0,
+            o.useState)(!1)
+              , [z,I] = (0,
+            o.useState)(!1)
+              , [E,S] = (0,
+            o.useState)(!1)
+              , J = (0,
+            c.a)("(max-width: 768px)")
+              , {overlayStyle: D, panelStyle: T} = (0,
+            d.a)(p)
+              , B = (e => {
+                if (!e)
+                    return {
+                        isRepeat: !1
+                    };
+                if (!0 === e.isRepeat && e.repeatInfo)
+                    return {
+                        isRepeat: !0,
+                        techNumber: e.repeatInfo.originalTechNumber,
+                        date: e.repeatInfo.originalJobDate ? ( () => {
+                            try {
+                                let t = e.repeatInfo.originalJobDate instanceof Date ? e.repeatInfo.originalJobDate : new Date(e.repeatInfo.originalJobDate);
+                                return isNaN(t.getTime()) ? void 0 : t.toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "numeric"
+                                })
+                            } catch (t) {
+                                console.error("Error parsing originalJobDate:", e.repeatInfo.originalJobDate, t);
+                                return
+                            }
+                        }
+                        )() : void 0
+                    };
+                if (e.description) {
+                    let t = e.description.match(/⚠️ REPEAT JOB:.*?by.*?\((\d+)\)/);
+                    if (t)
+                        return {
+                            isRepeat: !0,
+                            techNumber: t[1]
+                        }
+                }
+                return {
+                    isRepeat: !1
+                }
+            }
+            )(h)
+              , R = B.isRepeat;
+            console.log("CancelJobModal - Repeat job check:", {
+                jobIdProp: t,
+                jobExternalId: null == h ? void 0 : h.jobId,
+                jobInternalId: null == h ? void 0 : h.id,
+                hasIsRepeatFlag: null == h ? void 0 : h.isRepeat,
+                hasDescription: !!(null == h ? void 0 : h.description),
+                repeatJobInfo: B,
+                isRepeatJobFlag: R
+            }),
+            (0,
+            o.useEffect)( () => {
+                M(!0)
+            }
+            , []),
+            (0,
+            o.useEffect)( () => {
+                p && M(!0)
+            }
+            , [p]),
+            (0,
+            o.useEffect)( () => {
+                p || (k(""),
+                L([]),
+                I(!1),
+                S(!1),
+                N(!1))
+            }
+            , [p]);
+            let F = async () => {
+                if (j && g) {
+                    N(!0);
+                    try {
+                        let e = t || h.id;
+                        await (0,
+                        i.rd)(j.companyId, e, "cancelled", void 0, void 0, w || "Job cancelled by user", g.id, "".concat(g.firstName, " ").concat(g.lastName), void 0, void 0, C, void 0, R ? z : void 0, R ? E : void 0, j.timezone),
+                        v({
+                            type: "success",
+                            title: "Job Cancelled",
+                            message: "Job #".concat(s || h.jobId, " has been cancelled successfully.")
+                        }),
+                        f(),
+                        b()
+                    } catch (e) {
+                        console.error("Error cancelling job:", e),
+                        v({
+                            type: "error",
+                            title: "Cancellation Failed",
+                            message: "Failed to cancel job. Please try again."
+                        })
+                    } finally {
+                        N(!1)
+                    }
+                }
+            }
+              , A = () => {
+                k(""),
+                L([]),
+                I(!1),
+                S(!1),
+                b()
+            }
+            ;
+            if (!p)
+                return null;
+            let W = (0,
+            l.jsx)("div", {
+                className: "modal-container",
+                style: {
+                    zIndex: 9999
+                },
+                onClick: e => {
+                    e.target === e.currentTarget && A()
+                }
+                ,
+                children: (0,
+                l.jsxs)("div", {
+                    className: "bg-white overflow-hidden flex flex-col ".concat(J ? "w-full h-full" : "w-full max-w-md mx-4 rounded-lg shadow-2xl border-2 border-red-200 max-h-[90vh]"),
+                    style: {
+                        position: "relative",
+                        zIndex: 1e4,
+                        ...J && T
+                    },
+                    children: [(0,
+                    l.jsxs)("div", {
+                        className: "flex items-center justify-between border-b bg-red-50 border-red-200 flex-shrink-0 w-full ".concat(J ? "p-4" : "p-6"),
+                        children: [(0,
+                        l.jsxs)("div", {
+                            className: "flex-1 min-w-0",
+                            children: [(0,
+                            l.jsx)("h2", {
+                                className: "text-xl font-semibold text-gray-900 truncate",
+                                children: "Cancel Job"
+                            }), (0,
+                            l.jsxs)("p", {
+                                className: "text-sm text-red-700 mt-1 font-medium",
+                                children: ["Job #", (0,
+                                u.mD)(s || h.jobId, null == h ? void 0 : h.catvProvider)]
+                            })]
+                        }), (0,
+                        l.jsx)("button", {
+                            onClick: A,
+                            className: "text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 ml-3 p-2",
+                            children: (0,
+                            l.jsx)("svg", {
+                                className: "w-6 h-6",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: (0,
+                                l.jsx)("path", {
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: 2,
+                                    d: "M6 18L18 6M6 6l12 12"
+                                })
+                            })
+                        })]
+                    }), (0,
+                    l.jsx)("div", {
+                        className: "overflow-y-auto flex-1 w-full ".concat(J ? "p-4" : "p-6"),
+                        style: {
+                            WebkitOverflowScrolling: "touch"
+                        },
+                        children: (0,
+                        l.jsxs)("div", {
+                            className: "space-y-6",
+                            children: [(0,
+                            l.jsxs)("div", {
+                                className: "bg-blue-50 border border-blue-200 rounded-md p-4",
+                                children: [(0,
+                                l.jsx)("h3", {
+                                    className: "text-sm font-medium text-blue-900 mb-2",
+                                    children: "Job Details"
+                                }), (0,
+                                l.jsxs)("div", {
+                                    className: "space-y-2",
+                                    children: [(0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Job Number:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: (0,
+                                            u.mD)(s || h.jobId, h.catvProvider)
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Type:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: x || h.type || h.jobType || "N/A"
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Customer:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: h.customerName
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Phone:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: h.customerPhone
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Address:"
+                                        }), (0,
+                                        l.jsxs)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: [h.address, h.unitNumber && ", ".concat(h.unitNumber), h.city && ", ".concat(h.city)]
+                                        })]
+                                    }), h.timeFrame && (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Time Frame:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: h.timeFrame
+                                        })]
+                                    }), h.transferNotes && (0,
+                                    l.jsxs)("div", {
+                                        className: "mt-3 pt-2 border-t border-blue-200",
+                                        children: [(0,
+                                        l.jsx)("div", {
+                                            className: "text-sm text-blue-700 font-medium mb-1",
+                                            children: "Transfer Notes:"
+                                        }), (0,
+                                        l.jsx)("div", {
+                                            className: "text-sm text-blue-600",
+                                            children: h.transferNotes
+                                        })]
+                                    })]
+                                })]
+                            }), (0,
+                            l.jsxs)("div", {
+                                children: [(0,
+                                l.jsx)("label", {
+                                    htmlFor: "cancel-reason",
+                                    className: "block font-medium text-gray-700 mb-3 ".concat(J ? "text-base" : "text-sm"),
+                                    children: "Cancellation Reason (Required)"
+                                }), (0,
+                                l.jsx)("textarea", {
+                                    id: "cancel-reason",
+                                    value: w,
+                                    onChange: e => k(e.target.value),
+                                    rows: J ? 6 : 4,
+                                    className: "w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 resize-none ".concat(J ? "px-4 py-3 text-base" : "px-4 py-3 text-sm"),
+                                    placeholder: "Please provide a reason for cancelling this job...",
+                                    required: !0
+                                })]
+                            }), R && (0,
+                            l.jsxs)("div", {
+                                className: "bg-amber-50 border border-amber-200 rounded-md p-4",
+                                children: [(0,
+                                l.jsxs)("div", {
+                                    className: "flex items-start",
+                                    children: [(0,
+                                    l.jsx)("div", {
+                                        className: "flex items-center h-5",
+                                        children: (0,
+                                        l.jsx)("input", {
+                                            id: "repeat-fixed",
+                                            type: "checkbox",
+                                            checked: z,
+                                            onChange: e => I(e.target.checked),
+                                            className: "w-4 h-4 text-green-600 bg-white border-gray-300 rounded focus:ring-green-500 focus:ring-2"
+                                        })
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "ml-3",
+                                        children: [(0,
+                                        l.jsx)("label", {
+                                            htmlFor: "repeat-fixed",
+                                            className: "font-medium text-amber-900 text-sm cursor-pointer",
+                                            children: "Was the repeat issue fixed?"
+                                        }), (0,
+                                        l.jsx)("p", {
+                                            className: "text-xs text-amber-700 mt-1",
+                                            children: "Check this box if the underlying issue causing this repeat job has been resolved."
+                                        })]
+                                    })]
+                                }), (0,
+                                l.jsxs)("div", {
+                                    className: "flex items-start mt-3",
+                                    children: [(0,
+                                    l.jsx)("div", {
+                                        className: "flex items-center h-5",
+                                        children: (0,
+                                        l.jsx)("input", {
+                                            id: "completed-by-other-company-tech",
+                                            type: "checkbox",
+                                            checked: E,
+                                            onChange: e => S(e.target.checked),
+                                            className: "w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                        })
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "ml-3",
+                                        children: [(0,
+                                        l.jsx)("label", {
+                                            htmlFor: "completed-by-other-company-tech",
+                                            className: "font-medium text-amber-900 text-sm cursor-pointer",
+                                            children: "Completed by other company tech"
+                                        }), (0,
+                                        l.jsx)("p", {
+                                            className: "text-xs text-amber-700 mt-1",
+                                            children: "If checked, the parent job will be excluded from future repeat identification."
+                                        })]
+                                    })]
+                                })]
+                            }), (0,
+                            l.jsx)(m.Z, {
+                                onPhotosUpload: L,
+                                currentPhotos: C,
+                                maxPhotos: 5,
+                                maxSize: 10
+                            }), (0,
+                            l.jsx)("div", {
+                                className: "bg-red-50 border border-red-200 rounded-md p-4",
+                                children: (0,
+                                l.jsxs)("div", {
+                                    className: "flex",
+                                    children: [(0,
+                                    l.jsx)("div", {
+                                        className: "flex-shrink-0",
+                                        children: (0,
+                                        l.jsx)("svg", {
+                                            className: "h-5 w-5 text-red-400",
+                                            viewBox: "0 0 20 20",
+                                            fill: "currentColor",
+                                            children: (0,
+                                            l.jsx)("path", {
+                                                fillRule: "evenodd",
+                                                d: "M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z",
+                                                clipRule: "evenodd"
+                                            })
+                                        })
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "ml-3",
+                                        children: [(0,
+                                        l.jsx)("h3", {
+                                            className: "text-sm font-medium text-red-800",
+                                            children: "Job Cancellation"
+                                        }), (0,
+                                        l.jsx)("div", {
+                                            className: "mt-2 text-sm text-red-700",
+                                            children: (0,
+                                            l.jsx)("p", {
+                                                children: "This will permanently mark the job as cancelled. The cancellation will be logged in the job audit trail."
+                                            })
+                                        })]
+                                    })]
+                                })
+                            })]
+                        })
+                    }), (0,
+                    l.jsxs)("div", {
+                        className: "flex items-center justify-end space-x-4 border-t bg-gray-50 flex-shrink-0 w-full ".concat(J ? "p-4" : "p-6"),
+                        children: [(0,
+                        l.jsx)("button", {
+                            onClick: A,
+                            className: "font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 ".concat(J ? "px-6 py-3 text-base min-w-[120px]" : "px-4 py-2 text-sm min-w-[80px]"),
+                            children: "Cancel"
+                        }), (0,
+                        l.jsx)("button", {
+                            onClick: e => {
+                                console.log("Cancel Job button clicked in modal"),
+                                console.log("Button state:", {
+                                    loading: y,
+                                    cancelReason: w
+                                }),
+                                console.log("Button disabled:", y),
+                                y ? console.log("Button click ignored - disabled due to loading") : F()
+                            }
+                            ,
+                            disabled: y,
+                            className: "font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed ".concat(J ? "px-6 py-3 text-base min-w-[120px]" : "px-4 py-2 text-sm min-w-[80px]"),
+                            children: y ? (0,
+                            l.jsxs)("div", {
+                                className: "flex items-center justify-center space-x-2",
+                                children: [(0,
+                                l.jsx)("div", {
+                                    className: "animate-spin rounded-full h-4 w-4 border-b-2 border-white"
+                                }), (0,
+                                l.jsx)("span", {
+                                    children: "Cancelling..."
+                                })]
+                            }) : (0,
+                            l.jsx)("span", {
+                                children: "Cancel Job"
+                            })
+                        })]
+                    })]
+                })
+            });
+            return (0,
+            n.createPortal)(W, document.body)
+        }
+    },
+    6553: function(e, t, s) {
+        s.d(t, {
+            Z: function() {
+                return p
+            }
+        });
+        var l = s(7437)
+          , o = s(2265)
+          , n = s(4887)
+          , a = s(4362)
+          , r = s(3496)
+          , i = s(1475)
+          , c = s(1947)
+          , d = s(9854)
+          , m = s(62)
+          , u = s(6410);
+        function x(e) {
+            let {companyId: t, jobId: s, onPhotosUpload: n, currentPhotos: a=[], maxPhotos: r=20, maxSize: i=10, className: c=""} = e
+              , [d,x] = (0,
+            o.useState)(!1)
+              , [h,p] = (0,
+            o.useState)("")
+              , b = (0,
+            o.useRef)(null)
+              , f = async e => {
+                let l = Array.from(e.target.files || []);
+                if (0 !== l.length) {
+                    if (a.length + l.length > r) {
+                        p("Maximum ".concat(r, " photos allowed. You can upload ").concat(r - a.length, " more."));
+                        return
+                    }
+                    for (let e of l)
+                        if (e.size > 1048576 * i) {
+                            p("File ".concat(e.name, " exceeds ").concat(i, "MB limit"));
+                            return
+                        }
+                    p(""),
+                    x(!0);
+                    try {
+                        let e = l.map(async e => {
+                            let l = Date.now()
+                              , o = Math.random().toString(36).substring(2, 8)
+                              , n = "self-qc-".concat(l, "-").concat(o, "-").concat(e.name)
+                              , a = (0,
+                            m.iH)(u.tO, "companies/".concat(t, "/job-completion-photos/").concat(s, "/").concat(n))
+                              , r = await (0,
+                            m.KV)(a, e);
+                            return await (0,
+                            m.Jt)(r.ref)
+                        }
+                        )
+                          , o = await Promise.all(e)
+                          , r = [...a, ...o];
+                        n(r)
+                    } catch (e) {
+                        console.error("Error uploading self QC photos:", e),
+                        p("Failed to upload photos. Please try again.")
+                    } finally {
+                        x(!1),
+                        b.current && (b.current.value = "")
+                    }
+                }
+            }
+              , g = e => {
+                n(a.filter( (t, s) => s !== e))
+            }
+              , j = a.length < r;
+            return (0,
+            l.jsxs)("div", {
+                className: "space-y-3 ".concat(c),
+                children: [(0,
+                l.jsxs)("label", {
+                    className: "block text-sm font-medium text-gray-700",
+                    children: ["Self QC Photos (", a.length, "/", r, ")"]
+                }), j && (0,
+                l.jsxs)("div", {
+                    children: [(0,
+                    l.jsx)("input", {
+                        ref: b,
+                        type: "file",
+                        accept: "image/*",
+                        multiple: !0,
+                        onChange: f,
+                        className: "hidden",
+                        disabled: d
+                    }), (0,
+                    l.jsx)("button", {
+                        type: "button",
+                        onClick: () => {
+                            var e;
+                            return null === (e = b.current) || void 0 === e ? void 0 : e.click()
+                        }
+                        ,
+                        disabled: d,
+                        className: "w-full flex items-center justify-center px-4 py-3 border-2 border-dashed border-yellow-300 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-yellow-50",
+                        children: d ? (0,
+                        l.jsxs)(l.Fragment, {
+                            children: [(0,
+                            l.jsxs)("svg", {
+                                className: "animate-spin -ml-1 mr-3 h-5 w-5 text-yellow-600",
+                                fill: "none",
+                                viewBox: "0 0 24 24",
+                                children: [(0,
+                                l.jsx)("circle", {
+                                    className: "opacity-25",
+                                    cx: "12",
+                                    cy: "12",
+                                    r: "10",
+                                    stroke: "currentColor",
+                                    strokeWidth: "4"
+                                }), (0,
+                                l.jsx)("path", {
+                                    className: "opacity-75",
+                                    fill: "currentColor",
+                                    d: "M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                })]
+                            }), (0,
+                            l.jsx)("span", {
+                                className: "text-yellow-700 font-medium",
+                                children: "Uploading..."
+                            })]
+                        }) : (0,
+                        l.jsxs)(l.Fragment, {
+                            children: [(0,
+                            l.jsx)("svg", {
+                                className: "w-6 h-6 text-yellow-600 mr-2",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: (0,
+                                l.jsx)("path", {
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: 2,
+                                    d: "M12 4v16m8-8H4"
+                                })
+                            }), (0,
+                            l.jsxs)("span", {
+                                className: "text-yellow-700 font-medium",
+                                children: ["Add Self QC Photos ", a.length > 0 && "(".concat(r - a.length, " remaining)")]
+                            })]
+                        })
+                    }), (0,
+                    l.jsxs)("p", {
+                        className: "mt-1 text-xs text-gray-500",
+                        children: ["Accepted formats: JPG, PNG, GIF. Max size: ", i, "MB per image"]
+                    })]
+                }), h && (0,
+                l.jsxs)("div", {
+                    className: "flex items-center space-x-2 text-red-600 text-sm bg-red-50 p-3 rounded-md border border-red-200",
+                    children: [(0,
+                    l.jsx)("svg", {
+                        className: "w-5 h-5 flex-shrink-0",
+                        fill: "currentColor",
+                        viewBox: "0 0 20 20",
+                        children: (0,
+                        l.jsx)("path", {
+                            fillRule: "evenodd",
+                            d: "M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z",
+                            clipRule: "evenodd"
+                        })
+                    }), (0,
+                    l.jsx)("span", {
+                        children: h
+                    })]
+                }), a.length > 0 && (0,
+                l.jsx)("div", {
+                    className: "grid grid-cols-2 sm:grid-cols-3 gap-3",
+                    children: a.map( (e, t) => (0,
+                    l.jsxs)("div", {
+                        className: "relative group",
+                        children: [(0,
+                        l.jsx)("img", {
+                            src: e,
+                            alt: "Self QC photo ".concat(t + 1),
+                            className: "w-full h-32 object-cover rounded-lg border-2 border-yellow-200 shadow-sm"
+                        }), (0,
+                        l.jsx)("button", {
+                            type: "button",
+                            onClick: () => g(t),
+                            className: "absolute top-1 right-1 bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600 shadow-lg",
+                            title: "Remove photo",
+                            children: (0,
+                            l.jsx)("svg", {
+                                className: "w-4 h-4",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: (0,
+                                l.jsx)("path", {
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: 2,
+                                    d: "M6 18L18 6M6 6l12 12"
+                                })
+                            })
+                        }), (0,
+                        l.jsxs)("div", {
+                            className: "absolute bottom-1 left-1 bg-black bg-opacity-60 text-white text-xs px-2 py-1 rounded",
+                            children: ["QC #", t + 1]
+                        })]
+                    }, t))
+                }), 0 === a.length && (0,
+                l.jsx)("p", {
+                    className: "text-sm text-gray-500 italic text-center py-4",
+                    children: "No self QC photos uploaded yet"
+                })]
+            })
+        }
+        var h = s(2832);
+        function p(e) {
+            let {jobId: t, jobNumber: s, jobTitle: m, externalTechId: u, job: p, isOpen: b, onClose: f, onCompleted: g} = e
+              , {user: j, company: v} = (0,
+            a.a)()
+              , [y,N] = (0,
+            o.useState)("")
+              , [w,k] = (0,
+            o.useState)(!1)
+              , C = (0,
+            i.a)("(max-width: 768px)")
+              , {overlayStyle: L, panelStyle: P} = (0,
+            c.a)(b && C)
+              , [M,z] = (0,
+            o.useState)(!1)
+              , [I,E] = (0,
+            o.useState)("")
+              , [S,J] = (0,
+            o.useState)([])
+              , [D,T] = (0,
+            o.useState)([])
+              , [B,R] = (0,
+            o.useState)(!1)
+              , F = (0,
+            o.useRef)(null);
+            (0,
+            o.useEffect)( () => {
+                R(!0)
+            }
+            , []),
+            (0,
+            o.useEffect)( () => () => {}
+            , [b]),
+            (0,
+            o.useEffect)( () => {
+                b || (N(""),
+                z(!1),
+                E(""),
+                J([]),
+                T([]),
+                k(!1))
+            }
+            , [b]);
+            let A = async () => {
+                if (!v || !j)
+                    return;
+                console.log("CompleteJobModal: Starting completion with:", {
+                    jobId: t,
+                    jobNumber: s,
+                    jobTitle: m,
+                    companyId: v.companyId,
+                    userId: j.id,
+                    userName: "".concat(j.firstName, " ").concat(j.lastName)
+                }),
+                k(!0);
+                let e = setTimeout( () => {
+                    console.log("⏰ Timeout reached, forcing modal close"),
+                    g(),
+                    f(),
+                    k(!1)
+                }
+                , 1e4);
+                try {
+                    let s = M && I.trim() ? I.trim() : j.id
+                      , l = M && I.trim() ? "Completed under Tech Number: ".concat(I.trim()) : "".concat(j.firstName, " ").concat(j.lastName);
+                    console.log("\uD83D\uDD04 Completing job with:", {
+                        jobId: t,
+                        completedByTechId: s,
+                        completedByTechName: l,
+                        completedUnderDifferentId: M,
+                        differentTechId: I,
+                        completionPhotos: S.length,
+                        selfQCPhotos: D.length
+                    }),
+                    console.log("\uD83D\uDCDE Calling updateJobStatusWithCompletion with:", {
+                        companyId: v.companyId,
+                        jobId: t,
+                        status: "completed",
+                        completedByTechId: s,
+                        completedByTechName: l,
+                        techNotes: y,
+                        performedByUserId: j.id,
+                        performedByUserName: "".concat(j.firstName, " ").concat(j.lastName),
+                        completedUnderDifferentId: M,
+                        techRouteId: j.techNumber || j.id,
+                        completionPhotos: S,
+                        selfQCPhotos: D,
+                        companyTimezone: v.timezone
+                    }),
+                    await (0,
+                    r.rd)(v.companyId, t, "completed", s, l, y, j.id, "".concat(j.firstName, " ").concat(j.lastName), M, j.techNumber || j.id, S, D, void 0, void 0, v.timezone),
+                    clearTimeout(e),
+                    console.log("✅ Job completed successfully"),
+                    g(),
+                    f()
+                } catch (t) {
+                    clearTimeout(e),
+                    console.error("❌ Error completing job:", t),
+                    g(),
+                    f()
+                } finally {
+                    k(!1)
+                }
+            }
+              , W = () => {
+                N(""),
+                z(!1),
+                E(""),
+                J([]),
+                T([]),
+                f()
+            }
+            ;
+            if (!b || !B)
+                return null;
+            console.log("CompleteJobModal props:", {
+                jobId: t,
+                jobNumber: s,
+                jobTitle: m,
+                isOpen: b,
+                isMobile: C
+            });
+            let H = (0,
+            l.jsx)("div", {
+                className: "modal-container",
+                style: {
+                    zIndex: 1e4,
+                    ...C && L
+                },
+                onClick: e => {
+                    e.target === e.currentTarget && W()
+                }
+                ,
+                children: (0,
+                l.jsxs)("div", {
+                    className: "modal-content bg-white flex flex-col ".concat(C ? "w-full" : "max-w-md mx-4 rounded-lg shadow-2xl border-2 border-green-200"),
+                    style: {
+                        position: "relative",
+                        zIndex: 10001,
+                        ...C && P
+                    },
+                    ref: F,
+                    children: [(0,
+                    l.jsxs)("div", {
+                        className: "flex items-center justify-between border-b bg-green-50 border-green-200 flex-shrink-0 w-full ".concat(C ? "p-4" : "p-6"),
+                        children: [(0,
+                        l.jsxs)("div", {
+                            className: "flex-1 min-w-0",
+                            children: [(0,
+                            l.jsx)("h2", {
+                                className: "text-xl font-semibold text-gray-900 truncate",
+                                children: "Complete Job"
+                            }), (0,
+                            l.jsxs)("p", {
+                                className: "text-sm text-green-700 mt-1 font-medium",
+                                children: ["Job #", s]
+                            })]
+                        }), (0,
+                        l.jsx)("button", {
+                            onClick: W,
+                            className: "text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0 ml-3 p-2",
+                            children: (0,
+                            l.jsx)("svg", {
+                                className: "w-6 h-6",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: (0,
+                                l.jsx)("path", {
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: 2,
+                                    d: "M6 18L18 6M6 6l12 12"
+                                })
+                            })
+                        })]
+                    }), (0,
+                    l.jsx)("div", {
+                        className: "overflow-y-auto flex-1 w-full ".concat(C ? "p-4" : "p-6"),
+                        style: {
+                            WebkitOverflowScrolling: "touch"
+                        },
+                        children: (0,
+                        l.jsxs)("div", {
+                            className: "space-y-6",
+                            children: [(0,
+                            l.jsxs)("div", {
+                                className: "bg-blue-50 border border-blue-200 rounded-md p-4",
+                                children: [(0,
+                                l.jsx)("h3", {
+                                    className: "text-sm font-medium text-blue-900 mb-2",
+                                    children: "Job Details"
+                                }), (0,
+                                l.jsxs)("div", {
+                                    className: "space-y-2",
+                                    children: [(0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between items-center",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Job Number:"
+                                        }), (0,
+                                        l.jsxs)("div", {
+                                            className: "flex items-center space-x-2",
+                                            children: [(0,
+                                            l.jsx)("span", {
+                                                className: "text-sm text-blue-600 font-semibold",
+                                                children: (0,
+                                                h.mD)(s, null == p ? void 0 : p.catvProvider)
+                                            }), M && (0,
+                                            l.jsx)("span", {
+                                                className: "inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-orange-100 text-orange-700 ring-1 ring-orange-200",
+                                                children: "Different ID"
+                                            })]
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Type:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: (null == p ? void 0 : p.type) || (null == p ? void 0 : p.jobType) || m || "N/A"
+                                        })]
+                                    }), ((null == p ? void 0 : p.description) || (null == p ? void 0 : p.title)) && (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Description:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: (null == p ? void 0 : p.description) || (null == p ? void 0 : p.title) || "N/A"
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Time Frame:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: (null == p ? void 0 : p.timeFrame) || "N/A"
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Customer:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: (null == p ? void 0 : p.customerName) || "N/A"
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Phone:"
+                                        }), (0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: (null == p ? void 0 : p.customerPhone) || "N/A"
+                                        })]
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "flex justify-between",
+                                        children: [(0,
+                                        l.jsx)("span", {
+                                            className: "text-sm text-blue-700 font-medium",
+                                            children: "Address:"
+                                        }), (0,
+                                        l.jsxs)("span", {
+                                            className: "text-sm text-blue-600 font-semibold",
+                                            children: [null == p ? void 0 : p.address, (null == p ? void 0 : p.unitNumber) && ", ".concat(p.unitNumber), (null == p ? void 0 : p.city) && ", ".concat(p.city)]
+                                        })]
+                                    }), (null == p ? void 0 : p.transferNotes) && (0,
+                                    l.jsxs)("div", {
+                                        className: "mt-3 pt-2 border-t border-blue-200",
+                                        children: [(0,
+                                        l.jsx)("div", {
+                                            className: "text-sm text-blue-700 font-medium mb-1",
+                                            children: "Transfer Notes:"
+                                        }), (0,
+                                        l.jsx)("div", {
+                                            className: "text-sm text-blue-600",
+                                            children: p.transferNotes
+                                        })]
+                                    })]
+                                })]
+                            }), (0,
+                            l.jsxs)("div", {
+                                children: [(0,
+                                l.jsxs)("label", {
+                                    className: "flex items-center mb-3 p-2 -m-2 ".concat(C ? "text-base" : "text-sm"),
+                                    children: [(0,
+                                    l.jsx)("input", {
+                                        type: "checkbox",
+                                        checked: M,
+                                        onChange: e => z(e.target.checked),
+                                        className: "h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                    }), (0,
+                                    l.jsx)("span", {
+                                        className: "ml-3 font-medium text-gray-700 ".concat(C ? "text-base" : "text-sm"),
+                                        children: "Check if job completed under different Tech Number"
+                                    })]
+                                }), M && (0,
+                                l.jsxs)("div", {
+                                    className: "mt-3",
+                                    children: [(0,
+                                    l.jsx)("label", {
+                                        htmlFor: "different-tech-id",
+                                        className: "block font-medium text-gray-700 mb-2 ".concat(C ? "text-base" : "text-sm"),
+                                        children: "Tech Number job was completed under:"
+                                    }), (0,
+                                    l.jsx)("input", {
+                                        type: "text",
+                                        id: "different-tech-id",
+                                        value: I,
+                                        onChange: e => E(e.target.value),
+                                        placeholder: "Enter Tech Number",
+                                        className: "w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 ".concat(C ? "px-3 py-3 text-base" : "px-3 py-2 text-sm")
+                                    }), (0,
+                                    l.jsxs)("p", {
+                                        className: "mt-1 text-xs text-gray-500",
+                                        children: ["Current Tech Number: ", (null == j ? void 0 : j.techId) || "N/A", " (", null == j ? void 0 : j.firstName, " ", null == j ? void 0 : j.lastName, ")"]
+                                    })]
+                                })]
+                            }), (0,
+                            l.jsxs)("div", {
+                                children: [(0,
+                                l.jsx)("label", {
+                                    htmlFor: "tech-notes",
+                                    className: "block font-medium text-gray-700 mb-3 ".concat(C ? "text-base" : "text-sm"),
+                                    children: "Completion Notes (Optional)"
+                                }), (0,
+                                l.jsx)("textarea", {
+                                    id: "tech-notes",
+                                    value: y,
+                                    onChange: e => N(e.target.value),
+                                    rows: C ? 6 : 4,
+                                    className: "w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 resize-none ".concat(C ? "px-4 py-3 text-base" : "px-4 py-3 text-sm"),
+                                    placeholder: "Describe work completed, issues encountered, or any additional notes..."
+                                })]
+                            }), (0,
+                            l.jsx)(d.Z, {
+                                companyId: v.companyId,
+                                jobId: t,
+                                onPhotosUpload: J,
+                                currentPhotos: S,
+                                maxPhotos: 5,
+                                maxSize: 10
+                            }), (0,
+                            l.jsxs)("div", {
+                                children: [(0,
+                                l.jsx)("h3", {
+                                    className: "font-medium text-gray-700 mb-3 ".concat(C ? "text-base" : "text-sm"),
+                                    children: "Self QC (Quality Control)"
+                                }), (0,
+                                l.jsx)("div", {
+                                    className: "bg-yellow-50 border border-yellow-200 rounded-md p-4 mb-4",
+                                    children: (0,
+                                    l.jsxs)("div", {
+                                        className: "flex",
+                                        children: [(0,
+                                        l.jsx)("div", {
+                                            className: "flex-shrink-0",
+                                            children: (0,
+                                            l.jsx)("svg", {
+                                                className: "h-5 w-5 text-yellow-400",
+                                                viewBox: "0 0 20 20",
+                                                fill: "currentColor",
+                                                children: (0,
+                                                l.jsx)("path", {
+                                                    fillRule: "evenodd",
+                                                    d: "M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z",
+                                                    clipRule: "evenodd"
+                                                })
+                                            })
+                                        }), (0,
+                                        l.jsxs)("div", {
+                                            className: "ml-3",
+                                            children: [(0,
+                                            l.jsx)("h4", {
+                                                className: "text-sm font-medium text-yellow-800",
+                                                children: "Quality Control Check"
+                                            }), (0,
+                                            l.jsx)("div", {
+                                                className: "mt-2 text-sm text-yellow-700",
+                                                children: (0,
+                                                l.jsx)("p", {
+                                                    children: "Please upload photos to verify the quality of your work. This helps ensure customer satisfaction and maintains service standards."
+                                                })
+                                            })]
+                                        })]
+                                    })
+                                }), (0,
+                                l.jsx)(x, {
+                                    companyId: v.companyId,
+                                    jobId: t,
+                                    onPhotosUpload: T,
+                                    currentPhotos: D,
+                                    maxPhotos: 20,
+                                    maxSize: 10
+                                })]
+                            }), (0,
+                            l.jsx)("div", {
+                                className: "bg-green-50 border border-green-200 rounded-md p-4",
+                                children: (0,
+                                l.jsxs)("div", {
+                                    className: "flex",
+                                    children: [(0,
+                                    l.jsx)("div", {
+                                        className: "flex-shrink-0",
+                                        children: (0,
+                                        l.jsx)("svg", {
+                                            className: "h-5 w-5 text-green-400",
+                                            viewBox: "0 0 20 20",
+                                            fill: "currentColor",
+                                            children: (0,
+                                            l.jsx)("path", {
+                                                fillRule: "evenodd",
+                                                d: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z",
+                                                clipRule: "evenodd"
+                                            })
+                                        })
+                                    }), (0,
+                                    l.jsxs)("div", {
+                                        className: "ml-3",
+                                        children: [(0,
+                                        l.jsx)("h3", {
+                                            className: "text-sm font-medium text-green-800",
+                                            children: "Job Completion"
+                                        }), (0,
+                                        l.jsx)("div", {
+                                            className: "mt-2 text-sm text-green-700",
+                                            children: (0,
+                                            l.jsxs)("p", {
+                                                children: ["This will mark the job as completed and record the completion details.", M && I.trim() && (0,
+                                                l.jsxs)("span", {
+                                                    className: "block mt-1 font-medium",
+                                                    children: ["Job will be marked as completed under Tech Number: ", I.trim()]
+                                                }), "The completion will be logged in the job audit trail."]
+                                            })
+                                        })]
+                                    })]
+                                })
+                            })]
+                        })
+                    }), (0,
+                    l.jsxs)("div", {
+                        className: "flex items-center justify-end space-x-4 border-t bg-gray-50 flex-shrink-0 w-full ".concat(C ? "p-4" : "p-6"),
+                        children: [(0,
+                        l.jsx)("button", {
+                            onClick: W,
+                            className: "font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ".concat(C ? "px-6 py-3 text-base min-w-[120px]" : "px-4 py-2 text-sm min-w-[80px]"),
+                            children: "Cancel"
+                        }), (0,
+                        l.jsx)("button", {
+                            onClick: A,
+                            disabled: w || M && !I.trim(),
+                            className: "font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed ".concat(C ? "px-6 py-3 text-base min-w-[120px]" : "px-4 py-2 text-sm min-w-[80px]"),
+                            children: w ? (0,
+                            l.jsxs)("div", {
+                                className: "flex items-center justify-center space-x-2",
+                                children: [(0,
+                                l.jsx)("div", {
+                                    className: "animate-spin rounded-full h-4 w-4 border-b-2 border-white"
+                                }), (0,
+                                l.jsx)("span", {
+                                    children: "Completing..."
+                                })]
+                            }) : (0,
+                            l.jsx)("span", {
+                                children: "Complete Job"
+                            })
+                        })]
+                    })]
+                })
+            });
+            return (0,
+            n.createPortal)(H, document.body)
+        }
+    },
+    9854: function(e, t, s) {
+        s.d(t, {
+            Z: function() {
+                return r
+            }
+        });
+        var l = s(7437)
+          , o = s(2265)
+          , n = s(62)
+          , a = s(6410);
+        function r(e) {
+            let {companyId: t, jobId: s, onPhotosUpload: r, currentPhotos: i=[], maxPhotos: c=5, maxSize: d=10, className: m=""} = e
+              , [u,x] = (0,
+            o.useState)(!1)
+              , [h,p] = (0,
+            o.useState)("")
+              , b = (0,
+            o.useRef)(null)
+              , f = async e => {
+                let l = Array.from(e.target.files || []);
+                if (0 !== l.length) {
+                    if (i.length + l.length > c) {
+                        p("Maximum ".concat(c, " photos allowed"));
+                        return
+                    }
+                    for (let e of l) {
+                        if (!e.type.startsWith("image/")) {
+                            p("Please select valid image files only");
+                            return
+                        }
+                        if (e.size > 1048576 * d) {
+                            p("File size must be less than ".concat(d, "MB per image"));
+                            return
+                        }
+                    }
+                    p(""),
+                    x(!0);
+                    try {
+                        let e = l.map(async e => {
+                            let l = Date.now()
+                              , o = Math.random().toString(36).substring(2, 8)
+                              , r = "job-completion-".concat(l, "-").concat(o, "-").concat(e.name)
+                              , i = (0,
+                            n.iH)(a.tO, "companies/".concat(t, "/job-completion-photos/").concat(s, "/").concat(r))
+                              , c = await (0,
+                            n.KV)(i, e);
+                            return await (0,
+                            n.Jt)(c.ref)
+                        }
+                        )
+                          , o = await Promise.all(e)
+                          , c = [...i, ...o];
+                        r(c)
+                    } catch (e) {
+                        console.error("Error uploading photos:", e),
+                        p("Failed to upload photos. Please try again.")
+                    } finally {
+                        x(!1),
+                        b.current && (b.current.value = "")
+                    }
+                }
+            }
+              , g = e => {
+                r(i.filter( (t, s) => s !== e))
+            }
+              , j = i.length < c;
+            return (0,
+            l.jsxs)("div", {
+                className: "space-y-3 ".concat(m),
+                children: [(0,
+                l.jsx)("label", {
+                    className: "block text-sm font-medium text-gray-700",
+                    children: "Photos (Optional)"
+                }), i.length > 0 && (0,
+                l.jsx)("div", {
+                    className: "grid grid-cols-2 sm:grid-cols-3 gap-3",
+                    children: i.map( (e, t) => (0,
+                    l.jsxs)("div", {
+                        className: "relative group",
+                        children: [(0,
+                        l.jsx)("img", {
+                            src: e,
+                            alt: "Photo ".concat(t + 1),
+                            className: "w-full h-20 object-cover rounded-lg border border-gray-300"
+                        }), (0,
+                        l.jsx)("button", {
+                            type: "button",
+                            onClick: () => g(t),
+                            className: "absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition-colors opacity-0 group-hover:opacity-100",
+                            children: "\xd7"
+                        })]
+                    }, t))
+                }), j && (0,
+                l.jsxs)("div", {
+                    className: "flex items-center space-x-2",
+                    children: [(0,
+                    l.jsx)("input", {
+                        ref: b,
+                        type: "file",
+                        accept: "image/*",
+                        multiple: !0,
+                        onChange: f,
+                        className: "hidden",
+                        disabled: u
+                    }), (0,
+                    l.jsx)("button", {
+                        type: "button",
+                        onClick: () => {
+                            var e;
+                            return null === (e = b.current) || void 0 === e ? void 0 : e.click()
+                        }
+                        ,
+                        disabled: u,
+                        className: "px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2",
+                        children: u ? (0,
+                        l.jsxs)(l.Fragment, {
+                            children: [(0,
+                            l.jsx)("div", {
+                                className: "animate-spin rounded-full h-4 w-4 border-b-2 border-white"
+                            }), (0,
+                            l.jsx)("span", {
+                                children: "Uploading..."
+                            })]
+                        }) : (0,
+                        l.jsxs)(l.Fragment, {
+                            children: [(0,
+                            l.jsx)("svg", {
+                                className: "w-4 h-4",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: (0,
+                                l.jsx)("path", {
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: 2,
+                                    d: "M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                })
+                            }), (0,
+                            l.jsx)("span", {
+                                children: "Add Photos"
+                            })]
+                        })
+                    }), i.length > 0 && (0,
+                    l.jsx)("button", {
+                        type: "button",
+                        onClick: () => r([]),
+                        disabled: u,
+                        className: "px-3 py-2 text-sm bg-gray-500 text-white rounded-md hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors",
+                        children: "Remove All"
+                    })]
+                }), h && (0,
+                l.jsx)("p", {
+                    className: "text-sm text-red-600",
+                    children: h
+                }), (0,
+                l.jsxs)("div", {
+                    className: "text-xs text-gray-500 space-y-1",
+                    children: [(0,
+                    l.jsxs)("p", {
+                        children: ["Accepted formats: JPG, PNG, GIF. Max size: ", d, "MB per image"]
+                    }), (0,
+                    l.jsx)("p", {
+                        children: "Photos will be stored securely and linked to this job"
+                    }), (0,
+                    l.jsxs)("p", {
+                        children: [i.length, "/", c, " photos uploaded"]
+                    })]
+                })]
+            })
+        }
+    },
+    2: function(e, t, s) {
+        s.d(t, {
+            Z: function() {
+                return n
+            }
+        });
+        var l = s(7437)
+          , o = s(2265);
+        function n(e) {
+            let {photos: t, jobNumber: s, className: n="", canDelete: a=!1, onDelete: r} = e
+              , [i,c] = (0,
+            o.useState)(null)
+              , [d,m] = (0,
+            o.useState)(0);
+            if (!t || 0 === t.length)
+                return null;
+            let u = e => {
+                m(t.indexOf(e)),
+                c(e)
+            }
+              , x = () => {
+                c(null),
+                m(0)
+            }
+              , h = () => {
+                let e = (d + 1) % t.length;
+                m(e),
+                c(t[e])
+            }
+              , p = () => {
+                let e = 0 === d ? t.length - 1 : d - 1;
+                m(e),
+                c(t[e])
+            }
+            ;
+            return o.useEffect( () => {
+                if (!i)
+                    return;
+                let e = e => {
+                    "ArrowLeft" === e.key ? (e.preventDefault(),
+                    p()) : "ArrowRight" === e.key ? (e.preventDefault(),
+                    h()) : "Escape" === e.key && (e.preventDefault(),
+                    x())
+                }
+                ;
+                return document.addEventListener("keydown", e),
+                () => {
+                    document.removeEventListener("keydown", e)
+                }
+            }
+            , [i, d]),
+            o.useEffect( () => (i ? document.body.style.overflow = "hidden" : document.body.style.overflow = "unset",
+            () => {
+                document.body.style.overflow = "unset"
+            }
+            ), [i]),
+            (0,
+            l.jsxs)(l.Fragment, {
+                children: [(0,
+                l.jsxs)("div", {
+                    className: "space-y-3 ".concat(n),
+                    children: [(0,
+                    l.jsxs)("div", {
+                        className: "flex items-center space-x-2",
+                        children: [(0,
+                        l.jsx)("svg", {
+                            className: "w-5 h-5 text-gray-500",
+                            fill: "none",
+                            stroke: "currentColor",
+                            viewBox: "0 0 24 24",
+                            children: (0,
+                            l.jsx)("path", {
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: 2,
+                                d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            })
+                        }), (0,
+                        l.jsxs)("h4", {
+                            className: "text-sm font-medium text-gray-700",
+                            children: ["Job Photos (", t.length, ")"]
+                        })]
+                    }), (0,
+                    l.jsx)("div", {
+                        className: "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4",
+                        children: t.map( (e, t) => (0,
+                        l.jsxs)("div", {
+                            className: "relative group cursor-pointer",
+                            onClick: () => u(e),
+                            children: [(0,
+                            l.jsx)("img", {
+                                src: e,
+                                alt: "Job photo ".concat(t + 1),
+                                className: "w-full h-32 sm:h-36 object-cover rounded-lg border border-gray-300 hover:border-blue-400 transition-colors shadow-sm hover:shadow-md"
+                            }), (0,
+                            l.jsx)("div", {
+                                className: "absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200 rounded-lg flex items-center justify-center",
+                                children: (0,
+                                l.jsx)("svg", {
+                                    className: "w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    viewBox: "0 0 24 24",
+                                    children: (0,
+                                    l.jsx)("path", {
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        strokeWidth: 2,
+                                        d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                                    })
+                                })
+                            }), a && (0,
+                            l.jsx)("button", {
+                                onClick: t => {
+                                    t.stopPropagation(),
+                                    null == r || r(e)
+                                }
+                                ,
+                                className: "absolute top-2 right-2 bg-black bg-opacity-60 text-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition",
+                                title: "Delete photo",
+                                children: (0,
+                                l.jsx)("svg", {
+                                    className: "w-4 h-4",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    viewBox: "0 0 24 24",
+                                    children: (0,
+                                    l.jsx)("path", {
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        strokeWidth: 2,
+                                        d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                    })
+                                })
+                            }), (0,
+                            l.jsx)("div", {
+                                className: "absolute top-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity",
+                                children: t + 1
+                            })]
+                        }, t))
+                    })]
+                }), i && (0,
+                l.jsx)("div", {
+                    className: "fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[10000] p-2 sm:p-4",
+                    onClick: x,
+                    children: (0,
+                    l.jsxs)("div", {
+                        className: "relative w-full h-full flex items-center justify-center",
+                        onClick: e => e.stopPropagation(),
+                        children: [(0,
+                        l.jsx)("img", {
+                            src: t[d],
+                            alt: "Job photo ".concat(d + 1),
+                            className: "max-w-full max-h-full object-contain rounded-lg shadow-2xl",
+                            style: {
+                                maxWidth: "calc(100vw - 2rem)",
+                                maxHeight: "calc(100vh - 2rem)"
+                            }
+                        }), t.length > 1 && (0,
+                        l.jsxs)(l.Fragment, {
+                            children: [(0,
+                            l.jsx)("button", {
+                                onClick: p,
+                                className: "absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-70 transition-all z-10",
+                                title: "Previous photo (←)",
+                                children: (0,
+                                l.jsx)("svg", {
+                                    className: "w-6 h-6",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    viewBox: "0 0 24 24",
+                                    children: (0,
+                                    l.jsx)("path", {
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        strokeWidth: 2,
+                                        d: "M15 19l-7-7 7-7"
+                                    })
+                                })
+                            }), (0,
+                            l.jsx)("button", {
+                                onClick: h,
+                                className: "absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white rounded-full w-12 h-12 flex items-center justify-center hover:bg-opacity-70 transition-all z-10",
+                                title: "Next photo (→)",
+                                children: (0,
+                                l.jsx)("svg", {
+                                    className: "w-6 h-6",
+                                    fill: "none",
+                                    stroke: "currentColor",
+                                    viewBox: "0 0 24 24",
+                                    children: (0,
+                                    l.jsx)("path", {
+                                        strokeLinecap: "round",
+                                        strokeLinejoin: "round",
+                                        strokeWidth: 2,
+                                        d: "M9 5l7 7-7 7"
+                                    })
+                                })
+                            })]
+                        }), (0,
+                        l.jsx)("button", {
+                            onClick: x,
+                            className: "absolute top-2 right-2 sm:top-4 sm:right-4 bg-black bg-opacity-70 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-opacity-90 transition-colors z-10",
+                            children: (0,
+                            l.jsx)("svg", {
+                                className: "w-6 h-6",
+                                fill: "none",
+                                stroke: "currentColor",
+                                viewBox: "0 0 24 24",
+                                children: (0,
+                                l.jsx)("path", {
+                                    strokeLinecap: "round",
+                                    strokeLinejoin: "round",
+                                    strokeWidth: 2,
+                                    d: "M6 18L18 6M6 6l12 12"
+                                })
+                            })
+                        }), (0,
+                        l.jsx)("div", {
+                            className: "absolute bottom-2 left-2 sm:bottom-4 sm:left-4 bg-black bg-opacity-70 text-white px-3 py-2 rounded-lg",
+                            children: (0,
+                            l.jsxs)("p", {
+                                className: "text-sm",
+                                children: ["Job #", s]
+                            })
+                        }), (0,
+                        l.jsx)("div", {
+                            className: "absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-3 py-2 rounded-lg",
+                            children: (0,
+                            l.jsxs)("p", {
+                                className: "text-sm",
+                                children: [d + 1, " of ", t.length]
+                            })
+                        }), (0,
+                        l.jsx)("div", {
+                            className: "absolute bottom-2 right-2 sm:bottom-4 sm:right-16 bg-black bg-opacity-70 text-white px-3 py-2 rounded-lg",
+                            children: (0,
+                            l.jsx)("p", {
+                                className: "text-xs",
+                                children: "← → to navigate • ESC to close"
+                            })
+                        })]
+                    })
+                })]
+            })
+        }
+    },
+    3050: function(e, t, s) {
+        s.d(t, {
+            h: function() {
+                return o
+            }
+        });
+        var l = s(2265);
+        function o() {
+            let[e,t] = (0,
+            l.useState)("desktop")
+              , [s,o] = (0,
+            l.useState)(!1)
+              , [n,a] = (0,
+            l.useState)("desktop");
+            return (0,
+            l.useEffect)( () => {
+                let l = () => {
+                    let e = navigator.userAgent.toLowerCase()
+                      , s = /mobile|android|iphone|ipad|phone/i.test(e)
+                      , l = /tablet|ipad/i.test(e);
+                    s && !l ? t("mobile") : l ? t("tablet") : t("desktop")
+                }
+                  , n = () => {
+                    let e = window.matchMedia("(display-mode: standalone)").matches
+                      , t = window.matchMedia("(display-mode: fullscreen)").matches
+                      , s = window.matchMedia("(display-mode: minimal-ui)").matches
+                      , l = "serviceWorker"in navigator && !0 === window.navigator.standalone || document.referrer.includes("android-app://");
+                    o(e || t || s || l)
+                }
+                  , r = () => {
+                    s || "mobile" === e ? a("pwa") : a("desktop")
+                }
+                ;
+                l(),
+                n(),
+                r();
+                let i = window.matchMedia("(display-mode: standalone)")
+                  , c = () => {
+                    n(),
+                    r()
+                }
+                ;
+                return i.addEventListener("change", c),
+                window.addEventListener("resize", l),
+                () => {
+                    i.removeEventListener("change", c),
+                    window.removeEventListener("resize", l)
+                }
+            }
+            , [s, e]),
+            {
+                deviceType: e,
+                isPWA: s,
+                viewMode: n,
+                isMobile: "mobile" === e,
+                isTablet: "tablet" === e,
+                isDesktop: "desktop" === e
+            }
+        }
+    },
+    1947: function(e, t, s) {
+        s.d(t, {
+            a: function() {
+                return o
+            }
+        });
+        var l = s(2265);
+        function o() {
+            let e = !(arguments.length > 0) || void 0 === arguments[0] || arguments[0];
+            return (0,
+            l.useEffect)( () => {
+                if (!e)
+                    return;
+                let t = () => {
+                    let e = .01 * window.innerHeight;
+                    document.documentElement.style.setProperty("--app-height", "".concat(window.innerHeight, "px")),
+                    document.documentElement.style.setProperty("--vh", "".concat(e, "px")),
+                    window.innerHeight < .75 * window.outerHeight ? document.body.classList.add("modal-open") : document.body.classList.remove("modal-open")
+                }
+                ;
+                return t(),
+                window.addEventListener("resize", t),
+                window.addEventListener("orientationchange", t),
+                () => {
+                    window.removeEventListener("resize", t),
+                    window.removeEventListener("orientationchange", t)
+                }
+            }
+            , [e]),
+            {
+                modalContainerClass: "modal-container",
+                modalContentClass: "modal-content"
+            }
+        }
+    },
+    1475: function(e, t, s) {
+        s.d(t, {
+            a: function() {
+                return o
+            }
+        });
+        var l = s(2265);
+        function o(e) {
+            let[t,s] = (0,
+            l.useState)(!1);
+            return (0,
+            l.useEffect)( () => {
+                let l = window.matchMedia(e);
+                l.matches !== t && s(l.matches);
+                let o = () => s(l.matches);
+                return window.addEventListener("resize", o),
+                () => window.removeEventListener("resize", o)
+            }
+            , [t, e]),
+            t
+        }
+    },
+    2832: function(e, t, s) {
+        s.d(t, {
+            mD: function() {
+                return l
+            }
+        });
+        function l(e, t) {
+            return !e || !function(e) {
+                if (!e)
+                    return !1;
+                let t = e.toLowerCase();
+                return t.includes("altice") || t.includes("optimum")
+            }(t) || e.length <= 5 ? e : e.substring(5)
+        }
+    }
+}]);

@@ -1,0 +1,101 @@
+[
+  {
+    "techNo": "18228",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836136704",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "IASHOVSKA,NATALIA",
+        "address": "602 AVENUE T, APT 2B, BROOKLYN, NY 11223-4117",
+        "phone": "718-414-9587",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836217730",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "LEMBO,STEPHEN",
+        "address": "1835 W 7TH ST, BROOKLYN, NY 11223-2639",
+        "phone": "718-336-8790",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836126732",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "JADEH,ROZIN",
+        "address": "1965 E 7TH ST, APT 4G, BROOKLYN, NY 11223-3166",
+        "phone": "917-355-0626",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836122666",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "Zakamald,Valeriia",
+        "address": "2865 OCEAN AV, APT 3C, BROOKLYN, NY 11235-3148",
+        "phone": "646-338-7064",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836042487",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "GUSEYNOVA,ROZITTA",
+        "address": "1908 E 26TH ST, BROOKLYN, NY 11229-2440",
+        "phone": "111-111-1111",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836691267",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "ZERO,VINCINA",
+        "address": "5905 STRICKLAND AV, APT 208, BROOKLYN, NY 11234",
+        "phone": "818-427-6141",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836220401",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "18228",
+        "name": "DEDUSHAJ,ARDITA",
+        "address": "1702 W 6TH ST, APT 2L, BROOKLYN, NY 11223-1328",
+        "phone": "917-693-8929",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 7,
+    "estimatedDuration": "7h 24m"
+  }
+]

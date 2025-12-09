@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4631",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836590235",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "NSIAH,MAXWELL",
+        "address": "789 ST MARKS AV, APT 3B, BROOKLYN, NY 11213-1423",
+        "phone": "646-642-3340",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836322321",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "SALMA,NONI",
+        "address": "58 LINDEN BL, APT 3D, BROOKLYN, NY 11226-3158",
+        "phone": "646-894-5723",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836849791",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "JAIN,TANVI",
+        "address": "662 BERGEN ST, APT 1A, BROOKLYN, NY 11238",
+        "phone": "240-447-0297",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836836686",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "List,CALEB",
+        "address": "107 JEFFERSON AV, APT 4B, BROOKLYN, NY 11216",
+        "phone": "256-585-0620",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836625507",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4631",
+        "name": "ABE,KASUMI",
+        "address": "541 BERGEN ST, APT 4A, BROOKLYN, NY 11217-2452",
+        "phone": "718-607-5334",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "5h 48m"
+  }
+]

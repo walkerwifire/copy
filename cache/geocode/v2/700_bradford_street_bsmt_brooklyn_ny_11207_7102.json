@@ -1,0 +1,148 @@
+{
+  "chosen": {
+    "lat": 40.6616478,
+    "lng": -73.8888813,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 1
+  },
+  "candidates": [
+    {
+      "lat": 40.6616478,
+      "lng": -73.8888813,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 1,
+      "raw": {
+        "annotations": {
+          "DMS": {
+            "lat": "40° 39' 41.93208'' N",
+            "lng": "73° 53' 19.97268'' W"
+          },
+          "FIPS": {
+            "county": "36047",
+            "state": "36"
+          },
+          "MGRS": "18TWL9392301791",
+          "Maidenhead": "FN30bp38it",
+          "Mercator": {
+            "x": -8225272.642,
+            "y": 4934714.35
+          },
+          "OSM": {
+            "edit_url": "https://www.openstreetmap.org/edit?way=250205876#map=17/40.66165/-73.88888",
+            "note_url": "https://www.openstreetmap.org/note/new#map=17/40.66165/-73.88888&layers=N",
+            "url": "https://www.openstreetmap.org/?mlat=40.66165&mlon=-73.88888#map=17/40.66165/-73.88888"
+          },
+          "UN_M49": {
+            "regions": {
+              "AMERICAS": "019",
+              "NORTHERN_AMERICA": "021",
+              "US": "840",
+              "WORLD": "001"
+            },
+            "statistical_groupings": [
+              "MEDC"
+            ]
+          },
+          "callingcode": 1,
+          "currency": {
+            "alternate_symbols": [
+              "US$"
+            ],
+            "decimal_mark": ".",
+            "disambiguate_symbol": "US$",
+            "html_entity": "$",
+            "iso_code": "USD",
+            "iso_numeric": "840",
+            "name": "United States Dollar",
+            "smallest_denomination": 1,
+            "subunit": "Cent",
+            "subunit_to_unit": 100,
+            "symbol": "$",
+            "symbol_first": 1,
+            "thousands_separator": ","
+          },
+          "flag": "🇺🇸",
+          "geohash": "dr5rqd5z228c44ybfg5g",
+          "qibla": 58.56,
+          "roadinfo": {
+            "drive_on": "right",
+            "road": "Bradford Street",
+            "speed_in": "mph"
+          },
+          "sun": {
+            "rise": {
+              "apparent": 1765195680,
+              "astronomical": 1765189800,
+              "civil": 1765193820,
+              "nautical": 1765191780
+            },
+            "set": {
+              "apparent": 1765229220,
+              "astronomical": 1765235100,
+              "civil": 1765231080,
+              "nautical": 1765233120
+            }
+          },
+          "timezone": {
+            "name": "America/New_York",
+            "now_in_dst": 0,
+            "offset_sec": -18000,
+            "offset_string": "-0500",
+            "short_name": "EST"
+          },
+          "what3words": {
+            "words": "shell.seated.outfit"
+          }
+        },
+        "bounds": {
+          "northeast": {
+            "lat": 40.6617181,
+            "lng": -73.8887545
+          },
+          "southwest": {
+            "lat": 40.6615774,
+            "lng": -73.8890081
+          }
+        },
+        "components": {
+          "ISO_3166-1_alpha-2": "US",
+          "ISO_3166-1_alpha-3": "USA",
+          "ISO_3166-2": [
+            "US-NY"
+          ],
+          "_category": "building",
+          "_normalized_city": "New York",
+          "_type": "building",
+          "borough": "Brooklyn",
+          "city": "New York",
+          "continent": "North America",
+          "country": "United States",
+          "country_code": "us",
+          "county": "Kings County",
+          "house_number": "700",
+          "postcode": "11207",
+          "quarter": "East New York",
+          "residential": "Fiorentino Plaza",
+          "road": "Bradford Street",
+          "state": "New York",
+          "state_code": "NY"
+        },
+        "confidence": 10,
+        "formatted": "700 Bradford Street, New York, NY 11207, United States of America",
+        "geometry": {
+          "lat": 40.6616478,
+          "lng": -73.8888813
+        }
+      }
+    },
+    {
+      "lat": 40.65260067215965,
+      "lng": -73.94972126930952,
+      "provider": "maptiler",
+      "quality": "joint_municipality",
+      "confidence": 0.583333
+    }
+  ]
+}

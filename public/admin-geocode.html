@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Geocode Review</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;margin:12px}
+    table{border-collapse:collapse;width:100%}
+    th,td{border:1px solid #ddd;padding:8px}
+    th{background:#f4f4f4}
+    .low{background:#fff7e6}
+    .btn{padding:6px 8px;border:1px solid #888;background:#eee;cursor:pointer}
+    .input-small{width:100px}
+  </style>
+</head>
+<body>
+  <h2>Geocode Review</h2>
+  <div>
+    <label>Date: <input id="date" type="date" value="2025-12-07" /></label>
+    <label>Threshold: <input id="threshold" type="number" step="0.01" min="0" max="1" value="0.85" /></label>
+    <button id="load" class="btn">Load low-confidence</button>
+  </div>
+  <p id="summary"></p>
+  <table id="list"><thead><tr><th>Job</th><th>Address</th><th>Provider</th><th>Confidence</th><th>Actions</th></tr></thead><tbody></tbody></table>
+
+  <script>
+    async function getLow(){
+      const date = document.getElementById('date').value;
+      const threshold = document.getElementById('threshold').value;
+      document.getElementById('summary').textContent = 'Loading...';
+      const res = await fetch('/api/geocode/low?date='+encodeURIComponent(date)+'&threshold='+encodeURIComponent(threshold));
+      if(!res.ok){ document.getElementById('summary').textContent = 'Error: '+res.status; return; }
+      const j = await res.json();
+      document.getElementById('summary').textContent = `Total ${j.totalAddresses}, lowConfidence ${j.low.length}`;
+      const tbody = document.querySelector('#list tbody'); tbody.innerHTML='';
+      for(const item of j.low){
+        const tr = document.createElement('tr'); tr.className='low';
+        const job = document.createElement('td'); job.textContent = item.job || '';
+        const addr = document.createElement('td'); addr.textContent = item.address || '';
+        const prov = document.createElement('td'); prov.textContent = (item.result && item.result.provider) || '';
+        const conf = document.createElement('td'); conf.textContent = (item.confidence!=null?item.confidence:'');
+        const actions = document.createElement('td');
+        const open = document.createElement('button'); open.textContent='Open'; open.className='btn';
+        open.onclick = ()=> window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(item.address));
+        const useChosen = document.createElement('button'); useChosen.textContent='Use Chosen'; useChosen.className='btn';
+        useChosen.onclick = async ()=>{
+          if(!item.result) return alert('No candidate');
+          const body = { job: item.job, address: item.address, lat: item.result.lat, lng: item.result.lng };
+          const r = await fetch('/api/geocode/override', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body) });
+          if(r.ok) { alert('Override applied'); getLow(); } else { alert('Error applying override'); }
+        };
+        const manualLat = document.createElement('input'); manualLat.placeholder='lat'; manualLat.className='input-small';
+        const manualLng = document.createElement('input'); manualLng.placeholder='lng'; manualLng.className='input-small';
+        const manualBtn = document.createElement('button'); manualBtn.textContent='Set'; manualBtn.className='btn';
+        manualBtn.onclick = async ()=>{
+          const lat = parseFloat(manualLat.value); const lng = parseFloat(manualLng.value);
+          if(!isFinite(lat) || !isFinite(lng)) return alert('Enter lat/lng');
+          const body = { job: item.job, address: item.address, lat, lng };
+          const r = await fetch('/api/geocode/override', { method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify(body) });
+          if(r.ok) { alert('Override applied'); getLow(); } else { alert('Error applying override'); }
+        };
+        actions.appendChild(open); actions.appendChild(document.createTextNode(' ')); actions.appendChild(useChosen);
+        actions.appendChild(document.createTextNode(' ')); actions.appendChild(manualLat); actions.appendChild(manualLng); actions.appendChild(manualBtn);
+        tr.appendChild(job); tr.appendChild(addr); tr.appendChild(prov); tr.appendChild(conf); tr.appendChild(actions);
+        tbody.appendChild(tr);
+      }
+    }
+    document.getElementById('load').addEventListener('click', getLow);
+  </script>
+</body>
+</html>

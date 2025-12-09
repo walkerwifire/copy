@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4856",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836371374",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "SAMUEL,SABRINA",
+        "address": "549 E 49TH ST, APT 2, BROOKLYN, NY 11203-4303",
+        "phone": "917-893-8967",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836514472",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "COLLADO,YUNELKIS",
+        "address": "327 COVERT ST, APT BSMT, BROOKLYN, NY 11237",
+        "phone": "347-325-5726",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836548788",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "HUNTER,MUELINE",
+        "address": "491 E 95TH ST, FLR 2, BROOKLYN, NY 11212",
+        "phone": "347-337-9036",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836514652",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "INNIS,BRENDA",
+        "address": "426 ROCKAWAY PK, APT F1, BROOKLYN, NY 11212-3229",
+        "phone": "718-342-4255",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "5h 12m"
+  }
+]

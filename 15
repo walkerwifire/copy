@@ -1,0 +1,379 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[7014, 6410], {
+    263: function(e, r, n) {
+        n.d(r, {
+            Qj: function() {
+                return i
+            },
+            RL: function() {
+                return t
+            }
+        }),
+        n(257);
+        let i = e => {
+            if (!e)
+                return "Unknown error occurred";
+            if (e.code)
+                switch (e.code) {
+                case "auth/email-already-in-use":
+                    return "A user with this email already exists";
+                case "auth/invalid-email":
+                    return "Invalid email address format";
+                case "auth/weak-password":
+                    return "Password is too weak (minimum 6 characters)";
+                case "auth/user-not-found":
+                    return "User not found";
+                case "auth/wrong-password":
+                    return "Incorrect password";
+                case "auth/too-many-requests":
+                    return "Too many failed attempts. Please try again later";
+                case "auth/network-request-failed":
+                    return "Network error. Please check your connection";
+                case "auth/operation-not-allowed":
+                    return "This operation is not allowed";
+                case "auth/user-disabled":
+                    return "This account has been disabled";
+                case "auth/invalid-credential":
+                    return "Invalid credentials";
+                case "auth/account-exists-with-different-credential":
+                    return "An account already exists with the same email but different sign-in credentials";
+                case "auth/requires-recent-login":
+                    return "This operation requires recent authentication. Please log in again";
+                case "auth/invalid-verification-code":
+                    return "Invalid verification code";
+                case "auth/invalid-verification-id":
+                    return "Invalid verification ID";
+                case "auth/quota-exceeded":
+                    return "Quota exceeded. Please try again later";
+                case "auth/credential-already-in-use":
+                    return "This credential is already associated with a different user account";
+                case "auth/operation-not-supported-in-this-environment":
+                    return "This operation is not supported in this environment";
+                case "auth/timeout":
+                    return "Operation timed out. Please try again";
+                case "auth/unauthorized-domain":
+                    return "This domain is not authorized for OAuth operations";
+                case "auth/unsupported-persistence-type":
+                    return "This persistence type is not supported";
+                case "auth/invalid-persistence-type":
+                    return "Invalid persistence type";
+                case "auth/invalid-tenant-id":
+                    return "Invalid tenant ID";
+                case "auth/tenant-id-mismatch":
+                    return "Tenant ID mismatch";
+                case "auth/unsupported-tenant-operation":
+                    return "This operation is not supported for tenants";
+                case "auth/invalid-recaptcha-token":
+                    return "Invalid reCAPTCHA token";
+                case "auth/missing-recaptcha-token":
+                    return "Missing reCAPTCHA token";
+                case "auth/invalid-recaptcha-action":
+                    return "Invalid reCAPTCHA action";
+                case "auth/missing-client-type":
+                    return "Missing client type";
+                case "auth/missing-recaptcha-version":
+                    return "Missing reCAPTCHA version";
+                case "auth/invalid-recaptcha-version":
+                    return "Invalid reCAPTCHA version";
+                case "auth/invalid-req-type":
+                    return "Invalid request type";
+                default:
+                    return e.message || "Firebase error: ".concat(e.code)
+                }
+            if (e.message) {
+                if (e.message.includes("permission-denied"))
+                    return "Permission denied. Please check your access rights.";
+                if (e.message.includes("not-found"))
+                    return "Resource not found.";
+                if (e.message.includes("already-exists"))
+                    return "Resource already exists.";
+                if (e.message.includes("invalid-argument"))
+                    return "Invalid argument provided.";
+                if (e.message.includes("deadline-exceeded"))
+                    return "Operation timed out. Please try again.";
+                if (e.message.includes("resource-exhausted"))
+                    return "Resource exhausted. Please try again later.";
+                if (e.message.includes("failed-precondition"))
+                    return "Operation failed due to a precondition not being met.";
+                if (e.message.includes("aborted"))
+                    return "Operation was aborted.";
+                if (e.message.includes("out-of-range"))
+                    return "Operation is out of range.";
+                if (e.message.includes("unimplemented"))
+                    return "Operation is not implemented.";
+                if (e.message.includes("internal"))
+                    return "Internal error occurred. Please try again.";
+                if (e.message.includes("unavailable"))
+                    return "Service is currently unavailable. Please try again later.";
+                if (e.message.includes("data-loss"))
+                    return "Data loss occurred.";
+                if (e.message.includes("unauthenticated"))
+                    return "Authentication required. Please log in again."
+            }
+            return e.message || "An unknown error occurred"
+        }
+          , t = (e, r) => {
+            console.error("Firebase Error in ".concat(e, ":"), {
+                error: r,
+                code: null == r ? void 0 : r.code,
+                message: null == r ? void 0 : r.message,
+                stack: null == r ? void 0 : r.stack,
+                timestamp: new Date().toISOString()
+            })
+        }
+    },
+    6410: function(e, r, n) {
+        n.d(r, {
+            Dv: function() {
+                return h
+            },
+            I8: function() {
+                return d
+            },
+            Lu: function() {
+                return k
+            },
+            app: function() {
+                return u
+            },
+            db: function() {
+                return g
+            },
+            eV: function() {
+                return y
+            },
+            functions: function() {
+                return f
+            },
+            gm: function() {
+                return b
+            },
+            qO: function() {
+                return v
+            },
+            tO: function() {
+                return p
+            },
+            tq: function() {
+                return I
+            }
+        });
+        var i = n(738)
+          , t = n(3301)
+          , a = n(5978)
+          , o = n(62)
+          , s = n(4818)
+          , c = n(5434);
+        let l = {
+            apiKey: "AIzaSyAn3Fp6GOVga2wZps1AoQHdblhEgT_EfiE",
+            authDomain: "workforce-app-3cecc.firebaseapp.com",
+            projectId: "workforce-app-3cecc",
+            storageBucket: "workforce-app-3cecc.firebasestorage.app",
+            messagingSenderId: "529994617045",
+            appId: "1:529994617045:web:d1ebf0d787d99e5cf8125c"
+        }
+          , u = null
+          , d = null
+          , g = null
+          , p = null
+          , m = null
+          , f = null;
+        try {
+            l.apiKey && l.authDomain && l.projectId && l.messagingSenderId && l.appId && "your_api_key_here" !== l.apiKey ? (u = 0 === (0,
+            i.C6)().length ? (0,
+            i.ZF)(l) : (0,
+            i.C6)()[0],
+            d = (0,
+            t.getAuth)(u),
+            g = (0,
+            a.getFirestore)(u),
+            p = (0,
+            o.cF)(u),
+            f = (0,
+            c.getFunctions)(u),
+            "serviceWorker"in navigator ? console.log("Firebase core services initialized (messaging will be initialized when needed)") : console.warn("Service worker not supported, messaging disabled"),
+            console.log("Firebase initialized successfully")) : console.warn("Firebase config not properly set up. Check your environment variables:", {
+                apiKey: !!l.apiKey,
+                authDomain: !!l.authDomain,
+                projectId: !!l.projectId,
+                messagingSenderId: !!l.messagingSenderId,
+                appId: !!l.appId,
+                isWindow: !0
+            })
+        } catch (e) {
+            console.error("Firebase initialization error:", e),
+            u = null,
+            d = null,
+            g = null,
+            m = null,
+            f = null
+        }
+        let h = () => {
+            let e = "Notification"in window
+              , r = "serviceWorker"in navigator
+              , n = "PushManager"in window
+              , i = /iPad|iPhone|iPod/.test(navigator.userAgent)
+              , t = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+            return i && t ? e && r : e && r && n
+        }
+          , v = () => h() ? Notification.permission : null
+          , w = async () => {
+            try {
+                if (console.log("Starting FCM token generation..."),
+                !m)
+                    return console.error("Firebase messaging is not initialized"),
+                    null;
+                let e = "BJCWaoRqGxFjPdWL2q5w-Za5BQglYKY7KFZz2N_xpID4kIyZN1Z_PHp9lwzJ_pfs8h_rla1RUf4I2sJ4Zjz-7a4";
+                if (!e)
+                    return console.error("VAPID key is not configured. Please set NEXT_PUBLIC_VAPID_KEY in your environment variables."),
+                    null;
+                console.log("VAPID key found:", !!e),
+                console.log("VAPID key length:", e ? e.length : 0),
+                console.log("VAPID key starts with:", e ? e.substring(0, 10) + "..." : "none"),
+                console.log("Firebase messaging initialized:", !!m);
+                let r = "localhost" === window.location.hostname || "127.0.0.1" === window.location.hostname || "0.0.0.0" === window.location.hostname
+                  , n = null;
+                if (r)
+                    console.log("Firebase messaging: Skipping service worker registration in development mode");
+                else if (n = await navigator.serviceWorker.getRegistration(),
+                console.log("Existing service worker registration:", !!n),
+                n)
+                    console.log("Using existing service worker registration");
+                else
+                    try {
+                        n = await navigator.serviceWorker.register("/firebase-messaging-sw.js"),
+                        console.log("Firebase Messaging Service Worker registered with scope:", n.scope)
+                    } catch (r) {
+                        console.error("Error registering service worker:", r);
+                        let e = r instanceof Error ? r.message : "Unknown error";
+                        throw Error("Service worker registration failed: ".concat(e))
+                    }
+                if (r)
+                    return console.log("Firebase messaging: Skipping FCM token retrieval in development mode"),
+                    null;
+                let i = await (0,
+                s.LP)(m, {
+                    vapidKey: e,
+                    serviceWorkerRegistration: n
+                });
+                return console.log("FCM Token obtained:", !!i),
+                i
+            } catch (e) {
+                return console.error("Error getting FCM token:", e),
+                e instanceof Error && console.error("Error details:", {
+                    name: e.name,
+                    message: e.message,
+                    code: e.code,
+                    stack: e.stack
+                }),
+                console.log("Firebase config check:", {
+                    apiKey: !!l.apiKey,
+                    authDomain: !!l.authDomain,
+                    projectId: !!l.projectId,
+                    messagingSenderId: !!l.messagingSenderId,
+                    appId: !!l.appId,
+                    vapidKey: !0,
+                    messagingInitialized: !!m,
+                    serviceWorkerSupported: "serviceWorker"in navigator
+                }),
+                null
+            }
+        }
+          , y = async () => {
+            try {
+                if (console.log("Requesting notification permission..."),
+                !h())
+                    return console.log("Notifications not supported in this browser"),
+                    null;
+                if (!m)
+                    return console.error("Firebase messaging is not initialized"),
+                    null;
+                if ("granted" === Notification.permission)
+                    return console.log("Notification permission already granted"),
+                    await w();
+                if ("denied" === Notification.permission)
+                    return console.log("Notification permission permanently denied"),
+                    null;
+                let e = /iPad|iPhone|iPod/.test(navigator.userAgent)
+                  , r = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+                if (e && r) {
+                    console.log("iOS Safari detected - using special permission handling");
+                    try {
+                        let e = await Notification.requestPermission();
+                        if (console.log("iOS Safari notification permission result:", e),
+                        "granted" === e)
+                            return await new Promise(e => setTimeout(e, 1e3)),
+                            await w();
+                        return console.log("iOS Safari notification permission denied by user"),
+                        null
+                    } catch (e) {
+                        return console.error("iOS Safari notification permission error:", e),
+                        null
+                    }
+                }
+                let n = await Notification.requestPermission();
+                if (console.log("Notification permission result:", n),
+                "granted" === n)
+                    return await w();
+                return console.log("Notification permission denied by user"),
+                null
+            } catch (e) {
+                return console.error("Error requesting notification permission:", e),
+                null
+            }
+        }
+          , k = () => new Promise(e => {
+            m ? (0,
+            s.ps)(m, r => {
+                console.log("Foreground message received:", r),
+                e(r)
+            }
+            ) : (console.warn("Firebase messaging not initialized, skipping message listener"),
+            e(null))
+        }
+        )
+          , b = async () => {
+            try {
+                if (!h())
+                    return console.log("FCM not supported in this browser"),
+                    !1;
+                if (!m && u)
+                    try {
+                        m = (0,
+                        s.KL)(u),
+                        console.log("Firebase messaging initialized lazily")
+                    } catch (e) {
+                        return console.error("Error initializing Firebase messaging:", e),
+                        !1
+                    }
+                if (!m)
+                    return console.error("Firebase messaging is not initialized. Check your Firebase configuration."),
+                    !1;
+                if ("localhost" === window.location.hostname || "127.0.0.1" === window.location.hostname || "0.0.0.0" === window.location.hostname)
+                    return console.log("Firebase messaging: Skipping service worker registration in development mode"),
+                    !0;
+                try {
+                    let e = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+                    return console.log("Firebase Messaging Service Worker registered:", e),
+                    !0
+                } catch (e) {
+                    return console.error("Error registering Firebase Messaging Service Worker:", e),
+                    !1
+                }
+            } catch (e) {
+                return console.error("Error initializing FCM:", e),
+                !1
+            }
+        }
+          , I = async () => {
+            try {
+                if ("granted" === v())
+                    return await w();
+                return null
+            } catch (e) {
+                return console.error("Error getting token if permitted:", e),
+                null
+            }
+        }
+    }
+}]);

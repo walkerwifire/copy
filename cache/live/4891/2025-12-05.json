@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4891",
+    "date": "2025-12-05",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836511174",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "HUGHES,WILMA",
+        "address": "1637 ST MARKS AV, APT 2R, BROOKLYN, NY 11233",
+        "phone": "347-405-8557",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836516514",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "PICO,MIRIAM",
+        "address": "2545 LINDEN BL, APT 2G, BROOKLYN, NY 11208-4912",
+        "phone": "917-776-9276",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836749448",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4891",
+        "name": "DYER,IRLIN",
+        "address": "639 CRESCENT ST, APT BSMT, BROOKLYN, NY 11208-3935",
+        "phone": "347-453-3481",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "2h 6m"
+  }
+]

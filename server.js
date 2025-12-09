@@ -4,18 +4,41 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const cheerio = require('cheerio');
+const ExcelJS = require('exceljs');
 
 const TECHNET_URL = process.env.TECHNET_URL || 'https://technet.altice.csgfsm.com/altice/tn/technet.htm?Id=1';
 const HEADLESS = (process.env.HEADLESS ? process.env.HEADLESS.toLowerCase() !== 'false' : true);
 const SLOWMO = parseInt(process.env.SLOWMO || '0', 10);
 const TECHS_JSON_ENV = process.env.TECHS_JSON || process.env.TECHS_JSON_PATH;
 const CACHE_TTL_MS = parseInt(process.env.CACHE_TTL_MS || '600000', 10); // 10 minutes
+const MAPTILER_KEY = process.env.MAPTILER_KEY || '';
+// Geocoding constraints to avoid wildly incorrect results
+const GEO_COUNTRY = (process.env.GEO_COUNTRY || 'US').toUpperCase();
+// Default proximity center near central Brooklyn; override via env if needed
+const GEO_PROX_LNG = parseFloat(process.env.GEO_PROX_LNG || '-73.95');
+const GEO_PROX_LAT = parseFloat(process.env.GEO_PROX_LAT || '40.65');
+// Default to NYC + Long Island bounding box (minLng,minLat,maxLng,maxLat). Override via env if needed.
+// Covers NYC boroughs and Long Island eastward roughly to Suffolk county.
+const GEO_BBOX = process.env.GEO_BBOX || '-74.5,40.2,-72.5,41.2';
 
 const app = express();
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Normalize multiple slashes in request URLs (e.g., //api/routes.csv -> /api/routes.csv)
+app.use((req, _res, next) => {
+  try {
+    if (typeof req.url === 'string') {
+      // Preserve querystring while collapsing duplicate slashes in pathname
+      const [pathPart, queryPart] = req.url.split('?');
+      const normalizedPath = pathPart.replace(/\/{2,}/g, '/');
+      req.url = queryPart ? `${normalizedPath}?${queryPart}` : normalizedPath;
+    }
+  } catch {}
+  next();
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -205,19 +228,35 @@ function deriveRoutesFromHtml(html, forcedTech) {
         // Default to today to avoid filtering out stops when schedule date is formatted unexpectedly
         dateIso = new Date().toISOString().slice(0,10);
       }
-      // Normalize badge across common states
-      let badge = '';
-      if (/complete|completed|done/i.test(status)) badge = 'completed';
-      else if (/not\s*done/i.test(status)) badge = 'cancelled';
-      else if (/pending|sched|scheduled|pending install|pending tc|pending cos|pending change/i.test(status)) badge = 'pending';
-      else if (/cancel|cnx|canceled|cancelled/i.test(status)) badge = 'cancelled';
-      else if (/unassign|unassigned/i.test(status)) badge = 'unassigned';
-      else badge = status || '';
+      // Normalize status across common states
+      const normalizeStatus = (s) => {
+        const v = String(s || '').trim().toLowerCase();
+        if (!v) return '';
+        if (/^not\s*done$/.test(v)) return 'not-done';
+        if (/complete|completed\b/.test(v)) return 'completed';
+        if (/pending|sched|scheduled|pending install|pending tc|pending cos|pending change/.test(v)) return 'pending';
+        if (/cancel|cnx|canceled|cancelled/.test(v)) return 'cancelled';
+        if (/unassign|unassigned/.test(v)) return 'unassigned';
+        return v;
+      };
+      const badge = normalizeStatus(status);
+      // Detect CSG Technet header prefix [IS:...] near this job in the source HTML
+      let hasIS = false;
+      try {
+        const safeId = String(jobId).replace(/[.*+?^${}()|[\]\\]/g, r=>r);
+        const re = new RegExp(safeId + "[^\n\r]*\\[\\s*IS\\s*:[^\]]*\]", 'i');
+        hasIS = re.test(String(html||''));
+        if (!hasIS) {
+          // Fallback: header class "job IS" near the job id line
+          const re2 = new RegExp(safeId + "[\s\S]{0,80}class=\\\"job\\s+IS\\\"", 'i');
+          hasIS = re2.test(String(html||''));
+        }
+      } catch {}
       const key = `${tech}|${dateIso}`;
       if (!group[key]) {
         group[key] = { techNo: tech || '', date: dateIso || '', stops: [], totalStops: 0, estimatedDuration: '' };
       }
-      group[key].stops.push({ time, job: jobId, type, status, badge, tech, name, address: [addr, addr2, city].filter(Boolean).join(', '), phone });
+      group[key].stops.push({ time, job: jobId, type, status, normalizedStatus: badge, badge, tech, name, address: [addr, addr2, city].filter(Boolean).join(', '), phone, hasIS });
     }
     // Compute totals
     for (const k of Object.keys(group)) {
@@ -262,20 +301,84 @@ function deriveRoutesFromHtml(html, forcedTech) {
         const addr2 = getField('Addr2:') || '';
         const city = getField('City:') || '';
         let dateIso = normalizeUsDateToIso(getField('Schd:') || getField('Schd :')) || new Date().toISOString().slice(0,10);
-        let badge = '';
-        if (/complete|completed|done/i.test(status)) badge = 'completed';
-        else if (/not\s*done/i.test(status)) badge = 'cancelled';
-        else if (/pending|sched|scheduled|pending install|pending tc|pending cos|pending change/i.test(status)) badge = 'pending';
-        else if (/cancel|cnx|canceled|cancelled/i.test(status)) badge = 'cancelled';
-        else if (/unassign|unassigned/i.test(status)) badge = 'unassigned';
+        const normalizeStatus = (s) => {
+          const v = String(s || '').trim().toLowerCase();
+          if (!v) return '';
+          if (/^not\s*done$/.test(v)) return 'not-done';
+          if (/complete|completed\b/.test(v)) return 'completed';
+          if (/pending|sched|scheduled|pending install|pending tc|pending cos|pending change/.test(v)) return 'pending';
+          if (/cancel|cnx|canceled|cancelled/.test(v)) return 'cancelled';
+          if (/unassign|unassigned/.test(v)) return 'unassigned';
+          return v;
+        };
+        const badge = normalizeStatus(status);
+        // Detect IS prefix in full HTML context for this job
+        let hasIS = false;
+        try {
+          const safeId = String(jobId).replace(/[.*+?^${}()|[\]\\]/g, r=>r);
+          const re = new RegExp(safeId + "[^\n\r]*\\[\\s*IS\\s*:[^\]]*\]", 'i');
+          hasIS = re.test(String(html||''));
+          if (!hasIS) {
+            const re2 = new RegExp(safeId + "[\s\S]{0,80}class=\\\"job\\s+IS\\\"", 'i');
+            hasIS = re2.test(String(html||''));
+          }
+        } catch {}
         const key = `${tech}|${dateIso}`;
         if (!group[key]) group[key] = { techNo: tech, date: dateIso, stops: [], totalStops: 0, estimatedDuration: '' };
         const time = ts;
-        group[key].stops.push({ time, job: jobId, type, status, badge, tech, name, address: [addr, addr2, city].filter(Boolean).join(', ') });
+        group[key].stops.push({ time, job: jobId, type, status, normalizedStatus: badge, badge, tech, name, address: [addr, addr2, city].filter(Boolean).join(', '), hasIS });
       }
       for (const k of Object.keys(group)) { const r = group[k]; r.totalStops = r.stops.length; routes.push(r); }
     }
   } catch {}
+
+  // Additional fallback: parse table-based HTML (useful for newer/SSR pages)
+  try {
+    if (!routes.length) {
+      const data = parseHtmlToData(html || '');
+      const tables = data.tables || [];
+      for (const t of tables) {
+        const headers = (t.headers || []).map(h => String(h || '').trim());
+        const headerLower = headers.map(h => h.toLowerCase());
+        // Heuristic: require at least one of these columns
+        if (!(headerLower.some(h => h.includes('job')) || headerLower.some(h => h.includes('tech')) || headerLower.some(h => h.includes('schd')))) continue;
+        const idx = {};
+        headers.forEach((h,i) => {
+          const v = h.toLowerCase();
+          if (v.includes('tech')) idx.tech = i;
+          else if (v.includes('job')) idx.job = i;
+          else if (v.includes('time')) idx.time = i;
+          else if (v.includes('name')) idx.name = i;
+          else if (v.includes('addr')) idx.addr = i;
+          else if (v.includes('city')) idx.city = i;
+          else if (v.includes('status')) idx.status = i;
+          else if (v.includes('type')) idx.type = i;
+          else if (v.includes('phone')) idx.phone = i;
+          else if (v.includes('schd')) idx.schd = i;
+        });
+        const group = {};
+        for (const row of (t.rows || [])) {
+          const tech = String(row[idx.tech] || forcedTech || '').trim();
+          const jobId = String(row[idx.job] || '').trim();
+          const time = String(row[idx.time] || '').trim();
+          const name = String(row[idx.name] || '').trim();
+          const addr = String(row[idx.addr] || '').trim();
+          const city = String(row[idx.city] || '').trim();
+          const status = String(row[idx.status] || '').trim();
+          const type = String(row[idx.type] || '').trim();
+          let dateIso = '';
+          if (idx.schd !== undefined) dateIso = normalizeUsDateToIso(String(row[idx.schd] || '').trim());
+          if (!dateIso) dateIso = new Date().toISOString().slice(0,10);
+          const badge = (function(s){ const v=String(s||'').trim().toLowerCase(); if(!v) return ''; if(/^not\s*done$/.test(v)) return 'not-done'; if(/complete|completed\b/.test(v)) return 'completed'; if(/pending|sched|scheduled/.test(v)) return 'pending'; if(/cancel|cnx|canceled|cancelled/.test(v)) return 'cancelled'; if(/unassign|unassigned/.test(v)) return 'unassigned'; return v; })(status);
+          const key = `${tech}|${dateIso}`;
+          if (!group[key]) group[key] = { techNo: tech || '', date: dateIso || '', stops: [], totalStops: 0, estimatedDuration: '' };
+          group[key].stops.push({ time, job: jobId, type, status, normalizedStatus: badge, badge, tech, name, address: [addr, city].filter(Boolean).join(', '), phone: String(row[idx.phone]||'').trim() });
+        }
+        for (const k of Object.keys(group)) { const r = group[k]; r.totalStops = r.stops.length; routes.push(r); }
+      }
+    }
+  } catch (e) {}
+
   return routes;
 }
 
@@ -352,8 +455,22 @@ function writeCachedRoutes(filePath, routes) {
   try { fs.writeFileSync(filePath, JSON.stringify(routes || [], null, 2), 'utf8'); } catch {}
 }
 
+function isTodayDateIso(dateIso) {
+  try {
+    if (!dateIso) return true;
+    const today = new Date().toISOString().slice(0,10);
+    return String(dateIso) === today;
+  } catch { return false; }
+}
+
 async function fetchTechRoutesWithCache(tech, password, dateIso, opts = {}) {
   const cacheFile = getTechDateCachePath(tech, dateIso);
+  const cacheExists = fs.existsSync(cacheFile);
+  // For past dates, prefer any existing cache regardless of freshness and avoid overwriting it.
+  if (!isTodayDateIso(dateIso) && cacheExists && !opts.force) {
+    return readCachedRoutes(cacheFile);
+  }
+  // For today (or when no file exists yet), use freshness to decide whether to refetch
   if (!opts.force && isFreshCache(cacheFile)) {
     return readCachedRoutes(cacheFile);
   }
@@ -361,7 +478,10 @@ async function fetchTechRoutesWithCache(tech, password, dateIso, opts = {}) {
   const routes = deriveRoutesFromHtml(live.html || '', tech);
   const techRoutes = routes.filter(r => String(r.techNo) === String(tech));
   const filtered = dateIso ? techRoutes.filter(r => String(r.date) === String(dateIso)) : techRoutes;
-  writeCachedRoutes(cacheFile, filtered);
+  // Only write cache if we have data or it's explicitly for today. This preserves past-day caches.
+  if (filtered.length > 0 || isTodayDateIso(dateIso)) {
+    writeCachedRoutes(cacheFile, filtered);
+  }
   return filtered;
 }
 
@@ -388,11 +508,17 @@ async function fetchAllTechRoutes(dateIso, opts = {}) {
     const routes = await fetchTechRoutesWithCache(t.tech, t.password, dateIso, opts);
     // Persist per tech/date indefinitely
     const file = getTechDateCachePath(t.tech, dateIso || new Date().toISOString().slice(0,10));
-    writeCachedRoutes(file, routes);
+    // Do NOT overwrite past-day caches with empty arrays.
+    // Only write when we have data, or when caching today's runs.
+    if ((Array.isArray(routes) && routes.length > 0) || isTodayDateIso(dateIso)) {
+      writeCachedRoutes(file, routes);
+    }
     return routes;
   });
   const aggregated = [];
   for (const arr of chunks) aggregated.push(...arr);
+  // Persist aggregated routes for this date to local data directory
+  try { persistAggregatedRoutes(dateIso || new Date().toISOString().slice(0,10), aggregated); } catch {}
   return aggregated;
 }
 
@@ -489,11 +615,491 @@ async function fetchLiveHtmlWith(user, pass, targetUrl) {
   return { html, data: parseHtmlToData(html) };
 }
 
+// Navigate after login to a specific job detail pane and return its HTML
+async function fetchJobDetailHtmlWith(user, pass, jobId, targetUrl) {
+  if (!user || !pass) throw new Error('Missing user/pass');
+  if (!jobId) throw new Error('Missing jobId');
+  const url = targetUrl || TECHNET_URL;
+  const { chromium } = require('playwright');
+  const browser = await chromium.launch({ headless: HEADLESS, slowMo: SLOWMO });
+  const context = await browser.newContext({ permissions: ['geolocation'], geolocation: { latitude: 40.7128, longitude: -74.0060, accuracy: 100 } });
+  const page = await context.newPage();
+  await page.goto(url, { waitUntil: 'domcontentloaded' });
+  // Login
+  try {
+    const techInput = page.locator('input[name="techVal"], input[name="tech"], input[placeholder*="Tech"]');
+    const pwInput = page.locator('input[name="pinVal"], input[name="pin"], input[type="password"]');
+    if (await techInput.count()) { await techInput.fill(user); }
+    if (await pwInput.count()) { await pwInput.fill(pass); }
+    const loginBtn = page.locator('input[type="button"][value="Log On"], input[value="Log On"], button:has-text("Log On")');
+    if (await loginBtn.count()) {
+      await Promise.all([ page.waitForLoadState('networkidle').catch(() => {}), loginBtn.click().catch(() => {}) ]);
+    } else {
+      await page.keyboard.press('Enter').catch(() => {});
+      await page.waitForLoadState('networkidle').catch(() => {});
+    }
+  } catch {}
+  // Try to open job details
+  try {
+    // Strategy A: Click folded job tile div.job containing the jobId
+    const foldedTile = page.locator(`div.job:has-text("${jobId}")`);
+    if (await foldedTile.count()) {
+      await foldedTile.first().scrollIntoViewIfNeeded().catch(() => {});
+      await Promise.all([
+        page.waitForLoadState('networkidle').catch(() => {}),
+        foldedTile.first().click({ force: true }).catch(() => {})
+      ]);
+    } else {
+      // Strategy B: Click any element with text containing jobId (opened tile/td)
+      const jobText = page.locator(`text=${jobId}`);
+      if (await jobText.count()) {
+        await jobText.first().scrollIntoViewIfNeeded().catch(() => {});
+        await Promise.all([
+          page.waitForLoadState('networkidle').catch(() => {}),
+          jobText.first().click({ force: true }).catch(() => {})
+        ]);
+      } else {
+        // Strategy C: Fill a visible text input with jobId and press Enter
+        const anyText = page.locator('input[type="text"]');
+        if (await anyText.count()) {
+          await anyText.first().fill(jobId).catch(() => {});
+          await page.keyboard.press('Enter').catch(() => {});
+          await page.waitForLoadState('networkidle').catch(() => {});
+        }
+        // Strategy D: Click a "Go" button if present
+        const goBtn = page.locator('input[type="button"][value="Go"], button:has-text("Go")');
+        if (await goBtn.count()) {
+          await Promise.all([
+            page.waitForLoadState('networkidle').catch(() => {}),
+            goBtn.first().click().catch(() => {})
+          ]);
+        }
+      }
+    }
+    // Wait for job details signature to appear
+    await page.waitForFunction((jid) => {
+      const html = document.body.innerText || '';
+      return /Job\s*ID:/i.test(html) && html.includes(jid);
+    }, jobId, { timeout: 5000 }).catch(() => {});
+  } catch {}
+  const html = await page.content();
+  await browser.close();
+  return { html, data: parseHtmlToData(html) };
+}
+
 // Ensure cache dir exists
 const cacheDir = path.join(__dirname, 'cache');
 if (!fs.existsSync(cacheDir)) {
   try { fs.mkdirSync(cacheDir); } catch {}
 }
+const GEOCODE_CACHE_VERSION = process.env.GEOCODE_CACHE_VERSION || 'v2';
+const geocodeCacheDir = path.join(cacheDir, 'geocode', GEOCODE_CACHE_VERSION);
+try { if (!fs.existsSync(geocodeCacheDir)) fs.mkdirSync(geocodeCacheDir, { recursive: true }); } catch {}
+
+function geocodeCachePath(address) {
+  const key = String(address || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').slice(0,120);
+  return path.join(geocodeCacheDir, key + '.json');
+}
+
+// Geocode overrides (manual corrections)
+const geocodeOverridesPath = path.join(geocodeCacheDir, 'overrides.json');
+function readGeocodeOverrides() {
+  try {
+    if (fs.existsSync(geocodeOverridesPath)) return JSON.parse(fs.readFileSync(geocodeOverridesPath, 'utf8'));
+  } catch {}
+  return { jobs: {}, addresses: {} };
+}
+function writeGeocodeOverrides(obj) {
+  try { fs.writeFileSync(geocodeOverridesPath, JSON.stringify(obj, null, 2), 'utf8'); } catch {}
+}
+
+// Delegate address normalization to shared module (keeps logic centralized)
+const { normalizeAddress: _normalizeFromLib } = require(path.join(__dirname, 'lib', 'normalizeAddress'));
+function normalizeAddress(addr, extra = {}) {
+  try {
+    const res = _normalizeFromLib(String(addr || '')) || { normalized: '' };
+    // If extra.zip provided and module didn't capture it, append it
+    let normalized = String(res.normalized || '').trim();
+    if ((!res.zip || !res.zip.length) && extra && extra.zip) {
+      const z = String(extra.zip || '').trim();
+      if (z) normalized = (normalized + ' ' + z).trim();
+    }
+    return normalized;
+  } catch (e) {
+    // Fallback to raw minimal normalization
+    return String(addr || '').replace(/\s+/g, ' ').trim();
+  }
+}
+
+async function geocodeAddress(address, context = {}, opts = {}) {
+  const raw = String(address || '').trim();
+  if (!raw) return null;
+  const addr = normalizeAddress(raw, context);
+  const hasStreetNumber = /^\s*\d{1,6}\b/.test(addr);
+  // Overrides first (unless force-refresh requested)
+  const overrides = readGeocodeOverrides();
+  const addrKey = addr.toLowerCase();
+  if (!opts.force) {
+    if (overrides.addresses[addrKey]) return overrides.addresses[addrKey];
+    if (context.jobId && overrides.jobs[context.jobId]) return overrides.jobs[context.jobId];
+    // Cache hit - cache stores { chosen: {lat,lng,...}, candidates: [...] }
+    const p = geocodeCachePath(addr);
+    try {
+      if (fs.existsSync(p)) {
+        const obj = JSON.parse(fs.readFileSync(p, 'utf8'));
+        if (obj && obj.chosen && typeof obj.chosen.lat === 'number' && typeof obj.chosen.lng === 'number') return obj.chosen;
+      }
+    } catch {}
+  }
+
+  // Tier 0: parse coords from job details URL/fields when available (best source)
+  const p = geocodeCachePath(addr);
+  if (context.jobDetail && typeof context.jobDetail === 'object') {
+    const jd = context.jobDetail;
+    if (typeof jd.lat === 'number' && typeof jd.lng === 'number') {
+      const point = { lat: jd.lat, lng: jd.lng, provider: 'job', quality: 'rooftop', confidence: 1.0 };
+      try { fs.writeFileSync(p, JSON.stringify({ chosen: point, candidates: [point] }, null, 2), 'utf8'); } catch {}
+      return point;
+    }
+    const link = jd.mapLink || jd.googleMapsUrl || '';
+    const m = String(link).match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+    if (m) {
+      const point = { lat: Number(m[1]), lng: Number(m[2]), provider: 'job-link', quality: 'rooftop', confidence: 0.99 };
+      try { fs.writeFileSync(p, JSON.stringify({ chosen: point, candidates: [point] }, null, 2), 'utf8'); } catch {}
+      return point;
+    }
+  }
+
+  // Helper: provider query functions (return candidate or null)
+  const candidates = [];
+  const providerPriority = { google: 4, mapbox: 3, opencage: 2, nominatim: 1 };
+
+  // Google - prefer ROOFTOP and street_address results; include postal_code in components when available
+  try {
+    const key = process.env.GOOGLE_MAPS_API_KEY || '';
+    if (key) {
+      // Try to extract ZIP from normalized addr (if present as trailing token)
+      let zip = '';
+      const zipMatch = addr.match(/(\b\d{5}(?:-\d{4})?\b)$/);
+      if (zipMatch) zip = zipMatch[1];
+
+      const params = new URLSearchParams();
+      params.set('address', addr);
+      params.set('key', key);
+      // Prefer US and, when available, narrow by postal code for rooftop-quality matches
+      let comps = 'country:US';
+      if (zip) comps += `|postal_code:${zip}`;
+      params.set('components', comps);
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?${params.toString()}`;
+      const r = await fetch(url);
+      const j = await r.json();
+      const results = Array.isArray(j.results) ? j.results : [];
+      // Process all results and boost rooftop/street_address types
+      for (const res of results) {
+        if (!res || !res.geometry) continue;
+        const loc = res.geometry.location;
+        const lt = (res.geometry.location_type || '').toUpperCase();
+        const types = Array.isArray(res.types) ? res.types : [];
+        const isRooftop = lt === 'ROOFTOP' || types.includes('street_address');
+        // Base confidence: rooftop->0.95, partial->0.75
+        let baseConf = isRooftop ? 0.95 : 0.75;
+        // Inspect address_components for street_number/route/postal_code to boost certainty
+        try {
+          const comps = Array.isArray(res.address_components) ? res.address_components : [];
+          const hasStreetNumber = comps.some(c => Array.isArray(c.types) && c.types.includes('street_number'));
+          const hasRoute = comps.some(c => Array.isArray(c.types) && c.types.includes('route'));
+          const postalComp = comps.find(c => Array.isArray(c.types) && c.types.includes('postal_code'));
+          const countryComp = comps.find(c => Array.isArray(c.types) && c.types.includes('country'));
+          const compPost = postalComp ? (postalComp.long_name || postalComp.short_name || '') : '';
+          if (hasStreetNumber && hasRoute) baseConf += 0.05;
+          if (compPost && zip && compPost === zip) baseConf += 0.03;
+          if (countryComp && countryComp.short_name && countryComp.short_name.toUpperCase() !== (GEO_COUNTRY||'US')) {
+            // country mismatch — de-prioritize heavily
+            baseConf = Math.min(baseConf, 0.2);
+          }
+        } catch (e) {}
+        // If formatted address contains the exact house number and street, give a small boost
+        try {
+          const formatted = (res.formatted_address || '').toLowerCase();
+          const simpleAddr = addr.toLowerCase().replace(/\s+/g,' ').trim();
+          if (simpleAddr && formatted.includes(simpleAddr.split(' ').slice(0,3).join(' '))) baseConf += 0.02;
+        } catch {}
+        const cand = { lat: Number(loc.lat), lng: Number(loc.lng), provider: 'google', quality: isRooftop ? 'rooftop' : lt || 'partial', confidence: Math.min(1, baseConf) };
+        candidates.push(cand);
+      }
+    }
+  } catch (e) {}
+
+  // Mapbox - prefer place_type 'address' and high relevance as high-precision
+  try {
+    const token = process.env.MAPBOX_TOKEN || '';
+    if (token) {
+      const q = encodeURIComponent(addr);
+      const params = new URLSearchParams();
+      params.set('access_token', token);
+      params.set('country', 'US');
+      params.set('types', 'address');
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${q}.json?${params.toString()}`;
+      const r = await fetch(url);
+      const j = await r.json();
+      const f = Array.isArray(j.features) ? j.features[0] : null;
+      if (f && f.center) {
+        const rel = Number(f.relevance || 0);
+        // Treat high relevance and 'address' place_type as rooftop-like
+        const isAddr = Array.isArray(f.place_type) && f.place_type.includes('address');
+        let conf = rel;
+        if (isAddr && rel >= 0.9) conf = Math.max(conf, 0.9);
+        const cand = { lat: Number(f.center[1]), lng: Number(f.center[0]), provider: 'mapbox', quality: isAddr ? 'address' : (f.place_type && f.place_type[0] || 'unknown'), confidence: conf };
+        candidates.push(cand);
+      }
+    }
+  } catch (e) {}
+
+  // OpenCage (if configured) - treat house/component types as higher precision
+  try {
+    const key = process.env.OPENCAGE_KEY || '';
+    if (key) {
+      const params = new URLSearchParams();
+      params.set('q', addr);
+      params.set('key', key);
+      params.set('limit', '1');
+      const url = `https://api.opencagedata.com/geocode/v1/json?${params.toString()}`;
+      const r = await fetch(url);
+      const j = await r.json();
+      const res = Array.isArray(j.results) ? j.results[0] : null;
+      if (res && res.geometry) {
+        const baseConf = Number(res.annotations?.confidence || 0.7) || 0.7;
+        const isHouse = res.components && (res.components._type === 'house' || res.components._type === 'building');
+        const conf = isHouse ? Math.min(1, baseConf + 0.1) : baseConf;
+        const cand = { lat: Number(res.geometry.lat), lng: Number(res.geometry.lng), provider: 'opencage', quality: res.components && res.components._type || 'unknown', confidence: conf };
+        candidates.push(cand);
+      }
+    }
+  } catch (e) {}
+
+  // Nominatim (OpenStreetMap public endpoint) as last resort - prefer 'house' or 'building' types
+  try {
+    // Respect rate limits; only call when no high-confidence candidates exist
+    if (candidates.length === 0) {
+      const q = encodeURIComponent(addr + (GEO_COUNTRY ? `, ${GEO_COUNTRY}` : ''));
+      const params = new URLSearchParams();
+      params.set('format', 'json');
+      params.set('addressdetails', '0');
+      params.set('limit', '1');
+      const url = `https://nominatim.openstreetmap.org/search/${q}?${params.toString()}`;
+      const r = await fetch(url, { headers: { 'User-Agent': 'technet-dashboard/1.0 (+https://example.local)' } });
+      const j = await r.json();
+      const f = Array.isArray(j) ? j[0] : null;
+      if (f && f.lat && f.lon) {
+        const isHouse = (f.type || '').toLowerCase() === 'house' || (f.type || '').toLowerCase() === 'building';
+        const conf = isHouse ? 0.85 : 0.6;
+        const cand = { lat: Number(f.lat), lng: Number(f.lon), provider: 'nominatim', quality: f.type || 'unknown', confidence: conf };
+        candidates.push(cand);
+      }
+    }
+  } catch (e) {}
+
+  // Compute a precision score and choose the best candidate by adjusted confidence and provider priority
+  if (candidates.length) {
+    // Augment candidates with a small precision boost for rooftop/address/house quality
+    // Also penalize or drop candidates outside the GEO_BBOX
+    const bboxParts = (String(GEO_BBOX||'').split(',').map(x=>parseFloat(x.trim()))).filter(x=>!isNaN(x));
+    let minLng, minLat, maxLng, maxLat;
+    if (bboxParts.length === 4) {
+      [minLng, minLat, maxLng, maxLat] = bboxParts;
+    }
+    for (const c of candidates) {
+      let precisionBoost = 0;
+      const q = String(c.quality || '').toLowerCase();
+      if (q === 'rooftop' || q === 'street_address' || q === 'address') precisionBoost += 0.12;
+      if (q === 'house' || q === 'building') precisionBoost += 0.08;
+      // provider priority as a tiny tiebreaker
+      const pp = providerPriority[c.provider] || 0;
+      // Penalize out-of-bounds coordinates
+      let outOfBounds = false;
+      try {
+        if (typeof minLng === 'number' && typeof minLat === 'number' && typeof maxLng === 'number' && typeof maxLat === 'number') {
+          const lat = Number(c.lat);
+          const lng = Number(c.lng);
+          if (!(lng >= minLng && lng <= maxLng && lat >= minLat && lat <= maxLat)) {
+            outOfBounds = true;
+          }
+        }
+      } catch(e){}
+      if (outOfBounds) {
+        // heavy penalty for out-of-region results
+        c.adjusted = (Number(c.confidence || 0) * 0.3) + (pp * 0.001) - 0.1;
+        c.outOfBounds = true;
+      } else {
+        c.adjusted = (Number(c.confidence || 0) + precisionBoost) + (pp * 0.001);
+        c.outOfBounds = false;
+      }
+    }
+    candidates.sort((a,b) => {
+      if ((b.adjusted || 0) !== (a.adjusted || 0)) return (b.adjusted||0) - (a.adjusted||0);
+      return (providerPriority[b.provider]||0) - (providerPriority[a.provider]||0);
+    });
+    const chosen = candidates[0];
+    // Persist full candidate list and chosen pick
+    try { fs.writeFileSync(p, JSON.stringify({ chosen, candidates }, null, 2), 'utf8'); } catch (e) {}
+    return chosen;
+  }
+
+  return null;
+}
+
+// Persistent data directory for exported/stored stops (per-day)
+const dataDir = path.join(__dirname, 'data');
+try { if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true }); } catch {}
+
+function persistAggregatedRoutes(dateIso, routes) {
+  try {
+    const d = String(dateIso || new Date().toISOString().slice(0,10)).slice(0,10);
+    const p = path.join(dataDir, `stops-${d}.json`);
+    fs.writeFileSync(p, JSON.stringify({ date: d, generatedAt: new Date().toISOString(), routes: routes || [] }, null, 2), 'utf8');
+  } catch (e) {
+    // ignore write errors
+  }
+}
+
+// Endpoint to retrieve stored aggregated stops for a given date
+app.get('/api/stored', (req, res) => {
+  try {
+    const dateIso = String(req.query.date || '').trim() || new Date(Date.now() - 24*3600*1000).toISOString().slice(0,10);
+    const p = path.join(dataDir, `stops-${dateIso}.json`);
+    // If an aggregated file exists and has routes, return it.
+    try {
+      if (fs.existsSync(p)) {
+        const txt = fs.readFileSync(p, 'utf8');
+        try {
+          const obj = JSON.parse(txt || '{}');
+          if (Array.isArray(obj.routes) && obj.routes.length > 0) {
+            return res.json(obj);
+          }
+        } catch (e) {
+          // fallthrough to aggregation
+        }
+      }
+    } catch (e) {}
+
+    // Aggregate per-tech cached routes from cache/live if available
+    try {
+      const liveRoot = path.join(cacheDir, 'live');
+      const aggregated = [];
+      if (fs.existsSync(liveRoot)) {
+        for (const tech of fs.readdirSync(liveRoot)) {
+          try {
+            const file = path.join(liveRoot, tech, `${dateIso}.json`);
+            if (!fs.existsSync(file)) continue;
+            const txt = fs.readFileSync(file, 'utf8');
+            const json = JSON.parse(txt || '[]');
+            if (Array.isArray(json) && json.length) {
+              // json may be an array of route objects
+              for (const r of json) aggregated.push(r);
+            } else if (Array.isArray(json.routes) && json.routes.length) {
+              for (const r of json.routes) aggregated.push(r);
+            }
+          } catch (e) {
+            // ignore per-file errors
+          }
+        }
+      }
+      if (aggregated.length) {
+        // persist aggregated for future fast reads
+        try { persistAggregatedRoutes(dateIso, aggregated); } catch (e) {}
+        return res.json({ date: dateIso, generatedAt: new Date().toISOString(), routes: aggregated });
+      }
+    } catch (e) {
+      // ignore aggregation errors
+    }
+
+    // If nothing found, return empty result to the client so UI can show fallback
+    return res.json({ date: dateIso, generatedAt: new Date().toISOString(), routes: [] });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
+});
+
+// Geocode cache admin endpoints
+app.get('/api/geocode/cache', requireAdmin, (req, res) => {
+  try {
+    const q = String(req.query.q || '').toLowerCase();
+    const items = [];
+    if (fs.existsSync(geocodeCacheDir)) {
+      for (const f of fs.readdirSync(geocodeCacheDir)) {
+        if (!f.endsWith('.json')) continue;
+        if (q && !f.includes(q)) continue;
+        const full = path.join(geocodeCacheDir, f);
+        const stat = fs.statSync(full);
+        items.push({ file: f, path: full, mtimeMs: stat.mtimeMs, size: stat.size });
+      }
+    }
+    return res.json({ version: GEOCODE_CACHE_VERSION, dir: geocodeCacheDir, items });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+app.delete('/api/geocode/cache', requireAdmin, (req, res) => {
+  try {
+    const address = String(req.query.address || '').trim();
+    if (!address) return res.status(400).json({ error: 'address is required' });
+    const p = geocodeCachePath(address);
+    if (fs.existsSync(p)) fs.unlinkSync(p);
+    return res.json({ ok: true, removed: p });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+app.post('/api/geocode/cache/clearAll', requireAdmin, (req, res) => {
+  try {
+    let count = 0;
+    if (fs.existsSync(geocodeCacheDir)) {
+      for (const f of fs.readdirSync(geocodeCacheDir)) {
+        if (f.endsWith('.json')) { fs.unlinkSync(path.join(geocodeCacheDir, f)); count++; }
+      }
+    }
+    return res.json({ ok: true, cleared: count });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Rebuild geocode cache for a given stored date (batch re-geocode)
+app.post('/api/geocode/rebuild', requireAdmin, async (req, res) => {
+  try {
+    const dateIso = String(req.query.date || req.body?.date || '').trim();
+    if (!dateIso || !/\d{4}-\d{2}-\d{2}/.test(dateIso)) return res.status(400).json({ error: 'date (YYYY-MM-DD) is required' });
+    const p = path.join(dataDir, `stops-${dateIso}.json`);
+    if (!fs.existsSync(p)) return res.status(404).json({ error: 'stored stops file not found for date ' + dateIso });
+    const txt = fs.readFileSync(p, 'utf8');
+    const obj = JSON.parse(txt || '{}');
+    const routes = Array.isArray(obj.routes) ? obj.routes : [];
+    const threshold = parseFloat(String(req.query.threshold || req.body?.threshold || '0.85'));
+    const low = [];
+    let total = 0, updated = 0;
+    for (const r of routes) {
+      const stops = Array.isArray(r.stops) ? r.stops : [];
+      for (const s of stops) {
+        const address = s.address || [s.addr, s.addr2, s.city].filter(Boolean).join(', ');
+        if (!address) continue;
+        total++;
+        try {
+          const point = await geocodeAddress(address, { jobId: s.job }, { force: true });
+          if (point) updated++;
+          const conf = (point && typeof point.confidence === 'number') ? point.confidence : 0;
+          if (!point || conf < threshold) {
+            low.push({ job: s.job || s.jobId || '', address, result: point || null, confidence: conf });
+          }
+        } catch (e) {
+          low.push({ job: s.job || s.jobId || '', address, error: String(e.message || e) });
+        }
+      }
+    }
+    return res.json({ date: dateIso, totalAddresses: total, updatedCache: updated, lowConfidenceCount: low.length, lowConfidenceExamples: low.slice(0, 200) });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
 
 // Admin auth configuration
 const crypto = require('crypto');
@@ -530,6 +1136,58 @@ function requireAdmin(req, res, next) {
   }
 }
 
+// Fail-fast guard: if a login attempt fails once, skip further attempts for a cooldown period
+let loginFailUntilMs = 0;
+const LOGIN_COOLDOWN_MS = 15 * 60 * 1000; // 15 minutes
+
+function isLoginCoolingDown() {
+  return Date.now() < loginFailUntilMs;
+}
+
+function markLoginFailed() {
+  loginFailUntilMs = Date.now() + LOGIN_COOLDOWN_MS;
+}
+
+// Prefer per-tech creds; single attempt only; detect login failure and do NOT retry
+async function fetchLivePreferCreds(req) {
+  if (isLoginCoolingDown()) {
+    const mins = Math.ceil((loginFailUntilMs - Date.now()) / 60000);
+    const err = new Error(`Login attempts paused for ${mins} min due to prior failure`);
+    err.code = 'LOGIN_COOLDOWN';
+    throw err;
+  }
+  // Resolve credentials: tech param -> techs.json; else env
+  const techParam = String(req.query.tech || '').trim();
+  let user = '';
+  let pass = '';
+  if (techParam) {
+    const creds = resolveCredsFromTechs(techParam) || {};
+    user = creds.user || creds.username || '';
+    pass = creds.pass || creds.password || '';
+  } else {
+    user = process.env.TECHNET_USER || process.env.TECHNET_USERNAME || '';
+    pass = process.env.TECHNET_PASS || process.env.TECHNET_PASSWORD || '';
+  }
+  if (!user || !pass) {
+    const err = new Error('Missing TECHNET credentials');
+    err.code = 'MISSING_CREDS';
+    throw err;
+  }
+  // Single live attempt
+  const result = await fetchLiveHtmlWith(user, pass, TECHNET_URL);
+  const html = String(result.html || '');
+  // Heuristics: if page still shows a login form or explicit invalid message, mark failure
+  const looksLikeLoginPage = /Log\s*On/i.test(html) && /input[^>]+name=["']?pinVal|input[^>]+type=["']?password/i.test(html);
+  const showsError = /invalid|failed|locked|try\s*again/i.test(html);
+  if (looksLikeLoginPage || showsError) {
+    markLoginFailed();
+    const err = new Error('Login failed – skipping further attempts to avoid account lock');
+    err.code = 'LOGIN_FAILED';
+    throw err;
+  }
+  return result;
+}
+
 // Admin login/logout
 app.post('/api/admin/login', (req, res) => {
   const { username, password } = req.body || {};
@@ -558,6 +1216,70 @@ app.get('/admin', (req, res) => {
   return res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
+// Admin geocode UI page
+app.get('/admin/geocode', requireAdmin, (req, res) => {
+  return res.sendFile(path.join(__dirname, 'public', 'admin-geocode.html'));
+});
+
+// Endpoint: list low-confidence addresses for a date
+app.get('/api/geocode/low', requireAdmin, (req, res) => {
+  try {
+    const dateIso = String(req.query.date || '').trim();
+    if (!dateIso || !/\d{4}-\d{2}-\d{2}/.test(dateIso)) return res.status(400).json({ error: 'date (YYYY-MM-DD) is required' });
+    const threshold = parseFloat(String(req.query.threshold || '0.85'));
+    const p = path.join(dataDir, `stops-${dateIso}.json`);
+    if (!fs.existsSync(p)) return res.status(404).json({ error: 'stored stops file not found for date ' + dateIso });
+    const txt = fs.readFileSync(p, 'utf8');
+    const obj = JSON.parse(txt || '{}');
+    const routes = Array.isArray(obj.routes) ? obj.routes : [];
+    const low = [];
+    let total = 0;
+    for (const r of routes) {
+      const stops = Array.isArray(r.stops) ? r.stops : [];
+      for (const s of stops) {
+        const address = s.address || [s.addr, s.addr2, s.city].filter(Boolean).join(', ');
+        if (!address) continue;
+        total++;
+        const keyPath = geocodeCachePath(normalizeAddress(address));
+        let cache = null;
+        try { if (fs.existsSync(keyPath)) cache = JSON.parse(fs.readFileSync(keyPath, 'utf8')); } catch {}
+        const chosen = cache && cache.chosen ? cache.chosen : null;
+        const conf = chosen && typeof chosen.confidence === 'number' ? chosen.confidence : 0;
+        if (!chosen || conf < threshold) {
+          low.push({ job: s.job || s.jobId || '', address, result: chosen, confidence: conf });
+        }
+      }
+    }
+    return res.json({ date: dateIso, totalAddresses: total, low });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Endpoint: apply manual override (by job or address)
+app.post('/api/geocode/override', requireAdmin, (req, res) => {
+  try {
+    const body = req.body || {};
+    const address = String(body.address || '').trim();
+    const job = String(body.job || '').trim();
+    const lat = Number(body.lat);
+    const lng = Number(body.lng);
+    if (!address || !isFinite(lat) || !isFinite(lng)) return res.status(400).json({ error: 'address, lat, lng required' });
+    const keyPath = geocodeCachePath(normalizeAddress(address));
+    const point = { lat: Number(lat), lng: Number(lng), provider: 'override', quality: 'manual', confidence: 1.0 };
+    const obj = { chosen: point, candidates: [point] };
+    try { fs.writeFileSync(keyPath, JSON.stringify(obj, null, 2), 'utf8'); } catch (e) {}
+    // also persist to overrides.json for future preference
+    const overrides = readGeocodeOverrides();
+    if (job) overrides.jobs[job] = point;
+    overrides.addresses[normalizeAddress(address).toLowerCase()] = point;
+    writeGeocodeOverrides(overrides);
+    return res.json({ ok: true, path: keyPath, point });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 app.get('/api/technet', async (req, res) => {
   try {
     const forceLive = (req.query.mode || '').toLowerCase() === 'live';
@@ -580,7 +1302,9 @@ app.get('/api/technet', async (req, res) => {
     } catch {}
     return res.json({ mode: 'live', ...result });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    const code = err && err.code;
+    const status = code === 'LOGIN_COOLDOWN' ? 429 : (code === 'LOGIN_FAILED' ? 401 : 500);
+    return res.status(status).json({ error: err.message, code });
   }
 });
 
@@ -624,77 +1348,183 @@ app.get('/api/technet.csv', async (req, res) => {
     res.setHeader('Content-Disposition', 'attachment; filename="technet.csv"');
     return res.send(csv || '');
   } catch (err) {
-    return res.status(500).send('error: ' + err.message);
+    const code = err && err.code;
+    const status = code === 'LOGIN_COOLDOWN' ? 429 : (code === 'LOGIN_FAILED' ? 401 : 500);
+    res.status(status);
+    return res.send('error: ' + err.message + (code ? ` (${code})` : ''));
+  }
+});
+
+// Import routes from offline HTML into per-tech/date caches for a given date
+app.post('/api/routes.importOffline', async (req, res) => {
+  try {
+    const dateIso = String(req.query.date || req.body?.date || '').trim();
+    if (!dateIso || !/\d{4}-\d{2}-\d{2}/.test(dateIso)) {
+      return res.status(400).json({ error: 'date (YYYY-MM-DD) is required' });
+    }
+    const offline = tryOfflineCapture();
+    if (!offline || !offline.html) return res.status(404).json({ error: 'offline HTML not found' });
+    const routes = deriveRoutesFromHtml(offline.html);
+    const filtered = Array.isArray(routes) ? routes.filter(r => String(r.date) === String(dateIso)) : [];
+    if (!filtered.length) return res.status(404).json({ error: 'no routes found in offline HTML for date ' + dateIso });
+    // Write per-tech/date caches
+    let written = 0;
+    for (const r of filtered) {
+      const tech = String(r.techNo || '').trim();
+      if (!tech) continue;
+      const file = getTechDateCachePath(tech, dateIso);
+      writeCachedRoutes(file, [r]);
+      written++;
+    }
+    return res.json({ ok: true, date: dateIso, techs: written });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Pin a day's routes: copy per-tech date caches to a protected folder
+const pinnedDir = path.join(cacheDir, 'pinned');
+try { if (!fs.existsSync(pinnedDir)) fs.mkdirSync(pinnedDir, { recursive: true }); } catch {}
+
+app.get('/api/routes.pinned', (req, res) => {
+  try {
+    const items = [];
+    if (fs.existsSync(pinnedDir)) {
+      for (const f of fs.readdirSync(pinnedDir)) {
+        if (f.endsWith('.json')) {
+          const full = path.join(pinnedDir, f);
+          const stat = fs.statSync(full);
+          items.push({ file: f, path: full, mtimeMs: stat.mtimeMs, size: stat.size });
+        }
+      }
+    }
+    return res.json({ dir: pinnedDir, items });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/routes.pinDay', async (req, res) => {
+  try {
+    const dateIso = String(req.query.date || req.body?.date || '').trim();
+    if (!dateIso || !/\d{4}-\d{2}-\d{2}/.test(dateIso)) {
+      return res.status(400).json({ error: 'date (YYYY-MM-DD) is required' });
+    }
+    const liveRoot = path.join(cacheDir, 'live');
+    if (!fs.existsSync(liveRoot)) return res.status(404).json({ error: 'no live cache root' });
+    let copied = 0;
+    for (const tech of fs.readdirSync(liveRoot)) {
+      const src = path.join(liveRoot, tech, `${dateIso}.json`);
+      if (!fs.existsSync(src)) continue;
+      const dst = path.join(pinnedDir, `${tech}-${dateIso}.json`);
+      try {
+        const buf = fs.readFileSync(src);
+        fs.writeFileSync(dst, buf);
+        copied++;
+      } catch {}
+    }
+    if (!copied) return res.status(404).json({ error: 'no per-tech caches found for date ' + dateIso });
+    return res.json({ ok: true, date: dateIso, copied });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
 });
 
 // CSV export for route list
-app.get('/api/routes.csv', async (req, res) => {
+async function exportRoutesCsv(req, res) {
   try {
-    // Build dashboard payload similarly to /api/dashboard
+    // Defaults: aggregate all techs for today, stream CSV
     const forceLive = (req.query.mode || '').toLowerCase() === 'live';
-    const wantAll = (String(req.query.tech || '').toLowerCase() === 'all') || (String(req.query.all || '') === '1');
-    const dateIso = String(req.query.date || '').trim();
+    const paramTech = String(req.query.tech || '').trim().toLowerCase();
+    const wantAll = paramTech !== '' ? paramTech === 'all' : true;
+    const dateIso = String(req.query.date || '').trim() || new Date().toISOString().slice(0,10);
     const force = String(req.query.force || '') === '1';
-    let payload;
-    if (!forceLive) {
-      const offline = tryOfflineCapture();
-      if (offline) {
-        const technicians = deriveTechniciansFromData(offline.data);
-        const summary = deriveSummaryFromData(offline.data);
-        payload = { mode: 'offline', title: offline.data.title, technicians, summary, routes: [], raw: offline };
+
+    // Prepare response headers for streaming
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename="routes-' + dateIso + (wantAll ? '-all' : '-' + (paramTech || '')) + '.csv"');
+
+    // Helper: write a single CSV line
+    const writeCsvRow = (arr) => {
+      const line = arr.map(c => '"' + String(c ?? '').replace(/"/g, '""') + '"').join(',') + '\n';
+      if (!res.write(line)) {
+        // backpressure: wait for drain before continuing
+        return new Promise(resolve => res.once('drain', resolve));
       }
-    }
-    if (!payload) {
-      if (wantAll) {
-        const routes = await fetchAllTechRoutes(dateIso || undefined, { force });
-        // Derive a minimal technicians list from the aggregated routes
-        const techMap = new Map();
-        for (const r of routes) {
-          const key = String(r.techNo || '').trim();
-          if (!key) continue;
-          if (!techMap.has(key)) {
-            techMap.set(key, {
-              name: `Tech ${key}`,
-              status: undefined,
-              techNo: key,
-              workSkill: undefined,
-              provider: undefined,
-              lastActivity: undefined
-            });
+      return Promise.resolve();
+    };
+
+    // Write header first (without normalizedStatus for export)
+    await writeCsvRow(['date','techNo','time','job','type','status','tech','name','address','phone']);
+
+    // Resolve payload routes
+    let routes = [];
+    if (wantAll) {
+      routes = await fetchAllTechRoutes(dateIso, { force });
+      // Strictly filter to requested date to avoid prior-day cache bleed
+      routes = Array.isArray(routes) ? routes.filter(r => String(r.date) === String(dateIso)) : [];
+      // Fallback: if empty, try offline capture
+      if (!routes.length) {
+        try {
+          const offline = tryOfflineCapture();
+          if (offline && offline.html) {
+            const derived = deriveRoutesFromHtml(offline.html);
+            const filtered = Array.isArray(derived) ? derived.filter(r => String(r.date) === String(dateIso)) : [];
+            if (filtered.length) routes = filtered;
           }
-        }
-        const technicians = Array.from(techMap.values());
-        payload = { mode: 'live', title: 'All Techs', technicians, summary: {}, routes, raw: {} };
+        } catch {}
+      }
+    } else {
+      // Single-tech: prefer cache helper
+      const techId = String(req.query.tech || '').trim();
+      if (techId) {
+        const creds = resolveCredsFromTechs(techId) || {};
+        const arr = await fetchTechRoutesWithCache(techId, creds.password || '', dateIso, { force });
+        routes = Array.isArray(arr) ? arr : [];
       } else {
+        // Fallback to live single-page parse
         const live = await fetchLivePreferCreds(req);
-        const technicians = deriveTechniciansFromData(live.data);
-        const summary = deriveSummaryFromData(live.data);
-        let routes = [];
-        try { routes = deriveRoutesFromHtml(live.html || ''); } catch {}
-        payload = { mode: 'live', title: live.data.title, technicians, summary, routes, raw: live };
+        routes = deriveRoutesFromHtml(live.html || '');
+        routes = routes.filter(r => String(r.date) === dateIso);
+        // Additional offline fallback if still empty
+        if (!routes.length) {
+          try {
+            const offline = tryOfflineCapture();
+            if (offline && offline.html) {
+              const derived = deriveRoutesFromHtml(offline.html);
+              const filtered = Array.isArray(derived) ? derived.filter(r => String(r.date) === String(dateIso)) : [];
+              if (filtered.length) routes = filtered;
+            }
+          } catch {}
+        }
       }
     }
-    if (!payload.routes || payload.routes.length === 0) {
-      try {
-        const sampleDash = JSON.parse(fs.readFileSync(path.join(__dirname, 'sample-dashboard.json'), 'utf8'));
-        payload.routes = sampleDash.routes || [];
-      } catch {}
-    }
-    const rows = [];
-    // Header
-    rows.push(['date','techNo','time','job','type','status','badge','tech','name','address','phone']);
-    const routesOut = wantAll ? (payload.routes || []) : [ (payload.routes || [])[0] || { stops: [], date: '', techNo: '' } ];
-    for (const route of routesOut) {
-      for (const s of route.stops || []) {
-        rows.push([
-          route.date || '',
+
+    // Stream rows per stop without accumulating in memory
+    // Optional: stable sort by tech then time
+    try {
+      routes.sort((a,b) => String(a.techNo).localeCompare(String(b.techNo)) || String(a.date).localeCompare(String(b.date)));
+    } catch {}
+    const normalizeStatus = (s) => {
+      const v = String(s || '').trim().toLowerCase();
+      if (!v) return '';
+      if (/^not\s*done$/.test(v)) return 'not-done';
+      if (/complete|completed\b/.test(v)) return 'completed';
+      if (/pending|sched|scheduled|pending install|pending tc|pending cos|pending change/.test(v)) return 'pending';
+      if (/cancel|cnx|canceled|cancelled/.test(v)) return 'cancelled';
+      if (/unassign|unassigned/.test(v)) return 'unassigned';
+      return v;
+    };
+    for (const route of routes) {
+      for (const s of (route.stops || [])) {
+        // eslint-disable-next-line no-await-in-loop
+        await writeCsvRow([
+          route.date || dateIso,
           route.techNo || '',
           s.time || '',
           s.job || '',
           s.type || '',
           s.status || '',
-          s.badge || '',
           s.tech || '',
           s.name || '',
           s.address || '',
@@ -702,13 +1532,130 @@ app.get('/api/routes.csv', async (req, res) => {
         ]);
       }
     }
-    const toCsv = (rows) => rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
-    const csv = toCsv(rows);
-    res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', 'attachment; filename="routes.csv"');
-    return res.send(csv);
+    return res.end();
+  } catch (err) {
+    // If streaming fails mid-way, ensure proper error response
+    if (!res.headersSent) {
+      res.setHeader('Content-Type', 'text/plain');
+    }
+    try { res.write('error: ' + err.message); } catch {}
+    return res.end();
+  }
+}
+
+// Register handlers for common path variants (defensive against double-slash URLs)
+app.get('/api/routes.csv', exportRoutesCsv);
+app.get('//api/routes.csv', exportRoutesCsv);
+
+// Excel export: aggregate all techs stops into a single worksheet
+app.get('/api/routes.xlsx', async (req, res) => {
+  try {
+    const dateIso = String(req.query.date || '').trim() || new Date().toISOString().slice(0,10);
+    const force = String(req.query.force || '') === '1';
+    const workbook = new ExcelJS.Workbook();
+    const sheet = workbook.addWorksheet('Routes');
+    sheet.columns = [
+      { header: 'date', key: 'date', width: 12 },
+      { header: 'techNo', key: 'techNo', width: 10 },
+      { header: 'time', key: 'time', width: 10 },
+      { header: 'job', key: 'job', width: 12 },
+      { header: 'type', key: 'type', width: 8 },
+      { header: 'status', key: 'status', width: 18 },
+      { header: 'tech', key: 'tech', width: 10 },
+      { header: 'name', key: 'name', width: 28 },
+      { header: 'address', key: 'address', width: 40 },
+      { header: 'phone', key: 'phone', width: 18 }
+    ];
+    // Fetch all tech routes and strictly filter to requested date
+    let routes = await fetchAllTechRoutes(dateIso, { force });
+    routes = Array.isArray(routes) ? routes.filter(r => String(r.date) === String(dateIso)) : [];
+    // Fallback: if no routes found (e.g., past day closed or creds failing), try offline capture
+    if (!routes.length) {
+      try {
+        const offline = tryOfflineCapture();
+        if (offline && offline.html) {
+          const derived = deriveRoutesFromHtml(offline.html);
+          const filtered = Array.isArray(derived) ? derived.filter(r => String(r.date) === String(dateIso)) : [];
+          if (filtered.length) routes = filtered;
+        }
+      } catch {}
+    }
+    try { routes.sort((a,b) => String(a.techNo).localeCompare(String(b.techNo)) || String(a.date).localeCompare(String(b.date))); } catch {}
+    const normalizeStatus = (s) => {
+      const v = String(s || '').trim().toLowerCase();
+      if (!v) return '';
+      if (/^not\s*done$/.test(v)) return 'not-done';
+      if (/complete|completed\b/.test(v)) return 'completed';
+      if (/pending|sched|scheduled|pending install|pending tc|pending cos|pending change/.test(v)) return 'pending';
+      if (/cancel|cnx|canceled|cancelled/.test(v)) return 'cancelled';
+      if (/unassign|unassigned/.test(v)) return 'unassigned';
+      return v;
+    };
+    for (const route of routes) {
+      for (const s of (route.stops || [])) {
+        sheet.addRow({
+          date: route.date || dateIso,
+          techNo: route.techNo || '',
+          time: s.time || '',
+          job: s.job || '',
+          type: s.type || '',
+          status: s.status || '',
+          tech: s.tech || '',
+          name: s.name || '',
+          address: s.address || '',
+          phone: s.phone || ''
+        });
+      }
+    }
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', `attachment; filename="routes-${dateIso}-all.xlsx"`);
+    await workbook.xlsx.write(res);
+    return res.end();
   } catch (err) {
     return res.status(500).send('error: ' + err.message);
+  }
+});
+
+// Preview first N rows for a given date (JSON), mirroring Excel/CSV logic with offline fallback
+app.get('/api/routes.sample', async (req, res) => {
+  try {
+    const dateIso = String(req.query.date || '').trim() || new Date().toISOString().slice(0,10);
+    const force = String(req.query.force || '') === '1';
+    const limit = Math.max(1, Math.min(50, parseInt(String(req.query.limit||'10'), 10) || 10));
+    let routes = await fetchAllTechRoutes(dateIso, { force });
+    routes = Array.isArray(routes) ? routes.filter(r => String(r.date) === String(dateIso)) : [];
+    if (!routes.length) {
+      try {
+        const offline = tryOfflineCapture();
+        if (offline && offline.html) {
+          const derived = deriveRoutesFromHtml(offline.html);
+          const filtered = Array.isArray(derived) ? derived.filter(r => String(r.date) === String(dateIso)) : [];
+          if (filtered.length) routes = filtered;
+        }
+      } catch {}
+    }
+    const rows = [];
+    for (const route of (routes||[])) {
+      for (const s of (route.stops||[])) {
+        rows.push({
+          date: route.date || dateIso,
+          techNo: route.techNo || '',
+          time: s.time || '',
+          job: s.job || '',
+          type: s.type || '',
+          status: s.status || '',
+          tech: s.tech || '',
+          name: s.name || '',
+          address: s.address || '',
+          phone: s.phone || ''
+        });
+        if (rows.length >= limit) break;
+      }
+      if (rows.length >= limit) break;
+    }
+    return res.json({ date: dateIso, count: rows.length, rows });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
   }
 });
 
@@ -772,6 +1719,77 @@ app.get('/api/dashboard', async (req, res) => {
     let payload;
     if (!payload) {
       const routes = await fetchAllTechRoutes(dateIso, { force });
+      // Compute centroid of known points to bias geocoding proximity
+      let sumLat = 0, sumLng = 0, countPts = 0;
+      routes.forEach(r => (r.stops||[]).forEach(s => {
+        const p = s.point || s.location;
+        if (p && typeof p.lat === 'number' && typeof p.lng === 'number') { sumLat += p.lat; sumLng += p.lng; countPts++; }
+      }));
+      const proxLat = countPts ? (sumLat / countPts) : GEO_PROX_LAT;
+      const proxLng = countPts ? (sumLng / countPts) : GEO_PROX_LNG;
+      // Enrich stops with coordinates via server-side geocoding cache
+      const debug = String(req.query._debug || req.query.debug || '') === '1';
+      for (const r of routes) {
+        for (const s of (r.stops || [])) {
+          const p = s.point || s.location;
+          if (!p || typeof p.lat !== 'number' || typeof p.lng !== 'number') {
+            const g = await geocodeAddress(s.address || s.name || '', { proxLat, proxLng, state: s.state, city: s.city, zip: s.zip, jobId: s.job });
+            if (g) s.point = g;
+          }
+          // Normalize status to distinguish Pending vs In Progress vs Completed/Cancelled/Not Done
+          const raw = String(s.status || s.badge || '').trim().toLowerCase();
+          const hints = [String(s.staticStatus||'').toLowerCase(), String(s.description||'').toLowerCase(), String(s.jobComment||'').toLowerCase(), String(s.timeFrame||'').toLowerCase(), String(s.dispatchComment||'').toLowerCase(), String(s.staticCompletionTime||'').toLowerCase()];
+          const text = [raw].concat(hints).join(' ');
+          // Signal helpers
+          const hasCpTime = !!s.staticCompletionTime || /\bcp\s*time\b/.test(text) || /\bcomplete(d)?\b/.test(text);
+          const isCancelled = /\bcancel(l|ed|led)?\b|\bcnx\b/.test(text);
+          const isNotDone = /\bnot\s*done\b/.test(text);
+          const hasDispatchActivity = Boolean(s.dispatchComment) || /dispatch\s*(started|begin|en\s*route|on\s*route|arriv(ed|ing)|working)/.test(text);
+          // CSG Technet header prefix: [IS:...] indicates In-Progress/Started
+          const hasISPrefix = Boolean(s.hasIS) || /\[\s*IS\s*:/i.test(text);
+          const hasStartWords = /\b(in\s*progress|started|begin|working|on\s*route|en\s*route)\b/.test(text);
+          const isAssigned = /\bassign(ed)?\b/.test(text);
+          const isPendingWords = /\bpending\b|\bsched(uled)?\b|awaiting\s*start|not\s*started/.test(text);
+          // Time window heuristic for TS: if present, lean towards in-progress during window
+          const withinTimeWindow = (() => {
+            const tf = String(s.timeFrame||'').trim();
+            const m = tf.match(/(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/);
+            if (!m) return false;
+            const now = new Date();
+            const [ , start, end ] = m;
+            const toDate = (hhmm) => {
+              const [h, min] = hhmm.split(':').map(Number);
+              const d = new Date(now);
+              d.setHours(h, min, 0, 0);
+              return d;
+            };
+            const sD = toDate(start);
+            const eD = toDate(end);
+            return now >= sD && now <= eD;
+          })();
+          let norm = '';
+          if (isNotDone) norm = 'not-done';
+          else if (isCancelled) norm = 'cancelled';
+          else if (hasCpTime) norm = 'completed';
+          else if (hasISPrefix || hasDispatchActivity || hasStartWords || isAssigned || withinTimeWindow) norm = 'in-progress';
+          else if (isPendingWords) norm = 'pending';
+          else norm = raw || '';
+          s.normalizedStatus = norm;
+          // Ensure UI surfaces "In Progress" even if DS says Pending
+          if (norm === 'in-progress') {
+            s.badge = 'In Progress';
+            s.status = 'In Progress';
+          }
+          if (debug) {
+            s._debug = {
+              job: s.job,
+              hasIS: Boolean(s.hasIS),
+              rawStatus: String(s.status||'') || String(s.badge||''),
+              final: norm
+            };
+          }
+        }
+      }
       const techJson = getAllTechsFromJson();
       const technicians = techJson.map(t => ({
         name: t.name || `Tech ${t.tech}`,
@@ -799,6 +1817,37 @@ app.get('/api/dashboard', async (req, res) => {
       } catch {}
     }
     return res.json(payload);
+  } catch (err) {
+    const code = err && err.code;
+    const status = code === 'LOGIN_COOLDOWN' ? 429 : (code === 'LOGIN_FAILED' ? 401 : 500);
+    return res.status(status).json({ error: err.message, code });
+  }
+});
+
+// Server-side geocode helper endpoint
+app.get('/api/geocode', async (req, res) => {
+  try {
+    const address = String(req.query.address || '').trim();
+    if (!address) return res.status(400).json({ error: 'address is required' });
+    const context = { city: req.query.city, state: req.query.state, zip: req.query.zip, jobId: req.query.jobId };
+    const point = await geocodeAddress(address, context);
+    if (!point) return res.status(404).json({ error: 'not found' });
+    return res.json({ address, point });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+// Persist manual geocode overrides
+app.post('/api/geocode/override', async (req, res) => {
+  try {
+    const { jobId, address, lat, lng } = req.body || {};
+    const point = { lat: Number(lat), lng: Number(lng), provider: 'override', quality: 'rooftop', confidence: 1.0 };
+    if (!address && !jobId) return res.status(400).json({ error: 'address or jobId is required' });
+    const ov = readGeocodeOverrides();
+    if (jobId) ov.jobs[String(jobId)] = point;
+    if (address) ov.addresses[String(address).toLowerCase()] = point;
+    writeGeocodeOverrides(ov);
+    return res.json({ ok: true, saved: point });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -891,7 +1940,10 @@ app.get('/api/cache/routes/list', requireAdmin, (req, res) => {
           files.forEach(f => {
             const full = path.join(dir, f);
             const stat = fs.statSync(full);
-            result.push({ tech: t, path: full, date: f.replace(/\.json$/, ''), mtimeMs: stat.mtimeMs });
+            let routes = [];
+            try { routes = JSON.parse(fs.readFileSync(full, 'utf8')); } catch {}
+            const stops = Array.isArray(routes) ? routes.reduce((n, r) => n + ((r && Array.isArray(r.stops)) ? r.stops.length : 0), 0) : 0;
+            result.push({ tech: t, path: full, date: f.replace(/\.json$/, ''), mtimeMs: stat.mtimeMs, size: stat.size, routesCount: Array.isArray(routes) ? routes.length : 0, stopsCount: stops });
           });
         }
       });
@@ -1086,8 +2138,8 @@ app.get('/api/job/:jobId', async (req, res) => {
           return res.status(400).json({ error: 'Missing TECHNET credentials: provide ?tech=<id> or set global env TECHNET_USER/TECHNET_PASS' });
         }
       }
-      console.log(`[job] live fetch with user=${user ? '***' : ''} pass=${pass ? '***' : ''}`);
-      const live = await fetchLiveHtmlWith(user, pass, TECHNET_URL);
+      console.log(`[job] live fetch (job detail) with user=${user ? '***' : ''} pass=${pass ? '***' : ''}`);
+      const live = await fetchJobDetailHtmlWith(user, pass, jobId, TECHNET_URL);
       dataObj = live.data;
       console.log(`[job] live html length=${(live.html||'').length} tables=${Array.isArray(dataObj?.tables)?dataObj.tables.length:0} fields=${Array.isArray(dataObj?.fields)?dataObj.fields.length:0}`);
       try { fs.writeFileSync(path.join(cacheDir, 'latest.json'), JSON.stringify(dataObj, null, 2), 'utf8'); } catch {}
@@ -1558,6 +2610,88 @@ app.get('/api/job/debug/:jobId', async (req, res) => {
     out.parsedKeys = Object.keys(result).filter(k => k !== 'job');
     out.data = result;
     return res.json(out);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Debug: report aggregated and per-tech cache counts for a given date
+app.get('/api/debug/aggregate', (req, res) => {
+  try {
+    const dateIso = String(req.query.date || '').trim() || new Date().toISOString().slice(0,10);
+    const aggPath = path.join(dataDir, `stops-${dateIso}.json`);
+    const liveRoot = path.join(cacheDir, 'live');
+    const report = { date: dateIso, aggregated: { exists: false, path: aggPath, routesCount: 0, stopsCount: 0 }, perTech: {} };
+    // aggregated file
+    try {
+      if (fs.existsSync(aggPath)) {
+        report.aggregated.exists = true;
+        const txt = fs.readFileSync(aggPath, 'utf8');
+        const obj = JSON.parse(txt || '{}');
+        if (Array.isArray(obj.routes)) {
+          report.aggregated.routesCount = obj.routes.length;
+          report.aggregated.stopsCount = obj.routes.reduce((n, r) => n + ((r && Array.isArray(r.stops)) ? r.stops.length : 0), 0);
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+    // per-tech caches
+    try {
+      if (fs.existsSync(liveRoot)) {
+        for (const tech of fs.readdirSync(liveRoot)) {
+          try {
+            const file = path.join(liveRoot, tech, `${dateIso}.json`);
+            if (!fs.existsSync(file)) continue;
+            const txt = fs.readFileSync(file, 'utf8');
+            const json = JSON.parse(txt || '[]');
+            let routesCount = 0, stopsCount = 0;
+            if (Array.isArray(json)) {
+              routesCount = json.length;
+              stopsCount = json.reduce((n, r) => n + ((r && Array.isArray(r.stops)) ? r.stops.length : 0), 0);
+            } else if (json && Array.isArray(json.routes)) {
+              routesCount = json.routes.length;
+              stopsCount = json.routes.reduce((n, r) => n + ((r && Array.isArray(r.stops)) ? r.stops.length : 0), 0);
+            }
+            report.perTech[tech] = { path: file, routesCount, stopsCount };
+          } catch (e) {
+            // ignore per-file errors
+          }
+        }
+      }
+    } catch (e) {}
+    return res.json(report);
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Force rebuild aggregated file from per-tech caches for a date
+app.post('/api/debug/aggregate/rebuild', (req, res) => {
+  try {
+    const dateIso = String(req.query.date || req.body?.date || '').trim() || new Date().toISOString().slice(0,10);
+    const liveRoot = path.join(cacheDir, 'live');
+    const aggregated = [];
+    if (fs.existsSync(liveRoot)) {
+      for (const tech of fs.readdirSync(liveRoot)) {
+        try {
+          const file = path.join(liveRoot, tech, `${dateIso}.json`);
+          if (!fs.existsSync(file)) continue;
+          const txt = fs.readFileSync(file, 'utf8');
+          const json = JSON.parse(txt || '[]');
+          if (Array.isArray(json) && json.length) {
+            for (const r of json) aggregated.push(r);
+          } else if (json && Array.isArray(json.routes) && json.routes.length) {
+            for (const r of json.routes) aggregated.push(r);
+          }
+        } catch (e) {
+          // ignore per-file errors
+        }
+      }
+    }
+    // persist even if empty to overwrite prior bad aggregates
+    try { persistAggregatedRoutes(dateIso, aggregated); } catch (e) {}
+    return res.json({ date: dateIso, rebuilt: true, routesCount: aggregated.length, stopsCount: aggregated.reduce((n,r)=>n+((r&&Array.isArray(r.stops))?r.stops.length:0),0) });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }

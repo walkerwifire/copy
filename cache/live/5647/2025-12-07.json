@@ -1,0 +1,101 @@
+[
+  {
+    "techNo": "5647",
+    "date": "2025-12-07",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836239760",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "SATEK,BARAKA",
+        "address": "1965 BAY RIDGE AV, APT 6D, BROOKLYN, NY 11204-4556",
+        "phone": "929-719-4383",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836990132",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "LOMONACO,JOSEPH",
+        "address": "1869 66TH ST, APT 1B, BROOKLYN, NY 11204",
+        "phone": "917-838-6149",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836308689",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "Weiser,David",
+        "address": "1761 55TH ST, APT 1, BROOKLYN, NY 11204-1925",
+        "phone": "917-405-6498",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836711328",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "RAJA,WALEED",
+        "address": "4912 FORT HAMILTN PK, APT 2, BROOKLYN, NY 11219-3344",
+        "phone": "929-301-2623",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836492713",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "JACKSON,DASHEER",
+        "address": "941 WASHINGTON AV, APT 5G, BROOKLYN, NY 11225-2441",
+        "phone": "718-284-4430",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836273256",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "GOLETS,OLEKSAND",
+        "address": "515 E 7TH ST, APT 6L, BROOKLYN, NY 11218-4817",
+        "phone": "718-603-0009",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836280857",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "AFROZ,MAHMUDA",
+        "address": "483 OCEAN PKWY, APT 2J, BROOKLYN, NY 11218-5146",
+        "phone": "347-798-5939",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 7,
+    "estimatedDuration": "6h 48m"
+  }
+]

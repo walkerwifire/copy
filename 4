@@ -1,0 +1,708 @@
+"use strict";
+(self.webpackChunk_N_E = self.webpackChunk_N_E || []).push([[2130], {
+    8350: function(e, t, o) {
+        o.d(t, {
+            d: function() {
+                return r
+            }
+        });
+        function r(e) {
+            if (!e || "string" != typeof e)
+                return e;
+            let t = e;
+            for (let {pattern: e, replacement: o} of [{
+                pattern: /\bBL\.?\b/gi,
+                replacement: "BLVD"
+            }, {
+                pattern: /\bPK\.?\b/gi,
+                replacement: "PKWY"
+            }])
+                t = t.replace(e, o);
+            return t.replace(/\s+/g, " ").trim()
+        }
+    },
+    2130: function(e, t, o) {
+        o.d(t, {
+            Cq: function() {
+                return f
+            },
+            Gn: function() {
+                return N
+            },
+            wn: function() {
+                return v
+            }
+        });
+        var r, a, n, i, c, s, d = o(6410), l = o(5978), u = o(1022), m = o(2447);
+        (r = i || (i = {})).PENDING = "pending",
+        r.ASSIGNED = "assigned",
+        r.IN_PROGRESS = "in-progress",
+        r.COMPLETED = "completed",
+        r.CANCELLED = "cancelled",
+        r.EXTERNALLY_UNASSIGNED = "externally_unassigned",
+        (a = c || (c = {})).CREATED = "created",
+        a.ASSIGNED = "assigned",
+        a.REASSIGNED = "reassigned",
+        a.CANCELLED = "cancelled",
+        a.COMPLETED = "completed",
+        a.STATUS_CHANGED = "status_changed",
+        a.NOTE_ADDED = "note_added",
+        (n = s || (s = {})).NONE = "none",
+        n.SAME_DAY = "same_day",
+        n.WITHIN_31_DAYS = "within_31_days";
+        let h = /^([01]\d|2[0-3]):([0-5]\d)-([01]\d|2[0-3]):([0-5]\d)$/
+          , D = /^(\d{1,2}(?::\d{2})?(?:\s*[AaPp][Mm])?)\s*-\s*(\d{1,2}(?::\d{2})?(?:\s*[AaPp][Mm])?)$/i;
+        async function g(e, t) {
+            console.log("\uD83D\uDD0D resolveTechInfo called with:", {
+                companyId: e,
+                techIdentifier: t
+            });
+            try {
+                if (t && t.length <= 10 && /^\d+$/.test(t)) {
+                    let o = (0,
+                    l.collection)(d.db, "companies", e, "users")
+                      , r = (0,
+                    l.query)(o, (0,
+                    l.where)("techNumber", "==", t))
+                      , a = await (0,
+                    l.getDocs)(r);
+                    if (!a.empty) {
+                        let e = a.docs[0]
+                          , o = e.data();
+                        return {
+                            techId: e.id,
+                            techName: "".concat(o.firstName || "", " ").concat(o.lastName || "").trim() || "Tech #".concat(t),
+                            techNumber: t,
+                            vendor: o.vendor,
+                            areaOfWork: o.areaOfWork,
+                            catvProvider: o.catvProvider
+                        }
+                    }
+                }
+                console.log("\uD83D\uDD0D Looking up document ID:", t);
+                let o = (0,
+                l.doc)(d.db, "companies", e, "users", t)
+                  , r = await (0,
+                l.getDoc)(o);
+                if (r.exists()) {
+                    let e = r.data();
+                    return console.log("✅ Found user document:", {
+                        id: r.id,
+                        techNumber: e.techNumber,
+                        techId: e.techId,
+                        firstName: e.firstName,
+                        lastName: e.lastName
+                    }),
+                    {
+                        techId: r.id,
+                        techName: "".concat(e.firstName || "", " ").concat(e.lastName || "").trim() || "Tech #".concat(e.techNumber || e.techId),
+                        techNumber: e.techNumber || e.techId || "Unknown",
+                        vendor: e.vendor,
+                        areaOfWork: e.areaOfWork,
+                        catvProvider: e.catvProvider
+                    }
+                }
+                console.log("❌ Document not found for ID:", t);
+                let a = (0,
+                l.collection)(d.db, "companies", e, "users")
+                  , n = (0,
+                l.query)(a, (0,
+                l.where)("uid", "==", t))
+                  , i = await (0,
+                l.getDocs)(n);
+                if (!i.empty) {
+                    let e = i.docs[0]
+                      , t = e.data();
+                    return {
+                        techId: e.id,
+                        techName: "".concat(t.firstName || "", " ").concat(t.lastName || "").trim() || "Tech #".concat(t.techNumber),
+                        techNumber: t.techNumber || "Unknown",
+                        vendor: t.vendor,
+                        areaOfWork: t.areaOfWork,
+                        catvProvider: t.catvProvider
+                    }
+                }
+            } catch (e) {
+                console.error("Error resolving tech info:", e)
+            }
+            return {
+                techId: t,
+                techName: "Tech #".concat(t),
+                techNumber: "Unknown",
+                vendor: void 0,
+                areaOfWork: void 0
+            }
+        }
+        async function b(e, t) {
+            var o, r;
+            arguments.length > 2 && void 0 !== arguments[2] && arguments[2];
+            let a = [];
+            return t.jobId || a.push("Job ID is required"),
+            t.type || a.push("Job type is required"),
+            t.address || a.push("Address is required"),
+            t.customerName || a.push("Customer name is required"),
+            t.customerPhone || a.push("Customer phone is required"),
+            t.jobId && (o = t.jobId,
+            !/^\d+$/.test(o)) && a.push("Job ID must be numeric"),
+            t.timeFrame && !(!(r = t.timeFrame) || "" === r.trim() || h.test(r) || D.test(r)) && a.push("Time frame must be in format HH:mm-HH:mm"),
+            {
+                isValid: 0 === a.length,
+                errors: a,
+                warnings: [],
+                duplicateInfo: {
+                    hasDuplicate: !1,
+                    duplicateType: s.NONE
+                }
+            }
+        }
+        async function p(e, t) {
+            let o = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : new Date;
+            try {
+                let r = {
+                    ...Object.fromEntries(Object.entries(t).filter(e => {
+                        let[t,o] = e;
+                        return void 0 !== o
+                    }
+                    )),
+                    timestamp: o
+                }
+                  , a = (0,
+                l.collection)(d.db, "companies", e, "jobs")
+                  , n = (0,
+                l.query)(a, (0,
+                l.where)("jobId", "==", t.jobId))
+                  , i = await (0,
+                l.getDocs)(n);
+                if (i.empty)
+                    throw Error("Job not found for jobId ".concat(t.jobId));
+                let c = i.docs[0];
+                await (0,
+                l.updateDoc)(c.ref, {
+                    auditLogs: (0,
+                    l.arrayUnion)({
+                        ...r
+                    })
+                }),
+                console.log("✅ Audit log appended to job ".concat(t.jobId, ": ").concat(t.action))
+            } catch (e) {
+                throw console.error("Error creating job log:", e),
+                Error("Failed to create audit log: ".concat(e instanceof Error ? e.message : "Unknown error"))
+            }
+        }
+        async function f(e, t, o, r) {
+            try {
+                var a;
+                let n = new Date
+                  , s = await b(e, t, n);
+                if (!s.isValid)
+                    throw Error("Job validation failed: ".concat(s.errors.join(", ")));
+                let h = null;
+                t.assignedTechId ? (console.log("\uD83D\uDD0D Resolving tech info for:", t.assignedTechId),
+                h = await g(e, t.assignedTechId),
+                console.log("✅ Resolved tech info:", h)) : console.log("⚠️ No assignedTechId provided");
+                let D = t.position;
+                if (!D && t.address && t.city)
+                    try {
+                        console.log("\uD83D\uDD0D Geocoding address for job creation:", {
+                            address: t.address,
+                            city: t.city
+                        });
+                        let e = await (0,
+                        u.gA)(t.address, t.city);
+                        e ? (D = e.coordinates,
+                        console.log("✅ Address geocoded successfully:", D)) : console.warn("⚠️ Failed to geocode address, job will be created without coordinates")
+                    } catch (e) {
+                        console.error("❌ Geocoding error during job creation:", e)
+                    }
+                console.log("\uD83D\uDD0D Job creation data:", {
+                    jobId: t.jobId,
+                    type: t.type,
+                    address: t.address
+                });
+                let p = {
+                    companyId: e,
+                    jobId: t.jobId,
+                    type: t.type,
+                    address: t.address,
+                    unitNumber: t.unitNumber,
+                    city: t.city,
+                    customerName: t.customerName,
+                    customerPhone: t.customerPhone,
+                    timeFrame: t.timeFrame,
+                    scheduleDate: t.scheduleDate,
+                    status: i.PENDING,
+                    priority: t.priority || "medium",
+                    title: t.title,
+                    description: t.description,
+                    position: D,
+                    isExternalReassignment: t.isExternalReassignment || !1,
+                    assignedTechId: null == h ? void 0 : h.techId,
+                    assignedTechName: null == h ? void 0 : h.techName,
+                    assignedTechNumber: null == h ? void 0 : h.techNumber,
+                    vendor: null == h ? void 0 : h.vendor,
+                    areaOfWork: null == h ? void 0 : h.areaOfWork,
+                    catvProvider: null == h ? void 0 : h.catvProvider,
+                    jobOrigin: t.originalId || "Created by ".concat(r),
+                    archived: !1,
+                    createdDate: n,
+                    updatedAt: n,
+                    createdAt: n,
+                    additionalPhone: t.additionalPhone,
+                    comment: t.comment,
+                    dispatchComment: t.dispatchComment,
+                    units: t.units,
+                    staticStatus: t.staticStatus,
+                    staticCompletionTime: t.staticCompletionTime,
+                    fullAccountNumber: t.fullAccountNumber,
+                    resolutionCodes: t.resolutionCodes
+                }
+                  , f = Object.fromEntries(Object.entries(p).filter(e => {
+                    let[t,o] = e;
+                    return void 0 !== o
+                }
+                ))
+                  , N = await (0,
+                l.addDoc)((0,
+                l.collection)(d.db, "companies", e, "jobs"), {
+                    ...f,
+                    createdDate: (0,
+                    l.serverTimestamp)(),
+                    updatedAt: (0,
+                    l.serverTimestamp)()
+                });
+                console.log("\uD83D\uDD0D Job creation debug:", {
+                    originalId: t.originalId,
+                    originalIdType: typeof t.originalId,
+                    originalIdLength: null === (a = t.originalId) || void 0 === a ? void 0 : a.length,
+                    jobOrigin: t.originalId || "Created by ".concat(r),
+                    assignedTechNumber: null == h ? void 0 : h.techNumber,
+                    isExternalReassignment: t.isExternalReassignment
+                });
+                let v = {
+                    jobId: t.jobId,
+                    companyId: e,
+                    action: c.CREATED,
+                    performedBy: o,
+                    performedByUserName: r,
+                    assignedTechId: null == h ? void 0 : h.techId,
+                    assignedTechName: null == h ? void 0 : h.techName,
+                    assignedTechNumber: null == h ? void 0 : h.techNumber,
+                    isExternalReassignment: t.isExternalReassignment,
+                    originalTechNumber: t.originalId || "",
+                    notes: t.isExternalReassignment ? "External reassignment" : void 0
+                }
+                  , I = Object.fromEntries(Object.entries(v).filter(e => {
+                    let[t,o] = e;
+                    return "originalTechNumber" === t || void 0 !== o
+                }
+                ));
+                console.log("\uD83D\uDD0D Final audit log data:", I);
+                let j = [{
+                    ...I,
+                    timestamp: n
+                }].map(e => {
+                    let t = Object.fromEntries(Object.entries(e).filter(e => {
+                        let[t,o] = e;
+                        return void 0 !== o
+                    }
+                    ));
+                    return t.details && "object" == typeof t.details && (t.details = Object.fromEntries(Object.entries(t.details).filter(e => {
+                        let[t,o] = e;
+                        return void 0 !== o
+                    }
+                    ))),
+                    t
+                }
+                );
+                await (0,
+                l.updateDoc)(N, {
+                    auditLogs: j
+                }),
+                console.log("✅ Job ".concat(t.jobId, " created successfully with ID: ").concat(N.id));
+                try {
+                    console.log("\uD83D\uDD0D Running repeat detection after job creation...");
+                    let o = await (0,
+                    m.WE)(e, {
+                        jobNumber: t.jobId,
+                        currentTechCatvProvider: t.catvProvider || "",
+                        scheduleDate: t.scheduleDate
+                    });
+                    if (o.isRepeat && o.lastOccurrence) {
+                        let e;
+                        console.log("✅ Repeat job detected after creation:", o);
+                        let t = o.lastOccurrence.date;
+                        try {
+                            if (t && "object" == typeof t && "function" == typeof t.toDate)
+                                e = t.toDate();
+                            else if (t && "object" == typeof t && "seconds"in t)
+                                e = new Date(1e3 * t.seconds);
+                            else if ("string" == typeof t) {
+                                if (/^\d{4}-\d{2}-\d{2}$/.test(t)) {
+                                    let[o,r,a] = t.split("-").map(Number);
+                                    e = new Date(o,r - 1,a)
+                                } else {
+                                    let o = new Date(t);
+                                    e = isNaN(o.getTime()) ? new Date : o
+                                }
+                            } else {
+                                let o = new Date(t);
+                                e = isNaN(o.getTime()) ? new Date : o
+                            }
+                        } catch (t) {
+                            e = new Date
+                        }
+                        await (0,
+                        l.updateDoc)(N, {
+                            isRepeat: !0,
+                            repeatInfo: {
+                                type: "within_31_days",
+                                originalJobId: o.lastOccurrence.parentJobId,
+                                originalJobDate: e,
+                                originalTechNumber: o.lastOccurrence.techId,
+                                originalTechName: o.lastOccurrence.techName,
+                                daysSinceOriginal: o.lastOccurrence.daysSinceLastJob
+                            }
+                        }),
+                        console.log("✅ Job updated with repeat information")
+                    } else
+                        console.log("ℹ️ No repeat job detected")
+                } catch (e) {
+                    console.error("❌ Error running repeat detection after job creation:", e)
+                }
+                return N.id
+            } catch (e) {
+                throw console.error("Error creating job:", e),
+                Error("Failed to create job: ".concat(e instanceof Error ? e.message : "Unknown error"))
+            }
+        }
+        async function N(e, t, o, r) {
+            try {
+                let a;
+                let n = new Date;
+                if (t.jobDocumentId) {
+                    let o = (0,
+                    l.doc)(d.db, "companies", e, "jobs", t.jobDocumentId);
+                    if (!(a = await (0,
+                    l.getDoc)(o)).exists())
+                        throw Error("Job with document ID ".concat(t.jobDocumentId, " not found"))
+                } else {
+                    let o = (0,
+                    l.collection)(d.db, "companies", e, "jobs")
+                      , r = (0,
+                    l.query)(o, (0,
+                    l.where)("jobId", "==", t.jobId))
+                      , n = await (0,
+                    l.getDocs)(r);
+                    if (n.empty)
+                        throw Error("Job ".concat(t.jobId, " not found"));
+                    a = n.docs[0]
+                }
+                let s = {
+                    id: a.id,
+                    ...a.data()
+                };
+                !function(e, t) {
+                    if (!0 === e.archived)
+                        throw Error("Cannot ".concat(t, " archived job ").concat(e.jobId || e.id, ". Archived jobs are locked and cannot be modified."))
+                }(s, "reassign"),
+                console.log("\uD83D\uDD0D Reassigning job to tech ID:", t.newTechId);
+                let u = await g(e, t.newTechId);
+                console.log("✅ Resolved new tech info:", u);
+                let m = null;
+                t.isExternalReassignment && t.originTechId && (m = await g(e, t.originTechId)),
+                await (0,
+                l.runTransaction)(d.db, async d => {
+                    let l = {
+                        assignedTechId: u.techId,
+                        assignedTechName: u.techName,
+                        assignedTechNumber: u.techNumber,
+                        status: i.ASSIGNED,
+                        updatedAt: n,
+                        isExternalReassignment: t.isExternalReassignment || !1,
+                        transferNotes: t.transferNotes
+                    };
+                    t.isExternalReassignment && (l.jobOrigin = u.techNumber,
+                    l.vendor = u.vendor,
+                    l.areaOfWork = u.areaOfWork,
+                    l.catvProvider = u.catvProvider,
+                    m && (l.originTechId = m.techId,
+                    l.originTechName = m.techName,
+                    l.originTechNumber = m.techNumber)),
+                    d.update(a.ref, l);
+                    let h = {
+                        jobId: t.jobId,
+                        companyId: e,
+                        action: c.REASSIGNED,
+                        performedBy: o,
+                        performedByUserName: r,
+                        previousTechId: s.assignedTechNumber,
+                        previousTechName: s.assignedTechName,
+                        previousTechNumber: s.assignedTechNumber,
+                        assignedTechId: u.techId,
+                        assignedTechName: u.techName,
+                        assignedTechNumber: u.techNumber,
+                        newTechName: u.techName,
+                        newTechNumber: u.techNumber,
+                        previousStatus: s.status,
+                        newStatus: i.ASSIGNED,
+                        isExternalReassignment: t.isExternalReassignment,
+                        originTechId: null == m ? void 0 : m.techId,
+                        originTechName: null == m ? void 0 : m.techName,
+                        originTechNumber: t.originTechNumber || (null == m ? void 0 : m.techNumber),
+                        originalTechNumber: t.originTechNumber || (null == m ? void 0 : m.techNumber),
+                        notes: t.transferNotes
+                    };
+                    await p(e, h, n)
+                }
+                ),
+                console.log("✅ Job ".concat(t.jobId, " reassigned successfully"))
+            } catch (e) {
+                throw console.error("Error reassigning job:", e),
+                Error("Failed to reassign job: ".concat(e instanceof Error ? e.message : "Unknown error"))
+            }
+        }
+        function v(e, t) {
+            let o = (0,
+            l.collection)(d.db, "companies", e, "jobs")
+              , r = (0,
+            l.query)(o, (0,
+            l.orderBy)("createdDate", "desc"));
+            return (0,
+            l.onSnapshot)(r, e => {
+                t(e.docs.map(e => {
+                    var t, o;
+                    return {
+                        id: e.id,
+                        ...e.data(),
+                        createdDate: (null === (t = e.data().createdDate) || void 0 === t ? void 0 : t.toDate()) || new Date,
+                        updatedAt: (null === (o = e.data().updatedAt) || void 0 === o ? void 0 : o.toDate()) || new Date
+                    }
+                }
+                ))
+            }
+            )
+        }
+    },
+    2447: function(e, t, o) {
+        o.d(t, {
+            WE: function() {
+                return i
+            }
+        });
+        var r = o(5978)
+          , a = o(6410);
+        async function n(e, t, o, n) {
+            try {
+                console.log("\uD83D\uDD0D Searching for intermediate fix attempts:", {
+                    parentJobDate: t.toISOString().split("T")[0],
+                    newJobDate: o.toISOString().split("T")[0],
+                    jobNumber: n
+                });
+                let i = (0,
+                r.collection)(a.db, "companies", e, "jobs")
+                  , c = (0,
+                r.query)(i, (0,
+                r.where)("jobId", "==", n), (0,
+                r.where)("status", "==", "cancelled"))
+                  , s = await (0,
+                r.getDocs)(c)
+                  , d = [];
+                return s.forEach(e => {
+                    var r, a;
+                    let n = e.data();
+                    if (!n.isRepeatFixed)
+                        return;
+                    let i = (null === (a = n.schedule) || void 0 === a ? void 0 : null === (r = a.toDate) || void 0 === r ? void 0 : r.call(a)) || new Date;
+                    i <= t || i >= o || d.push({
+                        jobId: n.jobId,
+                        cancelledDate: i,
+                        cancelledBy: n.cancelledBy || "Unknown",
+                        isRepeatFixed: n.isRepeatFixed || !1
+                    })
+                }
+                ),
+                d.sort( (e, t) => e.cancelledDate.getTime() - t.cancelledDate.getTime()),
+                console.log("\uD83D\uDCCA Found ".concat(d.length, " intermediate fix attempts")),
+                d
+            } catch (e) {
+                return console.error("Error finding intermediate fix attempts:", e),
+                []
+            }
+        }
+        async function i(e, t) {
+            try {
+                console.log("\uD83D\uDD0D checkForRepeatJob called with:", {
+                    companyId: e,
+                    jobIdentifiers: t
+                });
+                let o = t.scheduleDate ? new Date(t.scheduleDate + "T00:00:00") : new Date
+                  , i = new Date(o);
+                i.setDate(i.getDate() - 31),
+                console.log("\uD83D\uDD0D Date range for query:", {
+                    referenceDate: o.toISOString().split("T")[0],
+                    thirtyOneDaysAgo: i.toISOString().split("T")[0],
+                    jobNumber: t.jobNumber
+                });
+                let c = (0,
+                r.collection)(a.db, "companies", e, "jobs")
+                  , s = (0,
+                r.query)(c, (0,
+                r.where)("jobId", "==", t.jobNumber))
+                  , d = await (0,
+                r.getDocs)(s);
+                console.log("\uD83D\uDD0D Query results:", {
+                    totalJobs: d.size,
+                    jobNumber: t.jobNumber
+                });
+                let l = (0,
+                r.query)(c, (0,
+                r.where)("jobId", "==", t.jobNumber))
+                  , u = await (0,
+                r.getDocs)(l);
+                console.log("\uD83D\uDD0D Debug - All jobs with this jobId:", {
+                    totalJobs: u.size,
+                    jobs: u.docs.map(e => ({
+                        id: e.id,
+                        jobId: e.data().jobId,
+                        status: e.data().status,
+                        archived: e.data().archived,
+                        schedule: e.data().schedule,
+                        catvProvider: e.data().catvProvider
+                    }))
+                });
+                let m = null
+                  , h = 1 / 0;
+                if (d.forEach(e => {
+                    var r, a, n, i;
+                    let c = e.data();
+                    if (console.log("\uD83D\uDD0D Processing job in repeatJobDetection:", {
+                        jobId: c.jobId,
+                        status: c.status,
+                        scheduleDate: c.scheduleDate,
+                        catvProvider: c.catvProvider,
+                        assignedTechName: c.assignedTechName,
+                        assignedTechNumber: c.assignedTechNumber
+                    }),
+                    !0 === c.excludeFromRepeatDetection) {
+                        console.log("\uD83D\uDEAB Parent job flagged to be excluded from repeat detection, skipping");
+                        return
+                    }
+                    if ("completed" !== c.status || !c.archived) {
+                        console.log("❌ Job not completed or not archived, skipping");
+                        return
+                    }
+                    console.log("✅ Job is completed and archived, checking date range");
+                    let s = new Date(c.scheduleDate || c.schedule || (null === (a = c.createdAt) || void 0 === a ? void 0 : null === (r = a.toDate) || void 0 === r ? void 0 : r.call(a)) || Date.now())
+                      , d = Math.floor((o.getTime() - s.getTime()) / 864e5);
+                    if (console.log("\uD83D\uDD0D Date range check:", {
+                        jobDate: s.toISOString().split("T")[0],
+                        referenceDate: o.toISOString().split("T")[0],
+                        daysDifference: d,
+                        withinRange: d > 0 && d <= 31
+                    }),
+                    d <= 0 || d > 31) {
+                        console.log("❌ Job outside date range, skipping");
+                        return
+                    }
+                    console.log("✅ Job within date range, checking CATV provider");
+                    let l = (n = t.currentTechCatvProvider,
+                    i = c.catvProvider || "",
+                    !!n && !!i && n.toLowerCase().trim() === i.toLowerCase().trim());
+                    console.log("\uD83D\uDD0D CATV provider check:", {
+                        currentTechCatvProvider: t.currentTechCatvProvider,
+                        jobCatvProvider: c.catvProvider,
+                        match: l
+                    }),
+                    l && d < h && (h = d,
+                    m = {
+                        date: c.scheduleDate || c.schedule || s.toISOString().split("T")[0],
+                        techId: c.assignedTechNumber || c.assignedTechId || "",
+                        techName: c.assignedTechName || "Unknown Tech",
+                        jobId: c.jobId,
+                        daysSinceLastJob: d,
+                        parentJobId: e.id,
+                        auditLogs: c.auditLogs || []
+                    })
+                }
+                ),
+                m) {
+                    let r = new Date(m.date)
+                      , a = await n(e, r, o, t.jobNumber);
+                    m.intermediateFixAttempts = a,
+                    console.log("\uD83D\uDD0D Repeat job detected with ".concat(a.length, " intermediate fix attempts"))
+                }
+                return {
+                    isRepeat: null !== m,
+                    lastOccurrence: m || void 0
+                }
+            } catch (e) {
+                return console.error("Error checking for repeat job:", e),
+                {
+                    isRepeat: !1
+                }
+            }
+        }
+    },
+    1022: function(e, t, o) {
+        o.d(t, {
+            gA: function() {
+                return n
+            }
+        }),
+        o(5978),
+        o(6410);
+        var r = o(8350);
+        o(2447);
+        let a = new Map;
+        async function n(e, t) {
+            let o = (0,
+            r.d)(e)
+              , n = "".concat(o, ", ").concat(t);
+            if (console.log("\uD83D\uDD0D GEOCODING REQUEST:", {
+                address: e,
+                city: t,
+                cacheKey: n
+            }),
+            a.has(n)) {
+                let e = a.get(n);
+                return console.log("\uD83D\uDCCB USING CACHED RESULT:", e),
+                e
+            }
+            try {
+                let e = "".concat(o, ", ").concat(t)
+                  , r = await fetch("https://nominatim.openstreetmap.org/search?format=json&q=".concat(encodeURIComponent(e), "&limit=1&addressdetails=1&accept-language=en"));
+                if (!r.ok)
+                    throw Error("Geocoding request failed");
+                let i = await r.json();
+                if (i && i.length > 0) {
+                    let r = i[0]
+                      , c = parseFloat(r.lat)
+                      , s = [parseFloat(r.lon), c];
+                    console.log("\uD83C\uDF0D GEOCODING SUCCESS:", {
+                        inputAddress: e,
+                        foundCoordinates: s,
+                        foundAddress: r.display_name
+                    });
+                    let d = r.address || {}
+                      , l = d.state || d.province
+                      , u = d.postcode
+                      , m = r.display_name || "".concat(o, ", ").concat(t)
+                      , h = {
+                        coordinates: s,
+                        displayName: m,
+                        state: l,
+                        postcode: u
+                    };
+                    return a.set(n, h),
+                    h
+                }
+                return a.set(n, null),
+                null
+            } catch (e) {
+                return console.error("Geocoding error:", e),
+                a.set(n, null),
+                null
+            }
+        }
+    }
+}]);

@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4682",
+    "date": "2025-12-06",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836143498",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "RITZMAN,JOHNATHA",
+        "address": "261 GATES AV, APT 5B, BROOKLYN, NY 11238-2037",
+        "phone": "303-775-3675",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836483929",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "RASH,TIA",
+        "address": "228 E 38TH ST, APT C2, BROOKLYN, NY 11203",
+        "phone": "347-554-9040",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836542511",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "SMART,JOHN",
+        "address": "707 TROY AV, APT BSMT, BROOKLYN, NY 11203",
+        "phone": "347-543-8517",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 30m"
+  }
+]
