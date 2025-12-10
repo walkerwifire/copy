@@ -1,1 +1,49 @@
-[]
+[
+  {
+    "techNo": "5726",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836042420",
+        "type": "IN",
+        "status": "Not Done",
+        "normalizedStatus": "not-done",
+        "badge": "not-done",
+        "tech": "5726",
+        "name": "HOQUE,SHIRINA",
+        "address": "4099 BEDFORD AV, APT 1, BROOKLYN, NY 11229-2451",
+        "phone": "347-365-4320",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836446279",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "TURNER,PAUL",
+        "address": "2970 W 24TH ST, APT 6M, BROOKLYN, NY 11224-2248",
+        "phone": "347-336-9859",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836263847",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "SEBBAN,JULIE",
+        "address": "1404 E 15TH ST, APT 3, BROOKLYN, NY 11230-6602",
+        "phone": "347-939-3202",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 30m"
+  }
+]

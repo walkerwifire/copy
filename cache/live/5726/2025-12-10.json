@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "5726",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836735535",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5726",
+        "name": "HO,WINNIE",
+        "address": "1708 78TH ST, APT 3, BROOKLYN, NY 11214",
+        "phone": "917-957-6977",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836218233",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "EUGENE,DAVIDSON",
+        "address": "1631 W 12TH ST, APT *2, BROOKLYN, NY 11223-1143",
+        "phone": "929-633-9423",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836308739",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5726",
+        "name": "LEFKOWITZ,AARON",
+        "address": "1648 54TH ST, BROOKLYN, NY 11204-1428",
+        "phone": "347-623-6880",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 36m"
+  }
+]

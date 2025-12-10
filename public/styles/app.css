@@ -162,6 +162,10 @@ body { background: var(--bg); color: var(--text); font-size: 18px; line-height: 
 .badge { display:inline-block; font-size: 13px; padding: 4px 8px; border-radius: 6px; margin-right: 8px; border:1px solid #e5e7eb; }
 .badge-skill { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
 .badge-status { background:#fee2e2; border-color:#fecaca; color:#b91c1c; }
+/* Auth badges */
+.badge--auth { margin-left:6px; border-width:1px; padding:4px 8px; font-weight:600; }
+.badge-auth-pass { background:#ecfdf5; border-color:#bbf7d0; color:#064e3b; }
+.badge-auth-fail { background:#fee2e2; border-color:#fecaca; color:#7f1d1d; }
 .pill { display:inline-flex; align-items:center; gap:6px; padding:8px 12px; border-radius:20px; font-weight:600; color:#fff; }
 .pill-profile { background: linear-gradient(90deg,#6d28d9,#9333ea); }
 .pill-schedule { background: linear-gradient(90deg,#2563eb,#1d4ed8); }

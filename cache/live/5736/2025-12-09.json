@@ -1,1 +1,88 @@
-[]
+[
+  {
+    "techNo": "5736",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07837280082",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "MERCADO,LUCILA",
+        "address": "45 W TREMONT AV, APT 2A, BRONX, NY 10453-5420",
+        "phone": "347-961-3082",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07837206196",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "ROJAS,STEVE",
+        "address": "3640 JOHNSON AV, APT 2E, BRONX, NY 10463-1620",
+        "phone": "646-462-9514",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07837310728",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "PANAMENO,ROSA",
+        "address": "2341 ANDREWS AVE N, APT 3N, BRONX, NY 10468-5926",
+        "phone": "929-508-8646",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07837548146",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "WIRELESS INC,SHAYA",
+        "address": "6 B E 183RD ST, BRONX, NY 10453",
+        "phone": "718-666-2379",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07837675309",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "6 WALTONE AVE,2434-243",
+        "address": "2436 WALTON AV, COMM, BRONX, NY 10468",
+        "phone": "212-380-6109",
+        "hasIS": false
+      },
+      {
+        "time": "ALL DAY",
+        "job": "07837548146",
+        "type": "SRO",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5736",
+        "name": "WIRELESS INC,SHAYA",
+        "address": "6 B E 183RD ST, BRONX, NY 10453",
+        "phone": "718-666-2379",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "4h 54m"
+  }
+]

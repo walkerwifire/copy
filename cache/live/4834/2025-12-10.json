@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4834",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836824883",
+        "type": "COS",
+        "status": "Not Done",
+        "normalizedStatus": "not-done",
+        "badge": "not-done",
+        "tech": "4834",
+        "name": "VERBUN,DEMITRY",
+        "address": "2015 SHORE PKWY, APT 3A, BROOKLYN, NY 11214",
+        "phone": "718-236-6155",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836071614",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "HAKIM,ABIE",
+        "address": "1919 E 13TH ST, BROOKLYN, NY 11229-3301",
+        "phone": "347-697-3661",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836177655",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "PESCE,ANNA",
+        "address": "1923 W 6TH ST, BROOKLYN, NY 11223-2651",
+        "phone": "718-998-4967",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836175712",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "MUNOZ,INES",
+        "address": "107 AVENUE S, APT 2, BROOKLYN, NY 11223-2536",
+        "phone": "347-587-5739",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "4h 12m"
+  }
+]

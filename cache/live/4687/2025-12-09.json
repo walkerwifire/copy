@@ -1,1 +1,88 @@
-[]
+[
+  {
+    "techNo": "4687",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836357734",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "MATTISON,PAULINE",
+        "address": "392 E 58TH ST, APT 2, BROOKLYN, NY 11203-5437",
+        "phone": "718-629-5639",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836522451",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "HILL,LEILA",
+        "address": "192 E 55TH ST, APT BSMT, BROOKLYN, NY 11203",
+        "phone": "718-251-5211",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836483053",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "DRUMMOND,SHARON",
+        "address": "468 E 93RD ST, BSMT, BROOKLYN, NY 11212-1642",
+        "phone": "347-743-9189",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836706959",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "George,Godfrey",
+        "address": "60 E 93RD ST, APT A313, BROOKLYN, NY 11212-2311",
+        "phone": "646-379-1230",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836723302",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "KENNEDY,SANDRA",
+        "address": "216 ROCKAWAY AV, APT 23E, BROOKLYN, NY 11233-4246",
+        "phone": "347-365-8779",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836358429",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4687",
+        "name": "KING,ROXANNA",
+        "address": "5311 AVENUE D, APT 1, BROOKLYN, NY 11203-6005",
+        "phone": "718-340-9423",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "5h 24m"
+  }
+]

@@ -1,1 +1,75 @@
-[]
+[
+  {
+    "techNo": "4853",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836567252",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "RIVERA,MARIA",
+        "address": "1638 BROADWAY, APT 1, BROOKLYN, NY 11207-1186",
+        "phone": "347-770-9202",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836534858",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "HAYNIE,SHANTE",
+        "address": "850 FRANKLIN AV, 2A 4, BROOKLYN, NY 11225",
+        "phone": "347-723-4370",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836519903",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "BLAKE,JAMES",
+        "address": "135 EASTERN PK, APT 10H, BROOKLYN, NY 11238-6027",
+        "phone": "718-636-6096",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836704891",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "PARILLA,SANTIAGO",
+        "address": "78 TROUTMAN ST, APT 1F, BROOKLYN, NY 11206-6170",
+        "phone": "718-452-3402",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836542001",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "CHAI HILL,KIMLAN",
+        "address": "60 ROGERS AV, APT 2, BROOKLYN, NY 11216-3502",
+        "phone": "646-236-7180",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "6h 0m"
+  }
+]

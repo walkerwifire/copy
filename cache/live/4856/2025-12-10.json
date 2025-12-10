@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4856",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836449854",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "Albany,Resident",
+        "address": "1414 BERGEN ST, APT 13D, BROOKLYN, NY 11213-1627",
+        "phone": "929-337-3632",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836142996",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "COLON,JEANNIE",
+        "address": "1853 FULTON ST, APT 5C, BROOKLYN, NY 11233-2226",
+        "phone": "620-349-4540",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836514241",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "ANTOINE,ANCIL",
+        "address": "3023 CLARENDON RD, APT 1, BROOKLYN, NY 11226-6403",
+        "phone": "718-693-2106",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836914107",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "DAVILA,ROSA",
+        "address": "230 RIVERDALE AV, APT 206, BROOKLYN, NY 11212",
+        "phone": "347-734-8226",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836413483",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "NIEVES,CARLOS",
+        "address": "188 LINCOLN AV, APT 1, BROOKLYN, NY 11208-1722",
+        "phone": "347-608-4078",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "2h 42m"
+  }
+]

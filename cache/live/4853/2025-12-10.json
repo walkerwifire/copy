@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4853",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836648535",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "SCOTT,MACEO",
+        "address": "1500 HORNELL LP, APT 1C, BROOKLYN, NY 11239-2515",
+        "phone": "917-771-6558",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836648450",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "Torrens,Brian",
+        "address": "1490 HORNELL LP, APT 1B, BROOKLYN, NY 11239-2509",
+        "phone": "646-225-8011",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836524706",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "BAPTISTE,RESIDENT",
+        "address": "428 SHEFFIELD AV, APT 2C, BROOKLYN, NY 11207-4727",
+        "phone": "347-243-5232",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836406033",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "MACCALLA,TISA",
+        "address": "209 ESSEX ST, APT 2B, BROOKLYN, NY 11208",
+        "phone": "845-313-1840",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836685367",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4853",
+        "name": "ROGER,ROBERT",
+        "address": "300 VAN SICLEN AV, APT 3A, BROOKLYN, NY 11207",
+        "phone": "347-882-9667",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "6h 42m"
+  }
+]

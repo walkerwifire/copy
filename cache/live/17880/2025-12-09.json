@@ -1,1 +1,49 @@
-[]
+[
+  {
+    "techNo": "17880",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836615891",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "CONEY ISLAND,RESIDENT",
+        "address": "2940 W 33RD ST, APT 4C, BROOKLYN, NY 11224-1419",
+        "phone": "347-833-7121",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836615821",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "IRVIN,SHAQUANA",
+        "address": "2935 W 33RD ST, APT 8B, BROOKLYN, NY 11224-1424",
+        "phone": "929-210-2100",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836587785",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "WONG,MEI SHAN",
+        "address": "3018 W 24TH ST, APT 5D, BROOKLYN, NY 11224-2129",
+        "phone": "646-322-5518",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 18m"
+  }
+]

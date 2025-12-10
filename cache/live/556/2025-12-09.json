@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "techNo": "556",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836187489",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "DEXTER,ROBERT",
+        "address": "175 BAY 35TH ST, APT 1, BROOKLYN, NY 11214",
+        "phone": "718-406-5424",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836538858",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "CHEN,RACHEL",
+        "address": "1705 SHORE PKWY, APT 2, BROOKLYN, NY 11214",
+        "phone": "917-660-1986",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836550849",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "RODRIGUEZ,NOELFRY",
+        "address": "1211 AVENUE V, APT 2F, BROOKLYN, NY 11229",
+        "phone": "917-690-7405",
+        "hasIS": false
+      },
+      {
+        "time": "ALL DAY",
+        "job": "W52403",
+        "type": "Assisting",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "WFX INTERNAL,",
+        "address": "City: ,, ,",
+        "phone": "Work #:",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "8h 30m"
+  }
+]

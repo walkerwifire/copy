@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "5927",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836669845",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5927",
+        "name": "morel,PATRICIA",
+        "address": "2926 ATLANTIC AV, 2, BROOKLYN, NY 11207-2729",
+        "phone": "917-251-5839",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836687525",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "ALLYENE,YVETTE",
+        "address": "918 KENT AV, APT 101, BROOKLYN, NY 11205-2737",
+        "phone": "646-643-6576",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836483808",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "SYLVESTRE,JESSICA",
+        "address": "1760 UNION ST, APT E5, BROOKLYN, NY 11213-5015",
+        "phone": "646-202-3802",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836465047",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "James,JUELLE",
+        "address": "63 BUFFALO AV, APT 1, BROOKLYN, NY 11233-3703",
+        "phone": "929-888-5014",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836821043",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "UGORSKAYA,MARGARIT",
+        "address": "866 HANCOCK ST, APT 1, BROOKLYN, NY 11233-1309",
+        "phone": "718-415-7919",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836109160",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "PEREA,LAURREN",
+        "address": "860 HANCOCK ST, APT 3L, BROOKLYN, NY 11233",
+        "phone": "845-633-1244",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "4h 48m"
+  }
+]

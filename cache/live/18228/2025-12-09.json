@@ -1,1 +1,75 @@
-[]
+[
+  {
+    "techNo": "18228",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836721339",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "MAKHARASHVILI,GEORGE",
+        "address": "1657 SHEEPSHEAD BAY, APT 3FL, BROOKLYN, NY 11235-3804",
+        "phone": "347-444-5551",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836105823",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "ROZENBERG,JACOB",
+        "address": "2113 AVENUE V, APT 2E, BROOKLYN, NY 11229-4842",
+        "phone": "718-648-1913",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836969628",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "SCOTT,ELIJAH",
+        "address": "145 ERASMUS ST, APT BSMT, BROOKLYN, NY 11226-4124",
+        "phone": "512-698-6334",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836799987",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "BEYE,MANYOULA",
+        "address": "2508 FOSTER AV, APT 4G, BROOKLYN, NY 11210",
+        "phone": "347-438-9168",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836550859",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "VARGAS,KAYLA",
+        "address": "209 VERONICA PL, APT 4J, BROOKLYN, NY 11226",
+        "phone": "646-321-4173",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "6h 30m"
+  }
+]

@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "techNo": "5907",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836115878",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "Malayev,Yukov",
+        "address": "3030 OCEAN AV, APT 1E, BROOKLYN, NY 11235-3327",
+        "phone": "646-250-7949",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836908917",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "PHAM,JULIE",
+        "address": "2677 E 11TH ST, APT 1, BROOKLYN, NY 11235",
+        "phone": "917-975-5790",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 2,
+    "estimatedDuration": "4h 36m"
+  }
+]

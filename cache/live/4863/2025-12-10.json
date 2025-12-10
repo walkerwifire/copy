@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4863",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836391056",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4863",
+        "name": "WORLEY,BELINDA",
+        "address": "485 ASHFORD ST, APT 1, BROOKLYN, NY 11207-4422",
+        "phone": "718-362-7802",
+        "hasIS": false
+      },
+      {
+        "time": "5-8",
+        "job": "07836889808",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4863",
+        "name": "JOHNSON,MAYA",
+        "address": "594 VANDALIA AV, APT 2, BROOKLYN, NY 11239",
+        "phone": "347-794-0402",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836592121",
+        "type": "IN",
+        "status": "Not Done",
+        "normalizedStatus": "not-done",
+        "badge": "not-done",
+        "tech": "4863",
+        "name": "POWELL,RESIDENT",
+        "address": "109 CHRISTOPHER AV, APT 15D, BROOKLYN, NY 11212-7863",
+        "phone": "929-764-5692",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836946832",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "JOHNSON,MICHAEL",
+        "address": "475 LOCKE ST, APT 103, BROOKLYN, NY 11239",
+        "phone": "929-366-6839",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836465394",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "JONES,GROVER",
+        "address": "380 COZINE AV, APT 7J, BROOKLYN, NY 11207-9232",
+        "phone": "718-257-2823",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "1h 48m"
+  }
+]

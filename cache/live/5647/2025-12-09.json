@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "techNo": "5647",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836474783",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "OSAHON,VICTOR",
+        "address": "790 ELDERT LN, APT 6U, BROOKLYN, NY 11208-4730",
+        "phone": "111-111-1111",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836585587",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "PINK HOUSES,RESIDENT",
+        "address": "1307 LORING AV, APT 5B, BROOKLYN, NY 11208-4624",
+        "phone": "917-586-3037",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836585392",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "SHEPPARD,MARGARET",
+        "address": "1260 LORING AV, APT 7B, BROOKLYN, NY 11208-4618",
+        "phone": "718-827-5735",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836912799",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "RODRIGUEZ,DIOGENES",
+        "address": "642 ELDERT LN, APT 3D, BROOKLYN, NY 11208",
+        "phone": "718-790-1498",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "4h 54m"
+  }
+]

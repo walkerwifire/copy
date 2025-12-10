@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "techNo": "4863",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836852544",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "BETHEL,ELENOR D",
+        "address": "834 ELTON ST, 2ND REAR, BROOKLYN, NY 11208-5218",
+        "phone": "347-254-6563",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836516996",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "PINEDA,MIGUEL",
+        "address": "305 FOUNTAIN AV, APT 1G, BROOKLYN, NY 11208-4313",
+        "phone": "929-331-1424",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836389871",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "AKUNWASOR,ANULI",
+        "address": "528 VERMONT ST, APT 2, BROOKLYN, NY 11207-5410",
+        "phone": "682-283-2480",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836795251",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "DEEN,FATMATA",
+        "address": "2377 PACIFIC ST, APT 218, BROOKLYN, NY 11233",
+        "phone": "917-358-6134",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "4h 54m"
+  }
+]

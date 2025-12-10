@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "18228",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836189401",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "18228",
+        "name": "MUJICA,MIGUEL",
+        "address": "199 BAY 23 ST, APT 1, BROOKLYN, NY 11214-4711",
+        "phone": "516-841-6667",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836337263",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "SEGREE,BEVERLY",
+        "address": "115 PARKSIDE AV, APT 3, BROOKLYN, NY 11226-1106",
+        "phone": "718-826-2864",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836667623",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "Islam,NILA",
+        "address": "1011 45TH ST, APT B2, BROOKLYN, NY 11219-1918",
+        "phone": "929-331-6822",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836733456",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "ZOMIN,LEV",
+        "address": "2785 W 5TH ST, APT 5F, BROOKLYN, NY 11224-4650",
+        "phone": "718-996-3382",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "3h 0m"
+  }
+]

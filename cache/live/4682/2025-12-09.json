@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "techNo": "4682",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836503252",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "Lesley,JANI",
+        "address": "2737 W 33RD ST, APT 4C, BROOKLYN, NY 11224-1635",
+        "phone": "646-226-0664",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836549278",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "STEVENS,ESSENCE",
+        "address": "2224 CROPSEY AV, APT 11C, BROOKLYN, NY 11214",
+        "phone": "347-671-9128",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836009560",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "SPIRA,HERMAN",
+        "address": "1657 COLEMAN ST, BROOKLYN, NY 11234-4310",
+        "phone": "347-249-9570",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836288321",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "CARMICHAEL,CLEVELAN",
+        "address": "480 E 21ST ST, APT C3, BROOKLYN, NY 11226-6088",
+        "phone": "917-331-6403",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "6h 30m"
+  }
+]

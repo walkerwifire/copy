@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "5765",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07801762636",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5765",
+        "name": "ATTARIAN,GEORGE",
+        "address": "123 PEACHTREE LN, Roslyn Heights, NY 11577-2417",
+        "phone": "516-621-0622",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07858614341",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5765",
+        "name": "ZHU,WENPING",
+        "address": "105 WADSWORTH AV, Levittown, NY 11756-5730",
+        "phone": "516-666-0833",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07801035540",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5765",
+        "name": "MOSSANEN,SHAHZAD",
+        "address": "88 WHITY PHIPS GRV, Old Westbury, NY 11568",
+        "phone": "212-371-5050",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07801930455",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5765",
+        "name": "FUHRER,JERILYN",
+        "address": "23 WILDWOOD GDNS, APT 2B, Port Washington, NY 11050-2329",
+        "phone": "111-111-1111",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": ""
+  }
+]

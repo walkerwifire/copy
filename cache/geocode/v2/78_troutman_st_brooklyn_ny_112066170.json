@@ -1,0 +1,22 @@
+{
+  "chosen": {
+    "lat": 40.6985455,
+    "lng": -73.9306203,
+    "provider": "opencage",
+    "quality": "social_facility",
+    "confidence": 0.7,
+    "adjusted": 0.702,
+    "outOfBounds": false
+  },
+  "candidates": [
+    {
+      "lat": 40.6985455,
+      "lng": -73.9306203,
+      "provider": "opencage",
+      "quality": "social_facility",
+      "confidence": 0.7,
+      "adjusted": 0.702,
+      "outOfBounds": false
+    }
+  ]
+}

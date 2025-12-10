@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "5907",
+    "date": "2025-12-10",
+    "stops": [
+      {
+        "time": "2-5",
+        "job": "07836117823",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5907",
+        "name": "SMITH,CHRISTOP",
+        "address": "21 NOSTRAND AV, APT 3A, BROOKLYN, NY 11206-5165",
+        "phone": "347-405-8082",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836751716",
+        "type": "TC",
+        "status": "Not Done",
+        "normalizedStatus": "not-done",
+        "badge": "not-done",
+        "tech": "5907",
+        "name": "JERVIS,PAUL",
+        "address": "319 MAPLE ST, BROOKLYN, NY 11225-5110",
+        "phone": "718-756-2015",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836550920",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "LAVIE,ARIEL",
+        "address": "374 NEW YORK AV, APT 2, BROOKLYN, NY 11213",
+        "phone": "347-236-9657",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836523732",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "STIRRUP,LYNN",
+        "address": "213 STERLING PL, BROOKLYN, NY 11238-4998",
+        "phone": "718-622-2030",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "2h 24m"
+  }
+]

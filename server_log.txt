@@ -1,0 +1,57 @@
+
+> technet-dashboard@0.1.0 start
+> node server.js
+
+[fetchAllTechRoutes] start date=2025-12-10 techs=23 concurrency=3
+[fetchTechRoutesWithCache] tech=4634 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5736 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=4891 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+Technet dashboard running on http://localhost:3000
+[fetchTechRoutesWithCache] tech=4625 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4819 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5907 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4631 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=4687 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=556 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4682 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=18228 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=18232 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5647 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=17880 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4863 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=9018 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4834 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=4693 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5765 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=4853 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5927 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4856 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5726 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchAllTechRoutes] done date=2025-12-10 aggregatedRoutes=0 totalDurationMs=14
+[scheduler] Refreshed routes for 2025-12-10
+[fetchAllTechRoutes] start date=2025-12-10 techs=23 concurrency=3
+[fetchTechRoutesWithCache] tech=4634 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5736 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4891 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=4625 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4819 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5907 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4631 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4687 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=556 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4682 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=18228 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=18232 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=5647 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=17880 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=4863 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=9018 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=1
+[fetchTechRoutesWithCache] tech=4834 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4693 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5765 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4853 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5927 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=4856 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchTechRoutesWithCache] tech=5726 date=2025-12-10 source=fresh-cache cacheExists=true count=0 durationMs=0
+[fetchAllTechRoutes] done date=2025-12-10 aggregatedRoutes=0 totalDurationMs=10
+[0mGET /api/dashboard?date=2025-12-10 [32m200[0m 15.297 ms - 4863[0m

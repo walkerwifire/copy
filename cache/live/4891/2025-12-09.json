@@ -1,1 +1,75 @@
-[]
+[
+  {
+    "techNo": "4891",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836142259",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "ST JOHN,AUGUSTIN",
+        "address": "992 PUTNAM AV, APT 1B, BROOKLYN, NY 11221-4127",
+        "phone": "718-455-4686",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836246565",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "BHASIN,NIKITA",
+        "address": "23 LOCUST ST, APT *3, BROOKLYN, NY 11206-4523",
+        "phone": "949-943-9660",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836923686",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "BRIDGE MANAGE,546 BAIN",
+        "address": "546 BAINBRIDGE ST, APT BSMT, BROOKLYN, NY 11233",
+        "phone": "718-869-1364",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836786925",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4891",
+        "name": "OTLE MEXICAN,GRN/CHIP",
+        "address": "250 UTICA AV, TELC, BROOKLYN, NY 11213",
+        "phone": "801-326-3601",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836231459",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4891",
+        "name": "PINEDA,LUIS",
+        "address": "1290 HALSEY ST, APT 5, BROOKLYN, NY 11237-6220",
+        "phone": "718-497-5370",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "5h 0m"
+  }
+]

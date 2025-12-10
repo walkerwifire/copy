@@ -438,6 +438,12 @@
           ${tile('SUMMARY', totals.SUMMARY, true)}
         </div>`;
     }
+    // Small helper to escape text for insertion into HTML
+    function escapeHtml(str) {
+      if (str == null) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
     // Reintroduce consolidated renderer, placed correctly near the bottom
     function renderTechniciansWithRoutes(dash) {
       const techRows = document.getElementById('techRows');
@@ -474,10 +480,16 @@
       list.forEach(t => {
         const tr = document.createElement('tr');
         const displayName = getTechName(t.techNo, t.name);
+        let authBadge = '';
+        if (t.authError) {
+          authBadge = `<span class="badge badge--auth badge-auth-fail" title="${escapeHtml(t.authMessage||'Authentication failed')}">✖ Auth</span>`;
+        } else if (t.hasCredentials) {
+          authBadge = `<span class="badge badge--auth badge-auth-pass" title="Credentials present">✔ Auth</span>`;
+        }
         tr.innerHTML = `
           <td><span class="badge">🧑‍🔧</span></td>
           <td>${t.techNo || ''}</td>
-          <td>${displayName || ''}</td>
+          <td>${escapeHtml(displayName) || ''}${authBadge}</td>
           <td><span class="badge badge-status">${t.status || 'N/A'}</span></td>
           <td class="activity-cell">
             <div class="muted">Loading...</div>

@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "techNo": "4834",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836408882",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "SHEPPARD,JERRY",
+        "address": "318 MILFORD ST, APT 1, BROOKLYN, NY 11208-3704",
+        "phone": "516-401-1861",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836931231",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "HIDALGO,MARGARIT",
+        "address": "873 BELMONT AV, APT 2FL, BROOKLYN, NY 11208-2405",
+        "phone": "347-623-5373",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836763735",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "HDWAN,SALEH",
+        "address": "661 BLAKE AV, 2R, BROOKLYN, NY 11207",
+        "phone": "347-223-6552",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836350713",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "Harrington,RAISA",
+        "address": "710 E 93RD ST, APT 1, BROOKLYN, NY 11236-1428",
+        "phone": "929-302-0432",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "5h 30m"
+  }
+]

@@ -1,1 +1,75 @@
-[]
+[
+  {
+    "techNo": "4631",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "5-8",
+        "job": "07836530266",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4631",
+        "name": "ROSE,JOY LYN",
+        "address": "290 GRAFTON ST, APT 1R, BROOKLYN, NY 11212-4006",
+        "phone": "929-393-3674",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836747568",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "AVERY,F",
+        "address": "210 MOTHER GASTN BL, 1ST FLR, BROOKLYN, NY 11233-4312",
+        "phone": "718-385-0651",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836641130",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "ANTWI,ROBERT",
+        "address": "255 SUTTER AV, APT 1, BROOKLYN, NY 11212-5628",
+        "phone": "111-111-1111",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836553877",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "ADU-SARPONG,DAVID",
+        "address": "663 HOWARD AV, APT 2G, BROOKLYN, NY 11212-4148",
+        "phone": "347-365-8110",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836903000",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4631",
+        "name": "JACKSON,MARIKA",
+        "address": "986 LINCOLN PL, APT 1, BROOKLYN, NY 11213",
+        "phone": "718-493-1092",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "3h 36m"
+  }
+]

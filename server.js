@@ -12,6 +12,7 @@ const SLOWMO = parseInt(process.env.SLOWMO || '0', 10);
 const TECHS_JSON_ENV = process.env.TECHS_JSON || process.env.TECHS_JSON_PATH;
 const CACHE_TTL_MS = parseInt(process.env.CACHE_TTL_MS || '600000', 10); // 10 minutes
 const MAPTILER_KEY = process.env.MAPTILER_KEY || '';
+const BROWSER_REUSE = (process.env.BROWSER_REUSE || 'true').toLowerCase() !== 'false';
 // Geocoding constraints to avoid wildly incorrect results
 const GEO_COUNTRY = (process.env.GEO_COUNTRY || 'US').toUpperCase();
 // Default proximity center near central Brooklyn; override via env if needed
@@ -26,6 +27,18 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Admin: clear in-memory auth failure markers (requires ADMIN_SECRET)
+app.post('/api/admin/clear-auth-errors', (req, res) => {
+  try {
+    const provided = req.body && (req.body.secret || req.body.ADMIN_SECRET) || req.headers['x-admin-secret'];
+    if (!provided || String(provided) !== String(ADMIN_SECRET)) return res.status(403).json({ ok: false, error: 'forbidden' });
+    badTechCreds.clear();
+    Object.keys(authErrorMap).forEach(k => delete authErrorMap[k]);
+    console.log('[admin] cleared auth error markers');
+    return res.json({ ok: true });
+  } catch (e) { return res.status(500).json({ ok: false, error: String(e && e.message || e) }); }
+});
 
 // Normalize multiple slashes in request URLs (e.g., //api/routes.csv -> /api/routes.csv)
 app.use((req, _res, next) => {
@@ -464,17 +477,61 @@ function isTodayDateIso(dateIso) {
 }
 
 async function fetchTechRoutesWithCache(tech, password, dateIso, opts = {}) {
+  const tStart = Date.now();
   const cacheFile = getTechDateCachePath(tech, dateIso);
   const cacheExists = fs.existsSync(cacheFile);
   // For past dates, prefer any existing cache regardless of freshness and avoid overwriting it.
   if (!isTodayDateIso(dateIso) && cacheExists && !opts.force) {
-    return readCachedRoutes(cacheFile);
+    const routes = readCachedRoutes(cacheFile);
+    console.log(`[fetchTechRoutesWithCache] tech=${tech} date=${dateIso} source=cache cacheExists=${cacheExists} count=${(routes||[]).length} durationMs=${Date.now()-tStart}`);
+    return routes;
   }
   // For today (or when no file exists yet), use freshness to decide whether to refetch
   if (!opts.force && isFreshCache(cacheFile)) {
-    return readCachedRoutes(cacheFile);
+    const routes = readCachedRoutes(cacheFile);
+    console.log(`[fetchTechRoutesWithCache] tech=${tech} date=${dateIso} source=fresh-cache cacheExists=${cacheExists} count=${(routes||[]).length} durationMs=${Date.now()-tStart}`);
+    return routes;
   }
-  const live = await fetchLiveHtmlWith(tech, password, TECHNET_URL);
+  console.log(`[fetchTechRoutesWithCache] tech=${tech} date=${dateIso} source=live start`);
+  // If this tech previously failed auth, skip re-attempts unless forced
+  if (badTechCreds.has(String(tech)) && !opts.force) {
+    console.log(`[fetchTechRoutesWithCache] tech=${tech} skipping live fetch due to prior auth failure`);
+    return [];
+  }
+
+  let live;
+  try {
+    live = await fetchLiveHtmlWith(tech, password, TECHNET_URL);
+  } catch (err) {
+    // If fetch throws, treat as auth failure for this tech to avoid repeated retries
+    const msg = String(err && err.message ? err.message : err);
+    if (password) {
+      badTechCreds.add(String(tech));
+      authErrorMap[String(tech)] = msg;
+      console.log(`[fetchTechRoutesWithCache] tech=${tech} live fetch error -> marking auth failed: ${msg}`);
+    } else {
+      console.log(`[fetchTechRoutesWithCache] tech=${tech} live fetch error (no creds supplied): ${msg}`);
+    }
+    return [];
+  }
+  const htmlStr = String(live && live.html || '');
+  // Heuristics: detect login page or explicit failure messages and mark auth failure
+  try {
+    const looksLikeLoginPage = /Log\s*On/i.test(htmlStr) && (/input[^>]+name=["']?pinVal/i.test(htmlStr) || /input[^>]+type=["']?password/i.test(htmlStr));
+    const showsError = /invalid|failed|locked|try\s*again/i.test(htmlStr);
+    if ((looksLikeLoginPage || showsError) && password) {
+      // Marking auth failures based on HTML heuristics can produce false-positives.
+      // Require explicit opt-in via STRICT_AUTH_FAIL=1 to enable automatic marking.
+      if (String(process.env.STRICT_AUTH_FAIL || '') === '1') {
+        badTechCreds.add(String(tech));
+        authErrorMap[String(tech)] = 'login failed or invalid credentials';
+        console.log(`[fetchTechRoutesWithCache] tech=${tech} detected login failure in returned HTML (STRICT_AUTH_FAIL=1)`);
+        return [];
+      } else {
+        console.log(`[fetchTechRoutesWithCache] tech=${tech} detected login-like content but STRICT_AUTH_FAIL not enabled — not marking auth failure`);
+      }
+    }
+  } catch (e) {}
   const routes = deriveRoutesFromHtml(live.html || '', tech);
   const techRoutes = routes.filter(r => String(r.techNo) === String(tech));
   const filtered = dateIso ? techRoutes.filter(r => String(r.date) === String(dateIso)) : techRoutes;
@@ -482,6 +539,7 @@ async function fetchTechRoutesWithCache(tech, password, dateIso, opts = {}) {
   if (filtered.length > 0 || isTodayDateIso(dateIso)) {
     writeCachedRoutes(cacheFile, filtered);
   }
+  console.log(`[fetchTechRoutesWithCache] tech=${tech} date=${dateIso} source=live done count=${filtered.length} durationMs=${Date.now()-tStart}`);
   return filtered;
 }
 
@@ -504,7 +562,10 @@ async function parallelMap(items, limit, mapper) {
 
 async function fetchAllTechRoutes(dateIso, opts = {}) {
   const list = getAllTechsFromJson();
-  const chunks = await parallelMap(list, parseInt(process.env.CONCURRENCY || '3', 10), async (t) => {
+  const concurrency = parseInt(process.env.CONCURRENCY || '3', 10);
+  const tAllStart = Date.now();
+  console.log(`[fetchAllTechRoutes] start date=${dateIso} techs=${list.length} concurrency=${concurrency}`);
+  const chunks = await parallelMap(list, concurrency, async (t) => {
     const routes = await fetchTechRoutesWithCache(t.tech, t.password, dateIso, opts);
     // Persist per tech/date indefinitely
     const file = getTechDateCachePath(t.tech, dateIso || new Date().toISOString().slice(0,10));
@@ -519,6 +580,7 @@ async function fetchAllTechRoutes(dateIso, opts = {}) {
   for (const arr of chunks) aggregated.push(...arr);
   // Persist aggregated routes for this date to local data directory
   try { persistAggregatedRoutes(dateIso || new Date().toISOString().slice(0,10), aggregated); } catch {}
+  console.log(`[fetchAllTechRoutes] done date=${dateIso} aggregatedRoutes=${aggregated.length} totalDurationMs=${Date.now()-tAllStart}`);
   return aggregated;
 }
 
@@ -535,8 +597,7 @@ async function fetchLiveHtml() {
   if (!user || !pass) {
     throw new Error('Missing TECHNET_USER/TECHNET_PASS or TECHNET_USERNAME/TECHNET_PASSWORD in environment');
   }
-  const { chromium } = require('playwright');
-  const browser = await chromium.launch({ headless: HEADLESS, slowMo: SLOWMO });
+  const browser = await acquireBrowser();
   // Provide geolocation permissions to satisfy Technet nextPage() logic
   const context = await browser.newContext({
     permissions: ['geolocation'],
@@ -577,7 +638,8 @@ async function fetchLiveHtml() {
 
   // After login, take the resulting page content
   const html = await page.content();
-  await browser.close();
+  await context.close();
+  if (!BROWSER_REUSE) await browser.close();
   return { html, data: parseHtmlToData(html) };
 }
 
@@ -586,8 +648,7 @@ async function fetchLiveHtmlWith(user, pass, targetUrl) {
     throw new Error('Missing user/pass');
   }
   const url = targetUrl || TECHNET_URL;
-  const { chromium } = require('playwright');
-  const browser = await chromium.launch({ headless: HEADLESS, slowMo: SLOWMO });
+  const browser = await acquireBrowser();
   const context = await browser.newContext({
     permissions: ['geolocation'],
     geolocation: { latitude: 40.7128, longitude: -74.0060, accuracy: 100 }
@@ -611,7 +672,8 @@ async function fetchLiveHtmlWith(user, pass, targetUrl) {
     }
   } catch {}
   const html = await page.content();
-  await browser.close();
+  await context.close();
+  if (!BROWSER_REUSE) await browser.close();
   return { html, data: parseHtmlToData(html) };
 }
 
@@ -620,8 +682,7 @@ async function fetchJobDetailHtmlWith(user, pass, jobId, targetUrl) {
   if (!user || !pass) throw new Error('Missing user/pass');
   if (!jobId) throw new Error('Missing jobId');
   const url = targetUrl || TECHNET_URL;
-  const { chromium } = require('playwright');
-  const browser = await chromium.launch({ headless: HEADLESS, slowMo: SLOWMO });
+  const browser = await acquireBrowser();
   const context = await browser.newContext({ permissions: ['geolocation'], geolocation: { latitude: 40.7128, longitude: -74.0060, accuracy: 100 } });
   const page = await context.newPage();
   await page.goto(url, { waitUntil: 'domcontentloaded' });
@@ -683,7 +744,8 @@ async function fetchJobDetailHtmlWith(user, pass, jobId, targetUrl) {
     }, jobId, { timeout: 5000 }).catch(() => {});
   } catch {}
   const html = await page.content();
-  await browser.close();
+  await context.close();
+  if (!BROWSER_REUSE) await browser.close();
   return { html, data: parseHtmlToData(html) };
 }
 
@@ -700,6 +762,24 @@ function geocodeCachePath(address) {
   const key = String(address || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').slice(0,120);
   return path.join(geocodeCacheDir, key + '.json');
 }
+
+// Playwright browser reuse helper
+let sharedBrowserPromise = null;
+const acquireBrowser = async () => {
+  const { chromium } = require('playwright');
+  if (!BROWSER_REUSE) {
+    return await chromium.launch({ headless: HEADLESS, slowMo: SLOWMO });
+  }
+  if (!sharedBrowserPromise) {
+    sharedBrowserPromise = chromium.launch({ headless: HEADLESS, slowMo: SLOWMO });
+    // best-effort cleanup on exit
+    process.on('exit', async () => {
+      try { const b = await sharedBrowserPromise; await b.close(); } catch {};
+    });
+    process.on('SIGINT', async () => { try { const b = await sharedBrowserPromise; await b.close(); } catch {}; process.exit(); });
+  }
+  return await sharedBrowserPromise;
+};
 
 // Geocode overrides (manual corrections)
 const geocodeOverridesPath = path.join(geocodeCacheDir, 'overrides.json');
@@ -850,6 +930,28 @@ async function geocodeAddress(address, context = {}, opts = {}) {
         let conf = rel;
         if (isAddr && rel >= 0.9) conf = Math.max(conf, 0.9);
         const cand = { lat: Number(f.center[1]), lng: Number(f.center[0]), provider: 'mapbox', quality: isAddr ? 'address' : (f.place_type && f.place_type[0] || 'unknown'), confidence: conf };
+        candidates.push(cand);
+      }
+    }
+  } catch (e) {}
+
+  // MapTiler geocoding fallback (uses MAPTILER_KEY env or MAPTILER_KEY constant)
+  try {
+    const mtKey = process.env.MAPTILER_KEY || MAPTILER_KEY || '';
+    if (mtKey) {
+      const q = encodeURIComponent(addr);
+      const params = new URLSearchParams();
+      params.set('key', mtKey);
+      params.set('limit', '1');
+      params.set('language', 'en');
+      params.set('country', 'US');
+      const url = `https://api.maptiler.com/geocoding/${q}.json?${params.toString()}`;
+      const r = await fetch(url);
+      const j = await r.json();
+      const f = Array.isArray(j.features) ? j.features[0] : null;
+      if (f && Array.isArray(f.center) && f.center.length >= 2) {
+        const conf = Number(f.properties && f.properties.confidence ? f.properties.confidence : 0.8) || 0.8;
+        const cand = { lat: Number(f.center[1]), lng: Number(f.center[0]), provider: 'maptiler', quality: f.properties && f.properties.matching_type || 'unknown', confidence: conf };
         candidates.push(cand);
       }
     }
@@ -1139,6 +1241,10 @@ function requireAdmin(req, res, next) {
 // Fail-fast guard: if a login attempt fails once, skip further attempts for a cooldown period
 let loginFailUntilMs = 0;
 const LOGIN_COOLDOWN_MS = 15 * 60 * 1000; // 15 minutes
+
+// Per-tech credential failure tracking: when a tech's creds fail once, skip further live attempts
+const badTechCreds = new Set();
+const authErrorMap = {}; // tech -> message
 
 function isLoginCoolingDown() {
   return Date.now() < loginFailUntilMs;
@@ -1687,6 +1793,75 @@ function deriveTechniciansFromData(data) {
   return result.filter(x => x.name || x.techNo);
 }
 
+// Enrichment helper: geocode missing stops in parallel and normalize statuses
+async function enrichRoutes(routes, opts = {}) {
+  try {
+    // Compute centroid of known points to bias geocoding proximity
+    let sumLat = 0, sumLng = 0, countPts = 0;
+    routes.forEach(r => (r.stops||[]).forEach(s => {
+      const p = s.point || s.location;
+      if (p && typeof p.lat === 'number' && typeof p.lng === 'number') { sumLat += p.lat; sumLng += p.lng; countPts++; }
+    }));
+    const proxLat = countPts ? (sumLat / countPts) : GEO_PROX_LAT;
+    const proxLng = countPts ? (sumLng / countPts) : GEO_PROX_LNG;
+    // Collect tasks for geocoding to run in parallel with a sensible concurrency limit
+    const geocodeConc = Math.max(1, parseInt(process.env.GEOCODE_CONC || '8', 10));
+    const geoTasks = [];
+    for (const r of routes) {
+      for (const s of (r.stops || [])) {
+        const p = s.point || s.location;
+        if (!p || typeof p.lat !== 'number' || typeof p.lng !== 'number') geoTasks.push({ route: r, stop: s });
+      }
+    }
+    if (geoTasks.length) {
+      console.log(`[enrichRoutes] geocoding ${geoTasks.length} stops with concurrency=${geocodeConc}`);
+      await parallelMap(geoTasks, geocodeConc, async (task) => {
+        const s = task.stop;
+        try {
+          const g = await geocodeAddress(s.address || s.name || '', { proxLat, proxLng, state: s.state, city: s.city, zip: s.zip, jobId: s.job });
+          if (g) s.point = g;
+        } catch (e) {}
+      });
+    }
+    // After geocoding pass, normalize statuses for all stops
+    for (const r of routes) {
+      for (const s of (r.stops || [])) {
+        const raw = String(s.status || s.badge || '').trim().toLowerCase();
+        const hints = [String(s.staticStatus||'').toLowerCase(), String(s.description||'').toLowerCase(), String(s.jobComment||'').toLowerCase(), String(s.timeFrame||'').toLowerCase(), String(s.dispatchComment||'').toLowerCase(), String(s.staticCompletionTime||'').toLowerCase()];
+        const text = [raw].concat(hints).join(' ');
+        const hasCpTime = !!s.staticCompletionTime || /\bcp\s*time\b/.test(text) || /\bcomplete(d)?\b/.test(text);
+        const isCancelled = /\bcancel(l|ed|led)?\b|\bcnx\b/.test(text);
+        const isNotDone = /\bnot\s*done\b/.test(text);
+        const hasDispatchActivity = Boolean(s.dispatchComment) || /dispatch\s*(started|begin|en\s*route|on\s*route|arriv(ed|ing)|working)/.test(text);
+        const hasISPrefix = Boolean(s.hasIS) || /\[\s*IS\s*:/i.test(text);
+        const hasStartWords = /\b(in\s*progress|started|begin|working|on\s*route|en\s*route)\b/.test(text);
+        const isAssigned = /\bassign(ed)?\b/.test(text);
+        const isPendingWords = /\bpending\b|\bsched(uled)?\b|awaiting\s*start|not\s*started/.test(text);
+        const withinTimeWindow = (() => {
+          const tf = String(s.timeFrame||'').trim();
+          const m = tf.match(/(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/);
+          if (!m) return false;
+          const now = new Date();
+          const [ , start, end ] = m;
+          const toDate = (hhmm) => { const [h, min] = hhmm.split(':').map(Number); const d = new Date(now); d.setHours(h, min, 0, 0); return d; };
+          const sD = toDate(start); const eD = toDate(end); return now >= sD && now <= eD;
+        })();
+        let norm = '';
+        if (isNotDone) norm = 'not-done';
+        else if (isCancelled) norm = 'cancelled';
+        else if (hasCpTime) norm = 'completed';
+        else if (hasISPrefix || hasDispatchActivity || hasStartWords || isAssigned || withinTimeWindow) norm = 'in-progress';
+        else if (isPendingWords) norm = 'pending';
+        else norm = raw || '';
+        s.normalizedStatus = norm;
+        if (norm === 'in-progress') { s.badge = 'In Progress'; s.status = 'In Progress'; }
+      }
+    }
+  } catch (e) {
+    console.error('[enrichRoutes] error', e && (e.message||e));
+  }
+}
+
 // Simple summary derivation from tables (best-effort)
 function deriveSummaryFromData(data) {
   const summary = { TC: { total: 0, pending: 0, done: 0, cancelled: 0 }, IN: { total: 0, pending: 0, done: 0, cancelled: 0 }, COS: { total: 0, pending: 0, done: 0, cancelled: 0 }, RST: { total: 0, pending: 0, done: 0, cancelled: 0 }, SUMMARY: { total: 0, pending: 0, done: 0, cancelled: 0 } };
@@ -1716,80 +1891,48 @@ app.get('/api/dashboard', async (req, res) => {
     const wantAll = true; // always aggregate all techs
     const dateIso = String(req.query.date || '').trim() || new Date().toISOString().slice(0,10);
     const force = String(req.query.force || '') === '1';
+
+    // If we have a stored aggregated file, return it quickly and start background enrichment
+    try {
+      const aggPath = path.join(dataDir, `stops-${dateIso}.json`);
+      if (fs.existsSync(aggPath)) {
+        const txt = fs.readFileSync(aggPath, 'utf8');
+        try {
+          const obj = JSON.parse(txt || '{}');
+          if (Array.isArray(obj.routes) && obj.routes.length) {
+            // Kick off background enrichment (non-blocking)
+            (async () => {
+              try {
+                console.log(`[dashboard] background enrich start date=${dateIso}`);
+                const refreshed = await fetchAllTechRoutes(dateIso, { force: true });
+                await enrichRoutes(refreshed, {});
+                try { persistAggregatedRoutes(dateIso, refreshed); } catch (e) {}
+                console.log(`[dashboard] background enrich done date=${dateIso}`);
+              } catch (e) { console.error('[dashboard] background enrich error', e && (e.message||e)); }
+            })();
+            // Return the stored aggregated data immediately
+            const techJson = getAllTechsFromJson();
+            const technicians = techJson.map(t => ({
+              name: t.name || `Tech ${t.tech}`,
+              status: t.status || 'Off Duty',
+              techNo: String(t.tech),
+              workSkill: t.workSkill || 'FTTH, COAX',
+              provider: t.provider || 'Altice/Optimum',
+              lastActivity: t.lastActivity || 'N/A',
+              hasCredentials: !!(t.password || t.pass || ''),
+              authError: !!authErrorMap[String(t.tech)],
+              authMessage: authErrorMap[String(t.tech)] || undefined
+            }));
+            return res.json({ mode: 'cached', title: 'All Techs', technicians, summary: {}, routes: obj.routes, raw: {} });
+          }
+        } catch (e) { /* fallthrough to live */ }
+      }
+    } catch (e) {}
+
     let payload;
     if (!payload) {
       const routes = await fetchAllTechRoutes(dateIso, { force });
-      // Compute centroid of known points to bias geocoding proximity
-      let sumLat = 0, sumLng = 0, countPts = 0;
-      routes.forEach(r => (r.stops||[]).forEach(s => {
-        const p = s.point || s.location;
-        if (p && typeof p.lat === 'number' && typeof p.lng === 'number') { sumLat += p.lat; sumLng += p.lng; countPts++; }
-      }));
-      const proxLat = countPts ? (sumLat / countPts) : GEO_PROX_LAT;
-      const proxLng = countPts ? (sumLng / countPts) : GEO_PROX_LNG;
-      // Enrich stops with coordinates via server-side geocoding cache
-      const debug = String(req.query._debug || req.query.debug || '') === '1';
-      for (const r of routes) {
-        for (const s of (r.stops || [])) {
-          const p = s.point || s.location;
-          if (!p || typeof p.lat !== 'number' || typeof p.lng !== 'number') {
-            const g = await geocodeAddress(s.address || s.name || '', { proxLat, proxLng, state: s.state, city: s.city, zip: s.zip, jobId: s.job });
-            if (g) s.point = g;
-          }
-          // Normalize status to distinguish Pending vs In Progress vs Completed/Cancelled/Not Done
-          const raw = String(s.status || s.badge || '').trim().toLowerCase();
-          const hints = [String(s.staticStatus||'').toLowerCase(), String(s.description||'').toLowerCase(), String(s.jobComment||'').toLowerCase(), String(s.timeFrame||'').toLowerCase(), String(s.dispatchComment||'').toLowerCase(), String(s.staticCompletionTime||'').toLowerCase()];
-          const text = [raw].concat(hints).join(' ');
-          // Signal helpers
-          const hasCpTime = !!s.staticCompletionTime || /\bcp\s*time\b/.test(text) || /\bcomplete(d)?\b/.test(text);
-          const isCancelled = /\bcancel(l|ed|led)?\b|\bcnx\b/.test(text);
-          const isNotDone = /\bnot\s*done\b/.test(text);
-          const hasDispatchActivity = Boolean(s.dispatchComment) || /dispatch\s*(started|begin|en\s*route|on\s*route|arriv(ed|ing)|working)/.test(text);
-          // CSG Technet header prefix: [IS:...] indicates In-Progress/Started
-          const hasISPrefix = Boolean(s.hasIS) || /\[\s*IS\s*:/i.test(text);
-          const hasStartWords = /\b(in\s*progress|started|begin|working|on\s*route|en\s*route)\b/.test(text);
-          const isAssigned = /\bassign(ed)?\b/.test(text);
-          const isPendingWords = /\bpending\b|\bsched(uled)?\b|awaiting\s*start|not\s*started/.test(text);
-          // Time window heuristic for TS: if present, lean towards in-progress during window
-          const withinTimeWindow = (() => {
-            const tf = String(s.timeFrame||'').trim();
-            const m = tf.match(/(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/);
-            if (!m) return false;
-            const now = new Date();
-            const [ , start, end ] = m;
-            const toDate = (hhmm) => {
-              const [h, min] = hhmm.split(':').map(Number);
-              const d = new Date(now);
-              d.setHours(h, min, 0, 0);
-              return d;
-            };
-            const sD = toDate(start);
-            const eD = toDate(end);
-            return now >= sD && now <= eD;
-          })();
-          let norm = '';
-          if (isNotDone) norm = 'not-done';
-          else if (isCancelled) norm = 'cancelled';
-          else if (hasCpTime) norm = 'completed';
-          else if (hasISPrefix || hasDispatchActivity || hasStartWords || isAssigned || withinTimeWindow) norm = 'in-progress';
-          else if (isPendingWords) norm = 'pending';
-          else norm = raw || '';
-          s.normalizedStatus = norm;
-          // Ensure UI surfaces "In Progress" even if DS says Pending
-          if (norm === 'in-progress') {
-            s.badge = 'In Progress';
-            s.status = 'In Progress';
-          }
-          if (debug) {
-            s._debug = {
-              job: s.job,
-              hasIS: Boolean(s.hasIS),
-              rawStatus: String(s.status||'') || String(s.badge||''),
-              final: norm
-            };
-          }
-        }
-      }
+      await enrichRoutes(routes, { req });
       const techJson = getAllTechsFromJson();
       const technicians = techJson.map(t => ({
         name: t.name || `Tech ${t.tech}`,
@@ -1797,7 +1940,10 @@ app.get('/api/dashboard', async (req, res) => {
         techNo: String(t.tech),
         workSkill: t.workSkill || 'FTTH, COAX',
         provider: t.provider || 'Altice/Optimum',
-        lastActivity: t.lastActivity || 'N/A'
+        lastActivity: t.lastActivity || 'N/A',
+        hasCredentials: !!(t.password || t.pass || ''),
+        authError: !!authErrorMap[String(t.tech)],
+        authMessage: authErrorMap[String(t.tech)] || undefined
       }));
       payload = { mode: 'live', title: 'All Techs', technicians, summary: {}, routes, raw: {} };
     }

@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "techNo": "4819",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836858470",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "Quimis,Arnaldo",
+        "address": "633 MILLER AV, APT 1F, BROOKLYN, NY 11207-6011",
+        "phone": "929-734-0054",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836517102",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "FREDERICK,ASHLEY",
+        "address": "335 FOUNTAIN AV, APT 3E, BROOKLYN, NY 11208-4311",
+        "phone": "718-216-0832",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836591211",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "LAMBERT,FARIN",
+        "address": "371 MILLER AV, BROOKLYN, NY 11207-3601",
+        "phone": "646-251-3877",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836517279",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4819",
+        "name": "LOPEZ,JOHANNA",
+        "address": "385 FOUNTAIN AV, APT 1C, BROOKLYN, NY 11208-4331",
+        "phone": "347-596-7399",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "5h 18m"
+  }
+]

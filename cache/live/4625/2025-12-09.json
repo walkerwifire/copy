@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "techNo": "4625",
+    "date": "2025-12-09",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836791542",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "ORATION CORP,HMZ REST",
+        "address": "1205 CONEY ISLAND AV, BROOKLYN, NY 11230",
+        "phone": "718-415-0421",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836336837",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "DEFRIEND,LILY",
+        "address": "395 STRATFORD RD, APT D1, BROOKLYN, NY 11218-5364",
+        "phone": "347-348-5000",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 2,
+    "estimatedDuration": "2h 48m"
+  }
+]
