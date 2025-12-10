@@ -7,7 +7,7 @@
   { "tech": "5907", "password": "Tech1234567890" },
   { "tech": "4631", "password": "Tech1234567890" },
   { "tech": "4687", "password": "Tech1234567890" },
-  { "tech": "556", "password": "Wifire1234567890" },
+  { "tech": "556", "password": "Wifire1234567890", "name": "Abraham Algavi" },
   { "tech": "4682", "password": "Welcome1234567" },
   { "tech": "18228", "password": "Tech1234567890" },
   { "tech": "18232", "password": "WIFIRE987654321" },
@@ -16,8 +16,10 @@
   { "tech": "4863", "password": "Tech1234567890" },
   { "tech": "9018", "password": "Welcome1234567" },
   { "tech": "4834", "password": "Welcome1234567" },
+  { "tech": "4693", "password": "Welcome1234567890", "name": "Serhiy Zayets" },
+  { "tech": "5765", "password": "visionpro05765", "name": "Georgii Gadzhinov" },
   { "tech": "4853", "password": "Tech1234567890" },
-  { "tech": "5927", "password": "Welcome1234567" },
+  { "tech": "5927", "password": "Welcome1234567890" },
   { "tech": "4856", "password": "Welcome1234567" },
   { "tech": "5726", "password": "Welcome1234567" }
 ]
