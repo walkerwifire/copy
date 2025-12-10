@@ -229,22 +229,18 @@
       const date = document.getElementById('routeDate')?.value || '';
       let dash = null;
       try {
-        const today = new Date().toISOString().slice(0,10);
-        if (date && date !== today) {
-          const stored = await fetchStoredRoutesForDate(date);
-          if (stored && stored.length) dash = { routes: stored, mode: 'stored', technicians: buildTechniciansFromRoutes(stored) };
+        // Always request live-parsed data when Refresh All is pressed.
+        // This forces server-side live fetch for the requested date and
+        // bypasses returning previously stored aggregated files.
+        const res = await fetch('/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now());
+        if (!res.ok) {
+          const msg = await res.text();
+          const status = document.getElementById('status');
+          status.textContent = 'Login error: ' + msg;
+          alert('Login Failed. Attempts paused to protect the account.');
+          return;
         }
-        if (!dash) {
-          const res = await fetch('/api/dashboard?mode=live&tech=all' + (date ? ('&date=' + encodeURIComponent(date)) : '') + '&force=1&_=' + Date.now());
-          if (!res.ok) {
-            const msg = await res.text();
-            const status = document.getElementById('status');
-            status.textContent = 'Login error: ' + msg;
-            alert('Login Failed. Attempts paused to protect the account.');
-            return;
-          }
-          dash = await res.json();
-        }
+        dash = await res.json();
       } catch (e) { dash = null; }
       const sel = document.getElementById('techSelect');
       if (sel) sel.value = 'all';
