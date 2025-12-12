@@ -4,19 +4,6 @@
     "date": "2025-12-12",
     "stops": [
       {
-        "time": "8-11",
-        "job": "07836459322",
-        "type": "COS",
-        "status": "Pending Change",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "4693",
-        "name": "BEKKER,LIANA",
-        "address": "2820 W 8TH ST, APT 19F, BROOKLYN, NY 11224-3313",
-        "phone": "718-372-5138",
-        "hasIS": false
-      },
-      {
         "time": "9-12",
         "job": "07836212815",
         "type": "TC",
@@ -27,6 +14,19 @@
         "name": "WEINSTOCK,SONYA",
         "address": "8100 BAY PK, APT 5O, BROOKLYN, NY 11214-2553",
         "phone": "917-593-4921",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836459322",
+        "type": "COS",
+        "status": "Pending Change",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4693",
+        "name": "BEKKER,LIANA",
+        "address": "2820 W 8TH ST, APT 19F, BROOKLYN, NY 11224-3313",
+        "phone": "718-372-5138",
         "hasIS": false
       },
       {

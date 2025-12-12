@@ -1,6 +1,6 @@
 {
   "date": "2025-12-12",
-  "generatedAt": "2025-12-12T14:22:28.685Z",
+  "generatedAt": "2025-12-12T14:26:49.538Z",
   "routes": [
     {
       "techNo": "4625",
@@ -1011,28 +1011,6 @@
       "date": "2025-12-12",
       "stops": [
         {
-          "time": "8-11",
-          "job": "07836459322",
-          "type": "COS",
-          "status": "Pending Change",
-          "normalizedStatus": "pending",
-          "badge": "pending",
-          "tech": "4693",
-          "name": "BEKKER,LIANA",
-          "address": "2820 W 8TH ST, APT 19F, BROOKLYN, NY 11224-3313",
-          "phone": "718-372-5138",
-          "hasIS": false,
-          "point": {
-            "lat": 40.579042,
-            "lng": -73.9764052,
-            "provider": "opencage",
-            "quality": "building",
-            "confidence": 0.7999999999999999,
-            "adjusted": 0.8819999999999999,
-            "outOfBounds": false
-          }
-        },
-        {
           "time": "9-12",
           "job": "07836212815",
           "type": "TC",
@@ -1051,6 +1029,28 @@
             "quality": "unknown",
             "confidence": 0.8,
             "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "8-11",
+          "job": "07836459322",
+          "type": "COS",
+          "status": "Pending Change",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4693",
+          "name": "BEKKER,LIANA",
+          "address": "2820 W 8TH ST, APT 19F, BROOKLYN, NY 11224-3313",
+          "phone": "718-372-5138",
+          "hasIS": false,
+          "point": {
+            "lat": 40.579042,
+            "lng": -73.9764052,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
             "outOfBounds": false
           }
         },
