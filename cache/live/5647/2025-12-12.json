@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "5647",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836116837",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5647",
+        "name": "Affleck,DANA",
+        "address": "143 LEWIS AV, APT 1, BROOKLYN, NY 11221-2045",
+        "phone": "914-320-0964",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836625433",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5647",
+        "name": "GIBBS,JAMAHAL",
+        "address": "486 GATES AV, APT 4A, BROOKLYN, NY 11216",
+        "phone": "347-844-4195",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836444359",
+        "type": "RST",
+        "status": "Pending Restart",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5647",
+        "name": "GINSBURG,CHAIM",
+        "address": "271 SULLIVAN PL, APT 2A, BROOKLYN, NY 11225",
+        "phone": "732-447-7689",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836492228",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5647",
+        "name": "BAILEY,ESTELLE",
+        "address": "535 PARKSIDE AV, APT 1L, BROOKLYN, NY 11226-1543",
+        "phone": "347-613-4277",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836855072",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "5647",
+        "name": "Fletcher,Alberta",
+        "address": "123 FENIMORE ST, APT 3FL, BROOKLYN, NY 11225",
+        "phone": "646-361-4191",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": ""
+  }
+]

@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4682",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836457847",
+        "type": "COS",
+        "status": "Pending Change",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4682",
+        "name": "AMATO,SAL",
+        "address": "2958 W 8TH ST, APT 10K, BROOKLYN, NY 11224-3214",
+        "phone": "347-275-9712",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836451578",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4682",
+        "name": "VOJNOVIC,JUDY",
+        "address": "3145 BRIGHTON 4TH ST, APT 415, BROOKLYN, NY 11235-7273",
+        "phone": "718-934-8095",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836122503",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4682",
+        "name": "MINTS,NELLI",
+        "address": "2325 OCEAN AV, APT 3B, BROOKLYN, NY 11229-3125",
+        "phone": "718-375-9679",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836220165",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4682",
+        "name": "PARRA,CHRISTOP",
+        "address": "275 BAY 37TH ST, APT 5A, BROOKLYN, NY 11214-6551",
+        "phone": "917-484-1093",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836554500",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4682",
+        "name": "TZIC,LEANDRO",
+        "address": "8611 BAY PKWY, APT D3, BROOKLYN, NY 11214",
+        "phone": "347-777-5035",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": ""
+  }
+]

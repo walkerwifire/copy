@@ -1,0 +1,31 @@
+{
+  "chosen": {
+    "lat": 40.6654558,
+    "lng": -73.869163,
+    "provider": "opencage",
+    "quality": "building",
+    "confidence": 0.7999999999999999,
+    "adjusted": 0.8819999999999999,
+    "outOfBounds": false
+  },
+  "candidates": [
+    {
+      "lat": 40.6654558,
+      "lng": -73.869163,
+      "provider": "opencage",
+      "quality": "building",
+      "confidence": 0.7999999999999999,
+      "adjusted": 0.8819999999999999,
+      "outOfBounds": false
+    },
+    {
+      "lat": 40.665456,
+      "lng": -73.86916400000001,
+      "provider": "maptiler",
+      "quality": "unknown",
+      "confidence": 0.8,
+      "adjusted": 0.8,
+      "outOfBounds": false
+    }
+  ]
+}

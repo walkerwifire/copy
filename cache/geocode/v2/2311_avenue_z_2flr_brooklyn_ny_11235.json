@@ -1,0 +1,22 @@
+{
+  "chosen": {
+    "lat": 40.588915,
+    "lng": -73.946397,
+    "provider": "opencage",
+    "quality": "road",
+    "confidence": 0.7,
+    "adjusted": 0.702,
+    "outOfBounds": false
+  },
+  "candidates": [
+    {
+      "lat": 40.588915,
+      "lng": -73.946397,
+      "provider": "opencage",
+      "quality": "road",
+      "confidence": 0.7,
+      "adjusted": 0.702,
+      "outOfBounds": false
+    }
+  ]
+}

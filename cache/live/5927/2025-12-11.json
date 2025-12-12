@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "5927",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836841084",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "HATCHER,APRIL",
+        "address": "412 PULASKI ST, APT 3E, BROOKLYN, NY 11206-7220",
+        "phone": "917-698-6893",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836985241",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "Garcia,JESUS",
+        "address": "470 PULASKI ST, APT 5D, BROOKLYN, NY 11221",
+        "phone": "214-725-1939",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836862198",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "PHOENIX,CARL",
+        "address": "10 A STOCKHOLM ST, APT 2FL, BROOKLYN, NY 11221",
+        "phone": "718-415-4266",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836480310",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5927",
+        "name": "Kingsboro,Resident",
+        "address": "307 KINGSBOR 2ND WK, APT 1F, BROOKLYN, NY 11233-3637",
+        "phone": "917-355-2626",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "5h 18m"
+  }
+]

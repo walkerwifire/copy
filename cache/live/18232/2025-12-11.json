@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "18232",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836626989",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "ALFRED,SHEILA",
+        "address": "70 NEW YORK AV, APT 4, BROOKLYN, NY 11216-5503",
+        "phone": "914-292-4226",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836576919",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "GORDON,JADA",
+        "address": "1296 PACIFIC ST, APT 401, BROOKLYN, NY 11216-3120",
+        "phone": "646-399-9443",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836085158",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "WALKER,RUTH",
+        "address": "1605 FULTON ST, APT A207, BROOKLYN, NY 11213",
+        "phone": "718-493-2064",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836506858",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "JACK,MICHELE",
+        "address": "1535 STERLING PL, APT 4B, BROOKLYN, NY 11213-3272",
+        "phone": "718-467-1626",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836100695",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "18232",
+        "name": "JAISING,SHAKPI",
+        "address": "18 HERKIMER CT, BROOKLYN, NY 11216-2803",
+        "phone": "267-307-3587",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "5h 54m"
+  }
+]

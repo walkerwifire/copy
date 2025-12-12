@@ -4,19 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "2-5",
-        "job": "07836189401",
-        "type": "TC",
-        "status": "Pending TC",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "18228",
-        "name": "MUJICA,MIGUEL",
-        "address": "199 BAY 23 ST, APT 1, BROOKLYN, NY 11214-4711",
-        "phone": "516-841-6667",
-        "hasIS": false
-      },
-      {
         "time": "9-12",
         "job": "07836337263",
         "type": "TC",
@@ -54,9 +41,22 @@
         "address": "2785 W 5TH ST, APT 5F, BROOKLYN, NY 11224-4650",
         "phone": "718-996-3382",
         "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836189401",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "MUJICA,MIGUEL",
+        "address": "199 BAY 23 ST, APT 1, BROOKLYN, NY 11214-4711",
+        "phone": "516-841-6667",
+        "hasIS": false
       }
     ],
     "totalStops": 4,
-    "estimatedDuration": "3h 0m"
+    "estimatedDuration": "3h 54m"
   }
 ]

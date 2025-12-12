@@ -14,6 +14,9 @@
     .legend-row { display:flex; align-items:center; gap:8px; margin:4px 0; }
     .dot { width: 10px; height: 10px; border-radius: 50%; display:inline-block; }
     .toast { position: fixed; bottom: 12px; right: 12px; z-index: 1000; background: rgba(11,30,59,0.95); color:#fff; border-radius: 8px; padding: 8px 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); font-family: system-ui; }
+    /* Badge pill styles used in popups */
+    .badge-pill { background:#eef2ff; border:1px solid #c7d2fe; border-radius:6px; padding:2px 6px; color:#1f3b8f; display:inline-block; font-size:0.85em; margin-left:8px; }
+    .badge-time { background:#e6f0ff; border:1px solid #c3ddff; color:#0b3b8f; }
   </style>
 </head>
 <body>
@@ -38,6 +41,13 @@
   </div>
   <div id="toast" class="toast" style="display:none"></div>
   <script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.js"></script>
+  <script src="/map.key.js"></script>
+  <!-- Leaflet + MarkerCluster fallback (used when MapTiler tiles are blocked) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script>
     function showToast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(()=>t.style.display='none', 3000); }
     function setDefaultDate(){ const rd = document.getElementById('routeDate'); if (!rd.value){ const d=new Date(); const y=d.getFullYear(); const m=('0'+(d.getMonth()+1)).slice(-2); const day=('0'+d.getDate()).slice(-2); rd.value=`${y}-${m}-${day}`; } }
@@ -66,6 +76,109 @@
       showToast('MapTiler key missing. Set window.MAPTILER_KEY or edit map.html.');
     }
     maptilersdk.config.apiKey = MAPTILER_KEY;
+    // Proactive client-side check: try fetching the style JSON to detect key/referer issues early
+    (async function checkMapKey(){
+      try {
+        const resp = await fetch(`https://api.maptiler.com/maps/streets-v2/style.json?key=${MAPTILER_KEY}`);
+        if (!resp.ok) {
+          console.error('MapTiler style fetch failed', resp.status, resp.statusText);
+          showToast('Map tiles failed to load (MapTiler key/referer). Using Leaflet fallback.');
+          // Initialize Leaflet fallback
+          useLeaflet = true;
+          try { initLeafletMap(); await loadAndPlotLeaflet(); } catch(e){ console.error('Leaflet fallback failed', e); }
+        }
+      } catch (e) {
+        console.error('MapTiler style fetch error', e);
+        showToast('Map tiles failed to load (network error). Using Leaflet fallback.');
+        useLeaflet = true;
+        try { initLeafletMap(); await loadAndPlotLeaflet(); } catch(err){ console.error('Leaflet fallback failed', err); }
+      }
+    })();
+
+    // Leaflet fallback globals
+    let useLeaflet = false;
+    let Lmap = null;
+    let markerClusterGroup = null;
+
+    // MapTiler tile error detection: if several tile image loads from MapTiler fail
+    // (commonly 403/401 due to referer restrictions), automatically switch to Leaflet.
+    let tileErrorCount = 0;
+    let tileErrorTriggered = false;
+    const TILE_ERROR_THRESHOLD = 3;
+    window.addEventListener('error', function onResourceError(ev){
+      try {
+        const t = ev && (ev.target || ev.srcElement);
+        if (!t) return;
+        // Only consider image-like resources
+        const src = t.currentSrc || t.src || (t.style && t.style.backgroundImage) || '';
+        if (!src) return;
+        const s = String(src).toLowerCase();
+        if (s.includes('maptiler.com') || s.includes('api.maptiler.com') || s.includes('tiles.maptiler.com')){
+          tileErrorCount++;
+          console.warn('Map tile error detected', src, 'count=', tileErrorCount);
+          if (!tileErrorTriggered && tileErrorCount >= TILE_ERROR_THRESHOLD){
+            tileErrorTriggered = true;
+            showToast('Map tiles failing (MapTiler). Switching to Leaflet fallback.');
+            useLeaflet = true;
+            try { initLeafletMap(); loadAndPlotLeaflet(); } catch(err){ console.error('Leaflet fallback failed after tile errors', err); }
+          }
+        }
+      } catch(e){ console.error('tile error handler', e); }
+    }, true);
+
+    function initLeafletMap(){
+      if (Lmap) return;
+      Lmap = L.map('map').setView([40.7128, -74.0060], 11);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(Lmap);
+      markerClusterGroup = L.markerClusterGroup();
+      Lmap.addLayer(markerClusterGroup);
+      Lmap.on('zoomend', ()=>{ if (!useLeaflet) return; /* nothing needed - cluster handles itself */ });
+    }
+
+    async function loadAndPlotLeaflet(){
+      try {
+        const url = buildUrl();
+        showToast('Loading ' + url);
+        const res = await fetch(url);
+        const data = await res.json();
+        const routes = data.routes || [];
+        // Build list of stops according to filter
+        const candidates = [];
+        routes.forEach(r => (r.stops||[]).forEach(s => {
+          if (currentTechFilter !== 'all' && String(r.techNo) !== String(currentTechFilter)) return;
+          candidates.push({ r, s });
+        }));
+        // Clear previous markers
+        if (!Lmap) initLeafletMap();
+        markerClusterGroup.clearLayers();
+        let missing = 0;
+        for (const { r, s } of candidates) {
+          const p = s.point || s.location;
+          if (!p || typeof p.lat !== 'number' || typeof p.lng !== 'number') { missing++; continue; }
+          const status = s.normalizedStatus || s.badge || s.status || '';
+          const color = badgeColor(status) || '#3b82f6';
+          const html = `<div style="font-weight:600">${s.name||''} <span class=\"badge-pill badge-time\">${s.time||''}</span></div>`+
+            `<div>${s.address||''}</div>`+
+            `<div style="margin-top:4px"><span class=\"badge-pill\">${s.type||''}</span> <span class=\"badge-pill\">${s.job||''}</span> <span class=\"badge-pill\">${status||''}</span></div>`+
+            `<div style="margin-top:4px;color:#334155"><strong>Tech:</strong> ${r.techNo||''}</div>`;
+          const icon = L.divIcon({ className: 'custom-dot', html: `<span style="background:${color};display:block;width:14px;height:14px;border-radius:50%;border:2px solid #fff"></span>`, iconSize: [18,18], iconAnchor: [9,9] });
+          const m = L.marker([p.lat, p.lng], { icon: icon });
+          m.bindPopup(html);
+          markerClusterGroup.addLayer(m);
+        }
+        if (markerClusterGroup.getLayers().length) {
+          const group = markerClusterGroup;
+          Lmap.fitBounds(group.getBounds(), { padding: [40,40] });
+        }
+        showToast(`Plotted ${markerClusterGroup.getLayers().length} stops` + (missing? `, ${missing} missing coords` : ''));
+      } catch (e) {
+        showToast('Leaflet load error: ' + (e && e.message || e));
+        console.error(e);
+      }
+    }
     const map = new maptilersdk.Map({
       container: 'map',
       style: maptilersdk.MapStyle.BASIC,
@@ -183,12 +296,13 @@
         const p = f.properties || {};
         const statusKey = String(p.status||'').toLowerCase();
         const statusLabel = statusKey.includes('pending') ? 'Pending' : (statusKey.includes('complete') ? 'Completed' : ((statusKey.includes('cancel') || statusKey.includes('not-done')) ? (p.status||'Cancelled') : 'In Progress'));
-        const html = `<div style=\"font-weight:600\">${p.name||''}</div>`+
+        const html = `<div style="font-weight:600">${p.name||''} <span class="badge-pill badge-time">${p.time||''}</span></div>`+
           `<div>${p.address||''}</div>`+
-          `<div style=\"margin-top:4px\"><span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${p.type||''}</span> `+
-          `<span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${p.job||''}</span> `+
-          `<span style=\"background:#eef2ff;border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px;color:#1f3b8f\">${statusLabel}</span></div>`+
-          `<div style=\"margin-top:4px;color:#334155\"><strong>Tech:</strong> ${p.label||''}</div>`;
+          `<div style="margin-top:4px"><span class="badge-pill">${p.type||''}</span> `+
+          `<span class="badge-pill">${p.job||''}</span> `+
+          `<span class="badge-pill">${statusLabel}</span> `+
+          `<span class="badge-pill badge-time">${p.time||''}</span></div>`+
+          `<div style="margin-top:4px;color:#334155"><strong>Tech:</strong> ${p.label||''}</div>`;
         const popup = new maptilersdk.Popup({ offset: 12 })
           .setLngLat(e.lngLat)
           .setHTML(html)
@@ -337,6 +451,7 @@
               color: badgeColor(status),
               status: status || '',
               type: s.type || '',
+              time: s.time || s.timeFrame || '',
               job: s.job || '',
               name: s.name || '',
               address: s.address || '',

@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "18228",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836118545",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "18228",
+        "name": "PARK HOUSES,RESIDENT",
+        "address": "644 PARK AV, APT 5A, BROOKLYN, NY 11206-7516",
+        "phone": "347-802-3851",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836122255",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "18228",
+        "name": "Cristie,Thomas",
+        "address": "744 PARK AV, APT 8D, BROOKLYN, NY 11206-5263",
+        "phone": "929-234-8389",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836007419",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "18228",
+        "name": "Autherley,ANDREW",
+        "address": "4 MALCOLM X BL, APT 3RL, BROOKLYN, NY 11221",
+        "phone": "347-435-7471",
+        "hasIS": false
+      },
+      {
+        "time": "5-8",
+        "job": "07836697793",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "18228",
+        "name": "SMALL,VIREEN",
+        "address": "676 WILLOUGHBY AV, APT 3A, BROOKLYN, NY 11206-6969",
+        "phone": "718-602-2606",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": ""
+  }
+]

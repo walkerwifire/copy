@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "5765",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07801723079",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5765",
+        "name": "CARDONE,NUNZIO",
+        "address": "294 ROOSEVELT WAY, BLD 18, Westbury, NY 11590-6700",
+        "phone": "516-279-4563",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07858600457",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5765",
+        "name": "FRAILE,RALPH",
+        "address": "860 MERILLON AV, Westbury, NY 11590-6113",
+        "phone": "516-333-3229",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07858601966",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5765",
+        "name": "TANASOVSKI,MENDE",
+        "address": "905 GRAND BL, Westbury, NY 11590-6124",
+        "phone": "516-997-3435",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": ""
+  }
+]

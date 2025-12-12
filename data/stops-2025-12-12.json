@@ -1,0 +1,1364 @@
+{
+  "date": "2025-12-12",
+  "generatedAt": "2025-12-12T14:22:28.685Z",
+  "routes": [
+    {
+      "techNo": "4625",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "9-12",
+          "job": "07836007312",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4625",
+          "name": "GORMAN,JOHN",
+          "address": "1772 E 52ND ST, BROOKLYN, NY 11234-3814",
+          "phone": "718-338-1902",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6160835,
+            "lng": -73.9248787,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836020435",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4625",
+          "name": "SCOUNT STORE,,CROWN DI",
+          "address": "1 PAERDEGT 2ND ST, APT 2, BROOKLYN, NY 11236-4131",
+          "phone": "929-461-3550",
+          "hasIS": false,
+          "point": {
+            "lat": 40.631821,
+            "lng": -73.912444,
+            "provider": "maptiler",
+            "quality": "unknown",
+            "confidence": 0.8,
+            "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 2,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "4631",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836550708",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4631",
+          "name": "TUTEIN,RAHEEM",
+          "address": "431 HART ST, APT 5C, BROOKLYN, NY 11221",
+          "phone": "678-571-7091",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6950339,
+            "lng": -73.933317,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "11-2",
+          "job": "07836550934",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4631",
+          "name": "BARDONG,CIARAN",
+          "address": "92 JEFFERSON ST, APT 2L, BROOKLYN, NY 11206",
+          "phone": "516-350-3749",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6992216,
+            "lng": -73.9316594,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "12-3",
+          "job": "07836621861",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4631",
+          "name": "PEPEN,RADAIRIS",
+          "address": "231 CENTRAL AV, 2, BROOKLYN, NY 11221-3445",
+          "phone": "347-891-3092",
+          "hasIS": false,
+          "point": {
+            "lat": 40.697134,
+            "lng": -73.92316599999998,
+            "provider": "maptiler",
+            "quality": "unknown",
+            "confidence": 0.8,
+            "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836241176",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4631",
+          "name": "RODRIGUEZ,ALICE",
+          "address": "709 KNICKERBOCKR AV, APT 1, BROOKLYN, NY 11221-5317",
+          "phone": "718-381-9810",
+          "hasIS": false,
+          "point": {
+            "lat": 40.694408,
+            "lng": -73.91038800000001,
+            "provider": "maptiler",
+            "quality": "unknown",
+            "confidence": 0.8,
+            "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836837674",
+          "type": "COS",
+          "status": "Pending Change",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4631",
+          "name": "VASQUEZ,JUANA",
+          "address": "165 HIMROD ST, APT 5E, BROOKLYN, NY 11221-3461",
+          "phone": "347-299-2931",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6977922,
+            "lng": -73.9222526,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "4687",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836019517",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4687",
+          "name": "GUERVIL,BELLAND",
+          "address": "1134 E 84TH ST, APT 2, BROOKLYN, NY 11236-4733",
+          "phone": "929-833-4161",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6333426,
+            "lng": -73.9061686,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "12-3",
+          "job": "07836020899",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4687",
+          "name": "OSINOWO,ELIZABET",
+          "address": "17 PAERDEGAT 7 ST, BROOKLYN, NY 11236-4105",
+          "phone": "347-301-6244",
+          "hasIS": false,
+          "point": {
+            "lat": 40.630228,
+            "lng": -73.90810099999999,
+            "provider": "maptiler",
+            "quality": "unknown",
+            "confidence": 0.8,
+            "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836067952",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4687",
+          "name": "Norstrand,Resident",
+          "address": "2343 BATCHELDER ST, APT 4A, BROOKLYN, NY 11229-5355",
+          "phone": "631-882-4232",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5952046,
+            "lng": -73.9376367,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836165540",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4687",
+          "name": "KERSHAW,GREGORY",
+          "address": "4210 AVENUE J, BROOKLYN, NY 11210-4444",
+          "phone": "646-725-8309",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6274719,
+            "lng": -73.935136,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 4,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "556",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836543355",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "556",
+          "name": "Boakye,YAASANTE",
+          "address": "590 FLATBUSH AV, APT 10H, BROOKLYN, NY 11225-4988",
+          "phone": "646-671-8598",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6588666,
+            "lng": -73.961338,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "9-12",
+          "job": "07836335139",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "556",
+          "name": "DE LA CRUZ,GELTY",
+          "address": "100 E 21ST ST, APT 115, BROOKLYN, NY 11226-3032",
+          "phone": "347-430-1417",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6516396,
+            "lng": -73.9604345,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "12-3",
+          "job": "07836550365",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "556",
+          "name": "LAPORTE,ANNE",
+          "address": "260 HAWTHORNE ST, APT D6, BROOKLYN, NY 11225-5913",
+          "phone": "347-789-9626",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6575587,
+            "lng": -73.9516309,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836399299",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "556",
+          "name": "Noel,KESNEL",
+          "address": "201 LINDEN BL, APT F9, BROOKLYN, NY 11226-3442",
+          "phone": "862-334-7080",
+          "hasIS": false,
+          "point": {
+            "lat": 40.65260067215965,
+            "lng": -73.94972126930952,
+            "provider": "maptiler",
+            "quality": "unknown",
+            "confidence": 0.8,
+            "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836502337",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "556",
+          "name": "DIEUJUSTE,MARIE",
+          "address": "255 MARTENSE ST, APT 9, BROOKLYN, NY 11226-3621",
+          "phone": "347-679-2484",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6519216,
+            "lng": -73.950569,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "4682",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836457847",
+          "type": "COS",
+          "status": "Pending Change",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4682",
+          "name": "AMATO,SAL",
+          "address": "2958 W 8TH ST, APT 10K, BROOKLYN, NY 11224-3214",
+          "phone": "347-275-9712",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5765189,
+            "lng": -73.9766093,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "12-3",
+          "job": "07836451578",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4682",
+          "name": "VOJNOVIC,JUDY",
+          "address": "3145 BRIGHTON 4TH ST, APT 415, BROOKLYN, NY 11235-7273",
+          "phone": "718-934-8095",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5754109,
+            "lng": -73.9626945,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836122503",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4682",
+          "name": "MINTS,NELLI",
+          "address": "2325 OCEAN AV, APT 3B, BROOKLYN, NY 11229-3125",
+          "phone": "718-375-9679",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6053887,
+            "lng": -73.9521944,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836220165",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4682",
+          "name": "PARRA,CHRISTOP",
+          "address": "275 BAY 37TH ST, APT 5A, BROOKLYN, NY 11214-6551",
+          "phone": "917-484-1093",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5932427,
+            "lng": -73.9946499,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836554500",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4682",
+          "name": "TZIC,LEANDRO",
+          "address": "8611 BAY PKWY, APT D3, BROOKLYN, NY 11214",
+          "phone": "347-777-5035",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6013573,
+            "lng": -73.993974,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "18228",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836118545",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "18228",
+          "name": "PARK HOUSES,RESIDENT",
+          "address": "644 PARK AV, APT 5A, BROOKLYN, NY 11206-7516",
+          "phone": "347-802-3851",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6972565,
+            "lng": -73.9501561,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "11-2",
+          "job": "07836122255",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "18228",
+          "name": "Cristie,Thomas",
+          "address": "744 PARK AV, APT 8D, BROOKLYN, NY 11206-5263",
+          "phone": "929-234-8389",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6975991,
+            "lng": -73.9453322,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836007419",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "18228",
+          "name": "Autherley,ANDREW",
+          "address": "4 MALCOLM X BL, APT 3RL, BROOKLYN, NY 11221",
+          "phone": "347-435-7471",
+          "hasIS": false,
+          "point": {
+            "lat": 40.65260067215965,
+            "lng": -73.94972126930952,
+            "provider": "maptiler",
+            "quality": "unknown",
+            "confidence": 0.8,
+            "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "5-8",
+          "job": "07836697793",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "18228",
+          "name": "SMALL,VIREEN",
+          "address": "676 WILLOUGHBY AV, APT 3A, BROOKLYN, NY 11206-6969",
+          "phone": "718-602-2606",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6944501,
+            "lng": -73.9422995,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 4,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "5647",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836116837",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "5647",
+          "name": "Affleck,DANA",
+          "address": "143 LEWIS AV, APT 1, BROOKLYN, NY 11221-2045",
+          "phone": "914-320-0964",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6919707,
+            "lng": -73.9366203,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "9-12",
+          "job": "07836625433",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "5647",
+          "name": "GIBBS,JAMAHAL",
+          "address": "486 GATES AV, APT 4A, BROOKLYN, NY 11216",
+          "phone": "347-844-4195",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6864983,
+            "lng": -73.946541,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "11-2",
+          "job": "07836444359",
+          "type": "RST",
+          "status": "Pending Restart",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "5647",
+          "name": "GINSBURG,CHAIM",
+          "address": "271 SULLIVAN PL, APT 2A, BROOKLYN, NY 11225",
+          "phone": "732-447-7689",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6648596,
+            "lng": -73.9520971,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836492228",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "5647",
+          "name": "BAILEY,ESTELLE",
+          "address": "535 PARKSIDE AV, APT 1L, BROOKLYN, NY 11226-1543",
+          "phone": "347-613-4277",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6560291,
+            "lng": -73.955505,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "12-3",
+          "job": "07836855072",
+          "type": "TC",
+          "status": "Cancel",
+          "normalizedStatus": "cancelled",
+          "badge": "cancelled",
+          "tech": "5647",
+          "name": "Fletcher,Alberta",
+          "address": "123 FENIMORE ST, APT 3FL, BROOKLYN, NY 11225",
+          "phone": "646-361-4191",
+          "hasIS": false,
+          "point": {
+            "lat": 40.658385,
+            "lng": -73.9582806,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "17880",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836530540",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "17880",
+          "name": "WATSON,JOSEPHIN",
+          "address": "937 59TH ST, APT B3, BROOKLYN, NY 11219-4817",
+          "phone": "718-749-8789",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6343029,
+            "lng": -74.0056228,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "11-2",
+          "job": "07836660161",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "17880",
+          "name": "TZOC,CECILIA",
+          "address": "1708 BATH AV, 3, BROOKLYN, NY 11214-4532",
+          "phone": "929-391-0044",
+          "hasIS": false,
+          "point": {
+            "lat": 40.60184953497463,
+            "lng": -74.0005011856556,
+            "provider": "maptiler",
+            "quality": "unknown",
+            "confidence": 0.8,
+            "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "12-3",
+          "job": "07836099372",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "17880",
+          "name": "LAKUSH,ROZA",
+          "address": "2719 E 28TH ST, APT 6E, BROOKLYN, NY 11235-2483",
+          "phone": "718-676-1363",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5865469,
+            "lng": -73.9400204,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836125638",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "17880",
+          "name": "SIKOREVICH,STEVE",
+          "address": "2665 HOMECREST AV, APT 4K, BROOKLYN, NY 11235-4543",
+          "phone": "347-564-6379",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5863382,
+            "lng": -73.9567263,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836135929",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "17880",
+          "name": "PAGAN,GLADYS",
+          "address": "3080 VOORHIES AV, APT 3M, BROOKLYN, NY 11235-1329",
+          "phone": "718-213-1819",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5878544,
+            "lng": -73.9334325,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "4863",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "12-3",
+          "job": "07836370772",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4863",
+          "name": "POLLYDORE,LYTTOL",
+          "address": "2620 GLENWOOD RD, APT 6H, BROOKLYN, NY 11210-2234",
+          "phone": "347-787-4105",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6333659,
+            "lng": -73.9513039,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836483559",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4863",
+          "name": "CHERY,WOODSON",
+          "address": "329 E 29TH ST, APT BSMT, BROOKLYN, NY 11226",
+          "phone": "929-620-8043",
+          "hasIS": false,
+          "point": {
+            "lat": 40.642365,
+            "lng": -73.9493879,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836948181",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4863",
+          "name": "RODRIGUEZ,ROSA",
+          "address": "2165 CLARENDON RD, APT 2, BROOKLYN, NY 11226-6110",
+          "phone": "646-306-6540",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6428588,
+            "lng": -73.9574209,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "8-11",
+          "job": "07836428401",
+          "type": "IN",
+          "status": "Complete",
+          "normalizedStatus": "completed",
+          "badge": "completed",
+          "tech": "4863",
+          "name": "CAMPBELL,SHELAINE",
+          "address": "5306 AVENUE H, APT 2, BROOKLYN, NY 11234",
+          "phone": "646-251-0837",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6328019,
+            "lng": -73.9250881,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 4,
+      "estimatedDuration": "2h 36m"
+    },
+    {
+      "techNo": "4834",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "9-12",
+          "job": "07836012188",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4834",
+          "name": "SALOME,TOBY",
+          "address": "1859 COLEMAN ST, BROOKLYN, NY 11234-4503",
+          "phone": "718-705-2474",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6143522,
+            "lng": -73.929982,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "11-2",
+          "job": "07836350567",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4834",
+          "name": "cunningham,keisha",
+          "address": "656 E 92ND ST, APT 1, BROOKLYN, NY 11236-1244",
+          "phone": "718-559-7769",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6511845,
+            "lng": -73.9159278,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "9-12",
+          "job": "07836551105",
+          "type": "TC",
+          "status": "Cancel",
+          "normalizedStatus": "cancelled",
+          "badge": "cancelled",
+          "tech": "4834",
+          "name": "Edinborough,SHAWN",
+          "address": "442 BRISTOL ST, APT 2, BROOKLYN, NY 11212-5359",
+          "phone": "646-300-0989",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6601778,
+            "lng": -73.9104983,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 3,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "4693",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836459322",
+          "type": "COS",
+          "status": "Pending Change",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4693",
+          "name": "BEKKER,LIANA",
+          "address": "2820 W 8TH ST, APT 19F, BROOKLYN, NY 11224-3313",
+          "phone": "718-372-5138",
+          "hasIS": false,
+          "point": {
+            "lat": 40.579042,
+            "lng": -73.9764052,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "9-12",
+          "job": "07836212815",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4693",
+          "name": "WEINSTOCK,SONYA",
+          "address": "8100 BAY PK, APT 5O, BROOKLYN, NY 11214-2553",
+          "phone": "917-593-4921",
+          "hasIS": false,
+          "point": {
+            "lat": 40.632006383712664,
+            "lng": -74.02321010828018,
+            "provider": "maptiler",
+            "quality": "unknown",
+            "confidence": 0.8,
+            "adjusted": 0.8,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "12-3",
+          "job": "07836453456",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4693",
+          "name": "MICHEL,ORIOL",
+          "address": "2686 COLBY CT, APT 2D, BROOKLYN, NY 11223-6120",
+          "phone": "718-646-7795",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5835512,
+            "lng": -73.9732863,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836220238",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4693",
+          "name": "KABABJI,HILLAL",
+          "address": "288 BAY 38TH ST, APT 2U, BROOKLYN, NY 11214-6524",
+          "phone": "347-394-8664",
+          "hasIS": false,
+          "point": {
+            "lat": 40.5929297,
+            "lng": -73.994466,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836578534",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4693",
+          "name": "Cruse,Derneeka",
+          "address": "2955 SHELL RD, APT 6H, BROOKLYN, NY 11224-3647",
+          "phone": "347-222-5421",
+          "hasIS": false,
+          "point": {
+            "lat": 40.580942,
+            "lng": -73.9753801,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 5,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "5927",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836651786",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "5927",
+          "name": "Singh,Sharma",
+          "address": "1280 CROTON LP, APT 3A, BROOKLYN, NY 11239-1508",
+          "phone": "917-445-3075",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6486365,
+            "lng": -73.8841861,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "9-12",
+          "job": "07836018585",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "5927",
+          "name": "GERMAIN,ROBERT",
+          "address": "1025 E 80TH ST, APT 2, BROOKLYN, NY 11236-4127",
+          "phone": "646-600-2070",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6335547,
+            "lng": -73.9106489,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "11-2",
+          "job": "07836889804",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "5927",
+          "name": "EDWARDS,SYLVIA",
+          "address": "590 VANDALIA AV, APT 2, BROOKLYN, NY 11239",
+          "phone": "718-755-4099",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6565126,
+            "lng": -73.8708647,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836427873",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "5927",
+          "name": "HOSSAN,MOBURAK",
+          "address": "439 ELDERT LN, APT 1FL, BROOKLYN, NY 11208",
+          "phone": "516-957-9029",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6802351,
+            "lng": -73.8653558,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 4,
+      "estimatedDuration": ""
+    },
+    {
+      "techNo": "4856",
+      "date": "2025-12-12",
+      "stops": [
+        {
+          "time": "8-11",
+          "job": "07836592121",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4856",
+          "name": "POWELL,RESIDENT",
+          "address": "109 CHRISTOPHER AV, APT 15D, BROOKLYN, NY 11212-7863",
+          "phone": "929-764-5692",
+          "hasIS": false,
+          "point": {
+            "lat": 40.671079,
+            "lng": -73.9056908,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "9-12",
+          "job": "07836395654",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4856",
+          "name": "CHOCHOTTE,RONALD",
+          "address": "669 PENNSYLVANIA AV, APT 3, BROOKLYN, NY 11207-6906",
+          "phone": "347-274-5607",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6610814,
+            "lng": -73.8921549,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "9-12",
+          "job": "07836649166",
+          "type": "TC",
+          "status": "Pending TC",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4856",
+          "name": "PHILLIPS,BEVERLEY",
+          "address": "1445 GENEVA LP, APT 12B, BROOKLYN, NY 11239-2414",
+          "phone": "718-642-6518",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6470161,
+            "lng": -73.8790853,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "11-2",
+          "job": "07836859012",
+          "type": "COS",
+          "status": "Pending Change",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4856",
+          "name": "COVINGTON,CYNTHIA",
+          "address": "554 VANDALIA AV, APT 2, BROOKLYN, NY 11239",
+          "phone": "347-627-2679",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6559585,
+            "lng": -73.8721461,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "11-2",
+          "job": "07836860012",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4856",
+          "name": "HOLDER,TERRANCE",
+          "address": "1099 STANLEY AV, APT BSMT, BROOKLYN, NY 11208",
+          "phone": "347-206-7515",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6654558,
+            "lng": -73.869163,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        },
+        {
+          "time": "2-5",
+          "job": "07836801331",
+          "type": "IN",
+          "status": "Pending Install",
+          "normalizedStatus": "pending",
+          "badge": "pending",
+          "tech": "4856",
+          "name": "BAH,THIERNO",
+          "address": "459 VANDALIA AV, APT 3A, BROOKLYN, NY 11239",
+          "phone": "347-475-6114",
+          "hasIS": false,
+          "point": {
+            "lat": 40.6549416,
+            "lng": -73.875704,
+            "provider": "opencage",
+            "quality": "building",
+            "confidence": 0.7999999999999999,
+            "adjusted": 0.8819999999999999,
+            "outOfBounds": false
+          }
+        }
+      ],
+      "totalStops": 6,
+      "estimatedDuration": ""
+    }
+  ]
+}

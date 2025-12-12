@@ -4,19 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "2-5",
-        "job": "07836429860",
-        "type": "IN",
-        "status": "Pending Install",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "4693",
-        "name": "MELO,ROSANNA",
-        "address": "328 LINCOLN AV, APT 1, BROOKLYN, NY 11208-3017",
-        "phone": "347-309-0604",
-        "hasIS": false
-      },
-      {
         "time": "9-12",
         "job": "07836974186",
         "type": "TC",
@@ -40,6 +27,19 @@
         "name": "FLORES,LUIS",
         "address": "3249 FULTON ST, APT BSMT, BROOKLYN, NY 11208",
         "phone": "332-225-6582",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836429860",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4693",
+        "name": "MELO,ROSANNA",
+        "address": "328 LINCOLN AV, APT 1, BROOKLYN, NY 11208-3017",
+        "phone": "347-309-0604",
         "hasIS": false
       }
     ],

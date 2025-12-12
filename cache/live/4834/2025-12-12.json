@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4834",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836012188",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4834",
+        "name": "SALOME,TOBY",
+        "address": "1859 COLEMAN ST, BROOKLYN, NY 11234-4503",
+        "phone": "718-705-2474",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836350567",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4834",
+        "name": "cunningham,keisha",
+        "address": "656 E 92ND ST, APT 1, BROOKLYN, NY 11236-1244",
+        "phone": "718-559-7769",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836551105",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4834",
+        "name": "Edinborough,SHAWN",
+        "address": "442 BRISTOL ST, APT 2, BROOKLYN, NY 11212-5359",
+        "phone": "646-300-0989",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": ""
+  }
+]

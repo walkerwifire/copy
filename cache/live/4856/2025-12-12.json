@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "4856",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836592121",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "POWELL,RESIDENT",
+        "address": "109 CHRISTOPHER AV, APT 15D, BROOKLYN, NY 11212-7863",
+        "phone": "929-764-5692",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836395654",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "CHOCHOTTE,RONALD",
+        "address": "669 PENNSYLVANIA AV, APT 3, BROOKLYN, NY 11207-6906",
+        "phone": "347-274-5607",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836649166",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "PHILLIPS,BEVERLEY",
+        "address": "1445 GENEVA LP, APT 12B, BROOKLYN, NY 11239-2414",
+        "phone": "718-642-6518",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836859012",
+        "type": "COS",
+        "status": "Pending Change",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "COVINGTON,CYNTHIA",
+        "address": "554 VANDALIA AV, APT 2, BROOKLYN, NY 11239",
+        "phone": "347-627-2679",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836860012",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "HOLDER,TERRANCE",
+        "address": "1099 STANLEY AV, APT BSMT, BROOKLYN, NY 11208",
+        "phone": "347-206-7515",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836801331",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4856",
+        "name": "BAH,THIERNO",
+        "address": "459 VANDALIA AV, APT 3A, BROOKLYN, NY 11239",
+        "phone": "347-475-6114",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": ""
+  }
+]

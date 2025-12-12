@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4687",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836925153",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "MERCADO,AMAYA",
+        "address": "459 ESSEX ST, APT 3FLR, BROOKLYN, NY 11208",
+        "phone": "347-681-4693",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836517633",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "OFF,RESIDENT",
+        "address": "525 FOUNTAIN AV, APT 4F, BROOKLYN, NY 11208-6018",
+        "phone": "654-321-6554",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836391041",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4687",
+        "name": "BERRY NEY,LYNETTE",
+        "address": "459 ASHFORD ST, BROOKLYN, NY 11207-4422",
+        "phone": "917-280-7583",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836017722",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "4687",
+        "name": "ALVAREZ,ELMER MA",
+        "address": "1512 E 32ND ST, APT 1, BROOKLYN, NY 11234-3455",
+        "phone": "214-994-0984",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "5h 6m"
+  }
+]

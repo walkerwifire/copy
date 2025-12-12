@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4687",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836019517",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4687",
+        "name": "GUERVIL,BELLAND",
+        "address": "1134 E 84TH ST, APT 2, BROOKLYN, NY 11236-4733",
+        "phone": "929-833-4161",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836020899",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4687",
+        "name": "OSINOWO,ELIZABET",
+        "address": "17 PAERDEGAT 7 ST, BROOKLYN, NY 11236-4105",
+        "phone": "347-301-6244",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836067952",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4687",
+        "name": "Norstrand,Resident",
+        "address": "2343 BATCHELDER ST, APT 4A, BROOKLYN, NY 11229-5355",
+        "phone": "631-882-4232",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836165540",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4687",
+        "name": "KERSHAW,GREGORY",
+        "address": "4210 AVENUE J, BROOKLYN, NY 11210-4444",
+        "phone": "646-725-8309",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": ""
+  }
+]

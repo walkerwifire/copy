@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "18228",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836681783",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "BILLY,CECILE",
+        "address": "651 RUTLAND RD, APT 1D, BROOKLYN, NY 11203-1856",
+        "phone": "718-493-2123",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836574247",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "REID,RESIDENT",
+        "address": "728 NEW YORK AV, APT 3A, BROOKLYN, NY 11203",
+        "phone": "646-752-1744",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836486409",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "WOLOWIK,MUSHKA",
+        "address": "891 MONTGOMERY ST, BROOKLYN, NY 11213-5619",
+        "phone": "718-808-3361",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836574203",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "RAYMORE,GLENA",
+        "address": "728 NEW YORK AV, APT 18E, BROOKLYN, NY 11203",
+        "phone": "347-300-5334",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836272161",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18228",
+        "name": "Regis,Sheila",
+        "address": "363 OCEAN PKWY, APT C12, BROOKLYN, NY 11218-4716",
+        "phone": "347-388-3244",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": "7h 0m"
+  }
+]

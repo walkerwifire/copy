@@ -4,32 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "2-5",
-        "job": "07836117823",
-        "type": "TC",
-        "status": "Pending TC",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "5907",
-        "name": "SMITH,CHRISTOP",
-        "address": "21 NOSTRAND AV, APT 3A, BROOKLYN, NY 11206-5165",
-        "phone": "347-405-8082",
-        "hasIS": false
-      },
-      {
-        "time": "12-3",
-        "job": "07836751716",
-        "type": "TC",
-        "status": "Not Done",
-        "normalizedStatus": "not-done",
-        "badge": "not-done",
-        "tech": "5907",
-        "name": "JERVIS,PAUL",
-        "address": "319 MAPLE ST, BROOKLYN, NY 11225-5110",
-        "phone": "718-756-2015",
-        "hasIS": false
-      },
-      {
         "time": "11-2",
         "job": "07836550920",
         "type": "IN",
@@ -56,7 +30,7 @@
         "hasIS": false
       }
     ],
-    "totalStops": 4,
+    "totalStops": 2,
     "estimatedDuration": "2h 24m"
   }
 ]

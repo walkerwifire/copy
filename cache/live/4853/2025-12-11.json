@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4853",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836351166",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "SPALDING,NELLIE",
+        "address": "632 E 96TH ST, APT 2, BROOKLYN, NY 11236-1342",
+        "phone": "347-864-1264",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836624704",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "RODRIGUEZ,DELIA",
+        "address": "738 HOWARD AV, APT 1C, BROOKLYN, NY 11212-3987",
+        "phone": "718-922-9535",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836798016",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4853",
+        "name": "DEL VALLE,HARVEY",
+        "address": "213 BUFFALO AV, APT 1A, BROOKLYN, NY 11213-3988",
+        "phone": "917-769-1168",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 0m"
+  }
+]

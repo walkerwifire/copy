@@ -4,45 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "5-8",
-        "job": "07836303698",
-        "type": "TC",
-        "status": "Pending TC",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "5647",
-        "name": "SRDANOVIC,SENADA",
-        "address": "1725 DORCHESTER RD, APT 5C, BROOKLYN, NY 11226-5718",
-        "phone": "347-604-2966",
-        "hasIS": false
-      },
-      {
-        "time": "8-11",
-        "job": "07836549562",
-        "type": "IN",
-        "status": "Not Done",
-        "normalizedStatus": "not-done",
-        "badge": "not-done",
-        "tech": "5647",
-        "name": "BETANCES,YARLIN",
-        "address": "131 MONTGOMERY ST, APT PH31, BROOKLYN, NY 11225",
-        "phone": "347-671-3381",
-        "hasIS": false
-      },
-      {
-        "time": "11-2",
-        "job": "07836536734",
-        "type": "IN",
-        "status": "Not Done",
-        "normalizedStatus": "not-done",
-        "badge": "not-done",
-        "tech": "5647",
-        "name": "FABRE,RONALD",
-        "address": "277 ROCKAWAY PK, APT 4A, BROOKLYN, NY 11212-3323",
-        "phone": "917-892-7437",
-        "hasIS": false
-      },
-      {
         "time": "2-5",
         "job": "07836530939",
         "type": "COS",
@@ -54,9 +15,22 @@
         "address": "208 GRAFTON ST, APT 3C, BROOKLYN, NY 11212-4055",
         "phone": "718-498-2679",
         "hasIS": false
+      },
+      {
+        "time": "5-8",
+        "job": "07836303698",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5647",
+        "name": "SRDANOVIC,SENADA",
+        "address": "1725 DORCHESTER RD, APT 5C, BROOKLYN, NY 11226-5718",
+        "phone": "347-604-2966",
+        "hasIS": false
       }
     ],
-    "totalStops": 4,
-    "estimatedDuration": "2h 24m"
+    "totalStops": 2,
+    "estimatedDuration": "3h 18m"
   }
 ]

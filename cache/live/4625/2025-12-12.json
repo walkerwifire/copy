@@ -1,0 +1,36 @@
+[
+  {
+    "techNo": "4625",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "9-12",
+        "job": "07836007312",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4625",
+        "name": "GORMAN,JOHN",
+        "address": "1772 E 52ND ST, BROOKLYN, NY 11234-3814",
+        "phone": "718-338-1902",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836020435",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4625",
+        "name": "SCOUNT STORE,,CROWN DI",
+        "address": "1 PAERDEGT 2ND ST, APT 2, BROOKLYN, NY 11236-4131",
+        "phone": "929-461-3550",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 2,
+    "estimatedDuration": ""
+  }
+]

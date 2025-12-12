@@ -4,19 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "2-5",
-        "job": "07836824883",
-        "type": "COS",
-        "status": "Not Done",
-        "normalizedStatus": "not-done",
-        "badge": "not-done",
-        "tech": "4834",
-        "name": "VERBUN,DEMITRY",
-        "address": "2015 SHORE PKWY, APT 3A, BROOKLYN, NY 11214",
-        "phone": "718-236-6155",
-        "hasIS": false
-      },
-      {
         "time": "11-2",
         "job": "07836071614",
         "type": "IN",
@@ -56,7 +43,7 @@
         "hasIS": false
       }
     ],
-    "totalStops": 4,
+    "totalStops": 3,
     "estimatedDuration": "4h 12m"
   }
 ]

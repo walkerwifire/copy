@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4863",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "12-3",
+        "job": "07836370772",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4863",
+        "name": "POLLYDORE,LYTTOL",
+        "address": "2620 GLENWOOD RD, APT 6H, BROOKLYN, NY 11210-2234",
+        "phone": "347-787-4105",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836483559",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4863",
+        "name": "CHERY,WOODSON",
+        "address": "329 E 29TH ST, APT BSMT, BROOKLYN, NY 11226",
+        "phone": "929-620-8043",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836948181",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4863",
+        "name": "RODRIGUEZ,ROSA",
+        "address": "2165 CLARENDON RD, APT 2, BROOKLYN, NY 11226-6110",
+        "phone": "646-306-6540",
+        "hasIS": false
+      },
+      {
+        "time": "8-11",
+        "job": "07836428401",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "CAMPBELL,SHELAINE",
+        "address": "5306 AVENUE H, APT 2, BROOKLYN, NY 11234",
+        "phone": "646-251-0837",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "2h 36m"
+  }
+]

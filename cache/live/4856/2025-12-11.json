@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4856",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836008346",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "Williams,SEAN",
+        "address": "2051 E 52ND ST, BROOKLYN, NY 11234-4737",
+        "phone": "347-633-5941",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836159386",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "Holmes,Lydia",
+        "address": "1063 E 52ND ST, BROOKLYN, NY 11234-1616",
+        "phone": "347-551-6631",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836036133",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4856",
+        "name": "FRIEDMAN,CHANA",
+        "address": "2116 E 65TH ST, APT 2, BROOKLYN, NY 11234-6318",
+        "phone": "718-375-5293",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "6h 30m"
+  }
+]

@@ -4,19 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "2-5",
-        "job": "07836735535",
-        "type": "TC",
-        "status": "Pending TC",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "5726",
-        "name": "HO,WINNIE",
-        "address": "1708 78TH ST, APT 3, BROOKLYN, NY 11214",
-        "phone": "917-957-6977",
-        "hasIS": false
-      },
-      {
         "time": "8-11",
         "job": "07836218233",
         "type": "COS",
@@ -43,7 +30,7 @@
         "hasIS": false
       }
     ],
-    "totalStops": 3,
+    "totalStops": 2,
     "estimatedDuration": "3h 36m"
   }
 ]

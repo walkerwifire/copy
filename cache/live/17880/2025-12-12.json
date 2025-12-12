@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "17880",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836530540",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "WATSON,JOSEPHIN",
+        "address": "937 59TH ST, APT B3, BROOKLYN, NY 11219-4817",
+        "phone": "718-749-8789",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836660161",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "TZOC,CECILIA",
+        "address": "1708 BATH AV, 3, BROOKLYN, NY 11214-4532",
+        "phone": "929-391-0044",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836099372",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "LAKUSH,ROZA",
+        "address": "2719 E 28TH ST, APT 6E, BROOKLYN, NY 11235-2483",
+        "phone": "718-676-1363",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836125638",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "SIKOREVICH,STEVE",
+        "address": "2665 HOMECREST AV, APT 4K, BROOKLYN, NY 11235-4543",
+        "phone": "347-564-6379",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836135929",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "17880",
+        "name": "PAGAN,GLADYS",
+        "address": "3080 VOORHIES AV, APT 3M, BROOKLYN, NY 11235-1329",
+        "phone": "718-213-1819",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": ""
+  }
+]

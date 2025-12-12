@@ -4,19 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "2-5",
-        "job": "07836836474",
-        "type": "IN",
-        "status": "Pending Install",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "556",
-        "name": "wins,alberta",
-        "address": "739 DUMONT AV, APT 4C, BROOKLYN, NY 11207",
-        "phone": "347-885-4398",
-        "hasIS": false
-      },
-      {
         "time": "8-11",
         "job": "07836868080",
         "type": "IN",
@@ -41,9 +28,22 @@
         "address": "293 LINCOLN AV, APT 1, BROOKLYN, NY 11208",
         "phone": "646-467-3831",
         "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836836474",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "wins,alberta",
+        "address": "739 DUMONT AV, APT 4C, BROOKLYN, NY 11207",
+        "phone": "347-885-4398",
+        "hasIS": false
       }
     ],
     "totalStops": 3,
-    "estimatedDuration": "3h 48m"
+    "estimatedDuration": "8h 8m"
   }
 ]

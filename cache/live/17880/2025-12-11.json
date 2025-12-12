@@ -1,0 +1,88 @@
+[
+  {
+    "techNo": "17880",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836058450",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "Avenue x,Resident",
+        "address": "3043 AVENUE X, APT 6A, BROOKLYN, NY 11235-1220",
+        "phone": "917-586-0000",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836460602",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "PRIMO,SEAN",
+        "address": "251 E 28TH ST, APT 2, BROOKLYN, NY 11226-6303",
+        "phone": "347-240-0263",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836500765",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "KOMBA,ESTHER",
+        "address": "47 MCKEEVER PL, APT 18L, BROOKLYN, NY 11225-2536",
+        "phone": "718-915-6959",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836837299",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "GHANEM,MUNASSAR",
+        "address": "376 E 3RD ST, APT 2, BROOKLYN, NY 11218-3912",
+        "phone": "347-272-4075",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836906192",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "17880",
+        "name": "YEMYASHEB,OLEG",
+        "address": "1085 SHEPSHEAD BY RD, APT BSM, BROOKLYN, NY 11229-4211",
+        "phone": "917-804-0252",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836583727",
+        "type": "TC",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "17880",
+        "name": "C RICHARDSON,MONA",
+        "address": "311 LINCOLN PL, APT 8A, BROOKLYN, NY 11238-5717",
+        "phone": "718-483-9049",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 6,
+    "estimatedDuration": "5h 6m"
+  }
+]

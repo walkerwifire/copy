@@ -1,0 +1,23 @@
+[
+  {
+    "techNo": "5907",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836179787",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "5907",
+        "name": "DONES,MICHELLE",
+        "address": "1285 GREENE AV, APT *3, BROOKLYN, NY 11237-4528",
+        "phone": "347-351-8462",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 1,
+    "estimatedDuration": "0h 54m"
+  }
+]

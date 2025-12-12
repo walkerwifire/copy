@@ -4,19 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "2-5",
-        "job": "07836669845",
-        "type": "IN",
-        "status": "Pending Install",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "5927",
-        "name": "morel,PATRICIA",
-        "address": "2926 ATLANTIC AV, 2, BROOKLYN, NY 11207-2729",
-        "phone": "917-251-5839",
-        "hasIS": false
-      },
-      {
         "time": "9-12",
         "job": "07836687525",
         "type": "TC",
@@ -82,7 +69,7 @@
         "hasIS": false
       }
     ],
-    "totalStops": 6,
+    "totalStops": 5,
     "estimatedDuration": "4h 48m"
   }
 ]

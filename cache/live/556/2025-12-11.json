@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "556",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836359471",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "YAHIA,MONA",
+        "address": "726 E 53RD ST, APT 2, BROOKLYN, NY 11203-5935",
+        "phone": "917-772-0956",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836352815",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "PEMBERTON,ALLISTAI",
+        "address": "128 E 59TH ST, APT 1, BROOKLYN, NY 11203-4810",
+        "phone": "347-907-2081",
+        "hasIS": false
+      },
+      {
+        "time": "ALL DAY",
+        "job": "W52915",
+        "type": "Assisting",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "556",
+        "name": "WFX INTERNAL,",
+        "address": "City: ,, ,",
+        "phone": "Work #:",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836352815",
+        "type": "IN",
+        "status": "Cancel",
+        "normalizedStatus": "cancelled",
+        "badge": "cancelled",
+        "tech": "556",
+        "name": "Pemberton,ALLISTAI",
+        "address": "128 E 59TH ST, APT 1, BROOKLYN, NY 11203-4810",
+        "phone": "347-907-2081",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": "7h 21m"
+  }
+]

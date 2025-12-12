@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "5927",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836651786",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5927",
+        "name": "Singh,Sharma",
+        "address": "1280 CROTON LP, APT 3A, BROOKLYN, NY 11239-1508",
+        "phone": "917-445-3075",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836018585",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5927",
+        "name": "GERMAIN,ROBERT",
+        "address": "1025 E 80TH ST, APT 2, BROOKLYN, NY 11236-4127",
+        "phone": "646-600-2070",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836889804",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5927",
+        "name": "EDWARDS,SYLVIA",
+        "address": "590 VANDALIA AV, APT 2, BROOKLYN, NY 11239",
+        "phone": "718-755-4099",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836427873",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "5927",
+        "name": "HOSSAN,MOBURAK",
+        "address": "439 ELDERT LN, APT 1FL, BROOKLYN, NY 11208",
+        "phone": "516-957-9029",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": ""
+  }
+]

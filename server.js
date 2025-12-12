@@ -40,6 +40,50 @@ app.post('/api/admin/clear-auth-errors', (req, res) => {
   } catch (e) { return res.status(500).json({ ok: false, error: String(e && e.message || e) }); }
 });
 
+// Admin: enrich and persist stored aggregated routes for a date (geocode + normalize)
+app.post('/api/admin/enrich-stored', (req, res) => {
+  try {
+    const provided = req.body && (req.body.secret || req.body.ADMIN_SECRET) || req.headers['x-admin-secret'];
+    if (!provided || String(provided) !== String(ADMIN_SECRET)) return res.status(403).json({ ok: false, error: 'forbidden' });
+    const dateIso = String(req.query.date || req.body?.date || '').trim() || new Date().toISOString().slice(0,10);
+    const p = path.join(dataDir, `stops-${dateIso}.json`);
+    if (!fs.existsSync(p)) return res.status(404).json({ ok: false, error: 'stored stops file not found for date ' + dateIso });
+    const txt = fs.readFileSync(p, 'utf8');
+    const obj = JSON.parse(txt || '{}');
+    const routes = Array.isArray(obj.routes) ? obj.routes : [];
+    // Support optional synchronous wait for debugging: set body.wait=true or ?wait=1
+    const wait = (req.query.wait === '1' || req.query.wait === 'true' || req.body?.wait === true);
+    if (wait) {
+      (async () => {
+        try {
+          console.log(`[admin] enrich-stored start(wait) date=${dateIso} routes=${routes.length}`);
+          await enrichRoutes(routes, { force: true });
+          persistAggregatedRoutes(dateIso, routes);
+          console.log(`[admin] enrich-stored done(wait) date=${dateIso} routes=${routes.length}`);
+          // Return enriched routes in response when waited
+          return res.json({ ok: true, waited: true, date: dateIso, routes: routes.length, enriched: routes });
+        } catch (e) {
+          console.error('[admin] enrich-stored error(wait)', e && (e.message || e));
+          return res.status(500).json({ ok: false, error: String(e && e.message || e) });
+        }
+      })();
+      // Note: the async IIFE will send the response when done
+      return;
+    }
+
+    // Non-blocking background behaviour (existing): start and return immediately
+    (async () => {
+      try {
+        console.log(`[admin] enrich-stored start date=${dateIso} routes=${routes.length}`);
+        await enrichRoutes(routes, { force: true });
+        persistAggregatedRoutes(dateIso, routes);
+        console.log(`[admin] enrich-stored done date=${dateIso}`);
+      } catch (e) { console.error('[admin] enrich-stored error', e && (e.message || e)); }
+    })();
+    return res.json({ ok: true, started: true, date: dateIso, routes: routes.length });
+  } catch (e) { return res.status(500).json({ ok: false, error: String(e && e.message || e) }); }
+});
+
 // Normalize multiple slashes in request URLs (e.g., //api/routes.csv -> /api/routes.csv)
 app.use((req, _res, next) => {
   try {
@@ -54,6 +98,17 @@ app.use((req, _res, next) => {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve a small JS snippet that injects server-side MAPTILER_KEY into client
+app.get('/map.key.js', (req, res) => {
+  try {
+    res.setHeader('Content-Type', 'application/javascript');
+    const key = String(MAPTILER_KEY || '').replace(/"/g, '\\"');
+    return res.send(`window.MAPTILER_KEY = "${key}";`);
+  } catch (e) {
+    res.status(500).send('// error');
+  }
+});
 
 /**
  * Parse a generic HTML page for tables, labeled fields, and key text.
@@ -1058,6 +1113,16 @@ function persistAggregatedRoutes(dateIso, routes) {
   try {
     const d = String(dateIso || new Date().toISOString().slice(0,10)).slice(0,10);
     const p = path.join(dataDir, `stops-${d}.json`);
+    try {
+      // Lightweight logging: count how many stops have point data
+      let withPoint = 0, totalStops = 0;
+      for (const r of (routes || [])) {
+        const stops = Array.isArray(r.stops) ? r.stops : [];
+        totalStops += stops.length;
+        for (const s of stops) if (s && s.point && typeof s.point.lat === 'number' && typeof s.point.lng === 'number') withPoint++;
+      }
+      console.log(`[persistAggregatedRoutes] writing ${p} routes=${(routes||[]).length} stops=${totalStops} withPoint=${withPoint}`);
+    } catch (e) {}
     fs.writeFileSync(p, JSON.stringify({ date: d, generatedAt: new Date().toISOString(), routes: routes || [] }, null, 2), 'utf8');
   } catch (e) {
     // ignore write errors
@@ -1814,14 +1879,24 @@ async function enrichRoutes(routes, opts = {}) {
       }
     }
     if (geoTasks.length) {
-      console.log(`[enrichRoutes] geocoding ${geoTasks.length} stops with concurrency=${geocodeConc}`);
+      // Log how many were missing before geocoding
+      console.log(`[enrichRoutes] geocoding ${geoTasks.length} stops with concurrency=${geocodeConc} (missing before)`);
       await parallelMap(geoTasks, geocodeConc, async (task) => {
         const s = task.stop;
         try {
-          const g = await geocodeAddress(s.address || s.name || '', { proxLat, proxLng, state: s.state, city: s.city, zip: s.zip, jobId: s.job });
+          const g = await geocodeAddress(s.address || s.name || '', { proxLat, proxLng, state: s.state, city: s.city, zip: s.zip, jobId: s.job }, { force: !!opts.force });
           if (g) s.point = g;
         } catch (e) {}
       });
+      // Count how many have point after geocoding
+      try {
+        let after = 0;
+        for (const t of geoTasks) {
+          const s = t.stop;
+          if (s && s.point && typeof s.point.lat === 'number' && typeof s.point.lng === 'number') after++;
+        }
+        console.log(`[enrichRoutes] geocoding complete for date? addedPoints=${after} of ${geoTasks.length}`);
+      } catch (e) {}
     }
     // After geocoding pass, normalize statuses for all stops
     for (const r of routes) {

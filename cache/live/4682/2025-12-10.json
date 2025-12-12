@@ -4,32 +4,6 @@
     "date": "2025-12-10",
     "stops": [
       {
-        "time": "12-3",
-        "job": "07836354184",
-        "type": "TC",
-        "status": "Pending TC",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "4682",
-        "name": "Hurtado,CHRISTIA",
-        "address": "1077 E 15TH ST, APT 2, BROOKLYN, NY 11230-4401",
-        "phone": "646-853-3837",
-        "hasIS": false
-      },
-      {
-        "time": "2-5",
-        "job": "07836328956",
-        "type": "TC",
-        "status": "Pending TC",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "4682",
-        "name": "FRIEDMAN,TZVI",
-        "address": "1360 46TH ST, APT 2, BROOKLYN, NY 11219-2139",
-        "phone": "718-431-0310",
-        "hasIS": false
-      },
-      {
         "time": "9-12",
         "job": "07836354022",
         "type": "TC",
@@ -67,9 +41,35 @@
         "address": "984 E 10TH ST, BROOKLYN, NY 11230",
         "phone": "917-796-7793",
         "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836354184",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "Hurtado,CHRISTIA",
+        "address": "1077 E 15TH ST, APT 2, BROOKLYN, NY 11230-4401",
+        "phone": "646-853-3837",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836328956",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4682",
+        "name": "FRIEDMAN,TZVI",
+        "address": "1360 46TH ST, APT 2, BROOKLYN, NY 11219-2139",
+        "phone": "718-431-0310",
+        "hasIS": false
       }
     ],
     "totalStops": 5,
-    "estimatedDuration": "2h 42m"
+    "estimatedDuration": "4h 30m"
   }
 ]

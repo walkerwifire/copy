@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4625",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "11-2",
+        "job": "07836859589",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "PEREZ,RAFAEL",
+        "address": "21 PALMETTO ST, APT BSMT, BROOKLYN, NY 11221-4306",
+        "phone": "786-230-6390",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836251018",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "RYDER,KASHAWNA",
+        "address": "1024 HALSEY ST, APT 4L, BROOKLYN, NY 11207",
+        "phone": "917-202-9149",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836002555",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4625",
+        "name": "BATTAGLIA,CAROL",
+        "address": "6504 AVENUE T, BROOKLYN, NY 11234-5928",
+        "phone": "718-251-5863",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "3h 18m"
+  }
+]

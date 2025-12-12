@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4693",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836459322",
+        "type": "COS",
+        "status": "Pending Change",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4693",
+        "name": "BEKKER,LIANA",
+        "address": "2820 W 8TH ST, APT 19F, BROOKLYN, NY 11224-3313",
+        "phone": "718-372-5138",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836212815",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4693",
+        "name": "WEINSTOCK,SONYA",
+        "address": "8100 BAY PK, APT 5O, BROOKLYN, NY 11214-2553",
+        "phone": "917-593-4921",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836453456",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4693",
+        "name": "MICHEL,ORIOL",
+        "address": "2686 COLBY CT, APT 2D, BROOKLYN, NY 11223-6120",
+        "phone": "718-646-7795",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836220238",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4693",
+        "name": "KABABJI,HILLAL",
+        "address": "288 BAY 38TH ST, APT 2U, BROOKLYN, NY 11214-6524",
+        "phone": "347-394-8664",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836578534",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4693",
+        "name": "Cruse,Derneeka",
+        "address": "2955 SHELL RD, APT 6H, BROOKLYN, NY 11224-3647",
+        "phone": "347-222-5421",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": ""
+  }
+]

@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "556",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836543355",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "556",
+        "name": "Boakye,YAASANTE",
+        "address": "590 FLATBUSH AV, APT 10H, BROOKLYN, NY 11225-4988",
+        "phone": "646-671-8598",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836335139",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "556",
+        "name": "DE LA CRUZ,GELTY",
+        "address": "100 E 21ST ST, APT 115, BROOKLYN, NY 11226-3032",
+        "phone": "347-430-1417",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836550365",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "556",
+        "name": "LAPORTE,ANNE",
+        "address": "260 HAWTHORNE ST, APT D6, BROOKLYN, NY 11225-5913",
+        "phone": "347-789-9626",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836399299",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "556",
+        "name": "Noel,KESNEL",
+        "address": "201 LINDEN BL, APT F9, BROOKLYN, NY 11226-3442",
+        "phone": "862-334-7080",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836502337",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "556",
+        "name": "DIEUJUSTE,MARIE",
+        "address": "255 MARTENSE ST, APT 9, BROOKLYN, NY 11226-3621",
+        "phone": "347-679-2484",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": ""
+  }
+]

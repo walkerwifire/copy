@@ -1,0 +1,75 @@
+[
+  {
+    "techNo": "4631",
+    "date": "2025-12-12",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836550708",
+        "type": "IN",
+        "status": "Pending Install",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4631",
+        "name": "TUTEIN,RAHEEM",
+        "address": "431 HART ST, APT 5C, BROOKLYN, NY 11221",
+        "phone": "678-571-7091",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836550934",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4631",
+        "name": "BARDONG,CIARAN",
+        "address": "92 JEFFERSON ST, APT 2L, BROOKLYN, NY 11206",
+        "phone": "516-350-3749",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836621861",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4631",
+        "name": "PEPEN,RADAIRIS",
+        "address": "231 CENTRAL AV, 2, BROOKLYN, NY 11221-3445",
+        "phone": "347-891-3092",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836241176",
+        "type": "TC",
+        "status": "Pending TC",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4631",
+        "name": "RODRIGUEZ,ALICE",
+        "address": "709 KNICKERBOCKR AV, APT 1, BROOKLYN, NY 11221-5317",
+        "phone": "718-381-9810",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836837674",
+        "type": "COS",
+        "status": "Pending Change",
+        "normalizedStatus": "pending",
+        "badge": "pending",
+        "tech": "4631",
+        "name": "VASQUEZ,JUANA",
+        "address": "165 HIMROD ST, APT 5E, BROOKLYN, NY 11221-3461",
+        "phone": "347-299-2931",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 5,
+    "estimatedDuration": ""
+  }
+]

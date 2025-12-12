@@ -5,11 +5,24 @@
     "stops": [
       {
         "time": "11-2",
+        "job": "07836204796",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "18232",
+        "name": "Blaine,Abigail",
+        "address": "374 BLEECKER ST, APT 2, BROOKLYN, NY 11237-5302",
+        "phone": "919-381-7478",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
         "job": "07836836888",
         "type": "TC",
-        "status": "Pending TC",
-        "normalizedStatus": "pending",
-        "badge": "pending",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
         "tech": "18232",
         "name": "PORTER,DAVID",
         "address": "852 MONROE ST, APT 3, BROOKLYN, NY 11221-4107",
@@ -20,26 +33,13 @@
         "time": "12-3",
         "job": "07836836887",
         "type": "TC",
-        "status": "Pending TC",
-        "normalizedStatus": "pending",
-        "badge": "pending",
-        "tech": "18232",
-        "name": "SCARLETT,WINTER",
-        "address": "852 MONROE ST, APT 2, BROOKLYN, NY 11221-4107",
-        "phone": "845-699-9304",
-        "hasIS": false
-      },
-      {
-        "time": "11-2",
-        "job": "07836204796",
-        "type": "IN",
         "status": "Complete",
         "normalizedStatus": "completed",
         "badge": "completed",
         "tech": "18232",
-        "name": "Blaine,Abigail",
-        "address": "374 BLEECKER ST, APT 2, BROOKLYN, NY 11237-5302",
-        "phone": "919-381-7478",
+        "name": "SCARLETT,WINTER",
+        "address": "852 MONROE ST, APT 2, BROOKLYN, NY 11221-4107",
+        "phone": "845-699-9304",
         "hasIS": false
       },
       {
@@ -57,6 +57,6 @@
       }
     ],
     "totalStops": 4,
-    "estimatedDuration": "4h 24m"
+    "estimatedDuration": "6h 12m"
   }
 ]

@@ -1,0 +1,36 @@
+[
+  {
+    "techNo": "4834",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836907575",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "Mykhailov,DANIIL",
+        "address": "2311 AVENUE Z, 2FLR, BROOKLYN, NY 11235",
+        "phone": "646-824-2374",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836044159",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4834",
+        "name": "OXENHOREN,ARIEL",
+        "address": "2102 QUENTIN RD, APT 1, BROOKLYN, NY 11229-1502",
+        "phone": "917-204-9498",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 2,
+    "estimatedDuration": "4h 36m"
+  }
+]

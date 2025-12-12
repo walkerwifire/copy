@@ -1,0 +1,49 @@
+[
+  {
+    "techNo": "4863",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836554110",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "GOHER,OVES",
+        "address": "9321 AVENUE K, BROOKLYN, NY 11236",
+        "phone": "347-486-8219",
+        "hasIS": false
+      },
+      {
+        "time": "12-3",
+        "job": "07836252864",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "PINTO,JACQUILI",
+        "address": "619 E 108TH ST, APT 1A, BROOKLYN, NY 11236-2531",
+        "phone": "702-265-5163",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836651725",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4863",
+        "name": "DOSMUKHANBETO,DINORA",
+        "address": "1280 CROTON LP, APT 11H, BROOKLYN, NY 11239-1507",
+        "phone": "347-533-1122",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 3,
+    "estimatedDuration": "4h 42m"
+  }
+]

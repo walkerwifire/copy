@@ -1,0 +1,62 @@
+[
+  {
+    "techNo": "4693",
+    "date": "2025-12-11",
+    "stops": [
+      {
+        "time": "8-11",
+        "job": "07836452052",
+        "type": "IN",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4693",
+        "name": "VERNIK,ALEX",
+        "address": "3105 BRIGHTON 3RD ST, APT 4F, BROOKLYN, NY 11235-7369",
+        "phone": "718-332-2322",
+        "hasIS": false
+      },
+      {
+        "time": "9-12",
+        "job": "07836451682",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4693",
+        "name": "GLADSTEIN,ROZALIA",
+        "address": "500 BRIGHTWATER CT, APT 15F, BROOKLYN, NY 11235-7148",
+        "phone": "718-769-1972",
+        "hasIS": false
+      },
+      {
+        "time": "11-2",
+        "job": "07836470609",
+        "type": "COS",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4693",
+        "name": "Matos German,IRIS",
+        "address": "3415 NEPTUNE AV, APT 709, BROOKLYN, NY 11224-1696",
+        "phone": "347-744-2615",
+        "hasIS": false
+      },
+      {
+        "time": "2-5",
+        "job": "07836600093",
+        "type": "TC",
+        "status": "Complete",
+        "normalizedStatus": "completed",
+        "badge": "completed",
+        "tech": "4693",
+        "name": "RIZAJ,ARI",
+        "address": "279 AVENUE O, COMM, BROOKLYN, NY 11230",
+        "phone": "516-965-3585",
+        "hasIS": false
+      }
+    ],
+    "totalStops": 4,
+    "estimatedDuration": ""
+  }
+]
